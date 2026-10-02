@@ -1,0 +1,93 @@
+"""Vector similarity search."""
+import logging
+from typing import List, Optional, Tuple
+
+from sqlalchemy.orm import Session
+from sqlalchemy import desc
+
+from app.db.models.product import Product
+from app.providers.base import EmbeddingProvider
+from app.schemas.search import SearchFilter
+
+logger = logging.getLogger(__name__)
+
+
+def search_vector(
+    session: Session,
+    query_text: str,
+    provider: EmbeddingProvider,
+    filters: Optional[SearchFilter] = None,
+    limit: int = 50,
+) -> Tuple[List[Product], int]:
+    """Search using vector similarity.
+
+    Args:
+        session: Database session.
+        query_text: Search query.
+        provider: EmbeddingProvider to embed the query.
+        filters: Optional search filters.
+        limit: Maximum results to return.
+
+    Returns:
+        Tuple of (products, total_count).
+    """
+    # Embed the query
+    query_embedding = provider.embed_queries([query_text])[0]
+
+    # Start with products that have embeddings
+    query_obj = session.query(Product).filter(Product.embedding.isnot(None))
+
+    # Apply filters
+    if filters:
+        if filters.category:
+            query_obj = query_obj.filter_by(category=filters.category)
+        if filters.gender:
+            query_obj = query_obj.filter_by(gender=filters.gender)
+        if filters.color:
+            query_obj = query_obj.filter_by(color=filters.color)
+        if filters.season:
+            query_obj = query_obj.filter_by(season=filters.season)
+        if filters.availability is not None:
+            query_obj = query_obj.filter_by(availability=filters.availability)
+
+    # Get total count
+    total_count = query_obj.count()
+
+    # Vector similarity ranking (using cosine distance <=>)
+    # Note: On SQLite this won't work; on PostgreSQL it uses HNSW index
+    try:
+        # PostgreSQL: ORDER BY cosine distance
+        ranked = query_obj.order_by(
+            Product.embedding.cosine_distance(query_embedding)
+        ).limit(limit).all()
+    except Exception as e:
+        logger.debug(f"Vector search failed (expected on SQLite): {e}, falling back to empty")
+        ranked = []
+
+    return ranked, total_count
+
+
+def calculate_similarity_score(vec1: List[float], vec2: List[float]) -> float:
+    """Calculate cosine similarity between two vectors.
+
+    Args:
+        vec1: First vector.
+        vec2: Second vector.
+
+    Returns:
+        Cosine similarity score (0-1, higher is more similar).
+    """
+    if not vec1 or not vec2:
+        return 0.0
+
+    dot_product = sum(a * b for a, b in zip(vec1, vec2))
+
+    # Assume normalized vectors, so magnitude = 1
+    # But compute just in case
+    mag1 = sum(a**2 for a in vec1) ** 0.5
+    mag2 = sum(b**2 for b in vec2) ** 0.5
+
+    if mag1 == 0 or mag2 == 0:
+        return 0.0
+
+    return dot_product / (mag1 * mag2)

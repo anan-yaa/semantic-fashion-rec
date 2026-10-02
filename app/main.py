@@ -8,6 +8,7 @@ from core.config import settings
 from core.logging import setup_logging
 from app.db.database import engine
 from app.api.routes.products import router as products_router
+from app.api.routes.search import router as search_router
 
 # Configure logging before anything else
 setup_logging()
@@ -20,6 +21,7 @@ app = FastAPI(
 
 # Register routes
 app.include_router(products_router)
+app.include_router(search_router)
 
 
 @app.on_event("startup")
