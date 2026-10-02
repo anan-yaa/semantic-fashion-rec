@@ -1,17 +1,4 @@
-from app.services.ingestion_service import (
-    normalize_text,
-    build_search_text,
-    compute_content_hash,
-    map_to_product_create_schema,
-    schema_to_product_model,
-    IngestionStats,
-)
+# Services are organized in subpackages
+# Import from ingestion subpackage as needed:
+# from app.services.ingestion import ingest_records, IngestionStats, etc.
 
-__all__ = [
-    "normalize_text",
-    "build_search_text",
-    "compute_content_hash",
-    "map_to_product_create_schema",
-    "schema_to_product_model",
-    "IngestionStats",
-]
