@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg15
+    container_name: fashion_rec_db
+    environment:
+      - POSTGRES_DB=fashion_rec
+      - POSTGRES_USER=fashion_rec
+      - POSTGRES_PASSWORD=dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - HOST=0.0.0.0
+      - PORT=8000
+      - LOG_LEVEL=INFO
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - DATABASE_URL=postgresql://fashion_rec:dev_password@db:5432/fashion_rec
+    volumes:
+      - .:/app
+
+volumes:
+  pg_data:
