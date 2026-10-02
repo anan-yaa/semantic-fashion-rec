@@ -9,6 +9,8 @@ from sqlalchemy import (
     Index,
 )
 from sqlalchemy.sql import func
+from pgvector.sqlalchemy import Vector
+from sqlalchemy.dialects.postgresql import TSVECTOR
 
 from app.db.database import Base
 
@@ -32,10 +34,12 @@ class Product(Base):
     currency = Column(String, default="USD", nullable=False)
     availability = Column(Boolean, default=True, nullable=False, index=True)
     attributes = Column(JSON, nullable=True)  # Renamed from metadata
-    embedding = Column(Text, nullable=True)  # Stored as JSON string, will be Vector in migrations
+    embedding = Column(Vector(768), nullable=True)
     search_text = Column(Text, nullable=True)  # For full-text search
-    search_vector = Column(Text, nullable=True)  # Will be TSVECTOR in PostgreSQL migrations
+    search_vector = Column(TSVECTOR, nullable=True)
     content_hash = Column(String, nullable=True, index=True)  # SHA256 of concatenated text
+    embedding_content_hash = Column(String, nullable=True)  # Hash at time of embedding
+    search_indexed_hash = Column(String, nullable=True)  # Hash at time of keyword indexing
     embedded_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(

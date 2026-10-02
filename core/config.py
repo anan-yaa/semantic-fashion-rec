@@ -24,7 +24,9 @@ class Settings(BaseSettings):
     )
 
     # Embeddings
-    embedding_dim: int = Field(default=384)  # multilingual-e5-small dimension
+    embedding_model: str = Field(default="intfloat/multilingual-e5-base")
+    embedding_dim: int = Field(default=768)  # multilingual-e5-base dimension
+    embedding_batch_size: int = Field(default=64)
 
     # API keys / external services
     openai_api_key: Optional[str] = Field(default=None)

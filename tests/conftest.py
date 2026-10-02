@@ -1,12 +1,27 @@
 from typing import Generator
 
 import pytest
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Text
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.pool import StaticPool
+from sqlalchemy.ext.compiler import compiles
+from pgvector.sqlalchemy import Vector
+from sqlalchemy.dialects.postgresql import TSVECTOR
 
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
+
+
+@compiles(Vector, "sqlite")
+def compile_vector(element, compiler, **kw):
+    """Render Vector as TEXT for SQLite tests."""
+    return "TEXT"
+
+
+@compiles(TSVECTOR, "sqlite")
+def compile_tsvector(element, compiler, **kw):
+    """Render TSVECTOR as TEXT for SQLite tests."""
+    return "TEXT"
 
 
 # Use SQLite for testing (in-memory)
