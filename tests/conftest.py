@@ -1,9 +1,9 @@
-import os
 from typing import Generator
 
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.pool import StaticPool
 
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
@@ -19,7 +19,7 @@ def test_db() -> Generator[Session, None, None]:
     engine = create_engine(
         TEST_DATABASE_URL,
         connect_args={"check_same_thread": False},
-        poolclass=None,
+        poolclass=StaticPool,
     )
 
     Base.metadata.create_all(engine)
@@ -30,7 +30,9 @@ def test_db() -> Generator[Session, None, None]:
         yield session
     finally:
         session.close()
+        # Clean up tables
         Base.metadata.drop_all(engine)
+        engine.dispose()
 
 
 @pytest.fixture

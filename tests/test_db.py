@@ -14,7 +14,7 @@ class TestProductRepository:
     def test_create_product(self, repository: ProductRepository) -> None:
         """Test creating a product."""
         product = Product(
-            id=uuid.uuid4(),
+            id=str(uuid.uuid4()),
             external_product_id="ext-001",
             name="Test Jacket",
             description="A test jacket",
@@ -38,7 +38,7 @@ class TestProductRepository:
 
     def test_get_by_id(self, repository: ProductRepository) -> None:
         """Test retrieving a product by ID."""
-        product_id = uuid.uuid4()
+        product_id = str(uuid.uuid4())
         product = Product(
             id=product_id,
             external_product_id="ext-002",
@@ -57,7 +57,7 @@ class TestProductRepository:
     def test_get_by_external_id(self, repository: ProductRepository) -> None:
         """Test retrieving a product by external ID."""
         product = Product(
-            id=uuid.uuid4(),
+            id=str(uuid.uuid4()),
             external_product_id="ext-unique-123",
             name="Test Pants",
             category="pants",
@@ -75,7 +75,7 @@ class TestProductRepository:
         """Test listing active products with pagination."""
         for i in range(5):
             product = Product(
-                id=uuid.uuid4(),
+                id=str(uuid.uuid4()),
                 external_product_id=f"ext-{i}",
                 name=f"Product {i}",
                 category="test",
@@ -92,7 +92,7 @@ class TestProductRepository:
     def test_search_by_name(self, repository: ProductRepository) -> None:
         """Test searching products by name."""
         product = Product(
-            id=uuid.uuid4(),
+            id=str(uuid.uuid4()),
             external_product_id="ext-search-test",
             name="Blue Denim Jacket",
             category="jackets",
@@ -110,7 +110,7 @@ class TestProductRepository:
         """Test upserting multiple products."""
         products = [
             Product(
-                id=uuid.uuid4(),
+                id=str(uuid.uuid4()),
                 external_product_id=f"ext-bulk-{i}",
                 name=f"Bulk Product {i}",
                 category="bulk",

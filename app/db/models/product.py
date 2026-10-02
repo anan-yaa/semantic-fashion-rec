@@ -8,9 +8,7 @@ from sqlalchemy import (
     JSON,
     Index,
 )
-from sqlalchemy.dialects.postgresql import UUID, TSVECTOR
 from sqlalchemy.sql import func
-from pgvector.sqlalchemy import Vector
 
 from app.db.database import Base
 
@@ -18,7 +16,7 @@ from app.db.database import Base
 class Product(Base):
     __tablename__ = "products"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, index=True)
+    id = Column(String(36), primary_key=True, index=True)
     external_product_id = Column(String, unique=True, index=True, nullable=False)
     name = Column(String, nullable=False, index=True)
     description = Column(Text, nullable=True)
@@ -34,9 +32,9 @@ class Product(Base):
     currency = Column(String, default="USD", nullable=False)
     availability = Column(Boolean, default=True, nullable=False, index=True)
     attributes = Column(JSON, nullable=True)  # Renamed from metadata
-    embedding = Column(Vector, nullable=True)
+    embedding = Column(Text, nullable=True)  # Stored as JSON string, will be Vector in migrations
     search_text = Column(Text, nullable=True)  # For full-text search
-    search_vector = Column(TSVECTOR, nullable=True)
+    search_vector = Column(Text, nullable=True)  # Will be TSVECTOR in PostgreSQL migrations
     content_hash = Column(String, nullable=True, index=True)  # SHA256 of concatenated text
     embedded_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())

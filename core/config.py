@@ -1,11 +1,16 @@
 from typing import Optional
 
-from pydantic import Field
+from pydantic import ConfigDict, Field
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
     """Application configuration loaded from environment variables."""
+
+    model_config = ConfigDict(
+        env_file=".env",
+        case_sensitive=False,
+    )
 
     app_name: str = Field(default="Semantic Fashion Recommendation System")
     debug: bool = Field(default=False)
@@ -27,10 +32,6 @@ class Settings(BaseSettings):
 
     # Redis
     redis_url: str = Field(default="redis://localhost:6379/0")
-
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
 
 
 settings = Settings()

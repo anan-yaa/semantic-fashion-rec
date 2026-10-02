@@ -46,9 +46,9 @@ class ProductRepository:
         total = self.session.query(Product).count()
         products = (
             self.session.query(Product)
+            .order_by(desc(Product.created_at))
             .offset(skip)
             .limit(limit)
-            .order_by(desc(Product.created_at))
             .all()
         )
         return products, total
