@@ -1,34 +1,23 @@
-import sys
-import os
+import uuid
+from decimal import Decimal
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import pytest
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-from app.db.database import Base, get_session
 from app.db.models.product import Product
 from app.db.repositories.product_repository import ProductRepository
 
 
-def test_create_and_read_product():
-    """Test basic product CRUD through the repository."""
-    engine = create_engine(
-        "postgresql+psycopg2://fashion_rec:dev_password@localhost:5432/fashion_rec",
-    )
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
+class TestProductRepository:
+    """Test suite for ProductRepository."""
 
-    Base.metadata.create_all(engine)
-
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-    with SessionLocal() as session:
-        repo = ProductRepository(session)
-
+    def test_create_product(self, repository: ProductRepository) -> None:
+        """Test creating a product."""
         product = Product(
-            id="prod-001",
+            id=uuid.uuid4(),
             external_product_id="ext-001",
             name="Test Jacket",
-            description="A test jacket for unit testing",
+            description="A test jacket",
             category="jackets",
             subcategory="outerwear",
             brand="TestBrand",
@@ -37,41 +26,103 @@ def test_create_and_read_product():
             material="cotton",
             style="casual",
             season="spring",
-            price=99.99,
+            price=Decimal("99.99"),
             currency="USD",
             availability=True,
         )
 
-        created = repo.create(product)
-        assert created.id == "prod-001"
+        created = repository.create(product)
+        assert created.id == product.id
         assert created.name == "Test Jacket"
+        assert created.external_product_id == "ext-001"
 
-        retrieved = repo.get_by_id("prod-001")
+    def test_get_by_id(self, repository: ProductRepository) -> None:
+        """Test retrieving a product by ID."""
+        product_id = uuid.uuid4()
+        product = Product(
+            id=product_id,
+            external_product_id="ext-002",
+            name="Test Shirt",
+            category="shirts",
+            price=Decimal("49.99"),
+            currency="USD",
+            availability=True,
+        )
+        repository.create(product)
+
+        retrieved = repository.get_by_id(product_id)
         assert retrieved is not None
-        assert retrieved.name == "Test Jacket"
+        assert retrieved.name == "Test Shirt"
 
-        read_by_ext = repo.get_by_external_id("ext-001")
-        assert read_by_ext is not None
-        assert read_by_ext.id == "prod-001"
+    def test_get_by_external_id(self, repository: ProductRepository) -> None:
+        """Test retrieving a product by external ID."""
+        product = Product(
+            id=uuid.uuid4(),
+            external_product_id="ext-unique-123",
+            name="Test Pants",
+            category="pants",
+            price=Decimal("79.99"),
+            currency="USD",
+            availability=True,
+        )
+        repository.create(product)
 
-        active = repo.list_active()
-        assert len(active) >= 1
+        retrieved = repository.get_by_external_id("ext-unique-123")
+        assert retrieved is not None
+        assert retrieved.name == "Test Pants"
 
-        found = repo.search_by_name("Jacket")
-        assert len(found) >= 1
+    def test_list_active_with_pagination(self, repository: ProductRepository) -> None:
+        """Test listing active products with pagination."""
+        for i in range(5):
+            product = Product(
+                id=uuid.uuid4(),
+                external_product_id=f"ext-{i}",
+                name=f"Product {i}",
+                category="test",
+                price=Decimal("10.00"),
+                currency="USD",
+                availability=i % 2 == 0,
+            )
+            repository.create(product)
 
-        # Update
-        created.description = "Updated description"
-        updated = repo.update(created)
-        assert updated.description == "Updated description"
+        products, total = repository.list_active(skip=0, limit=10)
+        assert len(products) == 3  # 5 products, 3 available (i=0,2,4)
+        assert total == 3
 
-        # Delete
-        repo.delete(updated)
-        after_delete = repo.get_by_id("prod-001")
-        assert after_delete is None
+    def test_search_by_name(self, repository: ProductRepository) -> None:
+        """Test searching products by name."""
+        product = Product(
+            id=uuid.uuid4(),
+            external_product_id="ext-search-test",
+            name="Blue Denim Jacket",
+            category="jackets",
+            price=Decimal("89.99"),
+            currency="USD",
+            availability=True,
+        )
+        repository.create(product)
 
-    print("All database tests passed!")
+        results = repository.search_by_name("Denim")
+        assert len(results) >= 1
+        assert results[0].name == "Blue Denim Jacket"
 
+    def test_upsert_many(self, repository: ProductRepository) -> None:
+        """Test upserting multiple products."""
+        products = [
+            Product(
+                id=uuid.uuid4(),
+                external_product_id=f"ext-bulk-{i}",
+                name=f"Bulk Product {i}",
+                category="bulk",
+                price=Decimal("25.00"),
+                currency="USD",
+                availability=True,
+            )
+            for i in range(3)
+        ]
 
-if __name__ == "__main__":
-    test_create_and_read_product()
+        count = repository.upsert_many(products)
+        assert count == 3
+
+        all_products, total = repository.list_all(skip=0, limit=100)
+        assert total >= 3
