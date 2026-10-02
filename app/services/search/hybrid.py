@@ -1,4 +1,4 @@
-"""Hybrid search combining vector and keyword methods."""
+"""Hybrid search combining vector and keyword methods via Reciprocal Rank Fusion."""
 import logging
 import time
 from typing import List, Optional
@@ -10,6 +10,7 @@ from app.providers.base import EmbeddingProvider
 from app.schemas.search import SearchFilter, SearchMethod
 from app.services.search.vector_search import search_vector
 from app.services.search.keyword_search import search_keyword
+from app.services.search.rank_fusion import reciprocal_rank_fusion
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +23,7 @@ def search_hybrid(
     method: SearchMethod = SearchMethod.HYBRID,
     limit: int = 50,
 ) -> tuple[List[Product], SearchMethod, float]:
-    """Unified search orchestration.
+    """Unified search orchestration using Reciprocal Rank Fusion.
 
     Args:
         session: Database session.
@@ -55,7 +56,7 @@ def search_hybrid(
             actual_method = SearchMethod.KEYWORD
 
         else:  # HYBRID
-            # Try both methods and combine
+            # Run both methods and fuse via Reciprocal Rank Fusion
             try:
                 vector_results, _ = search_vector(
                     session, query_text, provider, filters=filters, limit=limit * 2
@@ -72,20 +73,8 @@ def search_hybrid(
                 logger.debug(f"Keyword search failed: {e}")
                 keyword_results = []
 
-            # Simple merge: deduplicate by ID, favor vector results
-            seen_ids = set()
-            results = []
-
-            for p in vector_results:
-                if p.id not in seen_ids:
-                    results.append(p)
-                    seen_ids.add(p.id)
-
-            for p in keyword_results:
-                if p.id not in seen_ids and len(results) < limit:
-                    results.append(p)
-                    seen_ids.add(p.id)
-
+            # Fuse results using Reciprocal Rank Fusion
+            results = reciprocal_rank_fusion(vector_results, keyword_results, k=60)
             results = results[:limit]
             actual_method = SearchMethod.HYBRID
 

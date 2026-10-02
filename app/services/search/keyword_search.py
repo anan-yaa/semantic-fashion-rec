@@ -2,7 +2,7 @@
 import logging
 from typing import List, Optional, Tuple
 
-from sqlalchemy import or_
+from sqlalchemy import or_, desc, func
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
@@ -19,8 +19,10 @@ def search_keyword(
 ) -> Tuple[List[Product], int]:
     """Search using keyword matching.
 
-    On PostgreSQL, uses TSVECTOR/full-text search.
-    On SQLite, falls back to ILIKE pattern matching.
+    On PostgreSQL, uses TSVECTOR full-text search: plainto_tsquery() to parse
+    the query and ts_rank_cd() to rank by relevance, backed by the GIN index
+    on search_vector.
+    On SQLite, falls back to ILIKE pattern matching (no tsvector support).
 
     Args:
         session: Database session.
@@ -31,23 +33,12 @@ def search_keyword(
     Returns:
         Tuple of (products, total_count).
     """
-    # Tokenize query
-    tokens = query_text.lower().split()
+    dialect = session.bind.dialect.name
 
-    # Start with all products
+    # Build base query
     query_obj = session.query(Product)
 
-    # Search: match query tokens in name or search_text
-    conditions = []
-    for token in tokens:
-        pattern = f"%{token}%"
-        conditions.append(Product.name.ilike(pattern))
-        conditions.append(Product.search_text.ilike(pattern))
-
-    if conditions:
-        query_obj = query_obj.filter(or_(*conditions))
-
-    # Apply filters
+    # Apply filters first
     if filters:
         if filters.category:
             query_obj = query_obj.filter_by(category=filters.category)
@@ -60,10 +51,31 @@ def search_keyword(
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
 
-    # Get total count
-    total_count = query_obj.count()
+    # PostgreSQL FTS using TSVECTOR, plainto_tsquery, ts_rank_cd
+    if dialect == "postgresql":
+        tsquery = func.plainto_tsquery("english", query_text)
+        query_obj = query_obj.filter(
+            Product.search_vector.op("@@")(tsquery)
+        ).order_by(
+            desc(func.ts_rank_cd(Product.search_vector, tsquery))
+        )
 
-    # Return results
+        total_count = query_obj.count()
+        results = query_obj.limit(limit).all()
+        return results, total_count
+
+    # Fallback to ILIKE (SQLite compatible, no tsvector support there)
+    tokens = query_text.lower().split()
+    conditions = []
+    for token in tokens:
+        pattern = f"%{token}%"
+        conditions.append(Product.name.ilike(pattern))
+        conditions.append(Product.search_text.ilike(pattern))
+
+    if conditions:
+        query_obj = query_obj.filter(or_(*conditions))
+
+    total_count = query_obj.count()
     results = query_obj.limit(limit).all()
 
     return results, total_count
