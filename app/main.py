@@ -7,6 +7,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from core.config import settings
 from core.logging import setup_logging
 from app.db.database import engine
+from app.api.routes.products import router as products_router
 
 # Configure logging before anything else
 setup_logging()
@@ -16,6 +17,9 @@ app = FastAPI(
     title=settings.app_name,
     debug=settings.debug,
 )
+
+# Register routes
+app.include_router(products_router)
 
 
 @app.on_event("startup")
