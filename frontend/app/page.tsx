@@ -1,13 +1,13 @@
 /**
  * Main catalogue page
- * Displays products with pagination, search (not yet functional)
+ * Displays products with pagination, plus hybrid/vector/keyword search via POST /search
  */
 
 'use client'
 
 import { useEffect, useState } from 'react'
-import { PaginatedProductResponse, Product } from '@/types/product'
-import { getProducts } from '@/lib/api'
+import { PaginatedProductResponse, Product, SearchResponse } from '@/types/product'
+import { getProducts, searchProducts } from '@/lib/api'
 import { ProductGrid } from '@/components/ProductGrid'
 import { SearchBar } from '@/components/SearchBar'
 import { SearchExamples } from '@/components/SearchExamples'
@@ -17,14 +17,26 @@ import { ErrorState } from '@/components/ErrorState'
 const PAGE_SIZE = 24
 
 export default function CataloguePage() {
+  // Catalogue browsing state
   const [page, setPage] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
   const [totalPages, setTotalPages] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  // Fetch products on page change
+  // Search state
+  const [query, setQuery] = useState('')
+  const [activeQuery, setActiveQuery] = useState('')
+  const [searchResult, setSearchResult] = useState<SearchResponse | null>(null)
+  const [isSearching, setIsSearching] = useState(false)
+  const [searchError, setSearchError] = useState<string | null>(null)
+
+  const inSearchMode = activeQuery !== ''
+
+  // Fetch catalogue page when browsing (not searching)
   useEffect(() => {
+    if (inSearchMode) return
+
     const fetchProducts = async () => {
       setIsLoading(true)
       setError(null)
@@ -43,19 +55,50 @@ export default function CataloguePage() {
     }
 
     fetchProducts()
-  }, [page])
+  }, [page, inSearchMode])
+
+  // Run search when activeQuery changes
+  useEffect(() => {
+    if (!inSearchMode) return
+
+    const runSearch = async () => {
+      setIsSearching(true)
+      setSearchError(null)
+      try {
+        const data = await searchProducts(activeQuery)
+        setSearchResult(data)
+      } catch (err) {
+        setSearchError(
+          err instanceof Error ? err.message : 'Search failed. Is the backend running?'
+        )
+        setSearchResult(null)
+      } finally {
+        setIsSearching(false)
+      }
+    }
+
+    runSearch()
+  }, [activeQuery, inSearchMode])
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const handleSearch = (_query: string) => {
-    // Search functionality will be implemented in Day 2
+  const handleSearchSubmit = (q: string) => {
+    setActiveQuery(q)
   }
 
-  const handleExampleSelect = (_query: string) => {
-    // Example select will trigger search when semantic search implemented in Day 2
+  const handleClear = () => {
+    setQuery('')
+    setActiveQuery('')
+    setSearchResult(null)
+    setSearchError(null)
+  }
+
+  const handleExampleSelect = (q: string) => {
+    setQuery(q)
+    setActiveQuery(q)
   }
 
   return (
@@ -72,17 +115,34 @@ export default function CataloguePage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Search Section */}
         <section className="mb-12">
-          <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+          <SearchBar
+            value={query}
+            onChange={setQuery}
+            onSubmit={handleSearchSubmit}
+            onClear={handleClear}
+            isLoading={isSearching}
+          />
           <SearchExamples onSelect={handleExampleSelect} />
         </section>
 
         {/* Results Section */}
         <section>
-          {error ? (
-            <ErrorState
-              message={error}
-              onRetry={() => setPage(page)}
-            />
+          {inSearchMode ? (
+            searchError ? (
+              <ErrorState message={searchError} onRetry={() => setActiveQuery(activeQuery)} />
+            ) : (
+              <>
+                <div className="mb-6 text-sm text-secondary">
+                  {isSearching
+                    ? 'Searching...'
+                    : `Found ${searchResult?.total_products ?? 0} results for "${activeQuery}" ` +
+                      `(${searchResult?.method ?? 'hybrid'} search, ${Math.round(searchResult?.took_ms ?? 0)}ms)`}
+                </div>
+                <ProductGrid products={searchResult?.products ?? []} isLoading={isSearching} />
+              </>
+            )
+          ) : error ? (
+            <ErrorState message={error} onRetry={() => setPage(page)} />
           ) : (
             <>
               <div className="mb-6 text-sm text-secondary">

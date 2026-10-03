@@ -24,3 +24,21 @@ export interface PaginatedProductResponse {
   page_size: number
   total_pages: number
 }
+
+export type SearchMethod = 'hybrid' | 'vector' | 'keyword'
+
+export interface SearchFilters {
+  category?: string
+  gender?: string
+  color?: string
+  season?: string
+  availability?: boolean
+}
+
+export interface SearchResponse {
+  products: Product[]
+  query: string
+  method: SearchMethod
+  total_products: number
+  took_ms: number
+}

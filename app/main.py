@@ -2,6 +2,7 @@ import logging
 
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from core.config import settings
@@ -17,6 +18,16 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title=settings.app_name,
     debug=settings.debug,
+)
+
+# Allow the local Next.js dev server to call this API from the browser.
+# Without this, every request from frontend/ fails CORS preflight (curl/pytest
+# never hit this, since browsers are the only thing that enforces CORS).
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 # Register routes

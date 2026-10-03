@@ -14,7 +14,11 @@ describe('Pagination', () => {
   it('renders page information', () => {
     const mockOnPageChange = vi.fn()
     render(<Pagination page={2} totalPages={5} onPageChange={mockOnPageChange} />)
-    expect(screen.getByText(/Page 2 of 5/)).toBeInTheDocument()
+    // "Page 2 of 5" is split across <strong> tags, so match on textContent
+    // of the containing element rather than a single text node.
+    expect(
+      screen.getByText((_, element) => element?.textContent === 'Page 2 of 5')
+    ).toBeInTheDocument()
   })
 
   it('disables Previous button on first page', () => {
