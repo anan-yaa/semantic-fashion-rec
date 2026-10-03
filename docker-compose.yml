@@ -1,6 +1,6 @@
 services:
   db:
-    image: pgvector/pgvector:pg16-latest
+    image: pgvector/pgvector:pg16
     container_name: fashion_rec_db
     environment:
       - POSTGRES_DB=fashion_rec
