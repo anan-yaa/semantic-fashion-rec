@@ -24,3 +24,5 @@ htmlcov/
 .claude/plans/
 implementation_summary.md
 .claude/
+PHASE1_COMPLETION_SUMMARY.md
+DAY2_IMPLEMENTATION_SUMMARY.md

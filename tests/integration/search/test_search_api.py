@@ -7,7 +7,7 @@ from app.main import app
 from app.db.database import get_session
 from app.db.models.product import Product
 from app.providers.fake import FakeEmbeddingProvider
-from app.providers.factory import get_embedding_provider
+from app.api.routes.search import get_search_provider
 from app.services.keyword_index import build_keyword_index
 
 QUERY = "distinctive zephyr product"
@@ -28,7 +28,7 @@ class TestSearchAPIIntegration:
     """Test suite for POST /search against real PostgreSQL + pgvector."""
 
     @pytest.fixture(autouse=True)
-    def setup_client(self, postgres_session: Session, monkeypatch):
+    def setup_client(self, postgres_session: Session):
         """Override DB dependency and force the fake embedding provider for API tests."""
         def override_get_session():
             yield postgres_session
@@ -36,10 +36,7 @@ class TestSearchAPIIntegration:
         app.dependency_overrides[get_session] = override_get_session
 
         # Avoid loading the real e5 model in API integration tests.
-        monkeypatch.setattr(
-            "app.api.routes.search.get_embedding_provider",
-            lambda settings, use_fake=False: FakeEmbeddingProvider(),
-        )
+        app.dependency_overrides[get_search_provider] = lambda: FakeEmbeddingProvider()
 
         self.client = TestClient(app)
         self.session = postgres_session
