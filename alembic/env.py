@@ -39,7 +39,7 @@ def run_migrations_offline() -> None:
     script output.
 
     """
-    url = settings.database_url
+    url = config.get_main_option("sqlalchemy.url") or settings.database_url
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -59,7 +59,12 @@ def run_migrations_online() -> None:
 
     """
     configuration = config.get_section(config.config_ini_section, {})
-    configuration["sqlalchemy.url"] = settings.database_url
+    # Respect a URL explicitly set on the Config object (e.g. by a test
+    # programmatically pointing migrations at a different database via
+    # alembic_cfg.set_main_option("sqlalchemy.url", ...)); only fall back to
+    # the app's configured DATABASE_URL otherwise. This is what lets tests
+    # safely redirect migrations away from the real dev database.
+    configuration["sqlalchemy.url"] = config.get_main_option("sqlalchemy.url") or settings.database_url
     connectable = engine_from_config(
         configuration,
         prefix="sqlalchemy.",

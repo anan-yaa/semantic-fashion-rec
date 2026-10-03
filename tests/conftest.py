@@ -3,6 +3,7 @@ from typing import Generator
 
 import pytest
 from sqlalchemy import create_engine, Text, text
+from sqlalchemy.engine import make_url
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.pool import StaticPool
 from sqlalchemy.ext.compiler import compiles
@@ -12,6 +13,7 @@ from sqlalchemy.dialects.postgresql import TSVECTOR
 
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
+from core.config import settings
 
 
 @compiles(Vector, "sqlite")
@@ -59,15 +61,76 @@ def repository(test_db: Session) -> ProductRepository:
 
 
 # PostgreSQL integration test fixture.
-# NOTE: Phase 1 migration 743be6084b59 cannot run as-is (postgresql.Vector does
-# not exist; see Day 2 report). Schema is created from ORM metadata (which has
-# the correct pgvector.sqlalchemy.Vector/TSVECTOR types) plus the index
-# statements from migration 0002_day2_search_columns, so these tests still
-# exercise the real indexes without depending on the broken migration file.
-TEST_POSTGRES_URL = os.environ.get(
-    "TEST_POSTGRES_URL",
-    "postgresql+psycopg://fashion_rec:dev_password@localhost:5432/fashion_rec",
-)
+#
+# Schema is created from ORM metadata (which has the correct
+# pgvector.sqlalchemy.Vector/TSVECTOR types) plus the index statements from
+# migration 0002_day2_search_columns, rather than by running the real
+# migrations - this keeps these tests independent of whichever revision the
+# real dev database happens to be at.
+#
+# SAFETY: this fixture (and the one in test_migration.py) drops and recreates
+# tables around every test. It defaults to a database NAMED DIFFERENTLY from
+# the real one (DATABASE_URL's database, typically "fashion_rec") - same
+# host/port, just "_test" appended - specifically so a developer who forgets
+# to set TEST_POSTGRES_URL cannot accidentally wipe real catalogue/embedding
+# data. _assert_safe_test_database() additionally refuses to run, hard, if
+# TEST_POSTGRES_URL ever ends up pointing at the exact same database as
+# DATABASE_URL, however that happened. A real incident earlier in this
+# project (the default used to just copy DATABASE_URL) is why this exists.
+def _default_test_postgres_url() -> str:
+    real_url = make_url(settings.database_url)
+    test_url = real_url.set(database=f"{real_url.database}_test")
+    # str(url)/repr(url) mask the password (e.g. "***") - they're meant for
+    # safe logging, not for actual connection use. render_as_string with
+    # hide_password=False is required to get back a usable DSN.
+    return test_url.render_as_string(hide_password=False)
+
+
+TEST_POSTGRES_URL = os.environ.get("TEST_POSTGRES_URL", _default_test_postgres_url())
+
+
+def _assert_safe_test_database() -> None:
+    """Hard-refuse to run destructive test fixtures against the real database.
+
+    This is the actual safety net - it holds regardless of what
+    TEST_POSTGRES_URL is set to (default, env override, typo, whatever).
+    """
+    test_db = make_url(TEST_POSTGRES_URL)
+    real_db = make_url(settings.database_url)
+    same_target = (
+        (test_db.host or "localhost") == (real_db.host or "localhost")
+        and (test_db.port or 5432) == (real_db.port or 5432)
+        and test_db.database == real_db.database
+    )
+    if same_target:
+        raise RuntimeError(
+            "Refusing to run: TEST_POSTGRES_URL resolves to the same database as "
+            f"DATABASE_URL ({real_db.database!r} on {real_db.host}:{real_db.port}). "
+            "This fixture drops and recreates tables - pointing it at the real "
+            "database would destroy real data. Set TEST_POSTGRES_URL to a "
+            "separate database."
+        )
+
+
+def _ensure_test_database_exists() -> None:
+    """Create the TEST_POSTGRES_URL database if it doesn't exist yet.
+
+    Connects to the admin "postgres" database to do so, since Postgres
+    cannot CREATE DATABASE while connected to the database being created.
+    """
+    test_db = make_url(TEST_POSTGRES_URL)
+    admin_url = test_db.set(database="postgres")
+    admin_engine = create_engine(admin_url, isolation_level="AUTOCOMMIT")
+    try:
+        with admin_engine.connect() as conn:
+            exists = conn.execute(
+                text("SELECT 1 FROM pg_database WHERE datname = :name"),
+                {"name": test_db.database},
+            ).first()
+            if not exists:
+                conn.execute(text(f'CREATE DATABASE "{test_db.database}"'))
+    finally:
+        admin_engine.dispose()
 
 
 def _postgres_available() -> bool:
@@ -78,7 +141,15 @@ def _postgres_available() -> bool:
         engine.dispose()
         return True
     except OperationalError:
-        return False
+        try:
+            _ensure_test_database_exists()
+            engine = create_engine(TEST_POSTGRES_URL)
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            engine.dispose()
+            return True
+        except OperationalError:
+            return False
 
 
 @pytest.fixture(scope="function")
@@ -87,6 +158,8 @@ def postgres_session() -> Generator[Session, None, None]:
 
     Skips the test if no PostgreSQL instance is reachable at TEST_POSTGRES_URL.
     """
+    _assert_safe_test_database()
+
     if not _postgres_available():
         pytest.skip(f"PostgreSQL not available at {TEST_POSTGRES_URL}")
 

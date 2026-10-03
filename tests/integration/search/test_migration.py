@@ -1,15 +1,14 @@
 """Integration test for migration 0002_day2_search_columns.
 
-NOTE: Phase 1 migration 743be6084b59 cannot be executed as-is against real
-PostgreSQL: it references `postgresql.Vector`, which does not exist in
-sqlalchemy.dialects.postgresql (the correct type is pgvector.sqlalchemy.Vector).
-This is a pre-existing bug in a migration we are instructed not to modify.
+Migration 743be6084b59 previously referenced `postgresql.Vector`, which does
+not exist in sqlalchemy.dialects.postgresql (the correct type is
+pgvector.sqlalchemy.Vector); this has since been fixed in that migration file.
 
-To test migration 0002 in isolation (without touching 743be6084b59), this test
-builds the schema 743be6084b59 *should* produce (identical DDL, with the
-Vector type bug corrected) via raw SQL, stamps alembic at 743be6084b59, then
-runs `alembic upgrade head` for real. This exercises the actual migration
-0002 file through the actual alembic machinery.
+To test migration 0002 in isolation without depending on 743be6084b59 having
+actually been run against this database first, this test builds the schema
+743be6084b59 produces via raw SQL directly, stamps alembic at 743be6084b59,
+then runs `alembic upgrade head` for real. This exercises the actual
+migration 0002 file through the actual alembic machinery.
 """
 import os
 import pytest
@@ -18,7 +17,7 @@ from sqlalchemy.exc import OperationalError
 from alembic.config import Config
 from alembic import command
 
-from tests.conftest import TEST_POSTGRES_URL, _postgres_available
+from tests.conftest import TEST_POSTGRES_URL, _postgres_available, _assert_safe_test_database
 
 
 PHASE1_FIXED_SCHEMA_SQL = """
@@ -68,6 +67,8 @@ CREATE INDEX idx_brand_gender ON products (brand, gender);
 @pytest.fixture
 def fresh_postgres_for_migration():
     """A fresh PostgreSQL DB with alembic_version table cleared, for migration testing."""
+    _assert_safe_test_database()
+
     if not _postgres_available():
         pytest.skip(f"PostgreSQL not available at {TEST_POSTGRES_URL}")
 
