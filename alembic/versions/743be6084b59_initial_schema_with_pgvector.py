@@ -10,6 +10,7 @@ from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
+from pgvector.sqlalchemy import Vector
 
 # revision identifiers, used by Alembic.
 revision: str = '743be6084b59'
@@ -39,7 +40,7 @@ def upgrade() -> None:
         sa.Column('currency', sa.String(), nullable=False, server_default='USD'),
         sa.Column('availability', sa.Boolean(), nullable=False, server_default='true'),
         sa.Column('attributes', postgresql.JSON(astext_type=sa.Text()), nullable=True),
-        sa.Column('embedding', postgresql.Vector(dim=None), nullable=True),
+        sa.Column('embedding', Vector(768), nullable=True),
         sa.Column('search_text', sa.Text(), nullable=True),
         sa.Column('search_vector', postgresql.TSVECTOR(), nullable=True),
         sa.Column('content_hash', sa.String(), nullable=True),
