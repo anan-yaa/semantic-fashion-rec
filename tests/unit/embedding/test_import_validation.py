@@ -36,17 +36,22 @@ class TestClassifyRow:
         decision = classify_row(make_row(external_product_id="ghost"), {})
         assert decision.outcome == ImportOutcome.MISSING_PRODUCT
 
-    def test_identity_mismatch_is_refused_not_written(self):
-        """The artifact's id must agree with the product resolved by
-        external_product_id - this is the core 'never attach an embedding
-        to the wrong product' guarantee."""
-        local = {"ext1": make_local(id="REAL_PRODUCT_ID")}
-        row = make_row(external_product_id="ext1", id="WRONG_ID")
+    def test_stale_artifact_id_does_not_block_import(self):
+        """The artifact's id column is not a match/integrity key - it's a
+        randomly generated surrogate key (uuid.uuid4()) that gets
+        regenerated on every re-ingestion, so a stale id from before a
+        catalogue reload must not block an otherwise-valid import.
+        external_product_id (the match key) + content_hash (the content
+        proof) are what guarantee correct association; the write must
+        always target the CURRENT local.id, never the artifact's stale id.
+        """
+        local = {"ext1": make_local(id="CURRENT_PRODUCT_ID")}
+        row = make_row(external_product_id="ext1", id="STALE_ID_FROM_BEFORE_RELOAD")
 
         decision = classify_row(row, local)
 
-        assert decision.outcome == ImportOutcome.FAILURE
-        assert decision.update_payload is None
+        assert decision.outcome == ImportOutcome.IMPORTED
+        assert decision.update_payload["id"] == "CURRENT_PRODUCT_ID"
 
     def test_wrong_dimension_embedding_is_invalid(self):
         local = {"ext1": make_local()}

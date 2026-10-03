@@ -54,11 +54,11 @@ def classify_row(
 ) -> ImportDecision:
     """Decide what to do with one artifact row against current local DB state.
 
-    Validation order matters: identity (does this row even refer to a real,
-    matching product) is checked before content (is the embedding itself
-    well-formed) before staleness (has the product changed since export) -
-    so a row that fails for multiple reasons is reported under the most
-    fundamental cause.
+    Validation order matters: existence (does external_product_id resolve
+    to a real product) is checked before content (is the embedding itself
+    well-formed) before staleness (does content_hash still match the
+    product's current content) - so a row that fails for multiple reasons
+    is reported under the most fundamental cause.
     """
     local = local_products_by_external_id.get(row.external_product_id)
 
@@ -69,21 +69,16 @@ def classify_row(
             reason=f"no product with external_product_id={row.external_product_id!r}",
         )
 
-    # Data-integrity cross-check: the artifact's own id column (if present)
-    # must agree with the product resolved by external_product_id. A
-    # mismatch means the artifact is corrupt or was mis-joined upstream -
-    # refuse to write rather than risk attaching an embedding to the wrong
-    # product.
-    if row.id and row.id != local.id:
-        return ImportDecision(
-            ImportOutcome.FAILURE,
-            row.external_product_id,
-            reason=(
-                f"identity mismatch: artifact id={row.id!r} does not match "
-                f"local product id={local.id!r} for external_product_id="
-                f"{row.external_product_id!r}"
-            ),
-        )
+    # Note on row.id: it is NOT used as a match or integrity key. The
+    # internal id is a randomly generated surrogate key
+    # (app/services/ingestion/mapper.py: uuid.uuid4()) with no stable
+    # identity across re-ingestions - a product that is deleted and
+    # re-inserted (e.g. after a full catalogue reload) gets a brand new id
+    # even though it is "the same" product. external_product_id (the
+    # dataset's own stable identifier) is the authoritative match key, and
+    # content_hash - checked below - is what actually proves the embedded
+    # text matches the current product content. Writes always target
+    # local.id (the current, correct row), never row.id.
 
     if not _is_valid_embedding(row.embedding):
         return ImportDecision(
