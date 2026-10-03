@@ -7,7 +7,8 @@ from app.main import app
 from app.db.database import get_session
 from app.db.models.product import Product
 from app.providers.fake import FakeEmbeddingProvider
-from app.api.routes.search import get_search_provider
+from app.providers.fake_llm import FakeLLMProvider
+from app.api.routes.search import get_search_provider, get_query_understanding_provider
 from app.services.keyword_index import build_keyword_index
 
 QUERY = "distinctive zephyr product"
@@ -37,6 +38,8 @@ class TestSearchAPIIntegration:
 
         # Avoid loading the real e5 model in API integration tests.
         app.dependency_overrides[get_search_provider] = lambda: FakeEmbeddingProvider()
+        # Avoid calling the real Gemini API in API integration tests.
+        app.dependency_overrides[get_query_understanding_provider] = lambda: FakeLLMProvider()
 
         self.client = TestClient(app)
         self.session = postgres_session

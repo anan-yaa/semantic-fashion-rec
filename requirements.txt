@@ -1,7 +1,7 @@
 fastapi==0.115.0
 uvicorn[standard]==0.30.0
 python-dotenv==1.0.0
-pydantic==2.10.3
+pydantic==2.13.5
 pydantic-settings==2.3.1
 sqlalchemy==2.0.36
 psycopg[binary]==3.3.5
@@ -16,3 +16,4 @@ torch==2.1.2
 sentence-transformers==3.0.1
 transformers==4.36.2
 numpy==1.24.3
+google-genai==2.28.0

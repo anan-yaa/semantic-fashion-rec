@@ -1,0 +1,10 @@
+# Eval Report (2026-10-03T14:23:34.111192+00:00)
+
+Ground truth: `evals/ground_truth/ground_truth_v1_PRELIMINARY_unreviewed.json`  
+Queries scored: 73 (excluded for having zero relevant items: 7)
+
+| Method  | NDCG@10 | Precision@10 | MRR   |
+|---------|---------|--------------|-------|
+| hybrid  | 0.904   | 0.881        | 0.942 |
+| vector  | 0.931   | 0.904        | 0.942 |
+| keyword | 0.390   | 0.351        | 0.420 |

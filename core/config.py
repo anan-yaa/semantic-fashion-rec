@@ -30,7 +30,13 @@ class Settings(BaseSettings):
 
     # API keys / external services
     openai_api_key: Optional[str] = Field(default=None)
-    anthropic_api_key: Optional[str] = Field(default=None)
+    gemini_api_key: Optional[str] = Field(default=None)
+
+    # LLM query understanding
+    query_understanding_enabled: bool = Field(default=True)
+    gemini_model: str = Field(default="gemini-3.8-flash")
+    llm_query_understanding_timeout_seconds: float = Field(default=15.0)  # Gemini API enforces a 10s minimum deadline
+    llm_query_understanding_max_retries: int = Field(default=1)
 
     # Redis
     redis_url: str = Field(default="redis://localhost:6379/0")

@@ -8,7 +8,10 @@ from sqlalchemy.orm import Session
 from app.db.database import get_session
 from app.providers.base import EmbeddingProvider
 from app.providers.factory import get_embedding_provider
+from app.providers.llm_base import LLMProvider
+from app.providers.llm_factory import get_llm_provider
 from app.schemas.search import SearchRequest, SearchResponse, SearchMethod
+from app.services.query_understanding import merge_filters, understand_query
 from app.services.search import search_hybrid
 from core.config import settings
 
@@ -22,6 +25,10 @@ router = APIRouter(prefix="/search", tags=["search"])
 # here - instead of constructing a new one per request - is what makes that
 # lazy load happen once per process instead of once per request.
 _provider: Optional[EmbeddingProvider] = None
+
+# Process-wide LLM provider singleton, same rationale: avoid constructing a
+# new genai.Client on every request.
+_llm_provider: Optional[LLMProvider] = None
 
 
 def get_search_provider() -> EmbeddingProvider:
@@ -44,33 +51,64 @@ def _reset_search_provider_cache() -> None:
     _provider = None
 
 
+def get_query_understanding_provider() -> LLMProvider:
+    """FastAPI dependency returning a single shared LLM provider."""
+    global _llm_provider
+    if _llm_provider is None:
+        _llm_provider = get_llm_provider(settings, use_fake=False)
+    return _llm_provider
+
+
+def _reset_query_understanding_provider_cache() -> None:
+    """Test-only hook to clear the cached singleton between test cases."""
+    global _llm_provider
+    _llm_provider = None
+
+
 @router.post("", response_model=SearchResponse)
 async def search(
     request: SearchRequest,
     session: Session = Depends(get_session),
     provider: EmbeddingProvider = Depends(get_search_provider),
+    llm_provider: LLMProvider = Depends(get_query_understanding_provider),
 ) -> SearchResponse:
     """Search the product catalogue.
 
     Supports hybrid search (combining vector + keyword), or individual methods.
+    When query_understanding_enabled, every query is first passed through an
+    LLM to (a) infer structured filters from free text and (b) produce a
+    keyword-dense rephrasing used only for the keyword-search path - vector
+    search always uses the original query text. See
+    app/services/query_understanding/service.py for the fallback and
+    validation behavior if this fails or infers an out-of-vocabulary value.
 
     Args:
         request: SearchRequest with query and optional filters.
         session: Database session.
         provider: Shared embedding provider (see get_search_provider).
+        llm_provider: Shared LLM provider (see get_query_understanding_provider).
 
     Returns:
         SearchResponse with ranked products.
     """
     try:
+        keyword_query_text = None
+        effective_filters = request.filters
+
+        if settings.query_understanding_enabled:
+            understanding = understand_query(llm_provider, request.query)
+            keyword_query_text = understanding.cleaned_query
+            effective_filters = merge_filters(request.filters, understanding.filters)
+
         # Execute search
         products, method_used, time_ms = search_hybrid(
             session,
             query_text=request.query,
             provider=provider,
-            filters=request.filters,
+            filters=effective_filters,
             method=request.method,
             limit=request.limit,
+            keyword_query_text=keyword_query_text,
         )
 
         # Build response
