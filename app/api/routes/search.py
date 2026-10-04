@@ -93,22 +93,26 @@ async def search(
     """
     try:
         keyword_query_text = None
-        effective_filters = request.filters
+        vector_filters = request.filters  # Unchanged - user filters only
+        keyword_filters = request.filters  # Unchanged - user filters only
 
         if settings.query_understanding_enabled:
             understanding = understand_query(llm_provider, request.query)
             keyword_query_text = understanding.cleaned_query
-            effective_filters = merge_filters(request.filters, understanding.filters)
+            # LLM-inferred filters apply to keyword search only.
+            # User-supplied filters always win over LLM inferences.
+            keyword_filters = merge_filters(request.filters, understanding.filters)
 
         # Execute search
         products, method_used, time_ms = search_hybrid(
             session,
             query_text=request.query,
             provider=provider,
-            filters=effective_filters,
+            filters=vector_filters,  # User filters only - LLM filters never constrain vector search
             method=request.method,
             limit=request.limit,
             keyword_query_text=keyword_query_text,
+            keyword_filters=keyword_filters,  # User + LLM-inferred filters for keyword path
         )
 
         # Build response

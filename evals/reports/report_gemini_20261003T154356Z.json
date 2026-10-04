@@ -1,0 +1,2291 @@
+{
+  "generated_at": "2026-10-03T15:48:23.231424+00:00",
+  "ground_truth_source": "evals/ground_truth/ground_truth_v1.json",
+  "query_count": 73,
+  "excluded_query_count": 7,
+  "per_method": {
+    "hybrid": {
+      "ndcg_at_10": 0.8639916615585762,
+      "precision_at_10": 0.8438356164383564,
+      "mrr": 0.9212328767123288
+    },
+    "vector": {
+      "ndcg_at_10": 0.9178458471504722,
+      "precision_at_10": 0.9027397260273974,
+      "mrr": 0.9315068493150684
+    },
+    "keyword": {
+      "ndcg_at_10": 0.39557446030978083,
+      "precision_at_10": 0.3520547945205479,
+      "mrr": 0.42787018917155906
+    }
+  },
+  "per_query": {
+    "q001": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q002": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0
+      }
+    },
+    "q003": {
+      "hybrid": {
+        "ndcg_at_10": 0.4330549290057019,
+        "precision_at_10": 0.5,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.357813273331099,
+        "precision_at_10": 0.5,
+        "mrr": 0.2
+      }
+    },
+    "q004": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q005": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q006": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q007": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9305687780632227,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      }
+    },
+    "q008": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3227266260473091,
+        "precision_at_10": 0.4,
+        "mrr": 0.25
+      }
+    },
+    "q009": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.77523873680463,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      }
+    },
+    "q010": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0
+      }
+    },
+    "q011": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q012": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.29727159644205703,
+        "precision_at_10": 0.3,
+        "mrr": 0.5
+      }
+    },
+    "q020": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q021": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q022": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q023": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q024": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q026": {
+      "hybrid": {
+        "ndcg_at_10": 0.6851198693323691,
+        "precision_at_10": 0.8,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q027": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q028": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q029": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q031": {
+      "hybrid": {
+        "ndcg_at_10": 0.522032859637427,
+        "precision_at_10": 0.6,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 0.522032859637427,
+        "precision_at_10": 0.6,
+        "mrr": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q040": {
+      "hybrid": {
+        "ndcg_at_10": 0.576617124837204,
+        "precision_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.576617124837204,
+        "precision_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q041": {
+      "hybrid": {
+        "ndcg_at_10": 0.6185197008414421,
+        "precision_at_10": 0.6,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q042": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q043": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q044": {
+      "hybrid": {
+        "ndcg_at_10": 0.30306164500156685,
+        "precision_at_10": 0.4,
+        "mrr": 0.25
+      },
+      "vector": {
+        "ndcg_at_10": 0.30306164500156685,
+        "precision_at_10": 0.4,
+        "mrr": 0.25
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q046": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q047": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q048": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q049": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      }
+    },
+    "q051": {
+      "hybrid": {
+        "ndcg_at_10": 0.6874708847784536,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5363559634917963,
+        "precision_at_10": 0.6,
+        "mrr": 0.5
+      }
+    },
+    "q052": {
+      "hybrid": {
+        "ndcg_at_10": 0.8603818544462509,
+        "precision_at_10": 0.8,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6745711375739728,
+        "precision_at_10": 0.6,
+        "mrr": 1.0
+      }
+    },
+    "q055": {
+      "hybrid": {
+        "ndcg_at_10": 0.7600791051976192,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.7663491917568946,
+        "precision_at_10": 0.8,
+        "mrr": 1.0
+      }
+    },
+    "q056": {
+      "hybrid": {
+        "ndcg_at_10": 0.6589157729763341,
+        "precision_at_10": 0.3,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.6589157729763341,
+        "precision_at_10": 0.3,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q057": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      }
+    },
+    "q058": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q059": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.7967610662472993,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      }
+    },
+    "q060": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.933745776545611,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q061": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q062": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q063": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      }
+    },
+    "q064": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q065": {
+      "hybrid": {
+        "ndcg_at_10": 0.9266360779006401,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5321408435198608,
+        "precision_at_10": 0.4,
+        "mrr": 1.0
+      }
+    },
+    "q066": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q067": {
+      "hybrid": {
+        "ndcg_at_10": 0.8899541168509599,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.7849818707050383,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      }
+    },
+    "q068": {
+      "hybrid": {
+        "ndcg_at_10": 0.7123736502858727,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.13568544539116628,
+        "precision_at_10": 0.2,
+        "mrr": 0.125
+      }
+    },
+    "q069": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.14465249243306436,
+        "precision_at_10": 0.2,
+        "mrr": 0.16666666666666666
+      }
+    },
+    "q070": {
+      "hybrid": {
+        "ndcg_at_10": 0.7885497208855957,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q071": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q072": {
+      "hybrid": {
+        "ndcg_at_10": 0.9363792118010483,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8899541168509599,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      }
+    },
+    "q073": {
+      "hybrid": {
+        "ndcg_at_10": 0.756902106715231,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.22784037450527975,
+        "precision_at_10": 0.3,
+        "mrr": 0.25
+      }
+    },
+    "q074": {
+      "hybrid": {
+        "ndcg_at_10": 0.6378891765242928,
+        "precision_at_10": 0.7,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3995688713838975,
+        "precision_at_10": 0.3,
+        "mrr": 1.0
+      }
+    },
+    "q075": {
+      "hybrid": {
+        "ndcg_at_10": 0.6840182226156365,
+        "precision_at_10": 0.6,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.2583297509898471,
+        "precision_at_10": 0.3,
+        "mrr": 0.25
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q076": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.7655934900767002,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "q077": {
+      "hybrid": {
+        "ndcg_at_10": 0.7670273914429264,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.20641593223508903,
+        "precision_at_10": 0.3,
+        "mrr": 0.14285714285714285
+      }
+    },
+    "q080": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q081": {
+      "hybrid": {
+        "ndcg_at_10": 0.5548989126424904,
+        "precision_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q082": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q083": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0
+      }
+    },
+    "q084": {
+      "hybrid": {
+        "ndcg_at_10": 0.7721596254947203,
+        "precision_at_10": 0.7,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.09803928583135704,
+        "precision_at_10": 0.1,
+        "mrr": 0.1
+      }
+    },
+    "q085": {
+      "hybrid": {
+        "ndcg_at_10": 0.5548989126424904,
+        "precision_at_10": 0.5,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q086": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q087": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q090": {
+      "hybrid": {
+        "ndcg_at_10": 0.5366180121343617,
+        "precision_at_10": 0.5,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 0.5366180121343617,
+        "precision_at_10": 0.5,
+        "mrr": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q092": {
+      "hybrid": {
+        "ndcg_at_10": 0.9363792118010483,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.9363792118010483,
+        "precision_at_10": 0.9,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q093": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q094": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q095": {
+      "hybrid": {
+        "ndcg_at_10": 0.5114531979843772,
+        "precision_at_10": 0.6,
+        "mrr": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 0.5114531979843772,
+        "precision_at_10": 0.6,
+        "mrr": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q096": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q097": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q098": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q099": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "query_understanding_enabled": true,
+  "query_understanding": [
+    {
+      "query_id": "q001",
+      "query": "black leather jacket",
+      "used_llm": true,
+      "cleaned_query": "black leather jacket",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q002",
+      "query": "navy blue running shoes",
+      "used_llm": true,
+      "cleaned_query": "navy blue running shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "Navy Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q003",
+      "query": "women's silver jewellery",
+      "used_llm": true,
+      "cleaned_query": "women silver jewellery",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": "Silver",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q004",
+      "query": "formal watch for men",
+      "used_llm": true,
+      "cleaned_query": "formal watch men",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q005",
+      "query": "brown leather wallet",
+      "used_llm": true,
+      "cleaned_query": "brown leather wallet",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Brown",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q006",
+      "query": "grey eyewear sunglasses",
+      "used_llm": true,
+      "cleaned_query": "grey eyewear sunglasses",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Grey",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q007",
+      "query": "pink innerwear",
+      "used_llm": true,
+      "cleaned_query": "pink innerwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Pink",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q008",
+      "query": "purple handbag",
+      "used_llm": true,
+      "cleaned_query": "purple handbag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Purple",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q009",
+      "query": "white flip flops",
+      "used_llm": true,
+      "cleaned_query": "white flip flops",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "White",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q010",
+      "query": "yellow socks",
+      "used_llm": true,
+      "cleaned_query": "yellow socks",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Yellow",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q011",
+      "query": "maroon saree",
+      "used_llm": true,
+      "cleaned_query": "maroon saree",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Maroon",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q012",
+      "query": "black belt for men",
+      "used_llm": true,
+      "cleaned_query": "black belt men",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Men",
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q020",
+      "query": "lightweight breathable top for hot days",
+      "used_llm": true,
+      "cleaned_query": "lightweight breathable top hot days",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q021",
+      "query": "shoes for standing all day comfortably",
+      "used_llm": true,
+      "cleaned_query": "shoes standing comfortable",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q022",
+      "query": "elegant evening handbag",
+      "used_llm": true,
+      "cleaned_query": "elegant evening handbag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q023",
+      "query": "rugged outdoor footwear",
+      "used_llm": true,
+      "cleaned_query": "rugged outdoor footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q024",
+      "query": "eye-catching statement jewellery",
+      "used_llm": true,
+      "cleaned_query": "eye-catching statement jewellery",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q026",
+      "query": "a fragrance that lasts all day",
+      "used_llm": true,
+      "cleaned_query": "fragrance lasts all day",
+      "filters": {
+        "category": "Personal Care",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q027",
+      "query": "sturdy bag for carrying a laptop",
+      "used_llm": true,
+      "cleaned_query": "sturdy bag laptop",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q028",
+      "query": "sleek minimalist wristwatch",
+      "used_llm": true,
+      "cleaned_query": "sleek minimalist wristwatch",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q029",
+      "query": "warm layer to wear under a jacket",
+      "used_llm": true,
+      "cleaned_query": "warm layer jacket",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q031",
+      "query": "durable sandals for everyday wear",
+      "used_llm": true,
+      "cleaned_query": "durable sandals everyday wear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q040",
+      "query": "outfit for a job interview",
+      "used_llm": true,
+      "cleaned_query": "outfit job interview",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q041",
+      "query": "something to wear to a summer wedding",
+      "used_llm": true,
+      "cleaned_query": "summer wedding",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q042",
+      "query": "gym workout clothes",
+      "used_llm": true,
+      "cleaned_query": "gym workout clothes",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q043",
+      "query": "beach vacation outfit",
+      "used_llm": true,
+      "cleaned_query": "beach vacation outfit",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q044",
+      "query": "office wear for men",
+      "used_llm": true,
+      "cleaned_query": "office wear men",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q046",
+      "query": "clothes for a night out",
+      "used_llm": true,
+      "cleaned_query": "clothes night out",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q047",
+      "query": "sportswear for running a marathon",
+      "used_llm": true,
+      "cleaned_query": "sportswear running marathon",
+      "filters": {
+        "category": "Sporting Goods",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q048",
+      "query": "travel-friendly comfortable shoes",
+      "used_llm": true,
+      "cleaned_query": "travel friendly comfortable shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q049",
+      "query": "party accessories for women",
+      "used_llm": true,
+      "cleaned_query": "party accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q051",
+      "query": "summer dress",
+      "used_llm": true,
+      "cleaned_query": "summer dress",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q052",
+      "query": "fall jacket for men",
+      "used_llm": true,
+      "cleaned_query": "fall jacket men",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": "Fall",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q055",
+      "query": "summer sandals",
+      "used_llm": false,
+      "cleaned_query": "summer sandals",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 58.108805818s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '58s'}]}}"
+    },
+    {
+      "query_id": "q056",
+      "query": "monsoon footwear",
+      "used_llm": false,
+      "cleaned_query": "monsoon footwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 54.813555604s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '54s'}]}}"
+    },
+    {
+      "query_id": "q057",
+      "query": "winter sweater for women",
+      "used_llm": false,
+      "cleaned_query": "winter sweater for women",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 51.791491443s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '51s'}]}}"
+    },
+    {
+      "query_id": "q058",
+      "query": "summer topwear for men",
+      "used_llm": false,
+      "cleaned_query": "summer topwear for men",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 49.198284778s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '49s'}]}}"
+    },
+    {
+      "query_id": "q059",
+      "query": "fall accessories",
+      "used_llm": false,
+      "cleaned_query": "fall accessories",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 46.670517875s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '46s'}]}}"
+    },
+    {
+      "query_id": "q060",
+      "query": "maroon saree for women",
+      "used_llm": false,
+      "cleaned_query": "maroon saree for women",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 44.018480168s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '44s'}]}}"
+    },
+    {
+      "query_id": "q061",
+      "query": "beige sandals",
+      "used_llm": false,
+      "cleaned_query": "beige sandals",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 41.088562107s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '41s'}]}}"
+    },
+    {
+      "query_id": "q062",
+      "query": "olive green bag",
+      "used_llm": false,
+      "cleaned_query": "olive green bag",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 38.599747987s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '38s'}]}}"
+    },
+    {
+      "query_id": "q063",
+      "query": "white sneakers",
+      "used_llm": false,
+      "cleaned_query": "white sneakers",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 36.37338209s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}"
+    },
+    {
+      "query_id": "q064",
+      "query": "red dress",
+      "used_llm": false,
+      "cleaned_query": "red dress",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 33.680414488s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '33s'}]}}"
+    },
+    {
+      "query_id": "q065",
+      "query": "navy blue shirt",
+      "used_llm": false,
+      "cleaned_query": "navy blue shirt",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 31.637305708s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '31s'}]}}"
+    },
+    {
+      "query_id": "q066",
+      "query": "gold watch",
+      "used_llm": false,
+      "cleaned_query": "gold watch",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 28.768225985s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}"
+    },
+    {
+      "query_id": "q067",
+      "query": "black formal shoes",
+      "used_llm": false,
+      "cleaned_query": "black formal shoes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 26.624346386s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '26s'}]}}"
+    },
+    {
+      "query_id": "q068",
+      "query": "grey topwear",
+      "used_llm": false,
+      "cleaned_query": "grey topwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 24.114566712s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}"
+    },
+    {
+      "query_id": "q069",
+      "query": "orange accessories",
+      "used_llm": true,
+      "cleaned_query": "orange accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Orange",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q070",
+      "query": "boys topwear",
+      "used_llm": true,
+      "cleaned_query": "boys topwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q071",
+      "query": "girls dress",
+      "used_llm": true,
+      "cleaned_query": "girls dress",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q072",
+      "query": "unisex sunglasses",
+      "used_llm": true,
+      "cleaned_query": "unisex sunglasses",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Unisex",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q073",
+      "query": "men's innerwear",
+      "used_llm": true,
+      "cleaned_query": "mens innerwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q074",
+      "query": "women's handbags",
+      "used_llm": true,
+      "cleaned_query": "women handbags",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q075",
+      "query": "boys footwear",
+      "used_llm": true,
+      "cleaned_query": "boys footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q076",
+      "query": "girls accessories",
+      "used_llm": true,
+      "cleaned_query": "girls accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q077",
+      "query": "unisex watches",
+      "used_llm": true,
+      "cleaned_query": "unisex watches",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Unisex",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q080",
+      "query": "cozy winter outfit",
+      "used_llm": true,
+      "cleaned_query": "cozy winter outfit",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q081",
+      "query": "something comfortable",
+      "used_llm": true,
+      "cleaned_query": "comfortable",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q082",
+      "query": "nice accessory",
+      "used_llm": true,
+      "cleaned_query": "nice accessory",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q083",
+      "query": "stylish footwear",
+      "used_llm": true,
+      "cleaned_query": "stylish footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q084",
+      "query": "good gift idea",
+      "used_llm": true,
+      "cleaned_query": "gift",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q085",
+      "query": "something trendy",
+      "used_llm": true,
+      "cleaned_query": "trendy",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q086",
+      "query": "everyday essentials",
+      "used_llm": true,
+      "cleaned_query": "everyday essentials",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q087",
+      "query": "something for casual outings",
+      "used_llm": false,
+      "cleaned_query": "something for casual outings",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 58.304352745s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '58s'}]}}"
+    },
+    {
+      "query_id": "q090",
+      "query": "नीली शर्ट",
+      "used_llm": false,
+      "cleaned_query": "नीली शर्ट",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 56.108767329s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '56s'}]}}"
+    },
+    {
+      "query_id": "q092",
+      "query": "काली जूती",
+      "used_llm": false,
+      "cleaned_query": "काली जूती",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 53.080720131s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '53s'}]}}"
+    },
+    {
+      "query_id": "q093",
+      "query": "महिलाओं के लिए गहने",
+      "used_llm": false,
+      "cleaned_query": "महिलाओं के लिए गहने",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 50.928685301s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '50s'}]}}"
+    },
+    {
+      "query_id": "q094",
+      "query": "पुरुषों के लिए घड़ी",
+      "used_llm": false,
+      "cleaned_query": "पुरुषों के लिए घड़ी",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 48.560093279s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '48s'}]}}"
+    },
+    {
+      "query_id": "q095",
+      "query": "लाल साड़ी",
+      "used_llm": false,
+      "cleaned_query": "लाल साड़ी",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 45.720561443s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '45s'}]}}"
+    },
+    {
+      "query_id": "q096",
+      "query": "बच्चों के कपड़े",
+      "used_llm": false,
+      "cleaned_query": "बच्चों के कपड़े",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 42.869322741s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '42s'}]}}"
+    },
+    {
+      "query_id": "q097",
+      "query": "सफेद जूते",
+      "used_llm": false,
+      "cleaned_query": "सफेद जूते",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 40.532733502s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '40s'}]}}"
+    },
+    {
+      "query_id": "q098",
+      "query": "चमड़े का बैग",
+      "used_llm": false,
+      "cleaned_query": "चमड़े का बैग",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 37.777751799s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37s'}]}}"
+    },
+    {
+      "query_id": "q099",
+      "query": "गर्मियों के कपड़े",
+      "used_llm": false,
+      "cleaned_query": "गर्मियों के कपड़े",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Gemini API call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite\\nPlease retry in 35.227675987s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3.5-flash-lite', 'location': 'global'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}"
+    }
+  ]
+}

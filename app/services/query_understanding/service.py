@@ -68,6 +68,11 @@ def merge_filters(user_filters: Optional[SearchFilter], llm_filters: SearchFilte
 def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingResult:
     """Run query understanding with a mandatory, non-raising fallback.
 
+    Returns ONLY LLM-inferred filters (unmerged with user filters). The caller
+    is responsible for merging user-supplied filters with these LLM-inferred
+    ones, and deciding which filters apply to which search paths (e.g. LLM
+    filters only apply to keyword search, not vector).
+
     On any LLMProviderError, falls back to exactly today's behavior: the
     original query text, unchanged, with no inferred filters. This function
     never raises - a failure here must never turn into a 500 on /search.
@@ -77,14 +82,14 @@ def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingRes
         validated = validate_filters(result.filters)
         return QueryUnderstandingResult(
             cleaned_query=result.cleaned_query or query,
-            filters=validated,
+            filters=validated,  # LLM-inferred only
             used_llm=True,
         )
     except LLMProviderError as e:
         logger.warning(f"Query understanding failed, falling back to raw query: {e}")
         return QueryUnderstandingResult(
             cleaned_query=query,
-            filters=SearchFilter(),
+            filters=SearchFilter(),  # Empty - no LLM inference
             used_llm=False,
             error=str(e),
         )

@@ -23,6 +23,7 @@ def search_hybrid(
     method: SearchMethod = SearchMethod.HYBRID,
     limit: int = 50,
     keyword_query_text: Optional[str] = None,
+    keyword_filters: Optional[SearchFilter] = None,
 ) -> tuple[List[Product], SearchMethod, float]:
     """Unified search orchestration using Reciprocal Rank Fusion.
 
@@ -31,19 +32,24 @@ def search_hybrid(
         query_text: Search query (used for vector search, and for keyword
             search when keyword_query_text is not supplied).
         provider: EmbeddingProvider for vector search.
-        filters: Optional search filters.
+        filters: Optional search filters (applied to vector search).
         method: Search method (HYBRID, VECTOR, or KEYWORD).
         limit: Maximum results to return.
         keyword_query_text: Optional alternate query text for the keyword
             path only (e.g. an LLM-cleaned, keyword-dense rephrasing).
             Defaults to query_text when not supplied - vector search always
             uses query_text regardless.
+        keyword_filters: Optional search filters for the keyword path only.
+            Defaults to `filters` when not supplied - for backward compatibility,
+            both vector and keyword use the same filters. When supplied separately,
+            allows LLM-inferred filters to apply only to keyword search.
 
     Returns:
         Tuple of (products, actual_method_used, time_ms).
     """
     start_time = time.time()
     kw_query_text = keyword_query_text if keyword_query_text is not None else query_text
+    kw_filters = keyword_filters if keyword_filters is not None else filters
 
     try:
         if method == SearchMethod.VECTOR:
@@ -57,7 +63,7 @@ def search_hybrid(
         elif method == SearchMethod.KEYWORD:
             # Keyword search only
             products, _ = search_keyword(
-                session, kw_query_text, filters=filters, limit=limit
+                session, kw_query_text, filters=kw_filters, limit=limit
             )
             results = products[:limit]
             actual_method = SearchMethod.KEYWORD
@@ -74,7 +80,7 @@ def search_hybrid(
 
             try:
                 keyword_results, _ = search_keyword(
-                    session, kw_query_text, filters=filters, limit=limit * 2
+                    session, kw_query_text, filters=kw_filters, limit=limit * 2
                 )
             except Exception as e:
                 logger.debug(f"Keyword search failed: {e}")

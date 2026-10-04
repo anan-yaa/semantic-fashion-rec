@@ -130,6 +130,11 @@ class GeminiProvider(LLMProvider):
                 config=config,
             )
         except Exception as e:
+            # On 429 (rate limit), don't retry within the request path; raise
+            # immediately so the fallback kicks in with no latency penalty.
+            error_str = str(e).lower()
+            if "429" in error_str or "resource_exhausted" in error_str or "quota" in error_str:
+                raise LLMProviderError(f"Rate limited (429): {e}") from e
             raise LLMProviderError(f"Gemini API call failed: {e}") from e
 
         text = response.text

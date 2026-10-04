@@ -5,15 +5,24 @@ defaults to (so results reflect real usage, not an eval-only shortcut); the
 metrics themselves truncate to k internally.
 """
 import logging
+import time
 from datetime import datetime, timezone
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from sqlalchemy.orm import Session
 
 from app.providers.base import EmbeddingProvider
+from app.providers.llm_base import LLMProvider
 from app.schemas.search import SearchMethod
-from app.services.eval.io import EvalReport, GroundTruthEntry, MethodScores, save_report
+from app.services.eval.io import (
+    EvalReport,
+    GroundTruthEntry,
+    MethodScores,
+    QueryUnderstandingRecord,
+    save_report,
+)
 from app.services.eval.metrics import mrr, ndcg_at_k, precision_at_k, reciprocal_rank
+from app.services.query_understanding import merge_filters, understand_query
 from app.services.search import search_hybrid
 
 logger = logging.getLogger(__name__)
@@ -27,10 +36,28 @@ def run_eval(
     provider: EmbeddingProvider,
     judgments: List[GroundTruthEntry],
     k: int = 10,
+    llm_provider: Optional[LLMProvider] = None,
+    throttle_seconds: Optional[float] = None,
 ) -> EvalReport:
+    """Run and score all 3 search methods against judged queries.
+
+    When llm_provider is given, each query is first passed through
+    understand_query() exactly as app/api/routes/search.py does for a plain
+    query with no user-supplied filters: the resulting cleaned_query is used
+    only for the keyword path (via keyword_query_text). LLM-inferred filters
+    apply ONLY to the keyword path, not to vector search, matching production
+    behavior. Vector search always receives the original query text and no
+    LLM-inferred filters. When llm_provider is None (the default), behavior
+    is byte-for-byte identical to before this parameter existed.
+
+    When throttle_seconds is given, enforce a minimum interval between
+    consecutive LLM calls (using monotonic time) to respect rate limits.
+    """
     per_query: Dict[str, Dict[str, MethodScores]] = {}
     relevance_lists_by_method: Dict[str, List[List[int]]] = {m.value: [] for m in _METHODS}
+    query_understanding_records: List[QueryUnderstandingRecord] = []
     excluded_count = 0
+    last_llm_call_time: Optional[float] = None  # Monotonic clock for throttling
 
     for gt in judgments:
         if not gt.relevant_product_ids:
@@ -38,13 +65,49 @@ def run_eval(
             excluded_count += 1
             continue
 
+        keyword_query_text = None
+        vector_filters = None  # No user filters in eval - LLM filters never apply here
+        keyword_filters = None  # LLM filters only apply to keyword path
+        if llm_provider is not None:
+            # Apply throttling if requested: wait for the minimum interval since
+            # the previous LLM call, using monotonic time.
+            if throttle_seconds is not None and last_llm_call_time is not None:
+                elapsed = time.monotonic() - last_llm_call_time
+                if elapsed < throttle_seconds:
+                    sleep_time = throttle_seconds - elapsed
+                    logger.debug(f"Throttling: sleeping {sleep_time:.2f}s")
+                    time.sleep(sleep_time)
+
+            last_llm_call_time = time.monotonic()
+            understanding = understand_query(llm_provider, gt.query)
+            keyword_query_text = understanding.cleaned_query
+            # LLM-inferred filters apply to keyword search only.
+            keyword_filters = merge_filters(None, understanding.filters)
+            query_understanding_records.append(
+                QueryUnderstandingRecord(
+                    query_id=gt.query_id,
+                    query=gt.query,
+                    used_llm=understanding.used_llm,
+                    cleaned_query=understanding.cleaned_query,
+                    filters=understanding.filters.model_dump(),
+                    error=understanding.error,
+                )
+            )
+
         relevant_ids = set(gt.relevant_product_ids)
         per_query[gt.query_id] = {}
 
         for method in _METHODS:
             try:
                 results, _, _ = search_hybrid(
-                    session, gt.query, provider, method=method, limit=_SEARCH_LIMIT
+                    session,
+                    gt.query,
+                    provider,
+                    filters=vector_filters,  # User filters only (None in eval)
+                    method=method,
+                    limit=_SEARCH_LIMIT,
+                    keyword_query_text=keyword_query_text,
+                    keyword_filters=keyword_filters,  # LLM filters only for keyword path
                 )
             except Exception as e:
                 logger.warning(f"{method.value} search failed for query {gt.query_id!r}: {e}")
@@ -78,6 +141,8 @@ def run_eval(
         excluded_query_count=excluded_count,
         per_method=per_method,
         per_query=per_query,
+        query_understanding_enabled=llm_provider is not None,
+        query_understanding=query_understanding_records,
     )
 
 
@@ -88,8 +153,10 @@ def run_and_save_eval(
     ground_truth_source: str,
     output_prefix: str,
     k: int = 10,
+    llm_provider: Optional[LLMProvider] = None,
+    throttle_seconds: Optional[float] = None,
 ) -> EvalReport:
-    report = run_eval(session, provider, judgments, k=k)
+    report = run_eval(session, provider, judgments, k=k, llm_provider=llm_provider, throttle_seconds=throttle_seconds)
     report.ground_truth_source = ground_truth_source
     save_report(f"{output_prefix}.json", f"{output_prefix}.md", report)
     return report

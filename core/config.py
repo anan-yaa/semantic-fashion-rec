@@ -34,7 +34,7 @@ class Settings(BaseSettings):
 
     # LLM query understanding
     query_understanding_enabled: bool = Field(default=True)
-    gemini_model: str = Field(default="gemini-3.8-flash")
+    gemini_model: str = Field(default="gemini-3.5-flash-lite")
     llm_query_understanding_timeout_seconds: float = Field(default=15.0)  # Gemini API enforces a 10s minimum deadline
     llm_query_understanding_max_retries: int = Field(default=1)
 

@@ -24,7 +24,7 @@ htmlcov/
 .claude/plans/
 implementation_summary.md
 .claude/
-PHASE1_COMPLETION_SUMMARY.md
+phase1_summary.md
 DAY2_IMPLEMENTATION_SUMMARY.md
 embedding_export.parquet
 embedding_result.parquet

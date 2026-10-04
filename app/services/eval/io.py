@@ -134,6 +134,22 @@ class MethodScores:
 
 
 @dataclass
+class QueryUnderstandingRecord:
+    """One query's LLM query-understanding outcome, recorded only when
+    run_eval() was given an llm_provider. Lets a report be analyzed for
+    Gemini reliability (successes/failures/fallbacks) and per-query effect
+    without re-running anything.
+    """
+
+    query_id: str
+    query: str
+    used_llm: bool
+    cleaned_query: str
+    filters: dict
+    error: Optional[str] = None
+
+
+@dataclass
 class EvalReport:
     generated_at: str
     ground_truth_source: str
@@ -141,6 +157,8 @@ class EvalReport:
     excluded_query_count: int
     per_method: dict  # method name -> MethodScores
     per_query: dict  # query_id -> {method name -> MethodScores}
+    query_understanding_enabled: bool = False
+    query_understanding: List[QueryUnderstandingRecord] = field(default_factory=list)
 
 
 def save_report(json_path: str, md_path: str, report: EvalReport) -> None:
@@ -154,6 +172,8 @@ def save_report(json_path: str, md_path: str, report: EvalReport) -> None:
             qid: {m: asdict(s) for m, s in methods.items()}
             for qid, methods in report.per_query.items()
         },
+        "query_understanding_enabled": report.query_understanding_enabled,
+        "query_understanding": [asdict(r) for r in report.query_understanding],
     }
     with open(json_path, "w") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
@@ -163,6 +183,7 @@ def save_report(json_path: str, md_path: str, report: EvalReport) -> None:
         "",
         f"Ground truth: `{report.ground_truth_source}`  ",
         f"Queries scored: {report.query_count} (excluded for having zero relevant items: {report.excluded_query_count})",
+        f"Query understanding enabled: {report.query_understanding_enabled}",
         "",
         "| Method  | NDCG@10 | Precision@10 | MRR   |",
         "|---------|---------|--------------|-------|",

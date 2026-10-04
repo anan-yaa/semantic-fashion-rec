@@ -57,7 +57,8 @@ def search_keyword(
         query_obj = query_obj.filter(
             Product.search_vector.op("@@")(tsquery)
         ).order_by(
-            desc(func.ts_rank_cd(Product.search_vector, tsquery))
+            desc(func.ts_rank_cd(Product.search_vector, tsquery)),
+            Product.id,  # Deterministic tiebreaker for stable ordering of tied ranks
         )
 
         total_count = query_obj.count()
