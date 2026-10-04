@@ -66,7 +66,7 @@ def _reset_query_understanding_provider_cache() -> None:
 
 
 @router.post("", response_model=SearchResponse)
-async def search(
+def search(
     request: SearchRequest,
     session: Session = Depends(get_session),
     provider: EmbeddingProvider = Depends(get_search_provider),

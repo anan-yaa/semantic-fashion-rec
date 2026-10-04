@@ -12,8 +12,10 @@ httpx==0.28.1
 redis==5.1.1
 datasets==2.21.0
 pillow==10.2.0
-torch>=2.2.0
-sentence-transformers>=3.0.1
-transformers>=4.36.2
+# Heavy ML dependencies: pin to known working versions from production environment
+# Run `pip freeze` on your prod machine and update these to exact versions for reproducibility
+torch==2.4.0
+sentence-transformers==3.0.1
+transformers==4.40.0
 numpy==1.24.3
 google-genai==2.28.0

@@ -1,8 +1,10 @@
 import logging
 
-from fastapi import FastAPI
+from fastapi import FastAPI, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from sqlalchemy import text
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from core.config import settings
@@ -41,6 +43,14 @@ async def startup_event():
     logger.info("Application starting up")
     logger.info(f"Environment: debug={settings.debug}, host={settings.host}, port={settings.port}")
 
+    # Warn if query understanding is enabled but no API key provided
+    if settings.query_understanding_enabled and not settings.gemini_api_key:
+        logger.warning(
+            "⚠️  query_understanding_enabled=True but gemini_api_key is not set. "
+            "Query understanding will be auto-disabled at runtime. "
+            "Set GEMINI_API_KEY environment variable to enable."
+        )
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
@@ -55,12 +65,23 @@ async def root() -> dict[str, str]:
 
 
 @app.get("/health")
-async def health_check() -> dict[str, str]:
-    """Health check endpoint that verifies database connectivity."""
+async def health_check():
+    """Health check endpoint that verifies database connectivity.
+
+    Returns:
+        200 with healthy status if DB is connected.
+        503 Service Unavailable if DB is down.
+    """
     try:
         with engine.connect() as connection:
-            connection.execute("SELECT 1")
-        return {"status": "healthy", "database": "connected"}
+            connection.execute(text("SELECT 1"))
+        return JSONResponse(
+            status_code=status.HTTP_200_OK,
+            content={"status": "healthy", "database": "connected"}
+        )
     except Exception as e:
         logger.error(f"Health check failed: {e}")
-        return {"status": "unhealthy", "database": "disconnected", "error": str(e)}
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content={"status": "unhealthy", "database": "disconnected", "error": str(e)}
+        )

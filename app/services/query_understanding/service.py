@@ -10,6 +10,7 @@ from typing import Dict, List, Optional
 from app.providers.llm_base import LLMProvider, LLMProviderError
 from app.schemas.search import SearchFilter
 from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
+from app.services.query_understanding.circuit_breaker import should_skip_llm, record_failure
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +77,19 @@ def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingRes
     On any LLMProviderError, falls back to exactly today's behavior: the
     original query text, unchanged, with no inferred filters. This function
     never raises - a failure here must never turn into a 500 on /search.
+
+    Circuit breaker: skips the LLM for 60s after multiple failures (429s,
+    repeated errors) to prevent burning quota and keep search responsive.
     """
+    # Check circuit breaker: skip LLM if it's in cooldown
+    if should_skip_llm():
+        return QueryUnderstandingResult(
+            cleaned_query=query,
+            filters=SearchFilter(),
+            used_llm=False,
+            error="LLM circuit breaker active (cooldown)",
+        )
+
     try:
         result = provider.understand_query(query, CATALOGUE_FACETS)
         validated = validate_filters(result.filters)
@@ -86,7 +99,13 @@ def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingRes
             used_llm=True,
         )
     except LLMProviderError as e:
-        logger.warning(f"Query understanding failed, falling back to raw query: {e}")
+        error_str = str(e).lower()
+        # Record failure for circuit breaker (429, rate limit, resource exhausted)
+        if any(term in error_str for term in ["429", "rate", "quota", "resource_exhausted", "resource exhausted"]):
+            record_failure()
+            logger.error(f"LLM rate limited: {e}")
+        else:
+            logger.warning(f"Query understanding failed, falling back to raw query: {e}")
         return QueryUnderstandingResult(
             cleaned_query=query,
             filters=SearchFilter(),  # Empty - no LLM inference

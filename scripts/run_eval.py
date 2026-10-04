@@ -62,7 +62,8 @@ def main() -> int:
         logger.info(f"Loaded {len(judgments)} judged queries from {args.ground_truth}")
 
         provider = get_embedding_provider(settings, use_fake=False)
-        llm_provider = get_llm_provider(settings, use_fake=False) if args.use_query_understanding else None
+        # Use eval-path timeout (looser budget, can retry) for offline evaluation
+        llm_provider = get_llm_provider(settings, use_fake=False, for_eval=True) if args.use_query_understanding else None
         if llm_provider is not None:
             logger.info("Query understanding ENABLED for this eval run - making real LLM API calls")
         if args.throttle_seconds is not None:
@@ -91,8 +92,9 @@ def main() -> int:
 
         if report.query_understanding:
             fallback_count = sum(1 for r in report.query_understanding if not r.used_llm)
+            real_count = len(report.query_understanding) - fallback_count
             print(f"Query understanding: {len(report.query_understanding)} calls, "
-                  f"{fallback_count} real, {fallback_count} fell back to the original query")
+                  f"{real_count} real, {fallback_count} fell back to the original query")
             print("")
 
             # If any fallback occurred during a throttled run, fail loudly so the partial

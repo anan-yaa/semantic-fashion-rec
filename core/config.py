@@ -35,8 +35,12 @@ class Settings(BaseSettings):
     # LLM query understanding
     query_understanding_enabled: bool = Field(default=True)
     gemini_model: str = Field(default="gemini-3.5-flash-lite")
-    llm_query_understanding_timeout_seconds: float = Field(default=15.0)  # Gemini API enforces a 10s minimum deadline
-    llm_query_understanding_max_retries: int = Field(default=1)
+    # Request-path timeout: tight budget to keep search responsive (no retries, fallback exists)
+    llm_query_understanding_timeout_seconds: float = Field(default=2.5)
+    llm_query_understanding_max_retries: int = Field(default=0)
+    # Eval-path timeout: looser budget for offline evaluation (can retry, want complete coverage)
+    llm_query_understanding_eval_timeout_seconds: float = Field(default=15.0)
+    llm_query_understanding_eval_max_retries: int = Field(default=1)
 
     # Redis
     redis_url: str = Field(default="redis://localhost:6379/0")
