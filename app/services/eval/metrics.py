@@ -47,6 +47,17 @@ def precision_at_k(relevance: List[int], k: int) -> float:
     return sum(top_k) / k
 
 
+def recall_at_k(relevance: List[int], total_relevant: int, k: int) -> float:
+    """Fraction of all relevant items (per the ground truth) found in the top k.
+
+    `total_relevant` comes from the ground truth, not from `relevance`, since
+    relevant items the method never returned are exactly what recall counts.
+    """
+    if total_relevant <= 0:
+        return 0.0
+    return sum(relevance[:k]) / total_relevant
+
+
 def reciprocal_rank(relevance: List[int]) -> float:
     """1 / rank of the first relevant item (1-indexed); 0.0 if none are relevant."""
     for i, rel in enumerate(relevance, start=1):

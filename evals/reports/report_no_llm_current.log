@@ -1,0 +1,282 @@
+2026-10-05 15:53:10,217 - __main__ - INFO - Loaded 80 judged queries from evals/ground_truth/ground_truth_v2_real.json
+2026-10-05 15:53:10,218 - app.providers.factory - INFO - Using HuggingFaceE5Provider: intfloat/multilingual-e5-base
+2026-10-05 15:53:32,232 - app.providers.e5 - INFO - E5Provider initialized: model=intfloat/multilingual-e5-base, device=cuda
+2026-10-05 15:53:44,831 - app.providers.e5 - INFO - Loading model intfloat/multilingual-e5-base on cuda...
+2026-10-05 15:53:45,203 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-05 15:53:45,242 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-05 15:53:45,494 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-05 15:53:45,494 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-05 15:53:45,495 - sentence_transformers.base.model - INFO - Loading SentenceTransformer model from intfloat/multilingual-e5-base.
+2026-10-05 15:53:45,735 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-10-05 15:53:45,973 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-05 15:53:45,989 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/README.md?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2FREADME.md=&etag=%22cb9a717ebcd784123f8bc5ea79b4ba0db4cf2f1d%22 "HTTP/1.1 200 OK"
+2026-10-05 15:53:46,227 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-05 15:53:46,244 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-05 15:53:46,481 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-05 15:53:46,496 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/sentence_bert_config.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eca68d85ecd3034cf4174d8a4033a75344ea62d%22 "HTTP/1.1 200 OK"
+2026-10-05 15:53:46,736 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-05 15:53:46,987 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-05 15:53:47,265 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:   3%|▎         | 5/199 [00:00<00:10, 17.71it/s]Loading weights:   4%|▎         | 7/199 [00:01<00:57,  3.32it/s]Loading weights:   4%|▍         | 8/199 [00:04<02:27,  1.30it/s]Loading weights:  12%|█▏        | 24/199 [00:04<00:24,  7.13it/s]Loading weights:  23%|██▎       | 45/199 [00:04<00:08, 17.22it/s]Loading weights:  32%|███▏      | 63/199 [00:04<00:04, 27.37it/s]Loading weights:  44%|████▎     | 87/199 [00:04<00:02, 45.27it/s]Loading weights:  52%|█████▏    | 103/199 [00:05<00:02, 41.50it/s]Loading weights: 100%|██████████| 199/199 [00:05<00:00, 37.56it/s]
+2026-10-05 15:53:53,198 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-05 15:53:53,523 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-05 15:53:53,768 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-05 15:54:03,402 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-05 15:54:04,122 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-05 15:54:04,196 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/1_Pooling%2Fconfig.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%222a824fa43c359360ecddb16808b539c6be892fef%22 "HTTP/1.1 200 OK"
+2026-10-05 15:54:04,752 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-05 15:54:05,201 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+/home/ananyaa/code/fashion-rec/app/providers/e5.py:56: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  logger.info(f"Model loaded. Output dimension: {self._model.get_sentence_embedding_dimension()}")
+2026-10-05 15:54:31,224 - app.providers.e5 - INFO - Model loaded. Output dimension: 768
+2026-10-05 15:54:37,097 - app.services.search.hybrid - INFO - Search completed: 50 results in 64864.1ms using SearchMethod.HYBRID
+2026-10-05 15:54:37,551 - app.services.search.hybrid - INFO - Search completed: 41 results in 454.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:37,660 - app.services.search.hybrid - INFO - Search completed: 50 results in 108.2ms using SearchMethod.KEYWORD
+2026-10-05 15:54:38,087 - app.services.search.hybrid - INFO - Search completed: 50 results in 427.0ms using SearchMethod.HYBRID
+2026-10-05 15:54:38,175 - app.services.search.hybrid - INFO - Search completed: 43 results in 87.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:38,256 - app.services.search.hybrid - INFO - Search completed: 50 results in 80.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:38,597 - app.services.search.hybrid - INFO - Search completed: 50 results in 341.0ms using SearchMethod.HYBRID
+2026-10-05 15:54:38,706 - app.services.search.hybrid - INFO - Search completed: 43 results in 108.7ms using SearchMethod.VECTOR
+2026-10-05 15:54:38,789 - app.services.search.hybrid - INFO - Search completed: 50 results in 82.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:40,102 - app.services.search.hybrid - INFO - Search completed: 50 results in 1313.0ms using SearchMethod.HYBRID
+2026-10-05 15:54:40,902 - app.services.search.hybrid - INFO - Search completed: 40 results in 799.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:41,026 - app.services.search.hybrid - INFO - Search completed: 50 results in 123.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:41,646 - app.services.search.hybrid - INFO - Search completed: 50 results in 619.5ms using SearchMethod.HYBRID
+2026-10-05 15:54:41,852 - app.services.search.hybrid - INFO - Search completed: 43 results in 205.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:41,880 - app.services.search.hybrid - INFO - Search completed: 50 results in 27.4ms using SearchMethod.KEYWORD
+2026-10-05 15:54:42,500 - app.services.search.hybrid - INFO - Search completed: 50 results in 619.9ms using SearchMethod.HYBRID
+2026-10-05 15:54:42,863 - app.services.search.hybrid - INFO - Search completed: 43 results in 362.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:42,889 - app.services.search.hybrid - INFO - Search completed: 50 results in 25.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:43,113 - app.services.search.hybrid - INFO - Search completed: 50 results in 224.2ms using SearchMethod.HYBRID
+2026-10-05 15:54:43,192 - app.services.search.hybrid - INFO - Search completed: 42 results in 78.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:43,214 - app.services.search.hybrid - INFO - Search completed: 50 results in 22.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:44,436 - app.services.search.hybrid - INFO - Search completed: 50 results in 1221.3ms using SearchMethod.HYBRID
+2026-10-05 15:54:44,615 - app.services.search.hybrid - INFO - Search completed: 43 results in 178.4ms using SearchMethod.VECTOR
+2026-10-05 15:54:44,636 - app.services.search.hybrid - INFO - Search completed: 50 results in 21.4ms using SearchMethod.KEYWORD
+2026-10-05 15:54:44,998 - app.services.search.hybrid - INFO - Search completed: 50 results in 361.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:45,163 - app.services.search.hybrid - INFO - Search completed: 43 results in 164.1ms using SearchMethod.VECTOR
+2026-10-05 15:54:45,224 - app.services.search.hybrid - INFO - Search completed: 50 results in 61.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:45,512 - app.services.search.hybrid - INFO - Search completed: 50 results in 287.1ms using SearchMethod.HYBRID
+2026-10-05 15:54:45,685 - app.services.search.hybrid - INFO - Search completed: 50 results in 173.3ms using SearchMethod.VECTOR
+2026-10-05 15:54:45,701 - app.services.search.hybrid - INFO - Search completed: 50 results in 16.0ms using SearchMethod.KEYWORD
+2026-10-05 15:54:45,903 - app.services.search.hybrid - INFO - Search completed: 50 results in 200.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:46,126 - app.services.search.hybrid - INFO - Search completed: 41 results in 223.0ms using SearchMethod.VECTOR
+2026-10-05 15:54:46,150 - app.services.search.hybrid - INFO - Search completed: 50 results in 23.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:46,797 - app.services.search.hybrid - INFO - Search completed: 50 results in 646.7ms using SearchMethod.HYBRID
+2026-10-05 15:54:47,017 - app.services.search.hybrid - INFO - Search completed: 44 results in 220.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:47,418 - app.services.search.hybrid - INFO - Search completed: 50 results in 400.6ms using SearchMethod.KEYWORD
+2026-10-05 15:54:47,961 - app.services.search.hybrid - INFO - Search completed: 50 results in 542.4ms using SearchMethod.HYBRID
+2026-10-05 15:54:48,182 - app.services.search.hybrid - INFO - Search completed: 42 results in 220.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:48,236 - app.services.search.hybrid - INFO - Search completed: 50 results in 54.0ms using SearchMethod.KEYWORD
+2026-10-05 15:54:48,594 - app.services.search.hybrid - INFO - Search completed: 42 results in 357.2ms using SearchMethod.HYBRID
+2026-10-05 15:54:48,703 - app.services.search.hybrid - INFO - Search completed: 42 results in 109.1ms using SearchMethod.VECTOR
+2026-10-05 15:54:48,866 - app.services.search.hybrid - INFO - Search completed: 50 results in 162.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:49,065 - app.services.search.hybrid - INFO - Search completed: 50 results in 198.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:49,338 - app.services.search.hybrid - INFO - Search completed: 40 results in 273.3ms using SearchMethod.VECTOR
+2026-10-05 15:54:49,373 - app.services.search.hybrid - INFO - Search completed: 50 results in 34.1ms using SearchMethod.KEYWORD
+2026-10-05 15:54:49,699 - app.services.search.hybrid - INFO - Search completed: 48 results in 326.2ms using SearchMethod.HYBRID
+2026-10-05 15:54:49,775 - app.services.search.hybrid - INFO - Search completed: 48 results in 74.8ms using SearchMethod.VECTOR
+2026-10-05 15:54:49,911 - app.services.search.hybrid - INFO - Search completed: 50 results in 135.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:50,164 - app.services.search.hybrid - INFO - Search completed: 40 results in 253.0ms using SearchMethod.HYBRID
+2026-10-05 15:54:50,240 - app.services.search.hybrid - INFO - Search completed: 40 results in 75.9ms using SearchMethod.VECTOR
+2026-10-05 15:54:50,306 - app.services.search.hybrid - INFO - Search completed: 50 results in 66.1ms using SearchMethod.KEYWORD
+2026-10-05 15:54:50,514 - app.services.search.hybrid - INFO - Search completed: 50 results in 207.1ms using SearchMethod.HYBRID
+2026-10-05 15:54:50,592 - app.services.search.hybrid - INFO - Search completed: 50 results in 78.1ms using SearchMethod.VECTOR
+2026-10-05 15:54:50,621 - app.services.search.hybrid - INFO - Search completed: 50 results in 27.8ms using SearchMethod.KEYWORD
+2026-10-05 15:54:50,827 - app.services.search.hybrid - INFO - Search completed: 43 results in 206.3ms using SearchMethod.HYBRID
+2026-10-05 15:54:50,904 - app.services.search.hybrid - INFO - Search completed: 43 results in 76.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:50,951 - app.services.search.hybrid - INFO - Search completed: 50 results in 46.4ms using SearchMethod.KEYWORD
+2026-10-05 15:54:51,212 - app.services.search.hybrid - INFO - Search completed: 42 results in 261.4ms using SearchMethod.HYBRID
+2026-10-05 15:54:51,290 - app.services.search.hybrid - INFO - Search completed: 42 results in 77.1ms using SearchMethod.VECTOR
+2026-10-05 15:54:51,369 - app.services.search.hybrid - INFO - Search completed: 50 results in 78.6ms using SearchMethod.KEYWORD
+2026-10-05 15:54:51,587 - app.services.search.hybrid - INFO - Search completed: 40 results in 217.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:51,694 - app.services.search.hybrid - INFO - Search completed: 40 results in 106.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:51,701 - app.services.search.hybrid - INFO - Search completed: 12 results in 7.2ms using SearchMethod.KEYWORD
+2026-10-05 15:54:51,832 - app.services.search.hybrid - INFO - Search completed: 40 results in 130.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:51,887 - app.services.search.hybrid - INFO - Search completed: 40 results in 54.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:51,908 - app.services.search.hybrid - INFO - Search completed: 50 results in 20.8ms using SearchMethod.KEYWORD
+2026-10-05 15:54:52,040 - app.services.search.hybrid - INFO - Search completed: 50 results in 131.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:52,154 - app.services.search.hybrid - INFO - Search completed: 43 results in 114.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:52,178 - app.services.search.hybrid - INFO - Search completed: 50 results in 23.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:52,423 - app.services.search.hybrid - INFO - Search completed: 50 results in 244.9ms using SearchMethod.HYBRID
+2026-10-05 15:54:52,540 - app.services.search.hybrid - INFO - Search completed: 40 results in 116.4ms using SearchMethod.VECTOR
+2026-10-05 15:54:52,578 - app.services.search.hybrid - INFO - Search completed: 50 results in 37.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:52,731 - app.services.search.hybrid - INFO - Search completed: 44 results in 152.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:52,779 - app.services.search.hybrid - INFO - Search completed: 44 results in 47.3ms using SearchMethod.VECTOR
+2026-10-05 15:54:52,782 - app.services.search.hybrid - INFO - Search completed: 1 results in 3.1ms using SearchMethod.KEYWORD
+2026-10-05 15:54:52,951 - app.services.search.hybrid - INFO - Search completed: 41 results in 168.9ms using SearchMethod.HYBRID
+2026-10-05 15:54:53,020 - app.services.search.hybrid - INFO - Search completed: 41 results in 68.3ms using SearchMethod.VECTOR
+2026-10-05 15:54:53,438 - app.services.search.hybrid - INFO - Search completed: 50 results in 418.1ms using SearchMethod.KEYWORD
+2026-10-05 15:54:53,517 - app.services.search.hybrid - INFO - Search completed: 44 results in 79.1ms using SearchMethod.HYBRID
+2026-10-05 15:54:53,565 - app.services.search.hybrid - INFO - Search completed: 44 results in 47.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:53,576 - app.services.search.hybrid - INFO - Search completed: 24 results in 10.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:53,709 - app.services.search.hybrid - INFO - Search completed: 41 results in 132.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:53,781 - app.services.search.hybrid - INFO - Search completed: 41 results in 71.5ms using SearchMethod.VECTOR
+2026-10-05 15:54:53,795 - app.services.search.hybrid - INFO - Search completed: 31 results in 13.6ms using SearchMethod.KEYWORD
+2026-10-05 15:54:53,930 - app.services.search.hybrid - INFO - Search completed: 48 results in 135.5ms using SearchMethod.HYBRID
+2026-10-05 15:54:54,003 - app.services.search.hybrid - INFO - Search completed: 48 results in 72.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:54,296 - app.services.search.hybrid - INFO - Search completed: 50 results in 292.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:54,527 - app.services.search.hybrid - INFO - Search completed: 41 results in 230.7ms using SearchMethod.HYBRID
+2026-10-05 15:54:54,635 - app.services.search.hybrid - INFO - Search completed: 41 results in 107.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:54,962 - app.services.search.hybrid - INFO - Search completed: 50 results in 327.0ms using SearchMethod.KEYWORD
+2026-10-05 15:54:55,069 - app.services.search.hybrid - INFO - Search completed: 45 results in 106.5ms using SearchMethod.HYBRID
+2026-10-05 15:54:55,142 - app.services.search.hybrid - INFO - Search completed: 45 results in 72.7ms using SearchMethod.VECTOR
+2026-10-05 15:54:55,161 - app.services.search.hybrid - INFO - Search completed: 50 results in 18.9ms using SearchMethod.KEYWORD
+2026-10-05 15:54:55,347 - app.services.search.hybrid - INFO - Search completed: 40 results in 185.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:55,432 - app.services.search.hybrid - INFO - Search completed: 40 results in 84.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:55,449 - app.services.search.hybrid - INFO - Search completed: 50 results in 16.9ms using SearchMethod.KEYWORD
+2026-10-05 15:54:55,555 - app.services.search.hybrid - INFO - Search completed: 48 results in 105.8ms using SearchMethod.HYBRID
+2026-10-05 15:54:55,604 - app.services.search.hybrid - INFO - Search completed: 48 results in 48.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:55,789 - app.services.search.hybrid - INFO - Search completed: 50 results in 184.8ms using SearchMethod.KEYWORD
+2026-10-05 15:54:55,926 - app.services.search.hybrid - INFO - Search completed: 45 results in 136.9ms using SearchMethod.HYBRID
+2026-10-05 15:54:55,976 - app.services.search.hybrid - INFO - Search completed: 42 results in 49.0ms using SearchMethod.VECTOR
+2026-10-05 15:54:56,338 - app.services.search.hybrid - INFO - Search completed: 50 results in 362.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:56,462 - app.services.search.hybrid - INFO - Search completed: 49 results in 123.2ms using SearchMethod.HYBRID
+2026-10-05 15:54:56,511 - app.services.search.hybrid - INFO - Search completed: 49 results in 48.8ms using SearchMethod.VECTOR
+2026-10-05 15:54:56,637 - app.services.search.hybrid - INFO - Search completed: 50 results in 125.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:56,833 - app.services.search.hybrid - INFO - Search completed: 50 results in 195.2ms using SearchMethod.HYBRID
+2026-10-05 15:54:56,920 - app.services.search.hybrid - INFO - Search completed: 44 results in 87.1ms using SearchMethod.VECTOR
+2026-10-05 15:54:57,157 - app.services.search.hybrid - INFO - Search completed: 50 results in 236.1ms using SearchMethod.KEYWORD
+2026-10-05 15:54:57,353 - app.services.search.hybrid - INFO - Search completed: 50 results in 196.3ms using SearchMethod.HYBRID
+2026-10-05 15:54:57,796 - app.services.search.hybrid - INFO - Search completed: 41 results in 442.9ms using SearchMethod.VECTOR
+2026-10-05 15:54:58,134 - app.services.search.hybrid - INFO - Search completed: 50 results in 337.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:58,286 - app.services.search.hybrid - INFO - Search completed: 50 results in 151.9ms using SearchMethod.HYBRID
+2026-10-05 15:54:58,414 - app.services.search.hybrid - INFO - Search completed: 40 results in 127.2ms using SearchMethod.VECTOR
+2026-10-05 15:54:58,472 - app.services.search.hybrid - INFO - Search completed: 50 results in 58.0ms using SearchMethod.KEYWORD
+2026-10-05 15:54:58,690 - app.services.search.hybrid - INFO - Search completed: 50 results in 217.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:58,807 - app.services.search.hybrid - INFO - Search completed: 50 results in 116.3ms using SearchMethod.VECTOR
+2026-10-05 15:54:58,931 - app.services.search.hybrid - INFO - Search completed: 50 results in 124.3ms using SearchMethod.KEYWORD
+2026-10-05 15:54:59,140 - app.services.search.hybrid - INFO - Search completed: 50 results in 208.5ms using SearchMethod.HYBRID
+2026-10-05 15:54:59,238 - app.services.search.hybrid - INFO - Search completed: 48 results in 97.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:59,475 - app.services.search.hybrid - INFO - Search completed: 50 results in 236.7ms using SearchMethod.KEYWORD
+2026-10-05 15:54:59,587 - app.services.search.hybrid - INFO - Search completed: 41 results in 111.6ms using SearchMethod.HYBRID
+2026-10-05 15:54:59,660 - app.services.search.hybrid - INFO - Search completed: 41 results in 72.6ms using SearchMethod.VECTOR
+2026-10-05 15:54:59,774 - app.services.search.hybrid - INFO - Search completed: 50 results in 113.5ms using SearchMethod.KEYWORD
+2026-10-05 15:54:59,988 - app.services.search.hybrid - INFO - Search completed: 50 results in 213.6ms using SearchMethod.HYBRID
+2026-10-05 15:55:00,082 - app.services.search.hybrid - INFO - Search completed: 41 results in 94.3ms using SearchMethod.VECTOR
+2026-10-05 15:55:00,427 - app.services.search.hybrid - INFO - Search completed: 50 results in 344.6ms using SearchMethod.KEYWORD
+2026-10-05 15:55:00,809 - app.services.search.hybrid - INFO - Search completed: 50 results in 381.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:00,885 - app.services.search.hybrid - INFO - Search completed: 42 results in 75.3ms using SearchMethod.VECTOR
+2026-10-05 15:55:01,392 - app.services.search.hybrid - INFO - Search completed: 50 results in 507.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:01,539 - app.services.search.hybrid - INFO - Search completed: 50 results in 146.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:01,613 - app.services.search.hybrid - INFO - Search completed: 50 results in 73.9ms using SearchMethod.VECTOR
+2026-10-05 15:55:01,831 - app.services.search.hybrid - INFO - Search completed: 50 results in 217.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:02,038 - app.services.search.hybrid - INFO - Search completed: 50 results in 206.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:02,157 - app.services.search.hybrid - INFO - Search completed: 41 results in 119.0ms using SearchMethod.VECTOR
+2026-10-05 15:55:02,569 - app.services.search.hybrid - INFO - Search completed: 50 results in 411.9ms using SearchMethod.KEYWORD
+2026-10-05 15:55:02,813 - app.services.search.hybrid - INFO - Search completed: 50 results in 243.8ms using SearchMethod.HYBRID
+2026-10-05 15:55:02,946 - app.services.search.hybrid - INFO - Search completed: 43 results in 132.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:02,982 - app.services.search.hybrid - INFO - Search completed: 50 results in 35.7ms using SearchMethod.KEYWORD
+2026-10-05 15:55:03,120 - app.services.search.hybrid - INFO - Search completed: 45 results in 137.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:03,194 - app.services.search.hybrid - INFO - Search completed: 44 results in 73.4ms using SearchMethod.VECTOR
+2026-10-05 15:55:03,274 - app.services.search.hybrid - INFO - Search completed: 50 results in 80.4ms using SearchMethod.KEYWORD
+2026-10-05 15:55:03,376 - app.services.search.hybrid - INFO - Search completed: 50 results in 101.5ms using SearchMethod.HYBRID
+2026-10-05 15:55:03,448 - app.services.search.hybrid - INFO - Search completed: 42 results in 71.8ms using SearchMethod.VECTOR
+2026-10-05 15:55:03,530 - app.services.search.hybrid - INFO - Search completed: 50 results in 81.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:03,682 - app.services.search.hybrid - INFO - Search completed: 50 results in 151.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:03,765 - app.services.search.hybrid - INFO - Search completed: 44 results in 82.6ms using SearchMethod.VECTOR
+2026-10-05 15:55:03,810 - app.services.search.hybrid - INFO - Search completed: 50 results in 44.6ms using SearchMethod.KEYWORD
+2026-10-05 15:55:04,356 - app.services.search.hybrid - INFO - Search completed: 50 results in 545.6ms using SearchMethod.HYBRID
+2026-10-05 15:55:04,474 - app.services.search.hybrid - INFO - Search completed: 47 results in 117.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:04,647 - app.services.search.hybrid - INFO - Search completed: 50 results in 172.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:04,972 - app.services.search.hybrid - INFO - Search completed: 50 results in 324.7ms using SearchMethod.HYBRID
+2026-10-05 15:55:05,067 - app.services.search.hybrid - INFO - Search completed: 42 results in 95.4ms using SearchMethod.VECTOR
+2026-10-05 15:55:05,108 - app.services.search.hybrid - INFO - Search completed: 50 results in 40.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:05,383 - app.services.search.hybrid - INFO - Search completed: 50 results in 274.3ms using SearchMethod.HYBRID
+2026-10-05 15:55:05,465 - app.services.search.hybrid - INFO - Search completed: 50 results in 81.4ms using SearchMethod.VECTOR
+2026-10-05 15:55:05,676 - app.services.search.hybrid - INFO - Search completed: 50 results in 211.0ms using SearchMethod.KEYWORD
+2026-10-05 15:55:05,827 - app.services.search.hybrid - INFO - Search completed: 50 results in 150.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:05,903 - app.services.search.hybrid - INFO - Search completed: 49 results in 76.1ms using SearchMethod.VECTOR
+2026-10-05 15:55:06,070 - app.services.search.hybrid - INFO - Search completed: 50 results in 166.2ms using SearchMethod.KEYWORD
+2026-10-05 15:55:06,239 - app.services.search.hybrid - INFO - Search completed: 50 results in 168.8ms using SearchMethod.HYBRID
+2026-10-05 15:55:06,313 - app.services.search.hybrid - INFO - Search completed: 42 results in 74.0ms using SearchMethod.VECTOR
+2026-10-05 15:55:06,441 - app.services.search.hybrid - INFO - Search completed: 50 results in 127.7ms using SearchMethod.KEYWORD
+2026-10-05 15:55:06,586 - app.services.search.hybrid - INFO - Search completed: 50 results in 144.2ms using SearchMethod.HYBRID
+2026-10-05 15:55:06,659 - app.services.search.hybrid - INFO - Search completed: 46 results in 72.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:06,810 - app.services.search.hybrid - INFO - Search completed: 50 results in 150.9ms using SearchMethod.KEYWORD
+2026-10-05 15:55:06,956 - app.services.search.hybrid - INFO - Search completed: 50 results in 146.3ms using SearchMethod.HYBRID
+2026-10-05 15:55:07,078 - app.services.search.hybrid - INFO - Search completed: 44 results in 120.9ms using SearchMethod.VECTOR
+2026-10-05 15:55:07,101 - app.services.search.hybrid - INFO - Search completed: 50 results in 22.6ms using SearchMethod.KEYWORD
+2026-10-05 15:55:07,279 - app.services.search.hybrid - INFO - Search completed: 50 results in 178.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:07,376 - app.services.search.hybrid - INFO - Search completed: 40 results in 95.7ms using SearchMethod.VECTOR
+2026-10-05 15:55:07,419 - app.services.search.hybrid - INFO - Search completed: 50 results in 43.2ms using SearchMethod.KEYWORD
+2026-10-05 15:55:07,617 - app.services.search.hybrid - INFO - Search completed: 50 results in 198.0ms using SearchMethod.HYBRID
+2026-10-05 15:55:07,691 - app.services.search.hybrid - INFO - Search completed: 45 results in 73.2ms using SearchMethod.VECTOR
+2026-10-05 15:55:07,940 - app.services.search.hybrid - INFO - Search completed: 50 results in 248.9ms using SearchMethod.KEYWORD
+2026-10-05 15:55:08,185 - app.services.search.hybrid - INFO - Search completed: 50 results in 245.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:08,317 - app.services.search.hybrid - INFO - Search completed: 45 results in 131.1ms using SearchMethod.VECTOR
+2026-10-05 15:55:08,523 - app.services.search.hybrid - INFO - Search completed: 50 results in 205.4ms using SearchMethod.KEYWORD
+2026-10-05 15:55:08,631 - app.services.search.hybrid - INFO - Search completed: 50 results in 107.8ms using SearchMethod.HYBRID
+2026-10-05 15:55:08,702 - app.services.search.hybrid - INFO - Search completed: 41 results in 70.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:08,809 - app.services.search.hybrid - INFO - Search completed: 50 results in 107.4ms using SearchMethod.KEYWORD
+2026-10-05 15:55:08,950 - app.services.search.hybrid - INFO - Search completed: 50 results in 140.3ms using SearchMethod.HYBRID
+2026-10-05 15:55:09,024 - app.services.search.hybrid - INFO - Search completed: 42 results in 73.8ms using SearchMethod.VECTOR
+2026-10-05 15:55:09,164 - app.services.search.hybrid - INFO - Search completed: 50 results in 139.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:09,342 - app.services.search.hybrid - INFO - Search completed: 50 results in 177.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:09,424 - app.services.search.hybrid - INFO - Search completed: 40 results in 82.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:09,479 - app.services.search.hybrid - INFO - Search completed: 50 results in 54.7ms using SearchMethod.KEYWORD
+2026-10-05 15:55:09,607 - app.services.search.hybrid - INFO - Search completed: 50 results in 127.0ms using SearchMethod.HYBRID
+2026-10-05 15:55:09,682 - app.services.search.hybrid - INFO - Search completed: 50 results in 74.8ms using SearchMethod.VECTOR
+2026-10-05 15:55:09,800 - app.services.search.hybrid - INFO - Search completed: 50 results in 117.6ms using SearchMethod.KEYWORD
+2026-10-05 15:55:09,883 - app.services.search.hybrid - INFO - Search completed: 42 results in 83.5ms using SearchMethod.HYBRID
+2026-10-05 15:55:09,957 - app.services.search.hybrid - INFO - Search completed: 42 results in 73.0ms using SearchMethod.VECTOR
+2026-10-05 15:55:09,969 - app.services.search.hybrid - INFO - Search completed: 50 results in 11.8ms using SearchMethod.KEYWORD
+2026-10-05 15:55:10,094 - app.services.search.hybrid - INFO - Search completed: 43 results in 125.2ms using SearchMethod.HYBRID
+2026-10-05 15:55:10,169 - app.services.search.hybrid - INFO - Search completed: 43 results in 74.0ms using SearchMethod.VECTOR
+2026-10-05 15:55:10,293 - app.services.search.hybrid - INFO - Search completed: 50 results in 124.7ms using SearchMethod.KEYWORD
+2026-10-05 15:55:10,431 - app.services.search.hybrid - INFO - Search completed: 42 results in 137.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:10,505 - app.services.search.hybrid - INFO - Search completed: 40 results in 73.4ms using SearchMethod.VECTOR
+2026-10-05 15:55:10,606 - app.services.search.hybrid - INFO - Search completed: 50 results in 101.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:10,686 - app.services.search.hybrid - INFO - Search completed: 40 results in 79.2ms using SearchMethod.HYBRID
+2026-10-05 15:55:10,757 - app.services.search.hybrid - INFO - Search completed: 40 results in 71.1ms using SearchMethod.VECTOR
+2026-10-05 15:55:10,772 - app.services.search.hybrid - INFO - Search completed: 50 results in 14.4ms using SearchMethod.KEYWORD
+2026-10-05 15:55:10,879 - app.services.search.hybrid - INFO - Search completed: 42 results in 107.0ms using SearchMethod.HYBRID
+2026-10-05 15:55:10,950 - app.services.search.hybrid - INFO - Search completed: 42 results in 71.2ms using SearchMethod.VECTOR
+2026-10-05 15:55:10,955 - app.services.search.hybrid - INFO - Search completed: 12 results in 4.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:11,035 - app.services.search.hybrid - INFO - Search completed: 42 results in 79.9ms using SearchMethod.HYBRID
+2026-10-05 15:55:11,091 - app.services.search.hybrid - INFO - Search completed: 42 results in 55.5ms using SearchMethod.VECTOR
+2026-10-05 15:55:11,103 - app.services.search.hybrid - INFO - Search completed: 50 results in 12.0ms using SearchMethod.KEYWORD
+2026-10-05 15:55:11,325 - app.services.search.hybrid - INFO - Search completed: 43 results in 221.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:11,374 - app.services.search.hybrid - INFO - Search completed: 43 results in 49.0ms using SearchMethod.VECTOR
+2026-10-05 15:55:11,893 - app.services.search.hybrid - INFO - Search completed: 50 results in 518.2ms using SearchMethod.KEYWORD
+2026-10-05 15:55:11,958 - app.services.search.hybrid - INFO - Search completed: 43 results in 64.6ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,008 - app.services.search.hybrid - INFO - Search completed: 43 results in 49.7ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,013 - app.services.search.hybrid - INFO - Search completed: 0 results in 5.5ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,080 - app.services.search.hybrid - INFO - Search completed: 50 results in 66.2ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,132 - app.services.search.hybrid - INFO - Search completed: 50 results in 52.2ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,135 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,213 - app.services.search.hybrid - INFO - Search completed: 41 results in 77.8ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,263 - app.services.search.hybrid - INFO - Search completed: 41 results in 50.1ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,266 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.7ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,343 - app.services.search.hybrid - INFO - Search completed: 48 results in 76.8ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,399 - app.services.search.hybrid - INFO - Search completed: 48 results in 54.8ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,401 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,477 - app.services.search.hybrid - INFO - Search completed: 44 results in 75.5ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,543 - app.services.search.hybrid - INFO - Search completed: 44 results in 65.8ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,546 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.4ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,602 - app.services.search.hybrid - INFO - Search completed: 48 results in 56.4ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,653 - app.services.search.hybrid - INFO - Search completed: 48 results in 50.2ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,655 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,719 - app.services.search.hybrid - INFO - Search completed: 40 results in 64.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,766 - app.services.search.hybrid - INFO - Search completed: 40 results in 46.6ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,768 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.2ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,828 - app.services.search.hybrid - INFO - Search completed: 42 results in 59.6ms using SearchMethod.HYBRID
+2026-10-05 15:55:12,879 - app.services.search.hybrid - INFO - Search completed: 42 results in 50.4ms using SearchMethod.VECTOR
+2026-10-05 15:55:12,881 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.3ms using SearchMethod.KEYWORD
+2026-10-05 15:55:12,957 - app.services.search.hybrid - INFO - Search completed: 40 results in 75.2ms using SearchMethod.HYBRID
+2026-10-05 15:55:13,021 - app.services.search.hybrid - INFO - Search completed: 40 results in 64.2ms using SearchMethod.VECTOR
+2026-10-05 15:55:13,024 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.2ms using SearchMethod.KEYWORD
+2026-10-05 15:55:13,081 - app.services.search.hybrid - INFO - Search completed: 47 results in 57.1ms using SearchMethod.HYBRID
+2026-10-05 15:55:13,120 - app.services.search.hybrid - INFO - Search completed: 47 results in 38.6ms using SearchMethod.VECTOR
+2026-10-05 15:55:13,122 - app.services.search.hybrid - INFO - Search completed: 0 results in 2.2ms using SearchMethod.KEYWORD
+
+Queries scored: 80 (excluded: 0)
+Query understanding enabled: False
+
+Method    NDCG@10     Precision@10    MRR       
+hybrid    0.820       0.720           0.925     
+vector    0.923       0.841           0.925     
+keyword   0.309       0.189           0.385     
+
+2026-10-05 15:55:13,128 - __main__ - INFO - Reports written to evals/reports/report_no_llm_current.json and evals/reports/report_no_llm_current.md

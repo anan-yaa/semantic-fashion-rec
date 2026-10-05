@@ -1,0 +1,2994 @@
+{
+  "generated_at": "2026-10-05T16:18:30.912072+00:00",
+  "ground_truth_source": "evals/ground_truth/ground_truth_v2_real.json",
+  "query_count": 80,
+  "excluded_query_count": 0,
+  "per_method": {
+    "hybrid": {
+      "ndcg_at_10": 0.8314310563716584,
+      "precision_at_10": 0.73125,
+      "mrr": 0.93125,
+      "recall_at_20": 0.594375,
+      "recall_at_50": 0.705
+    },
+    "vector": {
+      "ndcg_at_10": 0.9233765623543333,
+      "precision_at_10": 0.8412499999999999,
+      "mrr": 0.925,
+      "recall_at_20": 0.713125,
+      "recall_at_50": 0.71875
+    },
+    "keyword": {
+      "ndcg_at_10": 0.2715640974408942,
+      "precision_at_10": 0.17625,
+      "mrr": 0.3534362655762112,
+      "recall_at_20": 0.148125,
+      "recall_at_50": 0.25187499999999996
+    }
+  },
+  "per_query": {
+    "q001": {
+      "hybrid": {
+        "ndcg_at_10": 0.5390031312763821,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.46927872602275644,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q002": {
+      "hybrid": {
+        "ndcg_at_10": 0.6473362615659566,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.27487633291429087,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.35
+      }
+    },
+    "q003": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.09090909090909091,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q004": {
+      "hybrid": {
+        "ndcg_at_10": 0.5836175861945262,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.39106560501896365,
+        "precision_at_10": 0.2,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q005": {
+      "hybrid": {
+        "ndcg_at_10": 0.84860265890399,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3098064936645125,
+        "precision_at_10": 0.4,
+        "mrr": 0.25,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.8
+      }
+    },
+    "q006": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8165901947515999,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 1.0
+      }
+    },
+    "q007": {
+      "hybrid": {
+        "ndcg_at_10": 0.841492960259019,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.7,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.1584091525685025,
+        "precision_at_10": 0.2,
+        "mrr": 0.25,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.6
+      }
+    },
+    "q008": {
+      "hybrid": {
+        "ndcg_at_10": 0.727329844310522,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3557772116892465,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.55
+      }
+    },
+    "q009": {
+      "hybrid": {
+        "ndcg_at_10": 0.7819835854675755,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.14279514403613733,
+        "precision_at_10": 0.2,
+        "mrr": 0.14285714285714285,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.9
+      }
+    },
+    "q010": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      }
+    },
+    "q011": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      }
+    },
+    "q012": {
+      "hybrid": {
+        "ndcg_at_10": 0.5326208815196265,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0625,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q013": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6131471927654584,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q014": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q015": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.65
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q016": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6934264036172708,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q017": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q018": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8104616303452685,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.35
+      }
+    },
+    "q019": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q020": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.15958907712489634,
+        "precision_at_10": 0.1,
+        "mrr": 0.5,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.4
+      }
+    },
+    "q021": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q022": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q023": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.021739130434782608,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.1
+      }
+    },
+    "q024": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q025": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q026": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6309297535714575,
+        "precision_at_10": 0.1,
+        "mrr": 0.5,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q027": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.08333333333333333,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.2
+      }
+    },
+    "q028": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "keyword": {
+        "ndcg_at_10": 0.1884441521277154,
+        "precision_at_10": 0.2,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.55
+      }
+    },
+    "q029": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6934264036172708,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q030": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q031": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.030303030303030304,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q032": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.10893649261775588,
+        "precision_at_10": 0.1,
+        "mrr": 0.25,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.4
+      }
+    },
+    "q033": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q034": {
+      "hybrid": {
+        "ndcg_at_10": 0.9052116356304493,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9068250379649666,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      }
+    },
+    "q035": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q036": {
+      "hybrid": {
+        "ndcg_at_10": 0.43231813227099475,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.045454545454545456,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q037": {
+      "hybrid": {
+        "ndcg_at_10": 0.4779671403625728,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.2530614822099702,
+        "precision_at_10": 0.2,
+        "mrr": 0.25,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.25
+      }
+    },
+    "q038": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.35
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q039": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8415908474314976,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      }
+    },
+    "q040": {
+      "hybrid": {
+        "ndcg_at_10": 0.4690000933206748,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.18154179253735267,
+        "precision_at_10": 0.1,
+        "mrr": 0.2,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.15
+      }
+    },
+    "q041": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q042": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.65
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8701249883466593,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.5
+      }
+    },
+    "q043": {
+      "hybrid": {
+        "ndcg_at_10": 0.8415908474314976,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9060254355346823,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q044": {
+      "hybrid": {
+        "ndcg_at_10": 0.7849818707050383,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 0.8701249883466593,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.22784037450527975,
+        "precision_at_10": 0.3,
+        "mrr": 0.25,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.7
+      }
+    },
+    "q045": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      }
+    },
+    "q046": {
+      "hybrid": {
+        "ndcg_at_10": 0.9896062251871525,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5834330535576521,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      }
+    },
+    "q047": {
+      "hybrid": {
+        "ndcg_at_10": 0.9266360779006401,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.48964844873235525,
+        "precision_at_10": 0.6,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.8,
+        "recall_at_50": 1.0
+      }
+    },
+    "q048": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q049": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9216017310213247,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 1.0
+      }
+    },
+    "q050": {
+      "hybrid": {
+        "ndcg_at_10": 0.7709363892380909,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.35
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.038461538461538464,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.2
+      }
+    },
+    "q051": {
+      "hybrid": {
+        "ndcg_at_10": 0.857980942822373,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.65,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.2816372027313761,
+        "precision_at_10": 0.4,
+        "mrr": 0.16666666666666666,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.9
+      }
+    },
+    "q052": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.23573241784227986,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.4
+      }
+    },
+    "q053": {
+      "hybrid": {
+        "ndcg_at_10": 0.5415879285615245,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q054": {
+      "hybrid": {
+        "ndcg_at_10": 0.7564477297898766,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.37326895379685443,
+        "precision_at_10": 0.4,
+        "mrr": 0.5,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.5
+      }
+    },
+    "q055": {
+      "hybrid": {
+        "ndcg_at_10": 0.7034066032439746,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.38685280723454163,
+        "precision_at_10": 0.1,
+        "mrr": 0.5,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q056": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5075394027672818,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.8
+      }
+    },
+    "q057": {
+      "hybrid": {
+        "ndcg_at_10": 0.7967610662472993,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.12647135138382856,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.4
+      }
+    },
+    "q058": {
+      "hybrid": {
+        "ndcg_at_10": 0.7058075148678526,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.19519002499605084,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.2
+      }
+    },
+    "q059": {
+      "hybrid": {
+        "ndcg_at_10": 0.47674870152787435,
+        "precision_at_10": 0.5,
+        "mrr": 0.5,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q060": {
+      "hybrid": {
+        "ndcg_at_10": 0.5548989126424904,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.027777777777777776,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q061": {
+      "hybrid": {
+        "ndcg_at_10": 0.46927872602275644,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.15
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "keyword": {
+        "ndcg_at_10": 0.1480409554829326,
+        "precision_at_10": 0.1,
+        "mrr": 0.125,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.15
+      }
+    },
+    "q062": {
+      "hybrid": {
+        "ndcg_at_10": 0.7849818707050383,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.42332408484280865,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.45
+      }
+    },
+    "q063": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q064": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.33627415762678553,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.45
+      }
+    },
+    "q065": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.045454545454545456,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q066": {
+      "hybrid": {
+        "ndcg_at_10": 0.7663491917568946,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q067": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.11004588314904008,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.5
+      }
+    },
+    "q068": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.3
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.3
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q069": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.10209739512291163,
+        "precision_at_10": 0.1,
+        "mrr": 0.1111111111111111,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.25
+      }
+    },
+    "q070": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q071": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q072": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q073": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q074": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q075": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q076": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q077": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q078": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q079": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q080": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    }
+  },
+  "query_understanding_enabled": true,
+  "query_understanding": [
+    {
+      "query_id": "q001",
+      "query": "black leather jacket",
+      "used_llm": true,
+      "cleaned_query": "black leather jacket",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q002",
+      "query": "navy blue running shoes",
+      "used_llm": true,
+      "cleaned_query": "navy blue running shoes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Navy Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q003",
+      "query": "women's silver jewellery",
+      "used_llm": true,
+      "cleaned_query": "silver jewelery",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q004",
+      "query": "formal watch for men",
+      "used_llm": true,
+      "cleaned_query": "formal watch",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q005",
+      "query": "brown leather wallet",
+      "used_llm": true,
+      "cleaned_query": "brown leather wallet",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q006",
+      "query": "grey eyewear sunglasses",
+      "used_llm": true,
+      "cleaned_query": "grey eyewear sunglasses",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q007",
+      "query": "pink innerwear",
+      "used_llm": true,
+      "cleaned_query": "pink innerwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q008",
+      "query": "purple handbag",
+      "used_llm": true,
+      "cleaned_query": "purple handbag",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Purple",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q009",
+      "query": "white flip flops",
+      "used_llm": true,
+      "cleaned_query": "white flip flops",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q010",
+      "query": "yellow socks",
+      "used_llm": true,
+      "cleaned_query": "yellow socks",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q011",
+      "query": "maroon saree",
+      "used_llm": true,
+      "cleaned_query": "maroon saree",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Maroon",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q012",
+      "query": "black belt for men",
+      "used_llm": true,
+      "cleaned_query": "black belt for men",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q013",
+      "query": "lightweight breathable top for hot days",
+      "used_llm": true,
+      "cleaned_query": "lightweight breathable top for hot days",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q014",
+      "query": "shoes for standing all day comfortably",
+      "used_llm": true,
+      "cleaned_query": "comfortable shoes for standing all day",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q015",
+      "query": "elegant evening handbag",
+      "used_llm": true,
+      "cleaned_query": "elegant evening handbag",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q016",
+      "query": "rugged outdoor footwear",
+      "used_llm": true,
+      "cleaned_query": "rugged outdoor footwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q017",
+      "query": "eye-catching statement jewellery",
+      "used_llm": true,
+      "cleaned_query": "eye-catching statement jewelry",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q018",
+      "query": "soft loungewear for relaxing at home",
+      "used_llm": true,
+      "cleaned_query": "soft loungewear for relaxing at home",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q019",
+      "query": "a fragrance that lasts all day",
+      "used_llm": true,
+      "cleaned_query": "fragance that lasts all day",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q020",
+      "query": "sturdy bag for carrying a laptop",
+      "used_llm": true,
+      "cleaned_query": "sturdy laptop bag",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q021",
+      "query": "sleek minimalist wristwatch",
+      "used_llm": true,
+      "cleaned_query": "sleek minimalist wristwaTCH",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q022",
+      "query": "warm layer to wear under a jacket",
+      "used_llm": true,
+      "cleaned_query": "warm layer to wear under a jacket",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q023",
+      "query": "breathable socks for long walks",
+      "used_llm": true,
+      "cleaned_query": "breathable socks for long walks",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q024",
+      "query": "durable sandals for everyday wear",
+      "used_llm": true,
+      "cleaned_query": "durable sandals for everyday wear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q025",
+      "query": "outfit for a job interview",
+      "used_llm": true,
+      "cleaned_query": "job interview outfit",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q026",
+      "query": "something to wear to a summer wedding",
+      "used_llm": true,
+      "cleaned_query": "summer wedding dress",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q027",
+      "query": "gym workout clothes",
+      "used_llm": true,
+      "cleaned_query": "gym workout clothes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q028",
+      "query": "beach vacation outfit",
+      "used_llm": true,
+      "cleaned_query": "beach vacation outfit",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q029",
+      "query": "office wear for men",
+      "used_llm": true,
+      "cleaned_query": "office wear for men",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q030",
+      "query": "festive traditional wear for women",
+      "used_llm": true,
+      "cleaned_query": "festive traditional wear for women",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q031",
+      "query": "clothes for a night out",
+      "used_llm": true,
+      "cleaned_query": "night out clothes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q032",
+      "query": "sportswear for running a marathon",
+      "used_llm": true,
+      "cleaned_query": "sportswear for running a marathon",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q033",
+      "query": "travel-friendly comfortable shoes",
+      "used_llm": true,
+      "cleaned_query": "travel-friendly comfortable shoes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q034",
+      "query": "party accessories for women",
+      "used_llm": true,
+      "cleaned_query": "party accessories for women",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q035",
+      "query": "warm winter coat",
+      "used_llm": true,
+      "cleaned_query": "warm winter coat",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q036",
+      "query": "summer dress",
+      "used_llm": true,
+      "cleaned_query": "summer dress",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q037",
+      "query": "fall jacket for men",
+      "used_llm": true,
+      "cleaned_query": "fall jacket for men",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q038",
+      "query": "spring light jacket",
+      "used_llm": true,
+      "cleaned_query": "spring light jacket",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Spring",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q039",
+      "query": "winter woolen socks",
+      "used_llm": true,
+      "cleaned_query": "winter woolen socks",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q040",
+      "query": "summer sandals",
+      "used_llm": true,
+      "cleaned_query": "summer sandals",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q041",
+      "query": "monsoon footwear",
+      "used_llm": true,
+      "cleaned_query": "monsoon footwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q042",
+      "query": "winter sweater for women",
+      "used_llm": true,
+      "cleaned_query": "winter sweater for women",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q043",
+      "query": "summer topwear for men",
+      "used_llm": true,
+      "cleaned_query": "summer topwear for men",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q044",
+      "query": "fall accessories",
+      "used_llm": true,
+      "cleaned_query": "fall accessories",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q045",
+      "query": "maroon saree for women",
+      "used_llm": true,
+      "cleaned_query": "maroon saree",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": "Maroon",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q046",
+      "query": "beige sandals",
+      "used_llm": true,
+      "cleaned_query": "beige sandals",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q047",
+      "query": "olive green bag",
+      "used_llm": true,
+      "cleaned_query": "olive green bag",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Olive",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q048",
+      "query": "white sneakers",
+      "used_llm": true,
+      "cleaned_query": "white snaker",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "White",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q049",
+      "query": "red dress",
+      "used_llm": true,
+      "cleaned_query": "red dress",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Red",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q050",
+      "query": "navy blue shirt",
+      "used_llm": true,
+      "cleaned_query": "navy blue shirt",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": "Navy Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q051",
+      "query": "gold watch",
+      "used_llm": true,
+      "cleaned_query": "gold watch",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q052",
+      "query": "black formal shoes",
+      "used_llm": true,
+      "cleaned_query": "black formal shoes",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q053",
+      "query": "grey topwear",
+      "used_llm": true,
+      "cleaned_query": "grey topwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q054",
+      "query": "orange accessories",
+      "used_llm": true,
+      "cleaned_query": "orange accessories",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q055",
+      "query": "boys topwear",
+      "used_llm": true,
+      "cleaned_query": "boys topwear",
+      "filters": {
+        "category": null,
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q056",
+      "query": "girls dress",
+      "used_llm": true,
+      "cleaned_query": "girls dress",
+      "filters": {
+        "category": null,
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q057",
+      "query": "unisex sunglasses",
+      "used_llm": true,
+      "cleaned_query": "unisex sunglasses",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q058",
+      "query": "men's innerwear",
+      "used_llm": true,
+      "cleaned_query": "men's innerwear",
+      "filters": {
+        "category": null,
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q059",
+      "query": "women's handbags",
+      "used_llm": true,
+      "cleaned_query": "women's handbag",
+      "filters": {
+        "category": null,
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q060",
+      "query": "boys footwear",
+      "used_llm": true,
+      "cleaned_query": "boys footwear",
+      "filters": {
+        "category": null,
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q061",
+      "query": "girls accessories",
+      "used_llm": true,
+      "cleaned_query": "girls accessories",
+      "filters": {
+        "category": null,
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q062",
+      "query": "unisex watches",
+      "used_llm": true,
+      "cleaned_query": "unisex watches",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q063",
+      "query": "cozy winter outfit",
+      "used_llm": true,
+      "cleaned_query": "winter cozy outfit",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q064",
+      "query": "something comfortable",
+      "used_llm": true,
+      "cleaned_query": "comfortable something",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q065",
+      "query": "nice accessory",
+      "used_llm": true,
+      "cleaned_query": "nice accessory",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q066",
+      "query": "stylish footwear",
+      "used_llm": true,
+      "cleaned_query": "stylish footwear",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q067",
+      "query": "good gift idea",
+      "used_llm": true,
+      "cleaned_query": "good gift idea",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q068",
+      "query": "something trendy",
+      "used_llm": true,
+      "cleaned_query": "trench coat",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q069",
+      "query": "everyday essentials",
+      "used_llm": true,
+      "cleaned_query": "everyday essential",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q070",
+      "query": "something for casual outings",
+      "used_llm": true,
+      "cleaned_query": "casual outings",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q071",
+      "query": "नीली शर्ट",
+      "used_llm": false,
+      "cleaned_query": "नीली शर्ट",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q072",
+      "query": "सर्दियों का ऊनी कोट",
+      "used_llm": false,
+      "cleaned_query": "सर्दियों का ऊनी कोट",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q073",
+      "query": "काली जूती",
+      "used_llm": false,
+      "cleaned_query": "काली जूती",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q074",
+      "query": "महिलाओं के लिए गहने",
+      "used_llm": false,
+      "cleaned_query": "महिलाओं के लिए गहने",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q075",
+      "query": "पुरुषों के लिए घड़ी",
+      "used_llm": false,
+      "cleaned_query": "पुरुषों के लिए घड़ी",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q076",
+      "query": "लाल साड़ी",
+      "used_llm": false,
+      "cleaned_query": "लाल साड़ी",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q077",
+      "query": "बच्चों के कपड़े",
+      "used_llm": false,
+      "cleaned_query": "बच्चों के कपड़े",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q078",
+      "query": "सफेद जूते",
+      "used_llm": false,
+      "cleaned_query": "सफेद जूते",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q079",
+      "query": "चमड़े का बैग",
+      "used_llm": false,
+      "cleaned_query": "चमड़े का बैग",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    },
+    {
+      "query_id": "q080",
+      "query": "गर्मियों के कपड़े",
+      "used_llm": false,
+      "cleaned_query": "गर्मियों के कपड़े",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": "Non-Latin-script query skipped by local model; using raw query"
+    }
+  ]
+}

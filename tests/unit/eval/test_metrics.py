@@ -1,7 +1,7 @@
 """Tests for search eval ranking metrics (pure functions, no DB)."""
 import math
 
-from app.services.eval.metrics import dcg_at_k, mrr, ndcg_at_k, precision_at_k, reciprocal_rank
+from app.services.eval.metrics import dcg_at_k, mrr, ndcg_at_k, precision_at_k, recall_at_k, reciprocal_rank
 
 
 class TestDcgAtK:
@@ -90,3 +90,17 @@ class TestMrr:
 
     def test_empty_input(self):
         assert mrr([]) == 0.0
+
+
+class TestRecallAtK:
+    def test_counts_relevant_found_in_top_k_over_all_relevant(self):
+        assert recall_at_k([1, 0, 1, 1], total_relevant=4, k=3) == 0.5
+
+    def test_relevant_items_never_returned_still_count_in_denominator(self):
+        assert recall_at_k([1, 1], total_relevant=20, k=50) == 0.1
+
+    def test_all_found(self):
+        assert recall_at_k([1, 1, 0], total_relevant=2, k=3) == 1.0
+
+    def test_no_relevant_items_in_ground_truth(self):
+        assert recall_at_k([0, 0], total_relevant=0, k=10) == 0.0

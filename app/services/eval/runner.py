@@ -22,7 +22,7 @@ from app.services.eval.io import (
     QueryUnderstandingRecord,
     save_report,
 )
-from app.services.eval.metrics import mrr, ndcg_at_k, precision_at_k, reciprocal_rank
+from app.services.eval.metrics import mrr, ndcg_at_k, precision_at_k, recall_at_k, reciprocal_rank
 from app.services.query_understanding import load_catalogue_facets, merge_filters, understand_query
 from app.services.search import search_hybrid
 
@@ -169,6 +169,8 @@ def run_eval(
                 ndcg_at_10=ndcg_at_k(relevance, k),
                 precision_at_10=precision_at_k(relevance, k),
                 mrr=reciprocal_rank(relevance),
+                recall_at_20=recall_at_k(relevance, len(relevant_ids), 20),
+                recall_at_50=recall_at_k(relevance, len(relevant_ids), 50),
             )
             per_query[gt.query_id][method.value] = scores
 
@@ -193,10 +195,13 @@ def run_eval(
         lists = relevance_lists_by_method[method.value]
         if not lists:
             continue
+        scored = [per_query[qid][method.value] for qid in per_query]
         per_method[method.value] = MethodScores(
             ndcg_at_10=sum(ndcg_at_k(r, k) for r in lists) / len(lists),
             precision_at_10=sum(precision_at_k(r, k) for r in lists) / len(lists),
             mrr=mrr(lists),
+            recall_at_20=sum(s.recall_at_20 for s in scored) / len(scored),
+            recall_at_50=sum(s.recall_at_50 for s in scored) / len(scored),
         )
 
     return EvalReport(
