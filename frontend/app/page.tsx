@@ -13,6 +13,7 @@ import { SearchBar } from '@/components/SearchBar'
 import { SearchExamples } from '@/components/SearchExamples'
 import { Pagination } from '@/components/Pagination'
 import { ErrorState } from '@/components/ErrorState'
+import { QueryUnderstanding } from '@/components/QueryUnderstanding'
 
 const PAGE_SIZE = 24
 
@@ -138,6 +139,7 @@ export default function CataloguePage() {
                     : `Found ${searchResult?.total_products ?? 0} results for "${activeQuery}" ` +
                       `(${searchResult?.method ?? 'hybrid'} search, ${Math.round(searchResult?.took_ms ?? 0)}ms)`}
                 </div>
+                {!isSearching && <QueryUnderstanding understanding={searchResult?.understanding} />}
                 <ProductGrid products={searchResult?.products ?? []} isLoading={isSearching} />
               </>
             )

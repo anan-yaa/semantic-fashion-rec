@@ -35,10 +35,19 @@ export interface SearchFilters {
   availability?: boolean
 }
 
+export interface QueryUnderstanding {
+  used_llm: boolean
+  keywords: string | null
+  inferred_filters: Partial<Record<'category' | 'gender' | 'color' | 'season', string>>
+  fallback_reason: 'unsupported_query' | 'llm_unavailable' | null
+}
+
 export interface SearchResponse {
   products: Product[]
   query: string
   method: SearchMethod
   total_products: number
   took_ms: number
+  /** Null when query understanding is disabled on the backend */
+  understanding: QueryUnderstanding | null
 }
