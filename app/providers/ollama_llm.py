@@ -9,6 +9,7 @@ import requests
 from app.providers.llm_base import (
     LLMProvider,
     LLMProviderError,
+    LLMUnavailableError,
     QueryUnderstanding,
     UnsupportedQueryError,
 )
@@ -145,9 +146,15 @@ class OllamaProvider(LLMProvider):
             response.raise_for_status()
             text = response.json()["message"]["content"]
         except requests.exceptions.Timeout as e:
-            raise LLMProviderError(f"Ollama request timed out: {e}") from e
+            raise LLMUnavailableError(f"Ollama request timed out: {e}") from e
         except requests.exceptions.ConnectionError as e:
-            raise LLMProviderError(f"Failed to connect to Ollama at {self._base_url}: {e}") from e
+            raise LLMUnavailableError(f"Failed to connect to Ollama at {self._base_url}: {e}") from e
+        except requests.exceptions.HTTPError as e:
+            status = e.response.status_code if e.response is not None else None
+            if status is not None and status >= 500:
+                raise LLMUnavailableError(f"Ollama server error {status}: {e}") from e
+            # 4xx (e.g. model not pulled) fails fast every time; not an outage.
+            raise LLMProviderError(f"Ollama API call failed: {e}") from e
         except (requests.exceptions.RequestException, KeyError, ValueError) as e:
             raise LLMProviderError(f"Ollama API call failed: {e}") from e
 

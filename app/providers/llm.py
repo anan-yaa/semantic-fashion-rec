@@ -3,10 +3,18 @@ import json
 import logging
 from typing import Dict, List, Optional
 
+import httpx
 from google import genai
+from google.genai import errors as genai_errors
 from google.genai import types
 
-from app.providers.llm_base import LLMProvider, LLMProviderError, QueryUnderstanding
+from app.providers.llm_base import (
+    LLMProvider,
+    LLMProviderError,
+    LLMRateLimitedError,
+    LLMUnavailableError,
+    QueryUnderstanding,
+)
 from app.schemas.search import SearchFilter
 
 logger = logging.getLogger(__name__)
@@ -129,12 +137,16 @@ class GeminiProvider(LLMProvider):
                 contents=query,
                 config=config,
             )
+        except genai_errors.ClientError as e:
+            if e.code == 429:
+                raise LLMRateLimitedError(f"Rate limited (429): {e}") from e
+            raise LLMProviderError(f"Gemini API call failed: {e}") from e
+        except genai_errors.ServerError as e:
+            raise LLMUnavailableError(f"Gemini server error {e.code}: {e}") from e
+        except httpx.TransportError as e:
+            # Timeouts and connection failures
+            raise LLMUnavailableError(f"Gemini API unreachable: {e}") from e
         except Exception as e:
-            # On 429 (rate limit), don't retry within the request path; raise
-            # immediately so the fallback kicks in with no latency penalty.
-            error_str = str(e).lower()
-            if "429" in error_str or "resource_exhausted" in error_str or "quota" in error_str:
-                raise LLMProviderError(f"Rate limited (429): {e}") from e
             raise LLMProviderError(f"Gemini API call failed: {e}") from e
 
         text = response.text

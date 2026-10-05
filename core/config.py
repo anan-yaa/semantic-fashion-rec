@@ -46,9 +46,21 @@ class Settings(BaseSettings):
     # Request-path timeout: TinyLlama 1.1B is fast (~2-3s on GTX 1650)
     llm_query_understanding_timeout_seconds: float = Field(default=8.0)
     llm_query_understanding_max_retries: int = Field(default=0)
+    # Circuit breaker: after this many consecutive timeouts/connection errors,
+    # skip the LLM for the cooldown instead of waiting for it on every search
+    llm_circuit_failure_threshold: int = Field(default=3)
+    llm_circuit_cooldown_seconds: float = Field(default=30.0)
     # Eval-path timeout: looser budget for offline evaluation (can retry, want complete coverage)
     llm_query_understanding_eval_timeout_seconds: float = Field(default=15.0)
     llm_query_understanding_eval_max_retries: int = Field(default=1)
+
+    # Rate limiting for POST /search (each search can trigger an LLM call)
+    rate_limit_enabled: bool = Field(default=True)
+    search_rate_limit_per_minute: float = Field(default=30.0, gt=0)
+    search_rate_limit_burst: int = Field(default=10, ge=1)
+    # Only enable behind a reverse proxy that sets X-Forwarded-For; otherwise
+    # clients could send the header themselves to dodge the limit.
+    trust_proxy_headers: bool = Field(default=False)
 
     # Redis
     redis_url: str = Field(default="redis://localhost:6379/0")

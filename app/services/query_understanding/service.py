@@ -7,9 +7,15 @@ import logging
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
-from app.providers.llm_base import LLMProvider, LLMProviderError, UnsupportedQueryError
+from app.providers.llm_base import (
+    LLMProvider,
+    LLMProviderError,
+    LLMRateLimitedError,
+    LLMUnavailableError,
+    UnsupportedQueryError,
+)
 from app.schemas.search import SearchFilter
-from app.services.query_understanding.circuit_breaker import should_skip_llm, record_failure
+from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
 
 logger = logging.getLogger(__name__)
 
@@ -87,48 +93,46 @@ def understand_query(
     original query text, unchanged, with no inferred filters. This function
     never raises - a failure here must never turn into a 500 on /search.
 
-    Circuit breaker: skips the LLM for 60s after multiple failures (429s,
-    repeated errors) to prevent burning quota and keep search responsive.
+    Circuit breaker: after repeated timeouts/connection errors (or one rate
+    limit) the LLM is skipped instantly for a cooldown, instead of every
+    search waiting for the LLM timeout. See circuit_breaker.py.
     """
-    # Check circuit breaker: skip LLM if it's in cooldown
-    if should_skip_llm():
-        return QueryUnderstandingResult(
-            cleaned_query=query,
-            filters=SearchFilter(),
-            used_llm=False,
-            error="LLM circuit breaker active (cooldown)",
-            fallback_reason=FALLBACK_LLM_UNAVAILABLE,
-        )
+    if not llm_circuit_breaker.allow_request():
+        return _fallback(query, "LLM circuit breaker open", FALLBACK_LLM_UNAVAILABLE)
 
     try:
         result = provider.understand_query(query, valid_filters)
-        validated = validate_filters(result.filters, valid_filters)
-        return QueryUnderstandingResult(
-            cleaned_query=result.cleaned_query or query,
-            filters=validated,  # LLM-inferred only
-            used_llm=True,
-        )
     except UnsupportedQueryError as e:
+        llm_circuit_breaker.release()
         logger.info(f"Query understanding skipped: {e}")
-        return QueryUnderstandingResult(
-            cleaned_query=query,
-            filters=SearchFilter(),
-            used_llm=False,
-            error=str(e),
-            fallback_reason=FALLBACK_UNSUPPORTED_QUERY,
-        )
+        return _fallback(query, str(e), FALLBACK_UNSUPPORTED_QUERY)
+    except LLMUnavailableError as e:
+        llm_circuit_breaker.record_failure(immediate=isinstance(e, LLMRateLimitedError))
+        logger.warning(f"LLM unavailable, falling back to raw query: {e}")
+        return _fallback(query, str(e), FALLBACK_LLM_UNAVAILABLE)
     except LLMProviderError as e:
-        error_str = str(e).lower()
-        # Record failure for circuit breaker (429, rate limit, resource exhausted)
-        if any(term in error_str for term in ["429", "rate", "quota", "resource_exhausted", "resource exhausted"]):
-            record_failure()
-            logger.error(f"LLM rate limited: {e}")
-        else:
-            logger.warning(f"Query understanding failed, falling back to raw query: {e}")
-        return QueryUnderstandingResult(
-            cleaned_query=query,
-            filters=SearchFilter(),  # Empty - no LLM inference
-            used_llm=False,
-            error=str(e),
-            fallback_reason=FALLBACK_LLM_UNAVAILABLE,
-        )
+        # The service answered, just unusably (e.g. invalid JSON): not an outage.
+        llm_circuit_breaker.record_success()
+        logger.warning(f"Query understanding failed, falling back to raw query: {e}")
+        return _fallback(query, str(e), FALLBACK_LLM_UNAVAILABLE)
+    except BaseException:
+        llm_circuit_breaker.release()
+        raise
+
+    llm_circuit_breaker.record_success()
+    return QueryUnderstandingResult(
+        cleaned_query=result.cleaned_query or query,
+        filters=validate_filters(result.filters, valid_filters),  # LLM-inferred only
+        used_llm=True,
+    )
+
+
+def _fallback(query: str, error: str, reason: str) -> QueryUnderstandingResult:
+    """The original query, no inferred filters: plain search."""
+    return QueryUnderstandingResult(
+        cleaned_query=query,
+        filters=SearchFilter(),
+        used_llm=False,
+        error=error,
+        fallback_reason=reason,
+    )

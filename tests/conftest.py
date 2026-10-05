@@ -14,11 +14,15 @@ from sqlalchemy.dialects.postgresql import TSVECTOR
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
 from app.services.query_understanding.vocabulary import _reset_catalogue_facets_cache
+from app.api.rate_limit import search_rate_limiter
+from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
 from app.services.search.product_types import _reset_article_type_cache
 from core.config import settings
 
 # Tests start the app via TestClient; don't load the real e5 model or call Ollama.
 settings.warm_up_models_on_startup = False
+# Many API tests search repeatedly from the same test client; rate-limit tests opt back in.
+settings.rate_limit_enabled = False
 
 
 @pytest.fixture(autouse=True)
@@ -26,9 +30,13 @@ def reset_catalogue_caches():
     """Catalogue vocabularies are cached per process; each test DB has its own values."""
     _reset_catalogue_facets_cache()
     _reset_article_type_cache()
+    llm_circuit_breaker.reset()
+    search_rate_limiter.reset()
     yield
     _reset_catalogue_facets_cache()
     _reset_article_type_cache()
+    llm_circuit_breaker.reset()
+    search_rate_limiter.reset()
 
 
 @compiles(Vector, "sqlite")

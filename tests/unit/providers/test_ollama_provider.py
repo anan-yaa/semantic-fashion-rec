@@ -131,3 +131,50 @@ class TestUnderstandQuery:
     def test_warm_up_failure_does_not_raise(self):
         with patch("app.providers.ollama_llm.requests.post", side_effect=requests.exceptions.ConnectionError("down")):
             self.provider.warm_up()
+
+
+class TestErrorClassification:
+    """Which failures count as 'Ollama is unavailable' for the circuit breaker."""
+
+    def setup_method(self):
+        self.provider = OllamaProvider(model="tinyllama", timeout_seconds=3)
+
+    def _http_error(self, status):
+        response = MagicMock(status_code=status)
+        error = requests.exceptions.HTTPError(f"{status}", response=response)
+        mocked = MagicMock()
+        mocked.raise_for_status.side_effect = error
+        return mocked
+
+    @pytest.mark.parametrize(
+        "error", [requests.exceptions.Timeout("slow"), requests.exceptions.ConnectionError("refused")]
+    )
+    def test_timeouts_and_connection_errors_are_unavailable(self, error):
+        from app.providers.llm_base import LLMUnavailableError
+
+        with patch("app.providers.ollama_llm.requests.post", side_effect=error):
+            with pytest.raises(LLMUnavailableError):
+                self.provider.understand_query("red dress", VALID_FILTERS)
+
+    def test_server_error_is_unavailable(self):
+        from app.providers.llm_base import LLMUnavailableError
+
+        with patch("app.providers.ollama_llm.requests.post", return_value=self._http_error(503)):
+            with pytest.raises(LLMUnavailableError):
+                self.provider.understand_query("red dress", VALID_FILTERS)
+
+    def test_client_error_is_not_unavailable(self):
+        from app.providers.llm_base import LLMUnavailableError
+
+        with patch("app.providers.ollama_llm.requests.post", return_value=self._http_error(404)):
+            with pytest.raises(LLMProviderError) as info:
+                self.provider.understand_query("red dress", VALID_FILTERS)
+        assert not isinstance(info.value, LLMUnavailableError)
+
+    def test_invalid_json_is_not_unavailable(self):
+        from app.providers.llm_base import LLMUnavailableError
+
+        with patch("app.providers.ollama_llm.requests.post", return_value=_mock_response("Extractions:")):
+            with pytest.raises(LLMProviderError) as info:
+                self.provider.understand_query("red dress", VALID_FILTERS)
+        assert not isinstance(info.value, LLMUnavailableError)

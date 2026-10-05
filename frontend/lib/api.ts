@@ -14,6 +14,17 @@ import {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
+/** POST /search answered 429: the client is searching faster than the rate limit allows. */
+export class RateLimitError extends Error {
+  constructor(
+    message: string,
+    public readonly retryAfterSeconds: number
+  ) {
+    super(message)
+    this.name = 'RateLimitError'
+  }
+}
+
 export interface ApiErrorResponse {
   message: string
   status: number
@@ -84,6 +95,14 @@ export async function searchProducts(
       }),
     })
 
+    if (response.status === 429) {
+      const retryAfter = Number(response.headers.get('Retry-After')) || 1
+      const body = await response.json().catch(() => null)
+      throw new RateLimitError(
+        body?.detail ?? `Too many searches. Try again in ${retryAfter} seconds.`,
+        retryAfter
+      )
+    }
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`)
     }

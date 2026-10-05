@@ -5,17 +5,22 @@
 interface ErrorStateProps {
   message?: string
   onRetry?: () => void
+  title?: string
+  /** Extra line under the message; pass null to hide it */
+  hint?: string | null
 }
 
 export function ErrorState({
   message = 'Failed to load products. Please check that the backend is running.',
   onRetry,
+  title = 'Something went wrong',
+  hint = 'Is the backend running on port 8000?',
 }: ErrorStateProps) {
   return (
     <div className="mx-auto max-w-lg border border-red-200 bg-red-50 rounded-xl p-6 text-center">
-      <p className="font-medium text-red-900">Something went wrong</p>
+      <p className="font-medium text-red-900">{title}</p>
       <p className="mt-1 text-sm text-red-800">{message}</p>
-      <p className="mt-1 text-xs text-red-700/80">Is the backend running on port 8000?</p>
+      {hint && <p className="mt-1 text-xs text-red-700/80">{hint}</p>}
       {onRetry && (
         <button
           onClick={onRetry}

@@ -14,7 +14,7 @@ import {
   SearchResponse,
   SortOrder,
 } from '@/types/product'
-import { getFacets, getProducts, searchProducts } from '@/lib/api'
+import { getFacets, getProducts, RateLimitError, searchProducts } from '@/lib/api'
 import { ProductGrid } from '@/components/ProductGrid'
 import { SearchBar } from '@/components/SearchBar'
 import { SearchExamples } from '@/components/SearchExamples'
@@ -55,6 +55,7 @@ export default function CataloguePage() {
   const [isSearching, setIsSearching] = useState(false)
   const [isSlow, setIsSlow] = useState(false)
   const [searchError, setSearchError] = useState<string | null>(null)
+  const [isRateLimited, setIsRateLimited] = useState(false)
 
   const inSearchMode = activeQuery !== ''
 
@@ -113,6 +114,7 @@ export default function CataloguePage() {
       } catch (err) {
         if (cancelled) return
         setSearchError(err instanceof Error ? err.message : 'Search failed.')
+        setIsRateLimited(err instanceof RateLimitError)
         setSearchResult(null)
       } finally {
         if (!cancelled) setIsSearching(false)
@@ -232,7 +234,11 @@ export default function CataloguePage() {
       <section className="max-w-6xl mx-auto px-4 py-8">
         {inSearchMode ? (
           searchError ? (
-            <ErrorState message={searchError} onRetry={() => setSearchRun((n) => n + 1)} />
+            <ErrorState
+              message={searchError}
+              onRetry={() => setSearchRun((n) => n + 1)}
+              {...(isRateLimited ? { title: "You're searching too quickly", hint: null } : {})}
+            />
           ) : (
             <>
               <div className="mb-6 space-y-3">

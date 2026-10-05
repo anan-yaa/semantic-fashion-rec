@@ -145,3 +145,75 @@ class TestFallbackReason:
         result = understand_query(FakeLLMProvider(), "q", VALID_FILTERS)
 
         assert result.fallback_reason is None
+
+
+class _RaisingProvider(FakeLLMProvider):
+    def __init__(self, error):
+        super().__init__()
+        self.error = error
+
+    def understand_query(self, query, valid_filters):
+        self.calls.append(query)
+        raise self.error
+
+
+class TestCircuitBreakerIntegration:
+    def setup_method(self):
+        from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
+
+        self.breaker = llm_circuit_breaker
+
+    def test_repeated_timeouts_open_the_circuit_and_skip_the_llm(self):
+        from app.providers.llm_base import LLMUnavailableError
+        from app.services.query_understanding.circuit_breaker import CircuitState
+
+        provider = _RaisingProvider(LLMUnavailableError("timed out"))
+        for _ in range(3):
+            understand_query(provider, "q", VALID_FILTERS)
+        assert self.breaker.state == CircuitState.OPEN
+
+        result = understand_query(provider, "q", VALID_FILTERS)
+
+        assert len(provider.calls) == 3  # the 4th search never called the LLM
+        assert result.used_llm is False
+        assert result.fallback_reason == "llm_unavailable"
+
+    def test_rate_limit_opens_the_circuit_at_once(self):
+        from app.providers.llm_base import LLMRateLimitedError
+        from app.services.query_understanding.circuit_breaker import CircuitState
+
+        understand_query(_RaisingProvider(LLMRateLimitedError("429")), "q", VALID_FILTERS)
+
+        assert self.breaker.state == CircuitState.OPEN
+
+    def test_bad_answers_do_not_open_the_circuit(self):
+        from app.services.query_understanding.circuit_breaker import CircuitState
+
+        provider = FakeLLMProvider(raise_error=True)  # generic LLMProviderError, e.g. invalid JSON
+        for _ in range(5):
+            understand_query(provider, "q", VALID_FILTERS)
+
+        assert self.breaker.state == CircuitState.CLOSED
+        assert len(provider.calls) == 5
+
+    def test_skipped_queries_do_not_count(self):
+        from app.providers.llm_base import UnsupportedQueryError
+        from app.services.query_understanding.circuit_breaker import CircuitState
+
+        for _ in range(5):
+            understand_query(_RaisingProvider(UnsupportedQueryError("hindi")), "q", VALID_FILTERS)
+
+        assert self.breaker.state == CircuitState.CLOSED
+
+    def test_success_resets_consecutive_failures(self):
+        from app.providers.llm_base import LLMUnavailableError
+        from app.services.query_understanding.circuit_breaker import CircuitState
+
+        failing = _RaisingProvider(LLMUnavailableError("timed out"))
+        understand_query(failing, "q", VALID_FILTERS)
+        understand_query(failing, "q", VALID_FILTERS)
+        understand_query(FakeLLMProvider(), "q", VALID_FILTERS)
+        understand_query(failing, "q", VALID_FILTERS)
+        understand_query(failing, "q", VALID_FILTERS)
+
+        assert self.breaker.state == CircuitState.CLOSED

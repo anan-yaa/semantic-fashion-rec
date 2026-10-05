@@ -25,6 +25,19 @@ class LLMProviderError(Exception):
     """
 
 
+class LLMUnavailableError(LLMProviderError):
+    """The LLM service itself isn't working: timeout, connection failure, 5xx.
+
+    Unlike a malformed answer (fast, one-off), these mean further calls are
+    likely to fail the same way, so they count toward the circuit breaker.
+    """
+
+
+class LLMRateLimitedError(LLMUnavailableError):
+    """The provider rejected the call for rate limits (HTTP 429). Retrying soon
+    only extends the limit, so the circuit breaker opens immediately."""
+
+
 class UnsupportedQueryError(LLMProviderError):
     """The provider deliberately doesn't handle this kind of query (not a failure),
     e.g. a small local model skipping non-Latin-script queries."""

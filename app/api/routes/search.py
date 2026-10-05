@@ -8,6 +8,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.api.rate_limit import limit_search_rate
 from app.db.database import get_session
 from app.providers.base import EmbeddingProvider
 from app.providers.factory import get_embedding_provider
@@ -79,7 +80,13 @@ def _reset_query_understanding_provider_cache() -> None:
     _llm_provider = None
 
 
-@router.post("", response_model=SearchResponse)
+@router.post(
+    "",
+    response_model=SearchResponse,
+    # Each search can call the LLM and embedding model; cap per-client rate.
+    dependencies=[Depends(limit_search_rate)],
+    responses={429: {"description": "Too many searches; see the Retry-After header"}},
+)
 def search(
     request: SearchRequest,
     session: Session = Depends(get_session),

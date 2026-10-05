@@ -58,6 +58,7 @@ flowchart TD
    - Category isn't inferred: the small model got it wrong too often (*saree → Footwear*).
    - Non-Latin-script queries (e.g. Hindi) skip the LLM; TinyLlama mistranslated them into unrelated products.
    - **Any failure falls back** to plain search with the original query: timeout (8 s), connection error or invalid output. Search never fails because of the LLM.
+   - **Circuit breaker** ([`circuit_breaker.py`](app/services/query_understanding/circuit_breaker.py)): after 3 timeouts or connection errors in a row (or one rate limit), the LLM is skipped instantly for 30 s instead of every search waiting for it. After the cooldown one request checks whether it has recovered. Invalid answers and skipped Hindi queries don't count, since the service is still up.
    - The response's `understanding` field reports what the LLM understood, or why it wasn't used. The UI shows it as "Understood as: …".
 2. **Product-type detection** ([`app/services/search/product_types.py`](app/services/search/product_types.py))
    - If the query names one of the catalogue's 141 product types, results are limited to that type.
@@ -197,6 +198,8 @@ Interactive documentation: **http://localhost:8000/docs**.
 | `GET` | `/products/facets` | Filter values in the catalogue (for dropdowns) |
 | `GET` | `/health` | 200 when the database is reachable, 503 otherwise |
 
+**Rate limiting:** each search can call the LLM and the embedding model, so `POST /search` is limited per client IP: 30 searches per minute, with bursts of up to 10. Over the limit, the API returns `429 Too Many Requests` with a `Retry-After` header and `{"detail": "Too many searches. Try again in N seconds."}`, and the UI shows that message. Browsing, facets and `/health` aren't limited.
+
 Example:
 
 ```bash
@@ -246,8 +249,14 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 | `GEMINI_API_KEY` / `GEMINI_MODEL` | – / `gemini-3.5-flash-lite` | Only for `LLM_PROVIDER=gemini` |
 | `LLM_QUERY_UNDERSTANDING_TIMEOUT_SECONDS` | `8.0` | LLM time limit per search before falling back |
 | `LLM_QUERY_UNDERSTANDING_EVAL_TIMEOUT_SECONDS` | `15.0` | LLM time limit during evals |
+| `LLM_CIRCUIT_FAILURE_THRESHOLD` | `3` | Consecutive LLM timeouts or connection errors before it's skipped |
+| `LLM_CIRCUIT_COOLDOWN_SECONDS` | `30` | How long the LLM is skipped before checking whether it has recovered |
 | `CATALOGUE_FACETS_CACHE_SECONDS` | `300` | How often filter values and product types are re-read from the database |
 | `WARM_UP_MODELS_ON_STARTUP` | `true` | Load the models in the background at startup |
+| `RATE_LIMIT_ENABLED` | `true` | Limit how often each client can search |
+| `SEARCH_RATE_LIMIT_PER_MINUTE` | `30` | Sustained searches allowed per client per minute |
+| `SEARCH_RATE_LIMIT_BURST` | `10` | Searches a client can make in a quick burst |
+| `TRUST_PROXY_HEADERS` | `false` | Read the client IP from `X-Forwarded-For`; enable only behind a reverse proxy that sets it |
 | `LOG_LEVEL` | `INFO` | Logging level |
 
 Frontend: `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
@@ -255,16 +264,16 @@ Frontend: `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
 ## Testing
 
 ```bash
-python3 -m pytest tests/                 # backend: ~310 tests, about 2–5 minutes
+python3 -m pytest tests/                 # backend: ~355 tests, about 1–5 minutes
 python3 -m pytest tests/ -m slow         # opt-in tests that load the real embedding model
-cd frontend && npx vitest --run          # frontend: 52 tests
+cd frontend && npx vitest --run          # frontend: 55 tests
 ```
 
 - The backend tests use a fake LLM and fake embeddings, so they don't need Ollama or a GPU.
 - Integration tests use a separate `fashion_rec_test` database on the same PostgreSQL server, created automatically. Without PostgreSQL they're skipped.
 - Stop the backend and frontend while running the full suite on a machine with little memory.
 
-Current status: 310 passed and 2 known failures, both present before the latest changes:
+Current status: 355 passed and 2 known failures, both present before the latest changes:
 - `test_llm_inferred_filter_is_applied_and_changes_results` expects LLM filters to restrict *all* results, but they were deliberately limited to keyword search.
 - `test_e5_prefixes::test_batch_processing` is an embedding-model test that returns 4 results where it expects 3.
 
@@ -297,11 +306,12 @@ tests/                 unit/, integration/, model/ (slow)
 - **The vector index may miss matches.** Vector Recall@20 is 0.71 against an answer key made of the embedding model's own top 20. Approximate HNSW search with the default `ef_search = 40` is the likely cause, but this isn't confirmed yet.
 - **Data:** the dataset has no prices or usable images, so there's no price sorting and product cards show a color tile instead of a photo. "Outfit" queries return a single ranked list, not a combination of items.
 - **Reliability:**
-  - The LLM circuit breaker only trips on rate-limit errors, not on timeouts.
   - Search returns 500, not 503, when the database is down.
   - There's no overall request timeout.
+  - The circuit breaker's state is kept per process, so with several API workers each one finds an outage separately.
 - **Security and operations:**
-  - No authentication, rate limiting or HTTPS.
+  - No authentication or HTTPS.
+  - Rate limits are per IP address, so people sharing one IP (an office network) share a limit. They're also per API process; several workers or servers would need a shared store such as Redis.
   - The default database password is a development one.
   - CORS allows only localhost.
   - No request IDs, structured (JSON) logs, metrics, dashboards or alerts.

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { getFacets, getProducts, getHealth, searchProducts } from '@/lib/api'
+import { getFacets, getProducts, getHealth, RateLimitError, searchProducts } from '@/lib/api'
 
 // Mock fetch
 global.fetch = vi.fn()
@@ -203,6 +203,24 @@ describe('API client', () => {
 
       await expect(getFacets()).resolves.toEqual(facets)
       expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/products/facets'), expect.any(Object))
+    })
+  })
+
+  describe('rate limiting', () => {
+    it('turns a 429 into a RateLimitError with the server message and Retry-After', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        statusText: 'Too Many Requests',
+        headers: { get: (name: string) => (name === 'Retry-After' ? '7' : null) },
+        json: async () => ({ detail: 'Too many searches. Try again in 7 seconds.' }),
+      })
+
+      const error = await searchProducts('shirt').catch((e) => e)
+
+      expect(error).toBeInstanceOf(RateLimitError)
+      expect(error.message).toBe('Too many searches. Try again in 7 seconds.')
+      expect(error.retryAfterSeconds).toBe(7)
     })
   })
 })
