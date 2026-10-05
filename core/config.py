@@ -34,9 +34,12 @@ class Settings(BaseSettings):
 
     # LLM query understanding
     query_understanding_enabled: bool = Field(default=True)
+    llm_provider: str = Field(default="ollama")  # "gemini" or "ollama"
     gemini_model: str = Field(default="gemini-3.5-flash-lite")
-    # Request-path timeout: tight budget to keep search responsive (no retries, fallback exists)
-    llm_query_understanding_timeout_seconds: float = Field(default=2.5)
+    ollama_model: str = Field(default="tinyllama")
+    ollama_base_url: str = Field(default="http://localhost:11434")
+    # Request-path timeout: TinyLlama 1.1B is fast (~2-3s on GTX 1650)
+    llm_query_understanding_timeout_seconds: float = Field(default=8.0)
     llm_query_understanding_max_retries: int = Field(default=0)
     # Eval-path timeout: looser budget for offline evaluation (can retry, want complete coverage)
     llm_query_understanding_eval_timeout_seconds: float = Field(default=15.0)
