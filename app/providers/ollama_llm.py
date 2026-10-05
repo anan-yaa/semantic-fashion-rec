@@ -6,7 +6,12 @@ from typing import Dict, List
 
 import requests
 
-from app.providers.llm_base import LLMProvider, LLMProviderError, QueryUnderstanding
+from app.providers.llm_base import (
+    LLMProvider,
+    LLMProviderError,
+    QueryUnderstanding,
+    UnsupportedQueryError,
+)
 from app.schemas.search import SearchFilter
 
 logger = logging.getLogger(__name__)
@@ -119,7 +124,7 @@ class OllamaProvider(LLMProvider):
         # products (Hindi "jewellery for women" -> "running shoes"). Falling
         # back leaves these to multilingual-e5 vector search, which handles them.
         if _has_non_latin_letters(query):
-            raise LLMProviderError("Non-Latin-script query skipped by local model; using raw query")
+            raise UnsupportedQueryError("Non-Latin-script query skipped by local model; using raw query")
 
         payload = {
             "model": self._model,

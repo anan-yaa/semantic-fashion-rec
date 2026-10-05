@@ -25,6 +25,11 @@ class LLMProviderError(Exception):
     """
 
 
+class UnsupportedQueryError(LLMProviderError):
+    """The provider deliberately doesn't handle this kind of query (not a failure),
+    e.g. a small local model skipping non-Latin-script queries."""
+
+
 class LLMProvider(ABC):
     """Abstract base class for LLM query-understanding providers."""
 

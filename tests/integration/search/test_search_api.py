@@ -143,7 +143,10 @@ class TestSearchAPIIntegration:
         response = self.client.post("/search", json={"query": QUERY, "limit": 10})
 
         data = response.json()
-        assert set(data.keys()) == {"products", "query", "method", "total_products", "took_ms"}
+        assert set(data.keys()) == {
+            "products", "query", "method", "total_products", "page", "page_size", "total_pages",
+            "took_ms", "understanding",
+        }
         for product in data["products"]:
             assert "embedding" not in product
             assert "content_hash" not in product
@@ -176,3 +179,42 @@ class TestSearchAPIIntegration:
 
         assert response.status_code == 200
         assert [p["id"] for p in response.json()["products"]] == ["delisted"]
+
+    def _seed_many(self, n):
+        provider = FakeEmbeddingProvider()
+        for i in range(n):
+            product = make_product(f"p{i:02d}", f"Item {i:02d}", QUERY, attributes={"year": 2000 + i})
+            product.embedding = provider.embed_passages([f"{QUERY} {i}"])[0]
+            self.session.add(product)
+        self.session.commit()
+        build_keyword_index(self.session, limit=100)
+
+    def test_search_pagination(self):
+        self._seed_many(7)
+
+        first = self.client.post("/search", json={"query": QUERY, "limit": 3, "page": 1}).json()
+        last = self.client.post("/search", json={"query": QUERY, "limit": 3, "page": 3}).json()
+
+        assert first["total_products"] == 7
+        assert first["total_pages"] == 3
+        assert first["page_size"] == 3
+        assert len(first["products"]) == 3
+        assert last["page"] == 3
+        assert len(last["products"]) == 1
+        seen = {p["id"] for p in first["products"]} | {p["id"] for p in last["products"]}
+        assert len(seen) == 4
+
+    def test_search_page_past_the_end_is_empty(self):
+        self._seed_many(2)
+
+        data = self.client.post("/search", json={"query": QUERY, "limit": 5, "page": 9}).json()
+
+        assert data["products"] == []
+        assert data["total_products"] == 2
+
+    def test_search_sort_by_newest(self):
+        self._seed_many(5)
+
+        data = self.client.post("/search", json={"query": QUERY, "limit": 5, "sort": "newest"}).json()
+
+        assert [p["id"] for p in data["products"]] == ["p04", "p03", "p02", "p01", "p00"]

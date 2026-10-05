@@ -13,6 +13,7 @@ class ProductResponse(BaseModel):
     name: str
     category: Optional[str] = None
     subcategory: Optional[str] = None
+    article_type: Optional[str] = None
     gender: Optional[str] = None
     color: Optional[str] = None
     style: Optional[str] = None

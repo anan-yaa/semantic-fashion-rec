@@ -16,6 +16,15 @@ const FALLBACK_MESSAGES: Record<NonNullable<Understanding['fallback_reason']>, s
   llm_unavailable: 'LLM unavailable: showing semantic and keyword results for your exact words.',
 }
 
+function SparkIcon() {
+  return (
+    <svg className="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2l1.8 5.6L19.5 9.5l-5.7 1.9L12 17l-1.8-5.6L4.5 9.5l5.7-1.9L12 2z" />
+      <path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8L19 15z" />
+    </svg>
+  )
+}
+
 interface QueryUnderstandingProps {
   understanding: Understanding | null | undefined
 }
@@ -25,19 +34,30 @@ export function QueryUnderstanding({ understanding }: QueryUnderstandingProps) {
 
   if (!understanding.used_llm) {
     const message = understanding.fallback_reason && FALLBACK_MESSAGES[understanding.fallback_reason]
-    return message ? <p className="mb-4 text-sm text-secondary">{message}</p> : null
+    return message ? (
+      <p className="flex items-center gap-2 text-sm text-secondary">
+        <svg className="h-4 w-4 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v5M12 8h.01" strokeLinecap="round" />
+        </svg>
+        {message}
+      </p>
+    ) : null
   }
 
   const filters = Object.entries(understanding.inferred_filters)
 
   return (
-    <div className="mb-4 flex flex-wrap items-center gap-2 text-sm" aria-label="Query understanding">
+    <div className="flex flex-wrap items-center gap-2 text-sm" aria-label="Query understanding">
+      <SparkIcon />
       <span className="text-secondary">Understood as:</span>
       {understanding.keywords && (
-        <span className="px-2 py-0.5 border border-border rounded-full">“{understanding.keywords}”</span>
+        <span className="px-2.5 py-0.5 rounded-full border border-accent-border bg-white text-primary">
+          “{understanding.keywords}”
+        </span>
       )}
       {filters.map(([field, value]) => (
-        <span key={field} className="px-2 py-0.5 border border-border rounded-full bg-hover">
+        <span key={field} className="px-2.5 py-0.5 rounded-full bg-accent-soft text-accent">
           {FILTER_LABELS[field] ?? field}: {value}
         </span>
       ))}

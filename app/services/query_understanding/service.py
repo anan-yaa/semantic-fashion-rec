@@ -7,7 +7,7 @@ import logging
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
-from app.providers.llm_base import LLMProvider, LLMProviderError
+from app.providers.llm_base import LLMProvider, LLMProviderError, UnsupportedQueryError
 from app.schemas.search import SearchFilter
 from app.services.query_understanding.circuit_breaker import should_skip_llm, record_failure
 
@@ -26,6 +26,12 @@ class QueryUnderstandingResult:
     filters: SearchFilter
     used_llm: bool
     error: Optional[str] = None
+    # Safe to show users, unlike `error`: FALLBACK_UNSUPPORTED_QUERY or FALLBACK_LLM_UNAVAILABLE.
+    fallback_reason: Optional[str] = None
+
+
+FALLBACK_UNSUPPORTED_QUERY = "unsupported_query"
+FALLBACK_LLM_UNAVAILABLE = "llm_unavailable"
 
 
 def validate_filters(
@@ -91,6 +97,7 @@ def understand_query(
             filters=SearchFilter(),
             used_llm=False,
             error="LLM circuit breaker active (cooldown)",
+            fallback_reason=FALLBACK_LLM_UNAVAILABLE,
         )
 
     try:
@@ -100,6 +107,15 @@ def understand_query(
             cleaned_query=result.cleaned_query or query,
             filters=validated,  # LLM-inferred only
             used_llm=True,
+        )
+    except UnsupportedQueryError as e:
+        logger.info(f"Query understanding skipped: {e}")
+        return QueryUnderstandingResult(
+            cleaned_query=query,
+            filters=SearchFilter(),
+            used_llm=False,
+            error=str(e),
+            fallback_reason=FALLBACK_UNSUPPORTED_QUERY,
         )
     except LLMProviderError as e:
         error_str = str(e).lower()
@@ -114,4 +130,5 @@ def understand_query(
             filters=SearchFilter(),  # Empty - no LLM inference
             used_llm=False,
             error=str(e),
+            fallback_reason=FALLBACK_LLM_UNAVAILABLE,
         )

@@ -10,6 +10,7 @@ const mockProducts: Product[] = [
     name: 'Product 1',
     category: 'Category A',
     subcategory: null,
+    article_type: null,
     gender: null,
     color: null,
     style: null,
@@ -24,6 +25,7 @@ const mockProducts: Product[] = [
     name: 'Product 2',
     category: 'Category B',
     subcategory: null,
+    article_type: null,
     gender: null,
     color: null,
     style: null,
@@ -53,8 +55,7 @@ describe('ProductGrid', () => {
   })
 
   it('renders correct number of product cards', () => {
-    const { container } = render(<ProductGrid products={mockProducts} />)
-    const cards = container.querySelectorAll('[class*="border"][class*="rounded-lg"]')
-    expect(cards.length).toBeGreaterThanOrEqual(mockProducts.length)
+    render(<ProductGrid products={mockProducts} />)
+    expect(screen.getAllByRole('article')).toHaveLength(mockProducts.length)
   })
 })

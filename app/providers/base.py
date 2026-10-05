@@ -24,6 +24,9 @@ class EmbeddingProvider(ABC):
         """
         pass
 
+    def warm_up(self) -> None:
+        """Load any model weights ahead of the first request. No-op by default."""
+
     @abstractmethod
     def embed_queries(self, texts: List[str]) -> List[List[float]]:
         """Embed queries for search.

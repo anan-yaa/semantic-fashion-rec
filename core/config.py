@@ -23,6 +23,9 @@ class Settings(BaseSettings):
         default="postgresql+psycopg://fashion_rec:dev_password@localhost:5432/fashion_rec"
     )
 
+    # Load the embedding and LLM models in the background at startup
+    warm_up_models_on_startup: bool = Field(default=True)
+
     # Embeddings
     embedding_model: str = Field(default="intfloat/multilingual-e5-base")
     embedding_dim: int = Field(default=768)  # multilingual-e5-base dimension

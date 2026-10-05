@@ -46,6 +46,11 @@ class Product(Base):
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
 
+    @property
+    def article_type(self):
+        """Product type from the dataset, e.g. "Jackets" (stored in attributes)."""
+        return (self.attributes or {}).get("articleType")
+
     __table_args__ = (
         Index("idx_category_availability", "category", "availability"),
         Index("idx_brand_gender", "brand", "gender"),

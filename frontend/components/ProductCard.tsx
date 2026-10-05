@@ -1,65 +1,67 @@
 /**
  * ProductCard: Individual product display
- * Shows product details in a card format
+ * The catalogue has no images, so the top tile shows the product type on a
+ * tint of the product's own color.
  */
 
 import { Product } from '@/types/product'
+import { swatchBackground, tileBackground } from '@/lib/colors'
 
 interface ProductCardProps {
   product: Product
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const typeLabel = product.article_type ?? product.subcategory ?? product.category
+  const details = [product.gender, product.color, product.season].filter(Boolean).join(' · ')
+
   return (
-    <div className="border border-border rounded-lg overflow-hidden hover:shadow-md hover:border-gray-400 transition-shadow">
-      {/* Image Placeholder */}
-      <div className="w-full h-48 bg-hover flex items-center justify-center">
-        <span className="text-secondary text-sm">No image</span>
+    <article
+      className="group flex flex-col bg-white border border-border rounded-xl overflow-hidden transition hover:-translate-y-0.5 hover:shadow-lg hover:border-stone-300"
+      title={`Product ${product.external_product_id}`}
+    >
+      <div
+        className="relative h-32 flex flex-col items-center justify-center gap-2"
+        style={{ background: tileBackground(product.color) }}
+      >
+        <span
+          className="h-8 w-8 rounded-full ring-1 ring-black/10 shadow-sm"
+          style={{ background: swatchBackground(product.color) }}
+          aria-hidden="true"
+        />
+        {typeLabel && (
+          <span className="text-xs font-medium uppercase tracking-wider text-primary/70">{typeLabel}</span>
+        )}
+        {product.style && (
+          <span className="absolute top-2 right-2 text-[11px] px-2 py-0.5 rounded-full bg-white/80 text-secondary">
+            {product.style}
+          </span>
+        )}
       </div>
 
-      {/* Product Details */}
-      <div className="p-4">
-        <h3 className="font-semibold text-primary mb-2 line-clamp-2">{product.name}</h3>
-
-        {/* Category */}
+      <div className="flex flex-1 flex-col p-4">
         {product.category && (
-          <p className="text-sm text-secondary mb-2">
+          <p className="text-[11px] uppercase tracking-wide text-muted mb-1">
             {product.category}
             {product.subcategory && ` / ${product.subcategory}`}
           </p>
         )}
+        <h3 className="font-medium text-primary leading-snug line-clamp-2">{product.name}</h3>
+        {details && <p className="mt-2 text-sm text-secondary">{details}</p>}
 
-        {/* Attributes */}
-        <div className="text-xs text-secondary space-y-1 mb-3">
-          {product.gender && <p>Gender: {product.gender}</p>}
-          {product.color && <p>Color: {product.color}</p>}
-          {product.style && <p>Style: {product.style}</p>}
-          {product.season && <p>Season: {product.season}</p>}
-        </div>
-
-        {/* Price */}
-        {product.price !== null ? (
-          <p className="font-semibold text-primary mb-2">
-            {product.currency} {Number(product.price).toFixed(2)}
-          </p>
-        ) : (
-          <p className="text-sm text-secondary mb-2">Price not available</p>
+        {(product.price !== null || !product.availability) && (
+          <div className="mt-auto pt-3 flex items-center justify-between">
+            {product.price !== null && (
+              <p className="font-semibold text-primary">
+                {product.currency} {Number(product.price).toFixed(2)}
+              </p>
+            )}
+            {!product.availability && (
+              <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-700">Unavailable</span>
+            )}
+          </div>
         )}
-
-        {/* Availability */}
-        <div className="text-xs">
-          <span
-            className={`px-2 py-1 rounded ${
-              product.availability ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-            }`}
-          >
-            {product.availability ? 'Available' : 'Unavailable'}
-          </span>
-        </div>
-
-        {/* Product ID */}
-        <p className="text-xs text-gray-400 mt-2">ID: {product.external_product_id}</p>
       </div>
-    </div>
+    </article>
   )
 }

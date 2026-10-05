@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { getProducts, getHealth, searchProducts } from '@/lib/api'
+import { getFacets, getProducts, getHealth, searchProducts } from '@/lib/api'
 
 // Mock fetch
 global.fetch = vi.fn()
@@ -102,6 +102,8 @@ describe('API client', () => {
             method: 'hybrid',
             filters: undefined,
             limit: 50,
+            page: 1,
+            sort: 'relevance',
           }),
         })
       )
@@ -126,6 +128,8 @@ describe('API client', () => {
         method: 'vector',
         filters: { gender: 'Women' },
         limit: 10,
+        page: 3,
+        sort: 'newest',
       })
 
       expect(global.fetch).toHaveBeenCalledWith(
@@ -136,6 +140,8 @@ describe('API client', () => {
             method: 'vector',
             filters: { gender: 'Women' },
             limit: 10,
+            page: 3,
+            sort: 'newest',
           }),
         })
       )
@@ -176,6 +182,27 @@ describe('API client', () => {
         })
       )
       expect(result).toEqual(mockResponse)
+    })
+  })
+
+  describe('browse filters and facets', () => {
+    it('sends filters and sort as query parameters, skipping empty ones', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => ({}) })
+
+      await getProducts(1, 24, { filters: { gender: 'Women', color: '' }, sort: 'name' })
+
+      const url = (global.fetch as any).mock.calls[0][0] as string
+      expect(url).toContain('gender=Women')
+      expect(url).toContain('sort=name')
+      expect(url).not.toContain('color=')
+    })
+
+    it('fetches facets', async () => {
+      const facets = { category: ['Apparel'], gender: ['Men'], color: ['Red'], season: ['Summer'] }
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => facets })
+
+      await expect(getFacets()).resolves.toEqual(facets)
+      expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/products/facets'), expect.any(Object))
     })
   })
 })

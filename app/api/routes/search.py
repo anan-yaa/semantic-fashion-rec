@@ -1,5 +1,7 @@
 """Search API route."""
 import logging
+import math
+import threading
 import time
 from typing import Optional
 
@@ -11,9 +13,17 @@ from app.providers.base import EmbeddingProvider
 from app.providers.factory import get_embedding_provider
 from app.providers.llm_base import LLMProvider
 from app.providers.llm_factory import get_llm_provider
-from app.schemas.search import SearchFilter, SearchRequest, SearchResponse, SearchMethod
+from app.schemas.search import (
+    MAX_SEARCH_RESULTS,
+    QueryUnderstandingInfo,
+    SearchFilter,
+    SearchMethod,
+    SearchRequest,
+    SearchResponse,
+)
 from app.services.query_understanding import get_catalogue_facets, merge_filters, understand_query
 from app.services.search import search_hybrid
+from app.services.search.sorting import sort_products
 from core.config import settings
 
 logger = logging.getLogger(__name__)
@@ -26,6 +36,8 @@ router = APIRouter(prefix="/search", tags=["search"])
 # here - instead of constructing a new one per request - is what makes that
 # lazy load happen once per process instead of once per request.
 _provider: Optional[EmbeddingProvider] = None
+# Startup warm-up (background thread) and early requests may race to create it.
+_provider_lock = threading.Lock()
 
 # Process-wide LLM provider singleton, same rationale: avoid constructing a
 # new genai.Client on every request.
@@ -41,8 +53,9 @@ def get_search_provider() -> EmbeddingProvider:
     reuses the same instance.
     """
     global _provider
-    if _provider is None:
-        _provider = get_embedding_provider(settings, use_fake=False)
+    with _provider_lock:
+        if _provider is None:
+            _provider = get_embedding_provider(settings, use_fake=False)
     return _provider
 
 
@@ -104,6 +117,7 @@ def search(
         llm_latency_ms = 0.0
         used_llm = False
         llm_error = None
+        understanding_info = None
 
         if settings.query_understanding_enabled:
             llm_start = time.time()
@@ -120,17 +134,29 @@ def search(
             # User-supplied filters always win over LLM inferences.
             keyword_filters = merge_filters(user_filters, understanding.filters)
 
-        # Execute search
-        products, method_used, search_time_ms = search_hybrid(
+            understanding_info = QueryUnderstandingInfo(
+                used_llm=used_llm,
+                keywords=understanding.cleaned_query if used_llm else None,
+                inferred_filters=understanding.filters.model_dump(
+                    include={"category", "gender", "color", "season"}, exclude_none=True
+                ),
+                fallback_reason=understanding.fallback_reason,
+            )
+
+        # Rank the top matches once, then sort and page through them.
+        matches, method_used, search_time_ms = search_hybrid(
             session,
             query_text=request.query,
             provider=provider,
             filters=vector_filters,  # User filters only - LLM filters never constrain vector search
             method=request.method,
-            limit=request.limit,
+            limit=MAX_SEARCH_RESULTS,
             keyword_query_text=keyword_query_text,
             keyword_filters=keyword_filters,  # User + LLM-inferred filters for keyword path
         )
+        matches = sort_products(matches, request.sort)
+        start = (request.page - 1) * request.limit
+        products = matches[start : start + request.limit]
 
         # Structured logging for observability
         logger.info(
@@ -151,8 +177,12 @@ def search(
             products=[p for p in products],  # Schema will convert via from_attributes
             query=request.query,
             method=method_used,
-            total_products=len(products),
+            total_products=len(matches),
+            page=request.page,
+            page_size=request.limit,
+            total_pages=math.ceil(len(matches) / request.limit),
             took_ms=search_time_ms + llm_latency_ms,
+            understanding=understanding_info,
         )
 
     except Exception as e:

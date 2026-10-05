@@ -1,6 +1,6 @@
 """Search request/response schemas."""
 from enum import Enum
-from typing import List, Optional
+from typing import Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 from decimal import Decimal
 
@@ -12,6 +12,17 @@ class SearchMethod(str, Enum):
     HYBRID = "hybrid"
     VECTOR = "vector"
     KEYWORD = "keyword"
+
+
+class SortOrder(str, Enum):
+    """Result ordering. The catalogue has no prices or ratings, so these are the meaningful ones."""
+    RELEVANCE = "relevance"
+    NEWEST = "newest"  # By the dataset's product year
+    NAME = "name"
+
+
+# Search ranks this many top matches, then pages through them.
+MAX_SEARCH_RESULTS = 100
 
 
 class SearchFilter(BaseModel):
@@ -29,8 +40,20 @@ class SearchRequest(BaseModel):
     # Typical fashion queries are <100 chars; 500 is ample (≈125 tokens at 4 chars/token).
     query: str = Field(..., min_length=1, max_length=500, description="Search query (max 500 chars)")
     filters: Optional[SearchFilter] = None
-    limit: int = Field(default=50, ge=1, le=100)
+    limit: int = Field(default=50, ge=1, le=100, description="Results per page")
+    page: int = Field(default=1, ge=1, description="1-indexed page of the top matches")
+    sort: SortOrder = SortOrder.RELEVANCE
     method: SearchMethod = SearchMethod.HYBRID
+
+
+class QueryUnderstandingInfo(BaseModel):
+    """What the LLM understood from the query, for display."""
+    used_llm: bool
+    keywords: Optional[str] = Field(None, description="Keyword rephrasing used for keyword search")
+    inferred_filters: Dict[str, str] = Field(
+        default_factory=dict, description="Non-empty LLM-inferred filters, e.g. {'color': 'Red'}"
+    )
+    fallback_reason: Optional[Literal["unsupported_query", "llm_unavailable"]] = None
 
 
 class SearchResponse(BaseModel):
@@ -38,5 +61,11 @@ class SearchResponse(BaseModel):
     products: List[ProductResponse]
     query: str
     method: SearchMethod
-    total_products: int
+    total_products: int = Field(description=f"Number of matches across all pages (at most {MAX_SEARCH_RESULTS})")
+    page: int = 1
+    page_size: int
+    total_pages: int
     took_ms: float
+    understanding: Optional[QueryUnderstandingInfo] = Field(
+        None, description="Null when query understanding is disabled"
+    )

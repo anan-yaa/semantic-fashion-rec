@@ -235,3 +235,45 @@ class TestProductsListEndpoint:
         assert "description" not in item
         assert "brand" not in item
         assert "material" not in item
+
+    def test_list_products_hides_unavailable(self, test_db):
+        """Products dropped from the catalogue feed are not listed."""
+        ingest_test_products(test_db, count=5)
+        ingest_records(
+            test_db,
+            [{"id": 10000 + i, "productDisplayName": f"Test Product {i:04d}"} for i in range(3)],
+            mark_missing_unavailable=True,
+        )
+
+        response = self.client.get("/products")
+
+        data = response.json()
+        assert data["total"] == 3
+        assert all(item["availability"] for item in data["items"])
+
+    def test_list_products_filters(self, test_db):
+        ingest_test_products(test_db, count=8)
+
+        data = self.client.get("/products?gender=Men&color=Red").json()
+
+        assert data["total"] == 2
+        assert all(p["gender"] == "Men" and p["color"] == "Red" for p in data["items"])
+
+    def test_list_products_sort_by_name(self, test_db):
+        ingest_test_products(test_db, count=5)
+
+        names = [p["name"] for p in self.client.get("/products?sort=name").json()["items"]]
+
+        assert names == sorted(names)
+
+    def test_list_products_invalid_sort_rejected(self, test_db):
+        assert self.client.get("/products?sort=price").status_code == 422
+
+    def test_facets_lists_values_of_available_products(self, test_db):
+        ingest_test_products(test_db, count=4)
+
+        facets = self.client.get("/products/facets").json()
+
+        assert facets["gender"] == ["Men", "Women"]
+        assert facets["color"] == ["Black", "Blue", "Green", "Red"]
+        assert set(facets) == {"category", "gender", "color", "season"}

@@ -38,23 +38,36 @@ app.include_router(products_router)
 app.include_router(search_router)
 
 
+def _warm_up_embedding_model() -> None:
+    from app.api.routes.search import get_search_provider
+
+    try:
+        get_search_provider().warm_up()
+    except Exception as e:
+        logger.warning(f"Embedding model warm-up failed; the first search will load it instead: {e}")
+
+
 @app.on_event("startup")
 async def startup_event():
     """Run on application startup."""
     logger.info("Application starting up")
     logger.info(f"Environment: debug={settings.debug}, host={settings.host}, port={settings.port}")
 
+    # Loading models takes tens of seconds to minutes; do it in the background
+    # so the app starts immediately and the first search doesn't pay for it.
+    if settings.warm_up_models_on_startup:
+        threading.Thread(target=_warm_up_embedding_model, daemon=True).start()
+
     if not settings.query_understanding_enabled:
         return
 
     if settings.llm_provider == "ollama":
-        from app.providers.ollama_llm import OllamaProvider
+        if settings.warm_up_models_on_startup:
+            from app.providers.ollama_llm import OllamaProvider
 
-        # Loading the model takes tens of seconds; do it in the background so
-        # the first search doesn't time out and the app still starts quickly.
-        # Ollama keeps the model loaded server-side, so a throwaway client is enough.
-        provider = OllamaProvider(model=settings.ollama_model, base_url=settings.ollama_base_url)
-        threading.Thread(target=provider.warm_up, daemon=True).start()
+            # Ollama keeps the model loaded server-side, so a throwaway client is enough.
+            provider = OllamaProvider(model=settings.ollama_model, base_url=settings.ollama_base_url)
+            threading.Thread(target=provider.warm_up, daemon=True).start()
     elif not settings.gemini_api_key:
         logger.warning(
             "query_understanding_enabled=True but GEMINI_API_KEY is not set; "

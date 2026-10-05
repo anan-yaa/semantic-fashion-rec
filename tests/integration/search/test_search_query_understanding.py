@@ -139,3 +139,36 @@ class TestSearchQueryUnderstanding:
 
         assert response.status_code == 200
         assert [p["id"] for p in response.json()["products"]] == ["lilac"]
+
+    def test_response_shows_what_the_llm_understood(self):
+        self._seed_gendered_products()
+        canned = QueryUnderstanding(cleaned_query="blue shirt", filters=SearchFilter(gender="Men"))
+        app.dependency_overrides[search_route.get_query_understanding_provider] = (
+            lambda: FakeLLMProvider(canned_responses={QUERY: canned})
+        )
+
+        response = self.client.post("/search", json={"query": QUERY, "limit": 10})
+
+        assert response.json()["understanding"] == {
+            "used_llm": True,
+            "keywords": "blue shirt",
+            "inferred_filters": {"gender": "Men"},
+            "fallback_reason": None,
+        }
+
+    def test_response_reports_fallback_without_leaking_the_error(self):
+        self._seed_gendered_products()
+        app.dependency_overrides[search_route.get_query_understanding_provider] = (
+            lambda: FakeLLMProvider(raise_error=True)
+        )
+
+        response = self.client.post("/search", json={"query": QUERY, "limit": 10})
+
+        understanding = response.json()["understanding"]
+        assert understanding == {
+            "used_llm": False,
+            "keywords": None,
+            "inferred_filters": {},
+            "fallback_reason": "llm_unavailable",
+        }
+        assert "FakeLLMProvider" not in response.text

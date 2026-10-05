@@ -17,6 +17,9 @@ from app.services.query_understanding.vocabulary import _reset_catalogue_facets_
 from app.services.search.product_types import _reset_article_type_cache
 from core.config import settings
 
+# Tests start the app via TestClient; don't load the real e5 model or call Ollama.
+settings.warm_up_models_on_startup = False
+
 
 @pytest.fixture(autouse=True)
 def reset_catalogue_caches():

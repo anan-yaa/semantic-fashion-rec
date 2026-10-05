@@ -21,6 +21,9 @@ logger = logging.getLogger(__name__)
 # ground_truth_v2_real: NDCG@10 0.694 (no threshold) / 0.804 (0.6) / 0.825 (0.75)
 # / 0.832 (1.0, i.e. AND).
 KEYWORD_MIN_TERM_COVERAGE = 0.75
+# Fallback when results are restricted to a product type and nothing meets the
+# strict threshold.
+RELAXED_KEYWORD_MIN_TERM_COVERAGE = 0.5
 
 
 def _fused_search(
@@ -52,6 +55,18 @@ def _fused_search(
             min_term_coverage=KEYWORD_MIN_TERM_COVERAGE,
             article_types=article_types,
         )
+        if article_types and not keyword_results:
+            # Nothing matches every term (no "black leather jacket" exists), but
+            # within the named type a partial match ("black jacket") is still
+            # relevant and carries the color/gender filters into the ranking.
+            keyword_results, _ = search_keyword(
+                session,
+                kw_query_text,
+                filters=kw_filters,
+                limit=limit * 2,
+                min_term_coverage=RELAXED_KEYWORD_MIN_TERM_COVERAGE,
+                article_types=article_types,
+            )
     except Exception as e:
         logger.debug(f"Keyword search failed: {e}")
         keyword_results = []

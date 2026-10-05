@@ -9,6 +9,7 @@ const mockProduct: Product = {
   name: 'Blue Cotton Shirt',
   category: 'Apparel',
   subcategory: 'Topwear',
+  article_type: 'Shirts',
   gender: 'Men',
   color: 'Blue',
   style: 'Casual',
@@ -29,35 +30,45 @@ describe('ProductCard', () => {
     expect(screen.getByText(/Apparel \/ Topwear/)).toBeInTheDocument()
   })
 
-  it('renders gender', () => {
+  it('renders the product type on the tile', () => {
     render(<ProductCard product={mockProduct} />)
-    expect(screen.getByText(/Gender: Men/)).toBeInTheDocument()
+    expect(screen.getByText('Shirts')).toBeInTheDocument()
   })
 
-  it('renders color', () => {
-    render(<ProductCard product={mockProduct} />)
-    expect(screen.getByText(/Color: Blue/)).toBeInTheDocument()
+  it('falls back to subcategory when product type is missing', () => {
+    render(<ProductCard product={{ ...mockProduct, article_type: null }} />)
+    expect(screen.getByText('Topwear')).toBeInTheDocument()
   })
 
-  it('renders price', () => {
+  it('renders gender, color and season on one line', () => {
+    render(<ProductCard product={mockProduct} />)
+    expect(screen.getByText('Men · Blue · Summer')).toBeInTheDocument()
+  })
+
+  it('renders style', () => {
+    render(<ProductCard product={mockProduct} />)
+    expect(screen.getByText('Casual')).toBeInTheDocument()
+  })
+
+  it('renders price when present', () => {
     render(<ProductCard product={mockProduct} />)
     expect(screen.getByText(/USD 45.99/)).toBeInTheDocument()
   })
 
-  it('renders availability badge', () => {
+  it('does not label available products', () => {
     render(<ProductCard product={mockProduct} />)
-    expect(screen.getByText('Available')).toBeInTheDocument()
+    expect(screen.queryByText('Available')).not.toBeInTheDocument()
   })
 
   it('shows unavailable when availability is false', () => {
-    const unavailableProduct = { ...mockProduct, availability: false }
-    render(<ProductCard product={unavailableProduct} />)
+    render(<ProductCard product={{ ...mockProduct, availability: false }} />)
     expect(screen.getByText('Unavailable')).toBeInTheDocument()
   })
 
   it('handles missing optional fields', () => {
     const minimalProduct: Product = {
       ...mockProduct,
+      article_type: null,
       gender: null,
       color: null,
       style: null,
@@ -66,5 +77,6 @@ describe('ProductCard', () => {
     }
     render(<ProductCard product={minimalProduct} />)
     expect(screen.getByText('Blue Cotton Shirt')).toBeInTheDocument()
+    expect(screen.queryByText(/Price/)).not.toBeInTheDocument()
   })
 })

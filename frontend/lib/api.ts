@@ -3,7 +3,14 @@
  * All HTTP requests must go through this layer
  */
 
-import { PaginatedProductResponse, SearchFilters, SearchMethod, SearchResponse } from '@/types/product'
+import {
+  Facets,
+  PaginatedProductResponse,
+  SearchFilters,
+  SearchMethod,
+  SearchResponse,
+  SortOrder,
+} from '@/types/product'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
@@ -13,17 +20,22 @@ export interface ApiErrorResponse {
 }
 
 /**
- * Fetch products with pagination
+ * Fetch available products with pagination, optional exact-value filters and sorting
  */
 export async function getProducts(
   page: number = 1,
-  pageSize: number = 24
+  pageSize: number = 24,
+  options?: { filters?: SearchFilters; sort?: SortOrder }
 ): Promise<PaginatedProductResponse> {
   try {
     const params = new URLSearchParams({
       page: String(page),
       page_size: String(pageSize),
     })
+    for (const [field, value] of Object.entries(options?.filters ?? {})) {
+      if (value !== undefined && value !== '') params.set(field, String(value))
+    }
+    if (options?.sort) params.set('sort', options.sort)
 
     const response = await fetch(`${API_URL}/products?${params}`, {
       method: 'GET',
@@ -48,7 +60,13 @@ export async function getProducts(
  */
 export async function searchProducts(
   query: string,
-  options?: { method?: SearchMethod; filters?: SearchFilters; limit?: number }
+  options?: {
+    method?: SearchMethod
+    filters?: SearchFilters
+    limit?: number
+    page?: number
+    sort?: SortOrder
+  }
 ): Promise<SearchResponse> {
   try {
     const response = await fetch(`${API_URL}/search`, {
@@ -61,6 +79,8 @@ export async function searchProducts(
         method: options?.method ?? 'hybrid',
         filters: options?.filters,
         limit: options?.limit ?? 50,
+        page: options?.page ?? 1,
+        sort: options?.sort ?? 'relevance',
       }),
     })
 
@@ -73,6 +93,20 @@ export async function searchProducts(
     console.error('Error searching products:', error)
     throw error
   }
+}
+
+/**
+ * Filter values present in the catalogue (category, gender, color, season)
+ */
+export async function getFacets(): Promise<Facets> {
+  const response = await fetch(`${API_URL}/products/facets`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+  }
+  return response.json()
 }
 
 /**

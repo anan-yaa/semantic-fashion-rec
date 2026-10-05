@@ -9,6 +9,9 @@ interface PaginationProps {
   isLoading?: boolean
 }
 
+const BUTTON =
+  'px-4 py-2 text-sm bg-white border border-border rounded-full hover:border-stone-400 disabled:opacity-40 disabled:cursor-not-allowed transition-colors'
+
 export function Pagination({
   page,
   totalPages,
@@ -20,26 +23,19 @@ export function Pagination({
   }
 
   return (
-    <div className="flex items-center justify-center gap-4 mt-8 py-6">
-      <button
-        onClick={() => onPageChange(page - 1)}
-        disabled={page === 1 || isLoading}
-        className="px-4 py-2 border border-border rounded-lg hover:bg-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        Previous
+    <nav className="flex items-center justify-center gap-4 mt-10" aria-label="Pagination">
+      <button onClick={() => onPageChange(page - 1)} disabled={page === 1 || isLoading} className={BUTTON}>
+        ← Previous
       </button>
 
       <div className="text-sm text-secondary">
-        Page <strong>{page}</strong> of <strong>{totalPages}</strong>
+        Page <strong className="text-primary">{page.toLocaleString()}</strong> of{' '}
+        <strong className="text-primary">{totalPages.toLocaleString()}</strong>
       </div>
 
-      <button
-        onClick={() => onPageChange(page + 1)}
-        disabled={page === totalPages || isLoading}
-        className="px-4 py-2 border border-border rounded-lg hover:bg-hover disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        Next
+      <button onClick={() => onPageChange(page + 1)} disabled={page === totalPages || isLoading} className={BUTTON}>
+        Next →
       </button>
-    </div>
+    </nav>
   )
 }

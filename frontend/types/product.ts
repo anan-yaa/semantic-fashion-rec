@@ -8,6 +8,8 @@ export interface Product {
   name: string
   category: string | null
   subcategory: string | null
+  /** Product type, e.g. "Jackets" */
+  article_type: string | null
   gender: string | null
   color: string | null
   style: string | null
@@ -26,6 +28,14 @@ export interface PaginatedProductResponse {
 }
 
 export type SearchMethod = 'hybrid' | 'vector' | 'keyword'
+
+/** The catalogue has no prices or ratings, so these are the meaningful orders. */
+export type SortOrder = 'relevance' | 'newest' | 'name'
+
+export type FacetField = 'category' | 'gender' | 'color' | 'season'
+
+/** Filter values present in the catalogue, per field */
+export type Facets = Record<FacetField, string[]>
 
 export interface SearchFilters {
   category?: string
@@ -46,7 +56,11 @@ export interface SearchResponse {
   products: Product[]
   query: string
   method: SearchMethod
+  /** Matches across all pages (search ranks at most the top 100) */
   total_products: number
+  page: number
+  page_size: number
+  total_pages: number
   took_ms: number
   /** Null when query understanding is disabled on the backend */
   understanding: QueryUnderstanding | null

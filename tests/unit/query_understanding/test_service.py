@@ -120,3 +120,28 @@ class TestMergeFilters:
 
         assert merged.category == "Apparel"
         assert merged.availability is None
+
+
+class TestFallbackReason:
+    def test_unsupported_query_is_reported_as_such(self):
+        from app.providers.llm_base import UnsupportedQueryError
+
+        class SkippingProvider(FakeLLMProvider):
+            def understand_query(self, query, valid_filters):
+                raise UnsupportedQueryError("skipped")
+
+        result = understand_query(SkippingProvider(), "नीली शर्ट", VALID_FILTERS)
+
+        assert result.used_llm is False
+        assert result.cleaned_query == "नीली शर्ट"
+        assert result.fallback_reason == "unsupported_query"
+
+    def test_provider_failure_is_reported_as_unavailable(self):
+        result = understand_query(FakeLLMProvider(raise_error=True), "q", VALID_FILTERS)
+
+        assert result.fallback_reason == "llm_unavailable"
+
+    def test_success_has_no_fallback_reason(self):
+        result = understand_query(FakeLLMProvider(), "q", VALID_FILTERS)
+
+        assert result.fallback_reason is None

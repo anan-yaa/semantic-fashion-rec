@@ -5,6 +5,7 @@ from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
+from app.schemas.search import SearchFilter, SortOrder
 
 
 class ProductRepository:
@@ -35,10 +36,36 @@ class ProductRepository:
         products = (
             self.session.query(Product)
             .filter(Product.availability == True)
+            .order_by(desc(Product.created_at))
             .offset(skip)
             .limit(limit)
             .all()
         )
+        return products, total
+
+    def list_available(
+        self,
+        filters: SearchFilter,
+        sort: SortOrder = SortOrder.RELEVANCE,
+        skip: int = 0,
+        limit: int = 100,
+    ) -> tuple[list[Product], int]:
+        """List available products matching exact-value filters, with sorting and pagination."""
+        query = self.session.query(Product).filter(Product.availability == True)  # noqa: E712
+        for field in ("category", "gender", "color", "season"):
+            value = getattr(filters, field)
+            if value is not None:
+                query = query.filter(getattr(Product, field) == value)
+
+        total = query.count()
+        if sort == SortOrder.NEWEST:
+            # Some years are stored as floats ("2017.0"), so sort as a number, not an integer.
+            order = (Product.attributes["year"].as_float().desc().nulls_last(), Product.id)
+        elif sort == SortOrder.NAME:
+            order = (Product.name, Product.id)
+        else:
+            order = (desc(Product.created_at), Product.id)
+        products = query.order_by(*order).offset(skip).limit(limit).all()
         return products, total
 
     def list_all(self, skip: int = 0, limit: int = 100) -> tuple[list[Product], int]:

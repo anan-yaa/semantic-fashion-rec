@@ -1,5 +1,6 @@
 """HuggingFace E5 multilingual embedding provider."""
 import logging
+import threading
 from typing import List, Any
 
 from app.providers.base import EmbeddingProvider
@@ -29,6 +30,7 @@ class HuggingFaceE5Provider(EmbeddingProvider):
         self.model_name = model_name
         self.batch_size = batch_size
         self._model: Any = None
+        self._load_lock = threading.Lock()
         self._device = self._get_device()
         logger.info(f"E5Provider initialized: model={model_name}, device={self._device}")
 
@@ -41,8 +43,12 @@ class HuggingFaceE5Provider(EmbeddingProvider):
             return "cpu"
 
     def _load_model(self) -> None:
-        """Lazy-load the embedding model."""
-        if self._model is None:
+        """Lazy-load the embedding model (once, even if called from several threads)."""
+        if self._model is not None:
+            return
+        with self._load_lock:
+            if self._model is not None:
+                return
             try:
                 from sentence_transformers import SentenceTransformer
                 logger.info(f"Loading model {self.model_name} on {self._device}...")
@@ -50,6 +56,11 @@ class HuggingFaceE5Provider(EmbeddingProvider):
                 logger.info(f"Model loaded. Output dimension: {self._model.get_sentence_embedding_dimension()}")
             except ImportError as e:
                 raise RuntimeError(f"sentence-transformers not installed: {e}") from e
+
+    def warm_up(self) -> None:
+        """Load the model and run one query so the first real search is fast."""
+        self.embed_queries(["warm up"])
+        logger.info("Embedding model warmed up")
 
     @property
     def dim(self) -> int:

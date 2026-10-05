@@ -8,10 +8,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#000000',
-        secondary: '#666666',
-        border: '#e5e5e5',
-        hover: '#f5f5f5',
+        primary: '#111111',
+        secondary: '#6b6b6b',
+        muted: '#9a9a9a',
+        border: '#e7e5e4',
+        hover: '#f5f5f4',
+        surface: '#fafaf9',
+        // Reserved for what the LLM contributed, so it reads as distinct from the catalogue.
+        accent: {
+          DEFAULT: '#6d28d9',
+          soft: '#f3efff',
+          border: '#ddd2fb',
+        },
       },
     },
   },
