@@ -118,3 +118,24 @@ class TestSearchQueryUnderstanding:
         assert spy.calls == []
         genders = {p["gender"] for p in response.json()["products"]}
         assert genders == {"Men", "Women"}
+
+    def test_new_catalogue_value_is_usable_by_llm_without_code_change(self):
+        """A color that exists only in the DB (not in any hardcoded list) is accepted as an LLM filter."""
+        provider = FakeEmbeddingProvider()
+        for pid, color in (("lilac", "Lilac"), ("black", "Black")):
+            product = make_product(pid, "Kurta", "cotton kurta", color=color)
+            product.embedding = provider.embed_passages(["cotton kurta"])[0]
+            self.session.add(product)
+        self.session.commit()
+        build_keyword_index(self.session, limit=100)
+        canned = QueryUnderstanding(cleaned_query="cotton kurta", filters=SearchFilter(color="Lilac"))
+        app.dependency_overrides[search_route.get_query_understanding_provider] = (
+            lambda: FakeLLMProvider(canned_responses={"lilac cotton kurta": canned})
+        )
+
+        response = self.client.post(
+            "/search", json={"query": "lilac cotton kurta", "method": "keyword", "limit": 10}
+        )
+
+        assert response.status_code == 200
+        assert [p["id"] for p in response.json()["products"]] == ["lilac"]

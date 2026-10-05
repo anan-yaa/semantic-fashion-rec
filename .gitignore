@@ -29,3 +29,5 @@ DAY2_IMPLEMENTATION_SUMMARY.md
 embedding_export.parquet
 embedding_result.parquet
 manifest.json
+# Cron sync logs
+logs/

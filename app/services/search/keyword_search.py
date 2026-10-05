@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
 from app.schemas.search import SearchFilter
+from app.services.search.product_types import ARTICLE_TYPE
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,7 @@ def search_keyword(
     filters: Optional[SearchFilter] = None,
     limit: int = 50,
     min_term_coverage: float = 0.0,
+    article_types: Optional[List[str]] = None,
 ) -> Tuple[List[Product], int]:
     """Search using keyword matching.
 
@@ -35,6 +37,7 @@ def search_keyword(
             match (PostgreSQL only). 0.0 keeps any partial match; hybrid search
             raises it so single-word hits on multi-word queries (e.g. only
             "black" for "black leather jacket") don't get fused in as noise.
+        article_types: Optional list of product types (attributes.articleType) to restrict to.
 
     Returns:
         Tuple of (products, total_count).
@@ -56,6 +59,8 @@ def search_keyword(
             query_obj = query_obj.filter_by(season=filters.season)
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
+    if article_types:
+        query_obj = query_obj.filter(ARTICLE_TYPE.in_(article_types))
 
     # PostgreSQL FTS using TSVECTOR, OR-ed tsquery, ts_rank
     if dialect == "postgresql":

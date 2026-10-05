@@ -10,6 +10,7 @@ from app.providers.base import EmbeddingProvider
 from app.schemas.search import SearchFilter, SearchMethod
 from app.services.search.vector_search import search_vector
 from app.services.search.keyword_search import search_keyword
+from app.services.search.product_types import detect_article_types
 from app.services.search.rank_fusion import reciprocal_rank_fusion
 
 logger = logging.getLogger(__name__)
@@ -20,6 +21,42 @@ logger = logging.getLogger(__name__)
 # ground_truth_v2_real: NDCG@10 0.694 (no threshold) / 0.804 (0.6) / 0.825 (0.75)
 # / 0.832 (1.0, i.e. AND).
 KEYWORD_MIN_TERM_COVERAGE = 0.75
+
+
+def _fused_search(
+    session: Session,
+    query_text: str,
+    provider: EmbeddingProvider,
+    filters: Optional[SearchFilter],
+    kw_query_text: str,
+    kw_filters: Optional[SearchFilter],
+    limit: int,
+    article_types: Optional[List[str]],
+) -> List[Product]:
+    """Run vector and keyword search and fuse them with Reciprocal Rank Fusion."""
+    try:
+        vector_results, _ = search_vector(
+            session, query_text, provider, filters=filters, limit=limit * 2,
+            article_types=article_types,
+        )
+    except Exception as e:
+        logger.debug(f"Vector search failed: {e}")
+        vector_results = []
+
+    try:
+        keyword_results, _ = search_keyword(
+            session,
+            kw_query_text,
+            filters=kw_filters,
+            limit=limit * 2,
+            min_term_coverage=KEYWORD_MIN_TERM_COVERAGE,
+            article_types=article_types,
+        )
+    except Exception as e:
+        logger.debug(f"Keyword search failed: {e}")
+        keyword_results = []
+
+    return reciprocal_rank_fusion(vector_results, keyword_results, k=60)[:limit]
 
 
 def search_hybrid(
@@ -76,30 +113,21 @@ def search_hybrid(
             actual_method = SearchMethod.KEYWORD
 
         else:  # HYBRID
-            # Run both methods and fuse via Reciprocal Rank Fusion
             try:
-                vector_results, _ = search_vector(
-                    session, query_text, provider, filters=filters, limit=limit * 2
-                )
+                article_types = detect_article_types(session, query_text)
             except Exception as e:
-                logger.debug(f"Vector search failed: {e}")
-                vector_results = []
+                logger.warning(f"Product type detection failed, searching all types: {e}")
+                article_types = []
 
-            try:
-                keyword_results, _ = search_keyword(
-                    session,
-                    kw_query_text,
-                    filters=kw_filters,
-                    limit=limit * 2,
-                    min_term_coverage=KEYWORD_MIN_TERM_COVERAGE,
+            results = _fused_search(
+                session, query_text, provider, filters, kw_query_text, kw_filters, limit, article_types
+            )
+            if article_types and not results:
+                # Nothing of the named type passes the other filters; better to
+                # show related products than an empty page.
+                results = _fused_search(
+                    session, query_text, provider, filters, kw_query_text, kw_filters, limit, None
                 )
-            except Exception as e:
-                logger.debug(f"Keyword search failed: {e}")
-                keyword_results = []
-
-            # Fuse results using Reciprocal Rank Fusion
-            results = reciprocal_rank_fusion(vector_results, keyword_results, k=60)
-            results = results[:limit]
             actual_method = SearchMethod.HYBRID
 
         elapsed_ms = (time.time() - start_time) * 1000

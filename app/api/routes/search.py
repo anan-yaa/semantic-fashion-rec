@@ -12,7 +12,7 @@ from app.providers.factory import get_embedding_provider
 from app.providers.llm_base import LLMProvider
 from app.providers.llm_factory import get_llm_provider
 from app.schemas.search import SearchFilter, SearchRequest, SearchResponse, SearchMethod
-from app.services.query_understanding import merge_filters, understand_query
+from app.services.query_understanding import get_catalogue_facets, merge_filters, understand_query
 from app.services.search import search_hybrid
 from core.config import settings
 
@@ -107,7 +107,9 @@ def search(
 
         if settings.query_understanding_enabled:
             llm_start = time.time()
-            understanding = understand_query(llm_provider, request.query)
+            understanding = understand_query(
+                llm_provider, request.query, get_catalogue_facets(session)
+            )
             llm_latency_ms = (time.time() - llm_start) * 1000
 
             keyword_query_text = understanding.cleaned_query

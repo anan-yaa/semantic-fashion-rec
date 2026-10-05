@@ -9,7 +9,6 @@ from typing import Dict, List, Optional
 
 from app.providers.llm_base import LLMProvider, LLMProviderError
 from app.schemas.search import SearchFilter
-from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
 from app.services.query_understanding.circuit_breaker import should_skip_llm, record_failure
 
 logger = logging.getLogger(__name__)
@@ -30,7 +29,7 @@ class QueryUnderstandingResult:
 
 
 def validate_filters(
-    raw: SearchFilter, valid_values: Optional[Dict[str, List[str]]] = None
+    raw: SearchFilter, valid_values: Dict[str, List[str]]
 ) -> SearchFilter:
     """Drop any filter value that is not an exact member of the live catalogue
     vocabulary. This is a plain equality check against real catalogue values,
@@ -38,7 +37,6 @@ def validate_filters(
     guarantee that a hallucinated, malformed, or otherwise invalid value can
     never reach search_hybrid()'s filters, regardless of how it got here.
     """
-    valid_values = valid_values if valid_values is not None else CATALOGUE_FACETS
     validated = SearchFilter()
     for field_name in _INFERABLE_FIELDS:
         value = getattr(raw, field_name)
@@ -66,8 +64,13 @@ def merge_filters(user_filters: Optional[SearchFilter], llm_filters: SearchFilte
     return merged
 
 
-def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingResult:
+def understand_query(
+    provider: LLMProvider, query: str, valid_filters: Dict[str, List[str]]
+) -> QueryUnderstandingResult:
     """Run query understanding with a mandatory, non-raising fallback.
+
+    `valid_filters` is the live catalogue vocabulary (see
+    vocabulary.get_catalogue_facets); the LLM may only return values from it.
 
     Returns ONLY LLM-inferred filters (unmerged with user filters). The caller
     is responsible for merging user-supplied filters with these LLM-inferred
@@ -91,8 +94,8 @@ def understand_query(provider: LLMProvider, query: str) -> QueryUnderstandingRes
         )
 
     try:
-        result = provider.understand_query(query, CATALOGUE_FACETS)
-        validated = validate_filters(result.filters)
+        result = provider.understand_query(query, valid_filters)
+        validated = validate_filters(result.filters, valid_filters)
         return QueryUnderstandingResult(
             cleaned_query=result.cleaned_query or query,
             filters=validated,  # LLM-inferred only

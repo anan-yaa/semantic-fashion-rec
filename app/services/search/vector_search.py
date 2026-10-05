@@ -3,11 +3,12 @@ import logging
 from typing import List, Optional, Tuple
 
 from sqlalchemy.orm import Session
-from sqlalchemy import desc
+from sqlalchemy import desc, text
 
 from app.db.models.product import Product
 from app.providers.base import EmbeddingProvider
 from app.schemas.search import SearchFilter
+from app.services.search.product_types import ARTICLE_TYPE
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,7 @@ def search_vector(
     provider: EmbeddingProvider,
     filters: Optional[SearchFilter] = None,
     limit: int = 50,
+    article_types: Optional[List[str]] = None,
 ) -> Tuple[List[Product], int]:
     """Search using vector similarity.
 
@@ -27,6 +29,7 @@ def search_vector(
         provider: EmbeddingProvider to embed the query.
         filters: Optional search filters.
         limit: Maximum results to return.
+        article_types: Optional list of product types (attributes.articleType) to restrict to.
 
     Returns:
         Tuple of (products, total_count).
@@ -49,6 +52,17 @@ def search_vector(
             query_obj = query_obj.filter_by(season=filters.season)
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
+    if article_types:
+        query_obj = query_obj.filter(ARTICLE_TYPE.in_(article_types))
+    if session.bind.dialect.name == "postgresql":
+        # The HNSW index returns its nearest ~40 candidates and only then
+        # applies the WHERE clause, so a selective type filter (258 jackets of
+        # 44k products) can come back nearly empty; iterative scan keeps
+        # searching until enough rows pass. Set on every call because SET LOCAL
+        # lasts for the whole transaction and would otherwise leak into later
+        # unfiltered searches.
+        mode = "strict_order" if article_types else "off"
+        session.execute(text(f"SET LOCAL hnsw.iterative_scan = {mode}"))
 
     # Get total count
     total_count = query_obj.count()

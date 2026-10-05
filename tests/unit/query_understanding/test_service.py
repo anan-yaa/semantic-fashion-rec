@@ -28,7 +28,7 @@ class TestUnderstandQuery:
         )
         provider = FakeLLMProvider(canned_responses={"blue running shoes": canned})
 
-        result = understand_query(provider, "blue running shoes")
+        result = understand_query(provider, "blue running shoes", VALID_FILTERS)
 
         assert result.used_llm is True
         assert result.cleaned_query == "running shoes"
@@ -38,7 +38,7 @@ class TestUnderstandQuery:
     def test_failure_path_falls_back_to_original_query_with_no_filters(self):
         provider = FakeLLMProvider(raise_error=True)
 
-        result = understand_query(provider, "blue running shoes")
+        result = understand_query(provider, "blue running shoes", VALID_FILTERS)
 
         assert result.used_llm is False
         assert result.cleaned_query == "blue running shoes"
@@ -49,7 +49,7 @@ class TestUnderstandQuery:
         provider = FakeLLMProvider(raise_error=True)
 
         # Must not raise.
-        understand_query(provider, "anything")
+        understand_query(provider, "anything", VALID_FILTERS)
 
     def test_out_of_vocabulary_llm_filter_is_dropped_before_being_returned(self):
         canned = QueryUnderstanding(
@@ -58,7 +58,7 @@ class TestUnderstandQuery:
         )
         provider = FakeLLMProvider(canned_responses={"q": canned})
 
-        result = understand_query(provider, "q")
+        result = understand_query(provider, "q", VALID_FILTERS)
 
         assert result.filters.category is None
 

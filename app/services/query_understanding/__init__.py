@@ -5,12 +5,13 @@ from app.services.query_understanding.service import (
     understand_query,
     validate_filters,
 )
-from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
+from app.services.query_understanding.vocabulary import get_catalogue_facets, load_catalogue_facets
 
 __all__ = [
     "QueryUnderstandingResult",
     "merge_filters",
     "understand_query",
     "validate_filters",
-    "CATALOGUE_FACETS",
+    "get_catalogue_facets",
+    "load_catalogue_facets",
 ]

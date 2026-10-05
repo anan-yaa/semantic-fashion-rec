@@ -34,6 +34,8 @@ class Settings(BaseSettings):
 
     # LLM query understanding
     query_understanding_enabled: bool = Field(default=True)
+    # How long allowed filter values (read from the catalogue) are cached before re-reading
+    catalogue_facets_cache_seconds: int = Field(default=300)
     llm_provider: str = Field(default="ollama")  # "gemini" or "ollama"
     gemini_model: str = Field(default="gemini-3.5-flash-lite")
     ollama_model: str = Field(default="tinyllama")

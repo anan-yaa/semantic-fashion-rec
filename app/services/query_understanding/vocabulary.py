@@ -1,76 +1,77 @@
 """Live catalogue facet vocabulary for LLM-inferred search filters.
 
-These are the exact distinct, non-null values of the corresponding Product
-columns, queried directly from the database (SELECT DISTINCT <col> FROM
-products WHERE <col> IS NOT NULL ORDER BY <col>). Keeping this as a static
-list (rather than querying the DB on every request) keeps query understanding
-fast and avoids an extra DB round trip on the request path; if the catalogue's
-facet values change, regenerate this list the same way.
+The allowed values are the distinct non-null values of each facet column among
+currently available products, read from the database. They are cached per
+process for `catalogue_facets_cache_seconds`, so a catalogue sync that adds a
+new value (e.g. a new color) reaches the LLM within that window, without a
+restart, while the request path normally does no extra query.
 
 Only category/gender/color/season are listed: these are the only SearchFilter
 fields an LLM could plausibly infer from free text. `availability` is never
 inferable from query text and is intentionally excluded.
 """
-from typing import Dict, List
+import logging
+import threading
+import time
+from typing import Dict, List, Optional
 
-CATALOGUE_FACETS: Dict[str, List[str]] = {
-    "category": [
-        "Accessories",
-        "Apparel",
-        "Footwear",
-        "Free Items",
-        "Home",
-        "Personal Care",
-        "Sporting Goods",
-    ],
-    "gender": ["Boys", "Girls", "Men", "Unisex", "Women"],
-    "color": [
-        "Beige",
-        "Black",
-        "Blue",
-        "Bronze",
-        "Brown",
-        "Burgundy",
-        "Charcoal",
-        "Coffee Brown",
-        "Copper",
-        "Cream",
-        "Fluorescent Green",
-        "Gold",
-        "Green",
-        "Grey",
-        "Grey Melange",
-        "Khaki",
-        "Lavender",
-        "Lime Green",
-        "Magenta",
-        "Maroon",
-        "Mauve",
-        "Metallic",
-        "Multi",
-        "Mushroom Brown",
-        "Mustard",
-        "Navy Blue",
-        "Nude",
-        "Off White",
-        "Olive",
-        "Orange",
-        "Peach",
-        "Pink",
-        "Purple",
-        "Red",
-        "Rose",
-        "Rust",
-        "Sea Green",
-        "Silver",
-        "Skin",
-        "Steel",
-        "Tan",
-        "Taupe",
-        "Teal",
-        "Turquoise Blue",
-        "White",
-        "Yellow",
-    ],
-    "season": ["Fall", "Spring", "Summer", "Winter"],
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+
+from app.db.models.product import Product
+from core.config import settings
+
+logger = logging.getLogger(__name__)
+
+FACET_COLUMNS = {
+    "category": Product.category,
+    "gender": Product.gender,
+    "color": Product.color,
+    "season": Product.season,
 }
+
+_lock = threading.Lock()
+_cached: Optional[Dict[str, List[str]]] = None
+_cached_at = 0.0
+
+
+def load_catalogue_facets(session: Session) -> Dict[str, List[str]]:
+    """Query the distinct facet values of available products (uncached)."""
+    facets = {}
+    for name, column in FACET_COLUMNS.items():
+        stmt = (
+            select(column)
+            .where(column.is_not(None), Product.availability == True)  # noqa: E712
+            .distinct()
+            .order_by(column)
+        )
+        facets[name] = list(session.execute(stmt).scalars())
+    return facets
+
+
+def get_catalogue_facets(session: Session) -> Dict[str, List[str]]:
+    """Return the facet vocabulary, refreshing it from the DB when the cache expires.
+
+    If a refresh fails but an older copy exists, the older copy is returned so a
+    transient DB hiccup doesn't drop query understanding.
+    """
+    global _cached, _cached_at
+    with _lock:
+        if _cached is not None and time.monotonic() - _cached_at < settings.catalogue_facets_cache_seconds:
+            return _cached
+        try:
+            _cached = load_catalogue_facets(session)
+            _cached_at = time.monotonic()
+        except Exception as e:
+            if _cached is None:
+                raise
+            logger.warning(f"Refreshing catalogue facets failed, using previous values: {e}")
+        return _cached
+
+
+def _reset_catalogue_facets_cache() -> None:
+    """Test-only hook to clear the cached vocabulary between test cases."""
+    global _cached, _cached_at
+    with _lock:
+        _cached = None
+        _cached_at = 0.0

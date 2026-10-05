@@ -23,7 +23,7 @@ from app.services.eval.io import (
     save_report,
 )
 from app.services.eval.metrics import mrr, ndcg_at_k, precision_at_k, reciprocal_rank
-from app.services.query_understanding import merge_filters, understand_query
+from app.services.query_understanding import load_catalogue_facets, merge_filters, understand_query
 from app.services.search import search_hybrid
 
 logger = logging.getLogger(__name__)
@@ -103,6 +103,7 @@ def run_eval(
     excluded_count = 0
     last_llm_call_time: Optional[float] = None  # Monotonic clock for throttling
     zero_result_counts: Dict[str, int] = {m.value: 0 for m in _METHODS}  # Track methods returning no results
+    valid_filters = load_catalogue_facets(session) if llm_provider is not None else {}
 
     for gt in judgments:
         if not gt.relevant_product_ids:
@@ -124,7 +125,7 @@ def run_eval(
                     time.sleep(sleep_time)
 
             last_llm_call_time = time.monotonic()
-            understanding = understand_query(llm_provider, gt.query)
+            understanding = understand_query(llm_provider, gt.query, valid_filters)
             keyword_query_text = understanding.cleaned_query
             # LLM-inferred filters apply to keyword search only.
             keyword_filters = merge_filters(None, understanding.filters)

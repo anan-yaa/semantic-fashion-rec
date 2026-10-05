@@ -14,8 +14,9 @@ import sys
 
 from core.config import settings
 from core.logging import setup_logging
+from app.db.database import get_session
 from app.providers.llm import GeminiProvider
-from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
+from app.services.query_understanding import load_catalogue_facets
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -42,19 +43,25 @@ def main() -> int:
         max_retries=settings.llm_query_understanding_max_retries,
     )
 
+    session = next(get_session())
+    try:
+        catalogue_facets = load_catalogue_facets(session)
+    finally:
+        session.close()
+
     queries = _load_sample_queries()
     failures = []
 
     for query in queries:
         logger.info(f"Query: {query!r}")
-        result = provider.understand_query(query, CATALOGUE_FACETS)
+        result = provider.understand_query(query, catalogue_facets)
         logger.info(f"  cleaned_query: {result.cleaned_query!r}")
         logger.info(f"  filters: {result.filters}")
 
         if not result.cleaned_query.strip():
             failures.append(f"{query!r}: cleaned_query was empty")
 
-        for field_name, allowed_values in CATALOGUE_FACETS.items():
+        for field_name, allowed_values in catalogue_facets.items():
             value = getattr(result.filters, field_name)
             if value is not None and value not in allowed_values:
                 failures.append(f"{query!r}: out-of-vocab {field_name}={value!r}")

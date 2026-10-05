@@ -13,7 +13,19 @@ from sqlalchemy.dialects.postgresql import TSVECTOR
 
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
+from app.services.query_understanding.vocabulary import _reset_catalogue_facets_cache
+from app.services.search.product_types import _reset_article_type_cache
 from core.config import settings
+
+
+@pytest.fixture(autouse=True)
+def reset_catalogue_caches():
+    """Catalogue vocabularies are cached per process; each test DB has its own values."""
+    _reset_catalogue_facets_cache()
+    _reset_article_type_cache()
+    yield
+    _reset_catalogue_facets_cache()
+    _reset_article_type_cache()
 
 
 @compiles(Vector, "sqlite")

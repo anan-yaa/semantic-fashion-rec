@@ -7,9 +7,10 @@ Usage:
 import sys
 import time
 
+from app.db.database import get_session
 from app.providers.llm_base import LLMProviderError
 from app.providers.ollama_llm import OllamaProvider
-from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
+from app.services.query_understanding import load_catalogue_facets
 from core.config import settings
 
 DEFAULT_QUERIES = [
@@ -29,6 +30,11 @@ def main() -> int:
         timeout_seconds=settings.llm_query_understanding_timeout_seconds,
     )
     print(f"Model: {settings.ollama_model} at {settings.ollama_base_url}")
+    session = next(get_session())
+    try:
+        facets = load_catalogue_facets(session)
+    finally:
+        session.close()
 
     start = time.time()
     provider.warm_up()
@@ -38,7 +44,7 @@ def main() -> int:
     for query in queries:
         start = time.time()
         try:
-            result = provider.understand_query(query, CATALOGUE_FACETS)
+            result = provider.understand_query(query, facets)
             used += 1
             filters = {k: v for k, v in result.filters.model_dump().items() if v is not None}
             print(f"{time.time() - start:5.1f}s  LLM       {query!r} -> {result.cleaned_query!r} {filters}")
