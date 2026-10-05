@@ -27,6 +27,33 @@ services:
       timeout: 5s
       retries: 5
 
+  # No published port: the app reaches it on the compose network, and a host
+  # Ollama install may already be using 11434.
+  ollama:
+    image: ollama/ollama:latest
+    container_name: fashion_rec_ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=30m
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # One-shot: downloads the model into the shared volume (no-op once present).
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: fashion_rec_ollama_pull
+    environment:
+      - OLLAMA_HOST=ollama:11434
+    entrypoint: ["ollama", "pull", "${OLLAMA_MODEL:-tinyllama}"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "no"
+
   app:
     build: .
     container_name: fashion_rec_app
@@ -37,11 +64,15 @@ services:
     environment:
       - DATABASE_URL=postgresql+psycopg://fashion_rec:dev_password@db:5432/fashion_rec
       - REDIS_URL=redis://redis:6379/0
+      - OLLAMA_BASE_URL=http://ollama:11434
     depends_on:
       db:
         condition: service_healthy
       redis:
         condition: service_healthy
+      ollama-pull:
+        condition: service_completed_successfully
 
 volumes:
   pg_data:
+  ollama_data:

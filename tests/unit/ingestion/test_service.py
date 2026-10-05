@@ -195,3 +195,65 @@ class TestIngestRecords:
         stats = ingest_records(test_db, records)
         total = stats.inserted + stats.updated + stats.skipped + stats.invalid
         assert total == 4
+
+
+class TestCatalogueAvailabilitySync:
+    """Products leaving and re-entering the feed."""
+
+    FEED = [
+        {"id": 8001, "productDisplayName": "Shirt", "gender": "Men"},
+        {"id": 8002, "productDisplayName": "Dress", "gender": "Women"},
+        {"id": 8003, "productDisplayName": "Belt", "gender": "Men"},
+    ]
+
+    def test_missing_products_marked_unavailable(self, repository: ProductRepository, test_db):
+        ingest_records(test_db, self.FEED)
+
+        stats = ingest_records(test_db, self.FEED[:2], mark_missing_unavailable=True)
+
+        assert stats.deactivated == 1
+        assert stats.skipped == 2
+        test_db.expire_all()
+        assert repository.get_by_external_id("8003").availability is False
+        assert repository.get_by_external_id("8001").availability is True
+
+    def test_missing_products_kept_without_flag(self, repository: ProductRepository, test_db):
+        ingest_records(test_db, self.FEED)
+
+        stats = ingest_records(test_db, self.FEED[:2])
+
+        assert stats.deactivated == 0
+        assert repository.get_by_external_id("8003").availability is True
+
+    def test_returning_product_reactivated(self, repository: ProductRepository, test_db):
+        ingest_records(test_db, self.FEED)
+        ingest_records(test_db, self.FEED[:2], mark_missing_unavailable=True)
+
+        stats = ingest_records(test_db, self.FEED, mark_missing_unavailable=True)
+
+        assert stats.reactivated == 1
+        assert stats.deactivated == 0
+        test_db.expire_all()
+        assert repository.get_by_external_id("8003").availability is True
+
+    def test_returning_changed_product_reactivated_and_updated(self, repository: ProductRepository, test_db):
+        ingest_records(test_db, self.FEED)
+        ingest_records(test_db, self.FEED[:2], mark_missing_unavailable=True)
+        changed = {"id": 8003, "productDisplayName": "Leather Belt", "gender": "Men"}
+
+        stats = ingest_records(test_db, [*self.FEED[:2], changed], mark_missing_unavailable=True)
+
+        assert stats.updated == 1
+        assert stats.reactivated == 1
+        test_db.expire_all()
+        product = repository.get_by_external_id("8003")
+        assert product.availability is True
+        assert product.name == "Leather Belt"
+
+    def test_empty_feed_does_not_deactivate_catalogue(self, repository: ProductRepository, test_db):
+        ingest_records(test_db, self.FEED)
+
+        stats = ingest_records(test_db, [], mark_missing_unavailable=True)
+
+        assert stats.deactivated == 0
+        assert repository.get_by_external_id("8001").availability is True

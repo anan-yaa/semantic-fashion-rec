@@ -21,11 +21,14 @@ class IngestionStats:
         self.updated = 0
         self.skipped = 0
         self.invalid = 0
+        self.reactivated = 0
+        self.deactivated = 0
 
     def __repr__(self):
         return (
             f"IngestionStats(inserted={self.inserted}, updated={self.updated}, "
-            f"skipped={self.skipped}, invalid={self.invalid})"
+            f"skipped={self.skipped}, invalid={self.invalid}, "
+            f"reactivated={self.reactivated}, deactivated={self.deactivated})"
         )
 
 
@@ -53,10 +56,34 @@ def map_schema_to_product_model(schema) -> Product:
     )
 
 
+def deactivate_missing_products(
+    session: Session, present_external_ids: set, chunk_size: int = 1000
+) -> int:
+    """Mark available products whose external id is not in the feed as unavailable.
+
+    Returns the number of products deactivated.
+    """
+    active_ids = {
+        ext_id
+        for (ext_id,) in session.query(Product.external_product_id).filter(
+            Product.availability == True  # noqa: E712
+        )
+    }
+    missing = sorted(active_ids - present_external_ids)
+    for start in range(0, len(missing), chunk_size):
+        chunk = missing[start : start + chunk_size]
+        session.query(Product).filter(Product.external_product_id.in_(chunk)).update(
+            {Product.availability: False}, synchronize_session=False
+        )
+    session.commit()
+    return len(missing)
+
+
 def ingest_records(
     session: Session,
     records: list,
     batch_size: int = 100,
+    mark_missing_unavailable: bool = False,
 ) -> IngestionStats:
     """
     Ingest a list of records into the database.
@@ -65,16 +92,21 @@ def ingest_records(
     1. Parse and validate (ProductIngestSchema)
     2. Map to internal schema
     3. Check if product exists
-    4. Decide: insert (new), update (changed), or skip (unchanged)
+    4. Decide: insert (new), update (changed), or skip (unchanged);
+       a previously unavailable product that reappears is made available again
     5. Batch upsert to database
+    6. Optionally mark products absent from the feed as unavailable
 
     Args:
         session: SQLAlchemy session.
         records: List of record dictionaries from dataset.
         batch_size: Number of records per batch upsert.
+        mark_missing_unavailable: Treat `records` as the complete catalogue and
+            mark every product not in it as unavailable. Only pass True for a
+            full feed, never a sample.
 
     Returns:
-        IngestionStats with inserted/updated/skipped/invalid counts.
+        IngestionStats with inserted/updated/skipped/invalid/reactivated/deactivated counts.
     """
     stats = IngestionStats()
     repo = ProductRepository(session)
@@ -115,11 +147,18 @@ def ingest_records(
             product = map_schema_to_product_model(create_schema)
             batch.append(product)
         elif existing.content_hash == create_schema.content_hash:
-            # Unchanged
-            stats.skipped += 1
+            if existing.availability:
+                stats.skipped += 1
+            else:
+                stats.reactivated += 1
+                existing.availability = True
+                batch.append(existing)
         else:
             # Updated
             stats.updated += 1
+            if not existing.availability:
+                stats.reactivated += 1
+                existing.availability = True
             existing.name = create_schema.name
             existing.description = create_schema.description
             existing.category = create_schema.category
@@ -143,5 +182,12 @@ def ingest_records(
     if batch:
         repo.upsert_many(batch)
         logger.debug(f"Flushed final batch of {len(batch)}")
+
+    if mark_missing_unavailable:
+        if seen_external_ids:
+            stats.deactivated = deactivate_missing_products(session, seen_external_ids)
+        else:
+            # An empty feed is almost certainly a broken download, not an empty catalogue.
+            logger.error("Feed contained no records; refusing to mark the whole catalogue unavailable")
 
     return stats

@@ -148,3 +148,31 @@ class TestSearchAPIIntegration:
             assert "embedding" not in product
             assert "content_hash" not in product
             assert "search_vector" not in product
+
+    def _seed_availability_pair(self):
+        provider = FakeEmbeddingProvider()
+        for pid, available in (("in_stock", True), ("delisted", False)):
+            product = make_product(pid, pid, QUERY, availability=available)
+            product.embedding = provider.embed_passages([QUERY])[0]
+            self.session.add(product)
+        self.session.commit()
+        build_keyword_index(self.session, limit=100)
+
+    @pytest.mark.parametrize("method", ["hybrid", "vector", "keyword"])
+    def test_unavailable_products_hidden_by_default(self, method):
+        self._seed_availability_pair()
+
+        response = self.client.post("/search", json={"query": QUERY, "method": method, "limit": 10})
+
+        assert response.status_code == 200
+        assert [p["id"] for p in response.json()["products"]] == ["in_stock"]
+
+    def test_unavailable_products_returned_when_requested(self):
+        self._seed_availability_pair()
+
+        response = self.client.post(
+            "/search", json={"query": QUERY, "filters": {"availability": False}, "limit": 10}
+        )
+
+        assert response.status_code == 200
+        assert [p["id"] for p in response.json()["products"]] == ["delisted"]

@@ -1,4 +1,5 @@
 import logging
+import threading
 
 from fastapi import FastAPI, status
 from fastapi.exceptions import RequestValidationError
@@ -43,12 +44,21 @@ async def startup_event():
     logger.info("Application starting up")
     logger.info(f"Environment: debug={settings.debug}, host={settings.host}, port={settings.port}")
 
-    # Warn if query understanding is enabled but no API key provided
-    if settings.query_understanding_enabled and not settings.gemini_api_key:
+    if not settings.query_understanding_enabled:
+        return
+
+    if settings.llm_provider == "ollama":
+        from app.providers.ollama_llm import OllamaProvider
+
+        # Loading the model takes tens of seconds; do it in the background so
+        # the first search doesn't time out and the app still starts quickly.
+        # Ollama keeps the model loaded server-side, so a throwaway client is enough.
+        provider = OllamaProvider(model=settings.ollama_model, base_url=settings.ollama_base_url)
+        threading.Thread(target=provider.warm_up, daemon=True).start()
+    elif not settings.gemini_api_key:
         logger.warning(
-            "⚠️  query_understanding_enabled=True but gemini_api_key is not set. "
-            "Query understanding will be auto-disabled at runtime. "
-            "Set GEMINI_API_KEY environment variable to enable."
+            "query_understanding_enabled=True but GEMINI_API_KEY is not set; "
+            "searches will fall back to the raw query."
         )
 
 

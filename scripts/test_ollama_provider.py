@@ -1,55 +1,53 @@
 #!/usr/bin/env python3
-"""Test script to verify Ollama provider works with orca-mini."""
+"""Smoke-test the configured Ollama model against a running Ollama server.
 
+Usage:
+    PYTHONPATH=. python3 scripts/test_ollama_provider.py ["query" ...]
+"""
+import sys
 import time
+
+from app.providers.llm_base import LLMProviderError
 from app.providers.ollama_llm import OllamaProvider
-from core.config import Settings
+from app.services.query_understanding.vocabulary import CATALOGUE_FACETS
+from core.config import settings
 
-def test_ollama_extraction():
-    """Test filter extraction with Ollama."""
-    settings = Settings(
-        llm_provider="ollama",
-        ollama_model="orca-mini",
-        llm_query_understanding_timeout_seconds=5.0,
-    )
+DEFAULT_QUERIES = [
+    "black leather jacket for men",
+    "I need an outfit to go to the beach this summer",
+    "cozy winter outfit",
+    "navy blue shirt",
+    "नीली शर्ट",
+]
 
+
+def main() -> int:
+    queries = sys.argv[1:] or DEFAULT_QUERIES
     provider = OllamaProvider(
         model=settings.ollama_model,
         base_url=settings.ollama_base_url,
         timeout_seconds=settings.llm_query_understanding_timeout_seconds,
     )
+    print(f"Model: {settings.ollama_model} at {settings.ollama_base_url}")
 
-    # Mock filter vocabulary from your catalogue
-    valid_filters = {
-        "category": ["Topwear", "Bottomwear", "Accessories"],
-        "gender": ["Men", "Women", "Unisex"],
-        "color": ["Black", "White", "Blue", "Red", "Green", "Brown"],
-        "season": ["Summer", "Winter", "Fall", "Spring"],
-    }
+    start = time.time()
+    provider.warm_up()
+    print(f"Warm-up: {time.time() - start:.1f}s\n")
 
-    test_queries = [
-        "black leather jacket for men",
-        "blue cotton shirt for women",
-        "summer dresses",
-    ]
-
-    for query in test_queries:
-        print(f"\n{'='*60}")
-        print(f"Query: {query}")
-        print('='*60)
+    used = 0
+    for query in queries:
         start = time.time()
         try:
-            result = provider.understand_query(query, valid_filters)
-            elapsed = time.time() - start
-            print(f"✓ Success ({elapsed:.2f}s)")
-            print(f"  Cleaned: {result.cleaned_query}")
-            print(f"  Filters: {result.filters}")
-        except Exception as e:
-            elapsed = time.time() - start
-            print(f"✗ Failed ({elapsed:.2f}s): {e}")
+            result = provider.understand_query(query, CATALOGUE_FACETS)
+            used += 1
+            filters = {k: v for k, v in result.filters.model_dump().items() if v is not None}
+            print(f"{time.time() - start:5.1f}s  LLM       {query!r} -> {result.cleaned_query!r} {filters}")
+        except LLMProviderError as e:
+            print(f"{time.time() - start:5.1f}s  FALLBACK  {query!r} -> {e}")
+
+    print(f"\nLLM used for {used}/{len(queries)} queries")
+    return 0
+
 
 if __name__ == "__main__":
-    print("Testing Ollama provider with orca-mini...")
-    print("Make sure Ollama is running: ollama serve")
-    print()
-    test_ollama_extraction()
+    sys.exit(main())

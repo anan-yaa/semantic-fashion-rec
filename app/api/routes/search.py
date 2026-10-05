@@ -11,7 +11,7 @@ from app.providers.base import EmbeddingProvider
 from app.providers.factory import get_embedding_provider
 from app.providers.llm_base import LLMProvider
 from app.providers.llm_factory import get_llm_provider
-from app.schemas.search import SearchRequest, SearchResponse, SearchMethod
+from app.schemas.search import SearchFilter, SearchRequest, SearchResponse, SearchMethod
 from app.services.query_understanding import merge_filters, understand_query
 from app.services.search import search_hybrid
 from core.config import settings
@@ -94,8 +94,13 @@ def search(
     """
     try:
         keyword_query_text = None
-        vector_filters = request.filters  # Unchanged - user filters only
-        keyword_filters = request.filters  # Unchanged - user filters only
+        user_filters = request.filters or SearchFilter()
+        if user_filters.availability is None:
+            # Products dropped from the catalogue feed stay in the DB as
+            # unavailable; hide them unless the caller asks otherwise.
+            user_filters = user_filters.model_copy(update={"availability": True})
+        vector_filters = user_filters
+        keyword_filters = user_filters
         llm_latency_ms = 0.0
         used_llm = False
         llm_error = None
@@ -111,7 +116,7 @@ def search(
 
             # LLM-inferred filters apply to keyword search only.
             # User-supplied filters always win over LLM inferences.
-            keyword_filters = merge_filters(request.filters, understanding.filters)
+            keyword_filters = merge_filters(user_filters, understanding.filters)
 
         # Execute search
         products, method_used, search_time_ms = search_hybrid(
