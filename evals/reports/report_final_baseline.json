@@ -1,0 +1,1387 @@
+{
+  "generated_at": "2026-10-04T09:37:17.818648+00:00",
+  "ground_truth_source": "evals/ground_truth/ground_truth_v2_auto.json",
+  "query_count": 80,
+  "excluded_query_count": 0,
+  "per_method": {
+    "hybrid": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    },
+    "vector": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    },
+    "keyword": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    }
+  },
+  "per_query": {
+    "q001": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q002": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q003": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q004": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q005": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q006": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q007": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q008": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q009": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q010": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q011": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q012": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q020": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q021": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q022": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q023": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q024": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q025": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q026": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q027": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q028": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q029": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q030": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q031": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q040": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q041": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q042": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q043": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q044": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q045": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q046": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q047": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q048": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q049": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q050": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q051": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q052": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q053": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q054": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q055": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q056": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q057": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q058": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q059": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q060": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q061": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q062": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q063": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q064": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q065": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q066": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q067": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q068": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q069": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q070": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q071": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q072": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q073": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q074": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q075": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q076": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q077": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q080": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q081": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q082": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q083": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q084": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q085": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q086": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q087": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q090": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q091": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q092": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q093": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q094": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q095": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q096": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q097": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q098": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q099": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "query_understanding_enabled": false,
+  "query_understanding": []
+}

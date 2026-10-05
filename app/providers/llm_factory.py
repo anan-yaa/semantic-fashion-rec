@@ -2,7 +2,6 @@
 import logging
 
 from app.providers.fake_llm import FakeLLMProvider
-from app.providers.llm import GeminiProvider
 from app.providers.llm_base import LLMProvider
 from core.config import Settings
 
@@ -24,6 +23,9 @@ def get_llm_provider(settings: Settings, use_fake: bool = False, for_eval: bool 
     if use_fake:
         logger.info("Using FakeLLMProvider for testing")
         return FakeLLMProvider()
+
+    # Lazy import to avoid dependency on google.genai when not using real LLM
+    from app.providers.llm import GeminiProvider
 
     if for_eval:
         timeout = settings.llm_query_understanding_eval_timeout_seconds

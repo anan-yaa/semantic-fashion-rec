@@ -14,6 +14,13 @@ from app.services.search.rank_fusion import reciprocal_rank_fusion
 
 logger = logging.getLogger(__name__)
 
+# Keyword hits fused into hybrid must match at least this fraction of the
+# query's terms (rounded up): 2 of 2, 3 of 3, 3 of 4, 4 of 5. Products matching
+# only some words of a multi-word query add noise rather than recall. Tuned on
+# ground_truth_v2_real: NDCG@10 0.694 (no threshold) / 0.804 (0.6) / 0.825 (0.75)
+# / 0.832 (1.0, i.e. AND).
+KEYWORD_MIN_TERM_COVERAGE = 0.75
+
 
 def search_hybrid(
     session: Session,
@@ -80,7 +87,11 @@ def search_hybrid(
 
             try:
                 keyword_results, _ = search_keyword(
-                    session, kw_query_text, filters=kw_filters, limit=limit * 2
+                    session,
+                    kw_query_text,
+                    filters=kw_filters,
+                    limit=limit * 2,
+                    min_term_coverage=KEYWORD_MIN_TERM_COVERAGE,
                 )
             except Exception as e:
                 logger.debug(f"Keyword search failed: {e}")

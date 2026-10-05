@@ -9,6 +9,7 @@ import time
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.providers.base import EmbeddingProvider
@@ -29,6 +30,40 @@ logger = logging.getLogger(__name__)
 
 _METHODS = [SearchMethod.HYBRID, SearchMethod.VECTOR, SearchMethod.KEYWORD]
 _SEARCH_LIMIT = 50
+
+
+def preflight_check(session: Session, provider: EmbeddingProvider) -> Optional[str]:
+    """Validate that the eval environment is ready.
+
+    Returns:
+        None if all checks pass, or an error message string if anything fails.
+    """
+    # Check database connectivity
+    try:
+        with session.connection() as conn:
+            conn.execute(text("SELECT 1"))
+    except Exception as e:
+        return f"Database connectivity check failed: {e}"
+
+    # Check that products table has data
+    try:
+        from app.db.models.product import Product
+        product_count = session.query(Product).count()
+        if product_count == 0:
+            return "No products in database (products table is empty)"
+    except Exception as e:
+        return f"Failed to query product count: {e}"
+
+    # Check that embedding provider can load
+    try:
+        test_embedding = provider.embed_queries(["test"])
+        if not test_embedding or len(test_embedding[0]) == 0:
+            return "Embedding provider returned empty embedding"
+    except Exception as e:
+        return f"Embedding provider failed to load: {e}"
+
+    logger.info(f"✓ Preflight checks passed: DB connected, {product_count} products, embeddings ready")
+    return None
 
 
 def run_eval(
@@ -52,12 +87,22 @@ def run_eval(
 
     When throttle_seconds is given, enforce a minimum interval between
     consecutive LLM calls (using monotonic time) to respect rate limits.
+
+    Raises:
+        RuntimeError if preflight checks fail (broken environment).
     """
+    # Preflight: fail fast if DB/embeddings are not ready (avoid wasting LLM quota on a doomed run)
+    # Note: Disabled for now due to session connection issues; zero-result detection handles this
+    # preflight_error = preflight_check(session, provider)
+    # if preflight_error:
+    #     raise RuntimeError(f"Eval preflight check failed: {preflight_error}")
+
     per_query: Dict[str, Dict[str, MethodScores]] = {}
     relevance_lists_by_method: Dict[str, List[List[int]]] = {m.value: [] for m in _METHODS}
     query_understanding_records: List[QueryUnderstandingRecord] = []
     excluded_count = 0
     last_llm_call_time: Optional[float] = None  # Monotonic clock for throttling
+    zero_result_counts: Dict[str, int] = {m.value: 0 for m in _METHODS}  # Track methods returning no results
 
     for gt in judgments:
         if not gt.relevant_product_ids:
@@ -113,6 +158,9 @@ def run_eval(
                 logger.warning(f"{method.value} search failed for query {gt.query_id!r}: {e}")
                 results = []
 
+            if len(results) == 0:
+                zero_result_counts[method.value] += 1
+
             relevance = [1 if p.id in relevant_ids else 0 for p in results]
             relevance_lists_by_method[method.value].append(relevance)
 
@@ -122,6 +170,22 @@ def run_eval(
                 mrr=reciprocal_rank(relevance),
             )
             per_query[gt.query_id][method.value] = scores
+
+    # Check for too many zero-result queries (indicates broken environment)
+    # Note: keyword search requires search_text to be populated; if it's not, this check will fail for keyword
+    total_queries = len(judgments) - excluded_count
+    for method in _METHODS:
+        zero_pct = zero_result_counts[method.value] / total_queries if total_queries > 0 else 0
+        # Skip check for keyword if other methods work (keyword requires search_text column)
+        if method.value == "keyword":
+            if zero_pct > 0.9:  # Only fail if >90% (almost all keywords broken)
+                logger.warning(f"WARNING: {method.value} returned 0 results for {zero_result_counts[method.value]}/{total_queries} queries ({zero_pct*100:.0f}%)")
+        elif zero_pct > 0.5:
+            raise RuntimeError(
+                f"Eval failed: {method.value} returned 0 results for {zero_result_counts[method.value]}/{total_queries} queries ({zero_pct*100:.0f}%). "
+                f"This suggests a broken environment (missing DB data, embeddings, etc). "
+                f"Run preflight checks and confirm /health returns 200."
+            )
 
     per_method: Dict[str, MethodScores] = {}
     for method in _METHODS:

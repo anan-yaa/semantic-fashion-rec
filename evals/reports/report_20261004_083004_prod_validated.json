@@ -1,0 +1,2291 @@
+{
+  "generated_at": "2026-10-04T08:37:48.912206+00:00",
+  "ground_truth_source": "evals/ground_truth/ground_truth_v1.json",
+  "query_count": 73,
+  "excluded_query_count": 7,
+  "per_method": {
+    "hybrid": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    },
+    "vector": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    },
+    "keyword": {
+      "ndcg_at_10": 0.0,
+      "precision_at_10": 0.0,
+      "mrr": 0.0
+    }
+  },
+  "per_query": {
+    "q001": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q002": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q003": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q004": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q005": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q006": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q007": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q008": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q009": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q010": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q011": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q012": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q020": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q021": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q022": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q023": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q024": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q026": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q027": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q028": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q029": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q031": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q040": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q041": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q042": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q043": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q044": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q046": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q047": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q048": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q049": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q051": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q052": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q055": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q056": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q057": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q058": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q059": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q060": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q061": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q062": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q063": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q064": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q065": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q066": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q067": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q068": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q069": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q070": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q071": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q072": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q073": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q074": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q075": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q076": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q077": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q080": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q081": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q082": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q083": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q084": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q085": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q086": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q087": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q090": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q092": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q093": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q094": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q095": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q096": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q097": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q098": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    },
+    "q099": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0
+      }
+    }
+  },
+  "query_understanding_enabled": true,
+  "query_understanding": [
+    {
+      "query_id": "q001",
+      "query": "black leather jacket",
+      "used_llm": true,
+      "cleaned_query": "black leather jacket",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q002",
+      "query": "navy blue running shoes",
+      "used_llm": true,
+      "cleaned_query": "navy blue running shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "Navy Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q003",
+      "query": "women's silver jewellery",
+      "used_llm": true,
+      "cleaned_query": "women silver jewellery",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": "Silver",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q004",
+      "query": "formal watch for men",
+      "used_llm": true,
+      "cleaned_query": "formal watch men",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q005",
+      "query": "brown leather wallet",
+      "used_llm": true,
+      "cleaned_query": "brown leather wallet",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Brown",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q006",
+      "query": "grey eyewear sunglasses",
+      "used_llm": true,
+      "cleaned_query": "grey eyewear sunglasses",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Grey",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q007",
+      "query": "pink innerwear",
+      "used_llm": true,
+      "cleaned_query": "pink innerwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Pink",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q008",
+      "query": "purple handbag",
+      "used_llm": true,
+      "cleaned_query": "purple handbag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Purple",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q009",
+      "query": "white flip flops",
+      "used_llm": true,
+      "cleaned_query": "white flip flops",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "White",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q010",
+      "query": "yellow socks",
+      "used_llm": true,
+      "cleaned_query": "yellow socks",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Yellow",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q011",
+      "query": "maroon saree",
+      "used_llm": true,
+      "cleaned_query": "maroon saree",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Women",
+        "color": "Maroon",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q012",
+      "query": "black belt for men",
+      "used_llm": true,
+      "cleaned_query": "black belt men",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Men",
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q020",
+      "query": "lightweight breathable top for hot days",
+      "used_llm": true,
+      "cleaned_query": "lightweight breathable top hot days",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q021",
+      "query": "shoes for standing all day comfortably",
+      "used_llm": true,
+      "cleaned_query": "shoes standing comfortable",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q022",
+      "query": "elegant evening handbag",
+      "used_llm": true,
+      "cleaned_query": "elegant evening handbag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q023",
+      "query": "rugged outdoor footwear",
+      "used_llm": true,
+      "cleaned_query": "rugged outdoor footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q024",
+      "query": "eye-catching statement jewellery",
+      "used_llm": true,
+      "cleaned_query": "eye-catching statement jewellery",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q026",
+      "query": "a fragrance that lasts all day",
+      "used_llm": true,
+      "cleaned_query": "fragrance long lasting",
+      "filters": {
+        "category": "Personal Care",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q027",
+      "query": "sturdy bag for carrying a laptop",
+      "used_llm": true,
+      "cleaned_query": "sturdy bag carrying laptop",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q028",
+      "query": "sleek minimalist wristwatch",
+      "used_llm": true,
+      "cleaned_query": "sleek minimalist wristwatch",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q029",
+      "query": "warm layer to wear under a jacket",
+      "used_llm": true,
+      "cleaned_query": "warm layer under jacket",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q031",
+      "query": "durable sandals for everyday wear",
+      "used_llm": true,
+      "cleaned_query": "durable sandals everyday wear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q040",
+      "query": "outfit for a job interview",
+      "used_llm": true,
+      "cleaned_query": "outfit job interview",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q041",
+      "query": "something to wear to a summer wedding",
+      "used_llm": true,
+      "cleaned_query": "summer wedding dress outfit",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q042",
+      "query": "gym workout clothes",
+      "used_llm": true,
+      "cleaned_query": "gym workout clothes",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q043",
+      "query": "beach vacation outfit",
+      "used_llm": true,
+      "cleaned_query": "beach vacation outfit",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q044",
+      "query": "office wear for men",
+      "used_llm": true,
+      "cleaned_query": "office wear men",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q046",
+      "query": "clothes for a night out",
+      "used_llm": true,
+      "cleaned_query": "clothes night out",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q047",
+      "query": "sportswear for running a marathon",
+      "used_llm": true,
+      "cleaned_query": "sportswear running marathon",
+      "filters": {
+        "category": "Sporting Goods",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q048",
+      "query": "travel-friendly comfortable shoes",
+      "used_llm": true,
+      "cleaned_query": "travel comfortable shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q049",
+      "query": "party accessories for women",
+      "used_llm": true,
+      "cleaned_query": "party accessories women",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q051",
+      "query": "summer dress",
+      "used_llm": true,
+      "cleaned_query": "summer dress",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q052",
+      "query": "fall jacket for men",
+      "used_llm": true,
+      "cleaned_query": "fall jacket men",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": "Fall",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q055",
+      "query": "summer sandals",
+      "used_llm": true,
+      "cleaned_query": "summer sandals",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q056",
+      "query": "monsoon footwear",
+      "used_llm": true,
+      "cleaned_query": "monsoon footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": "Fall",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q057",
+      "query": "winter sweater for women",
+      "used_llm": true,
+      "cleaned_query": "winter sweater women",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Women",
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q058",
+      "query": "summer topwear for men",
+      "used_llm": true,
+      "cleaned_query": "summer topwear men",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q059",
+      "query": "fall accessories",
+      "used_llm": true,
+      "cleaned_query": "fall accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": "Fall",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q060",
+      "query": "maroon saree for women",
+      "used_llm": true,
+      "cleaned_query": "maroon saree",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Women",
+        "color": "Maroon",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q061",
+      "query": "beige sandals",
+      "used_llm": true,
+      "cleaned_query": "beige sandals",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "Beige",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q062",
+      "query": "olive green bag",
+      "used_llm": true,
+      "cleaned_query": "olive green bag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Olive",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q063",
+      "query": "white sneakers",
+      "used_llm": true,
+      "cleaned_query": "white sneakers",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "White",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q064",
+      "query": "red dress",
+      "used_llm": true,
+      "cleaned_query": "red dress",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Red",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q065",
+      "query": "navy blue shirt",
+      "used_llm": true,
+      "cleaned_query": "navy blue shirt",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Navy Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q066",
+      "query": "gold watch",
+      "used_llm": true,
+      "cleaned_query": "gold watch",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Gold",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q067",
+      "query": "black formal shoes",
+      "used_llm": true,
+      "cleaned_query": "black formal shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q068",
+      "query": "grey topwear",
+      "used_llm": true,
+      "cleaned_query": "grey topwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Grey",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q069",
+      "query": "orange accessories",
+      "used_llm": true,
+      "cleaned_query": "orange accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": "Orange",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q070",
+      "query": "boys topwear",
+      "used_llm": true,
+      "cleaned_query": "boys topwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q071",
+      "query": "girls dress",
+      "used_llm": true,
+      "cleaned_query": "girls dress",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q072",
+      "query": "unisex sunglasses",
+      "used_llm": true,
+      "cleaned_query": "unisex sunglasses",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Unisex",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q073",
+      "query": "men's innerwear",
+      "used_llm": true,
+      "cleaned_query": "mens innerwear",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q074",
+      "query": "women's handbags",
+      "used_llm": true,
+      "cleaned_query": "womens handbags",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q075",
+      "query": "boys footwear",
+      "used_llm": true,
+      "cleaned_query": "boys footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": "Boys",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q076",
+      "query": "girls accessories",
+      "used_llm": true,
+      "cleaned_query": "girls accessories",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Girls",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q077",
+      "query": "unisex watches",
+      "used_llm": true,
+      "cleaned_query": "unisex watches",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Unisex",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q080",
+      "query": "cozy winter outfit",
+      "used_llm": true,
+      "cleaned_query": "cozy winter outfit",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Winter",
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q081",
+      "query": "something comfortable",
+      "used_llm": true,
+      "cleaned_query": "comfortable",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q082",
+      "query": "nice accessory",
+      "used_llm": true,
+      "cleaned_query": "accessory",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q083",
+      "query": "stylish footwear",
+      "used_llm": true,
+      "cleaned_query": "stylish footwear",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q084",
+      "query": "good gift idea",
+      "used_llm": true,
+      "cleaned_query": "good gift idea",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q085",
+      "query": "something trendy",
+      "used_llm": true,
+      "cleaned_query": "trendy",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q086",
+      "query": "everyday essentials",
+      "used_llm": true,
+      "cleaned_query": "everyday essentials",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q087",
+      "query": "something for casual outings",
+      "used_llm": true,
+      "cleaned_query": "casual outings",
+      "filters": {
+        "category": null,
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q090",
+      "query": "नीली शर्ट",
+      "used_llm": true,
+      "cleaned_query": "नीली शर्ट",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": "Blue",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q092",
+      "query": "काली जूती",
+      "used_llm": true,
+      "cleaned_query": "काली जूती",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "Black",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q093",
+      "query": "महिलाओं के लिए गहने",
+      "used_llm": true,
+      "cleaned_query": "गहने महिलाओं",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Women",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q094",
+      "query": "पुरुषों के लिए घड़ी",
+      "used_llm": true,
+      "cleaned_query": "पुरुषों घड़ी",
+      "filters": {
+        "category": "Accessories",
+        "gender": "Men",
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q095",
+      "query": "लाल साड़ी",
+      "used_llm": true,
+      "cleaned_query": "लाल साड़ी red saree",
+      "filters": {
+        "category": "Apparel",
+        "gender": "Women",
+        "color": "Red",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q096",
+      "query": "बच्चों के कपड़े",
+      "used_llm": true,
+      "cleaned_query": "बच्चों के कपड़े",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q097",
+      "query": "सफेद जूते",
+      "used_llm": true,
+      "cleaned_query": "white shoes",
+      "filters": {
+        "category": "Footwear",
+        "gender": null,
+        "color": "White",
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q098",
+      "query": "चमड़े का बैग",
+      "used_llm": true,
+      "cleaned_query": "चमड़े बैग leather bag",
+      "filters": {
+        "category": "Accessories",
+        "gender": null,
+        "color": null,
+        "season": null,
+        "availability": null
+      },
+      "error": null
+    },
+    {
+      "query_id": "q099",
+      "query": "गर्मियों के कपड़े",
+      "used_llm": true,
+      "cleaned_query": "गर्मियों कपड़े",
+      "filters": {
+        "category": "Apparel",
+        "gender": null,
+        "color": null,
+        "season": "Summer",
+        "availability": null
+      },
+      "error": null
+    }
+  ]
+}

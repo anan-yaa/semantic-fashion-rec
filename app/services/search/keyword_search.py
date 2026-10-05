@@ -1,8 +1,9 @@
 """Full-text keyword search."""
 import logging
+import math
 from typing import List, Optional, Tuple
 
-from sqlalchemy import or_, desc, func
+from sqlalchemy import Integer, Text, cast, desc, func, or_, select
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
@@ -16,12 +17,13 @@ def search_keyword(
     query_text: str,
     filters: Optional[SearchFilter] = None,
     limit: int = 50,
+    min_term_coverage: float = 0.0,
 ) -> Tuple[List[Product], int]:
     """Search using keyword matching.
 
     On PostgreSQL, uses TSVECTOR full-text search: plainto_tsquery() to parse
-    the query and ts_rank_cd() to rank by relevance, backed by the GIN index
-    on search_vector.
+    the query, with its terms OR-ed so partial matches are returned, and
+    ts_rank() to rank by relevance, backed by the GIN index on search_vector.
     On SQLite, falls back to ILIKE pattern matching (no tsvector support).
 
     Args:
@@ -29,6 +31,10 @@ def search_keyword(
         query_text: Search query.
         filters: Optional search filters.
         limit: Maximum results to return.
+        min_term_coverage: Minimum fraction of the query's terms a product must
+            match (PostgreSQL only). 0.0 keeps any partial match; hybrid search
+            raises it so single-word hits on multi-word queries (e.g. only
+            "black" for "black leather jacket") don't get fused in as noise.
 
     Returns:
         Tuple of (products, total_count).
@@ -51,13 +57,41 @@ def search_keyword(
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
 
-    # PostgreSQL FTS using TSVECTOR, plainto_tsquery, ts_rank_cd
+    # PostgreSQL FTS using TSVECTOR, OR-ed tsquery, ts_rank
     if dialect == "postgresql":
-        tsquery = func.plainto_tsquery("english", query_text)
-        query_obj = query_obj.filter(
-            Product.search_vector.op("@@")(tsquery)
-        ).order_by(
-            desc(func.ts_rank_cd(Product.search_vector, tsquery)),
+        # plainto_tsquery ANDs every term, so natural-language queries like
+        # "black leather jacket" matched nothing when no single product has all
+        # three words. OR the parsed (stemmed, stopword-free) lexemes instead;
+        # ts_rank scores products matching more query terms higher, so full
+        # matches still come first.
+        tsquery = func.to_tsquery(
+            "english",
+            func.replace(cast(func.plainto_tsquery("english", query_text), Text), "&", "|"),
+        )
+        query_obj = query_obj.filter(Product.search_vector.op("@@")(tsquery))
+
+        if min_term_coverage > 0:
+            # Same parsing as plainto_tsquery: stemmed, stopword-free lexemes
+            lexemes = session.execute(
+                select(func.tsvector_to_array(func.to_tsvector("english", query_text)))
+            ).scalar() or []
+            if lexemes:
+                # Lexemes are already stemmed, so match them with 'simple' to
+                # avoid stemming them a second time
+                matched_terms = sum(
+                    cast(
+                        Product.search_vector.op("@@")(
+                            func.to_tsquery("simple", func.quote_literal(lexeme))
+                        ),
+                        Integer,
+                    )
+                    for lexeme in lexemes
+                )
+                required = math.ceil(min_term_coverage * len(lexemes))
+                query_obj = query_obj.filter(matched_terms >= required)
+
+        query_obj = query_obj.order_by(
+            desc(func.ts_rank(Product.search_vector, tsquery)),
             Product.id,  # Deterministic tiebreaker for stable ordering of tied ranks
         )
 

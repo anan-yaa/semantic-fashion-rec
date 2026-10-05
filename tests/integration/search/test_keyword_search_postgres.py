@@ -1,4 +1,4 @@
-"""Integration tests for PostgreSQL full-text keyword search (ts_rank, plainto_tsquery)."""
+"""Integration tests for PostgreSQL full-text keyword search (ts_rank, OR-ed plainto_tsquery)."""
 import pytest
 from sqlalchemy import text
 from sqlalchemy.orm import Session
@@ -63,7 +63,7 @@ class TestKeywordSearchPostgresIntegration:
         assert total == 1
 
     def test_relevance_ranking_with_ts_rank(self, postgres_session: Session):
-        """Test that results are ranked by relevance (ts_rank_cd), most relevant first."""
+        """Test that results are ranked by relevance (ts_rank), most relevant first."""
         # p1 mentions "shirt" once, p2 mentions it multiple times (higher density -> higher rank)
         p1 = make_product("p1", "Item", "a blue shirt for casual wear")
         p2 = make_product("p2", "Shirt Shirt Shirt", "shirt shirt shirt shirt")
@@ -75,8 +75,75 @@ class TestKeywordSearchPostgresIntegration:
         results, total = search_keyword(postgres_session, "shirt", limit=10)
 
         assert total == 2
-        # p2 has higher term frequency, should rank first under ts_rank_cd
+        # p2 has higher term frequency, should rank first under ts_rank
         assert results[0].id == "p2"
+
+    def test_partial_term_match_is_returned(self, postgres_session: Session):
+        """Test that a product matching only some query terms is still found
+        (terms are OR-ed, not AND-ed as plainto_tsquery does on its own)."""
+        p = make_product("p1", "Black Jacket", "black jacket men topwear")
+        postgres_session.add(p)
+        postgres_session.commit()
+
+        build_keyword_index(postgres_session, limit=100)
+
+        # No product contains "leather", but "black" and "jacket" still match
+        results, total = search_keyword(postgres_session, "black leather jacket", limit=10)
+
+        assert total == 1
+        assert results[0].id == "p1"
+
+    def test_more_matched_terms_rank_higher(self, postgres_session: Session):
+        """Test that a product matching all query terms outranks partial matches."""
+        p1 = make_product("p1", "Black Belt", "black belt accessories")
+        p2 = make_product("p2", "Black Leather Jacket", "black leather jacket topwear")
+        p3 = make_product("p3", "Brown Jacket", "brown jacket topwear")
+        postgres_session.add_all([p1, p2, p3])
+        postgres_session.commit()
+
+        build_keyword_index(postgres_session, limit=100)
+
+        results, total = search_keyword(postgres_session, "black leather jacket", limit=10)
+
+        assert total == 3
+        assert results[0].id == "p2"
+
+    def test_min_term_coverage_drops_partial_matches(self, postgres_session: Session):
+        """Test that min_term_coverage keeps products matching enough query terms
+        and drops ones matching too few."""
+        p1 = make_product("p1", "Black Belt", "black belt accessories")
+        p2 = make_product("p2", "Black Leather Jacket", "black leather jacket topwear")
+        p3 = make_product("p3", "Black Jacket", "black jacket topwear")
+        postgres_session.add_all([p1, p2, p3])
+        postgres_session.commit()
+
+        build_keyword_index(postgres_session, limit=100)
+
+        # 3 terms at 0.6 -> at least 2 must match: p2 (3/3) and p3 (2/3), not p1 (1/3)
+        results, total = search_keyword(
+            postgres_session, "black leather jacket", limit=10, min_term_coverage=0.6
+        )
+        assert total == 2
+        assert [p.id for p in results] == ["p2", "p3"]
+
+        # 1.0 requires every term
+        results, total = search_keyword(
+            postgres_session, "black leather jacket", limit=10, min_term_coverage=1.0
+        )
+        assert total == 1
+        assert results[0].id == "p2"
+
+    def test_stopword_only_query_returns_empty(self, postgres_session: Session):
+        """Test that a query with no indexable terms returns nothing rather than erroring."""
+        p = make_product("p1", "Blue Shirt", "blue cotton shirt")
+        postgres_session.add(p)
+        postgres_session.commit()
+
+        build_keyword_index(postgres_session, limit=100)
+
+        results, total = search_keyword(postgres_session, "the a of", limit=10)
+
+        assert total == 0
 
     def test_no_match_returns_empty(self, postgres_session: Session):
         """Test that unrelated query terms return no results."""

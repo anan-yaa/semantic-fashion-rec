@@ -1,5 +1,6 @@
 """Search API route."""
 import logging
+import time
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -95,16 +96,25 @@ def search(
         keyword_query_text = None
         vector_filters = request.filters  # Unchanged - user filters only
         keyword_filters = request.filters  # Unchanged - user filters only
+        llm_latency_ms = 0.0
+        used_llm = False
+        llm_error = None
 
         if settings.query_understanding_enabled:
+            llm_start = time.time()
             understanding = understand_query(llm_provider, request.query)
+            llm_latency_ms = (time.time() - llm_start) * 1000
+
             keyword_query_text = understanding.cleaned_query
+            used_llm = understanding.used_llm
+            llm_error = understanding.error
+
             # LLM-inferred filters apply to keyword search only.
             # User-supplied filters always win over LLM inferences.
             keyword_filters = merge_filters(request.filters, understanding.filters)
 
         # Execute search
-        products, method_used, time_ms = search_hybrid(
+        products, method_used, search_time_ms = search_hybrid(
             session,
             query_text=request.query,
             provider=provider,
@@ -115,13 +125,27 @@ def search(
             keyword_filters=keyword_filters,  # User + LLM-inferred filters for keyword path
         )
 
+        # Structured logging for observability
+        logger.info(
+            f"search_complete",
+            extra={
+                "query": request.query[:100],  # Truncate for logging
+                "method": method_used.value,
+                "results": len(products),
+                "search_ms": search_time_ms,
+                "llm_used": used_llm,
+                "llm_latency_ms": llm_latency_ms,
+                "llm_error": llm_error,
+            }
+        )
+
         # Build response
         return SearchResponse(
             products=[p for p in products],  # Schema will convert via from_attributes
             query=request.query,
             method=method_used,
             total_products=len(products),
-            took_ms=time_ms,
+            took_ms=search_time_ms + llm_latency_ms,
         )
 
     except Exception as e:
