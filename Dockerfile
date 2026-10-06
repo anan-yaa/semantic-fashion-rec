@@ -6,7 +6,8 @@ WORKDIR /app
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# CPU-only torch keeps the image small; embeddings run on CPU inside the container.
+RUN pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt
 
 COPY --chown=appuser:appuser . .
 

@@ -4,7 +4,10 @@ filter-merge precedence rules. The route never talks to an LLMProvider
 directly - it only ever calls understand_query() below.
 """
 import logging
-from dataclasses import dataclass
+import threading
+import time
+from collections import OrderedDict
+from dataclasses import dataclass, replace
 
 from app.providers.llm_base import (
     LLMProvider,
@@ -15,6 +18,7 @@ from app.providers.llm_base import (
 )
 from app.schemas.search import SearchFilter
 from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
+from core.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -39,6 +43,41 @@ class QueryUnderstandingResult:
 
 FALLBACK_UNSUPPORTED_QUERY = "unsupported_query"
 FALLBACK_LLM_UNAVAILABLE = "llm_unavailable"
+
+
+_cache: "OrderedDict[str, tuple[float, QueryUnderstandingResult]]" = OrderedDict()
+_cache_lock = threading.Lock()
+
+
+def _cache_key(query: str) -> str:
+    return " ".join(query.lower().split())
+
+
+def _cache_get(key: str) -> QueryUnderstandingResult | None:
+    with _cache_lock:
+        entry = _cache.get(key)
+        if entry is None:
+            return None
+        stored_at, result = entry
+        if time.monotonic() - stored_at > settings.llm_cache_ttl_seconds:
+            del _cache[key]
+            return None
+        _cache.move_to_end(key)
+        return result
+
+
+def _cache_put(key: str, result: QueryUnderstandingResult) -> None:
+    with _cache_lock:
+        _cache[key] = (time.monotonic(), result)
+        _cache.move_to_end(key)
+        while len(_cache) > settings.llm_cache_max_entries:
+            _cache.popitem(last=False)
+
+
+def _reset_understanding_cache() -> None:
+    """Test-only hook: forget cached LLM results."""
+    with _cache_lock:
+        _cache.clear()
 
 
 def validate_filters(
@@ -98,6 +137,13 @@ def understand_query(
     limit) the LLM is skipped instantly for a cooldown, instead of every
     search waiting for the LLM timeout. See circuit_breaker.py.
     """
+    # Only successful LLM results are cached, never fallbacks, so an outage is not remembered.
+    cache_key = _cache_key(query)
+    if settings.llm_cache_ttl_seconds > 0:
+        cached = _cache_get(cache_key)
+        if cached is not None:
+            return replace(cached)
+
     if not llm_circuit_breaker.allow_request():
         return _fallback(query, "LLM circuit breaker open", FALLBACK_LLM_UNAVAILABLE)
 
@@ -121,12 +167,15 @@ def understand_query(
         raise
 
     llm_circuit_breaker.record_success()
-    return QueryUnderstandingResult(
+    understood = QueryUnderstandingResult(
         cleaned_query=result.cleaned_query or query,
         filters=validate_filters(result.filters, valid_filters),  # LLM-inferred only
         used_llm=True,
         translated=result.translated and bool(result.cleaned_query),
     )
+    if settings.llm_cache_ttl_seconds > 0:
+        _cache_put(cache_key, understood)
+    return understood
 
 
 def search_texts(query: str, understanding: QueryUnderstandingResult | None) -> tuple[str, str]:

@@ -16,6 +16,10 @@ class Settings(BaseSettings):
     host: str = Field(default="0.0.0.0")
     port: int = Field(default=8000)
     log_level: str = Field(default="INFO")
+    # "text" for humans, "json" for log pipelines (one object per line, with request_id and extras)
+    log_format: str = Field(default="text")
+    # Comma-separated browser origins allowed to call the API
+    cors_origins: str = Field(default="http://localhost:3000,http://127.0.0.1:3000")
 
     # Database
     database_url: str = Field(
@@ -52,6 +56,10 @@ class Settings(BaseSettings):
     # skip the LLM for the cooldown instead of waiting for it on every search
     llm_circuit_failure_threshold: int = Field(default=3)
     llm_circuit_cooldown_seconds: float = Field(default=30.0)
+    # Cache of successful LLM results per query: repeat searches (paging, sorting,
+    # filter changes) skip the ~1s LLM call. 0 seconds disables it.
+    llm_cache_ttl_seconds: float = Field(default=600.0, ge=0)
+    llm_cache_max_entries: int = Field(default=1000, ge=1)
     # Eval-path timeout: looser budget for offline evaluation (can retry, want complete coverage)
     llm_query_understanding_eval_timeout_seconds: float = Field(default=15.0)
     llm_query_understanding_eval_max_retries: int = Field(default=1)
@@ -68,6 +76,10 @@ class Settings(BaseSettings):
 
     # Redis
     redis_url: str = Field(default="redis://localhost:6379/0")
+
+    @property
+    def cors_origin_list(self) -> list[str]:
+        return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
 
 
 settings = Settings()

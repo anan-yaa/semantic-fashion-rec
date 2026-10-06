@@ -190,7 +190,11 @@ The embedding model and the LLM load in the background when the backend starts (
 
 ### Docker Compose
 
-`docker compose up` starts PostgreSQL, Redis, Ollama (it pulls the configured model automatically) and the API. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit). The frontend isn't included in Compose yet; see [Known limitations](#known-limitations).
+Copy `.env.example` to `.env` and set `POSTGRES_PASSWORD` (Compose refuses to start without it). Then `docker compose up --build` starts PostgreSQL, Redis, Ollama (it pulls the configured model automatically), the API on http://localhost:8000 and the UI on http://localhost:3000. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit).
+
+The Compose file is validated and both images build, but the whole stack has not been run together with the Compose plugin; see [Known limitations](#known-limitations).
+
+Configuration worth knowing: `CORS_ORIGINS` (browser origins allowed to call the API), `LOG_FORMAT=json` (structured logs with a per-request `X-Request-ID`), and `LLM_CACHE_TTL_SECONDS` (repeat queries skip the LLM; 0 disables).
 
 ## API
 
@@ -323,17 +327,15 @@ tests/                 unit/, integration/, model/ (slow)
 - **The vector index may miss matches.** Vector Recall@20 is 0.71 against an answer key made of the embedding model's own top 20. Approximate HNSW search with the default `ef_search = 40` is the likely cause, but this isn't confirmed yet.
 - **Data:** the dataset has no prices or usable images, so there's no price sorting and product cards show a color tile instead of a photo. "Outfit" queries return a single ranked list, not a combination of items.
 - **Reliability:**
-  - Search returns 500, not 503, when the database is down.
   - There's no overall request timeout.
   - The circuit breaker's state is kept per process, so with several API workers each one finds an outage separately.
 - **Security and operations:**
   - No authentication or HTTPS.
   - Rate limits are per IP address, so people sharing one IP (an office network) share a limit. They're also per API process; several workers or servers would need a shared store such as Redis.
-  - The default database password is a development one.
-  - CORS allows only localhost.
-  - No request IDs, structured (JSON) logs, metrics, dashboards or alerts.
+  - The default database password in `core/config.py` is a development one; Compose requires you to set your own.
+  - No metrics, dashboards or alerts (logs are structured and carry request IDs).
 - **Deployment:**
-  - Docker Compose hasn't been run end-to-end, and doesn't include the frontend.
+  - The full Compose stack hasn't been run end-to-end (the Compose plugin wasn't available when it was written); the images build.
   - Redis is configured but not used.
   - There's no CI/CD and no production configuration.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.

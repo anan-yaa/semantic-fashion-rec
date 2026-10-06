@@ -5,6 +5,7 @@ import threading
 import time
 
 from fastapi import APIRouter, Depends, HTTPException, Response
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
 
 from app.api.rate_limit import limit_search_rate
@@ -205,6 +206,10 @@ def search(
             understanding=understanding_info,
         )
 
+    except OperationalError as e:
+        # Database unreachable: tell load balancers/clients to retry, like /health does.
+        logger.error(f"Search failed, database unavailable: {e}")
+        raise HTTPException(status_code=503, detail="Search is temporarily unavailable")
     except Exception as e:
         logger.error(f"Search failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="Search failed")

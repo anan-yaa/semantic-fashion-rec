@@ -5,9 +5,9 @@ services:
     environment:
       - POSTGRES_DB=fashion_rec
       - POSTGRES_USER=fashion_rec
-      - POSTGRES_PASSWORD=dev_password
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (see .env.example)}
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
@@ -20,7 +20,7 @@ services:
     image: redis:7-alpine
     container_name: fashion_rec_redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
@@ -62,9 +62,17 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgresql+psycopg://fashion_rec:dev_password@db:5432/fashion_rec
+      - DATABASE_URL=postgresql+psycopg://fashion_rec:${POSTGRES_PASSWORD}@db:5432/fashion_rec
       - REDIS_URL=redis://redis:6379/0
       - OLLAMA_BASE_URL=http://ollama:11434
+      - LOG_FORMAT=json
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     depends_on:
       db:
         condition: service_healthy
@@ -72,6 +80,20 @@ services:
         condition: service_healthy
       ollama-pull:
         condition: service_completed_successfully
+
+  # NEXT_PUBLIC_API_URL is baked in at build time: it is the address the
+  # *browser* uses to reach the API, so it is the host-published port.
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    container_name: fashion_rec_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      app:
+        condition: service_healthy
 
 volumes:
   pg_data:

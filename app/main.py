@@ -1,7 +1,8 @@
 import logging
 import threading
+import uuid
 
-from fastapi import FastAPI, status
+from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import text
@@ -11,7 +12,7 @@ from app.api.routes.products import router as products_router
 from app.api.routes.search import router as search_router
 from app.db.database import engine
 from core.config import settings
-from core.logging import setup_logging
+from core.logging import request_id_var, setup_logging
 
 # Configure logging before anything else
 setup_logging()
@@ -22,15 +23,27 @@ app = FastAPI(
     debug=settings.debug,
 )
 
-# Allow the local Next.js dev server to call this API from the browser.
-# Without this, every request from frontend/ fails CORS preflight (curl/pytest
-# never hit this, since browsers are the only thing that enforces CORS).
+# Browsers enforce CORS (curl/pytest never do); origins come from CORS_ORIGINS.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=settings.cors_origin_list,
     allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_headers=["Content-Type", "X-Request-ID"],
+    expose_headers=["X-Request-ID", "Server-Timing"],
 )
+
+
+@app.middleware("http")
+async def request_id_middleware(request: Request, call_next):
+    """Tag every log line of a request with an id, and return it to the caller."""
+    request_id = request.headers.get("X-Request-ID") or uuid.uuid4().hex[:12]
+    token = request_id_var.set(request_id)
+    try:
+        response = await call_next(request)
+    finally:
+        request_id_var.reset(token)
+    response.headers["X-Request-ID"] = request_id
+    return response
 
 # Register routes
 app.include_router(products_router)
