@@ -1,0 +1,2118 @@
+{
+  "generated_at": "2026-10-06T13:19:10.127801+00:00",
+  "baseline_without_llm": false,
+  "summary": {
+    "all": {
+      "queries": 100,
+      "scored_queries": 97,
+      "app_hybrid": 0.8865979381443299,
+      "llm_used": 100,
+      "translated": 100,
+      "translation_ok": 91,
+      "hybrid_translated": 0.8865979381443299,
+      "vector_translated": 0.7381443298969071,
+      "llm_ms_median": 724.5
+    },
+    "hi": {
+      "queries": 10,
+      "scored_queries": 10,
+      "app_hybrid": 0.76,
+      "llm_used": 10,
+      "translated": 10,
+      "translation_ok": 9,
+      "hybrid_translated": 0.76,
+      "vector_translated": 0.6599999999999999,
+      "llm_ms_median": 655.75
+    },
+    "es": {
+      "queries": 8,
+      "scored_queries": 8,
+      "app_hybrid": 0.8875,
+      "llm_used": 8,
+      "translated": 8,
+      "translation_ok": 7,
+      "hybrid_translated": 0.8875,
+      "vector_translated": 0.775,
+      "llm_ms_median": 667.3499999999999
+    },
+    "fr": {
+      "queries": 4,
+      "scored_queries": 4,
+      "app_hybrid": 1.0,
+      "llm_used": 4,
+      "translated": 4,
+      "translation_ok": 4,
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0,
+      "llm_ms_median": 694.7
+    },
+    "de": {
+      "queries": 14,
+      "scored_queries": 14,
+      "app_hybrid": 0.8571428571428571,
+      "llm_used": 14,
+      "translated": 14,
+      "translation_ok": 12,
+      "hybrid_translated": 0.8571428571428571,
+      "vector_translated": 0.6928571428571428,
+      "llm_ms_median": 753.05
+    },
+    "it": {
+      "queries": 14,
+      "scored_queries": 13,
+      "app_hybrid": 0.9538461538461539,
+      "llm_used": 14,
+      "translated": 14,
+      "translation_ok": 12,
+      "hybrid_translated": 0.9538461538461539,
+      "vector_translated": 0.8461538461538461,
+      "llm_ms_median": 750.65
+    },
+    "pt": {
+      "queries": 14,
+      "scored_queries": 13,
+      "app_hybrid": 0.9692307692307692,
+      "llm_used": 14,
+      "translated": 14,
+      "translation_ok": 14,
+      "hybrid_translated": 0.9692307692307692,
+      "vector_translated": 0.7846153846153846,
+      "llm_ms_median": 736.1
+    },
+    "ar": {
+      "queries": 12,
+      "scored_queries": 11,
+      "app_hybrid": 0.8636363636363636,
+      "llm_used": 12,
+      "translated": 12,
+      "translation_ok": 10,
+      "hybrid_translated": 0.8636363636363636,
+      "vector_translated": 0.5636363636363636,
+      "llm_ms_median": 715.05
+    },
+    "zh": {
+      "queries": 12,
+      "scored_queries": 12,
+      "app_hybrid": 0.9,
+      "llm_used": 12,
+      "translated": 12,
+      "translation_ok": 12,
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.875,
+      "llm_ms_median": 720.55
+    },
+    "ru": {
+      "queries": 12,
+      "scored_queries": 12,
+      "app_hybrid": 0.8333333333333334,
+      "llm_used": 12,
+      "translated": 12,
+      "translation_ok": 11,
+      "hybrid_translated": 0.8333333333333334,
+      "vector_translated": 0.6,
+      "llm_ms_median": 744.75
+    }
+  },
+  "rows": [
+    {
+      "query": "नीली शर्ट",
+      "lang": "hi",
+      "meaning": "blue shirt",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "blue shirt",
+      "translation_ok": true,
+      "llm_ms": 925.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Gini and Jony Boys Check Blue Shirt [Shirts]",
+        "Turtle Check Men Blue Shirt [Shirts]",
+        "John Miller Men Check Blue Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "सर्दियों का ऊनी कोट",
+      "lang": "hi",
+      "meaning": "winter woollen coat",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter wool coat",
+      "translation_ok": true,
+      "llm_ms": 740.8,
+      "app_hybrid": 0.6,
+      "app_top3": [
+        "Jealous 21 Women Washed Blue Waistcoat [Waistcoat]",
+        "United Colors Of Benetton Women Light Winter Black Jackets [Jackets]",
+        "Chromozome White Innerwear Vest PR-08 [Innerwear Vests]"
+      ],
+      "hybrid_translated": 0.6,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "काली जूती",
+      "lang": "hi",
+      "meaning": "black jutti (flat shoe)",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black kurta",
+      "translation_ok": false,
+      "llm_ms": 660.6,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Sushilas Women Printed Black Kurta [Kurtas]",
+        "Fabindia Men Printed Black Kurta [Kurtas]",
+        "W Women Printed Black Kurta [Kurtas]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "महिलाओं के लिए गहने",
+      "lang": "hi",
+      "meaning": "jewellery for women",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "women's jewelry",
+      "translation_ok": true,
+      "llm_ms": 718.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Ivory Tag Women Glinting Pearls Cream Necklace [Necklace and Chains]",
+        "Ivory Tag Women Swirling Jazz Golden Coloured Necklace [Necklace and Chains]",
+        "Ivory Tag Women Blazing Stone Multicolour Necklace [Necklace and Chains]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "पुरुषों के लिए घड़ी",
+      "lang": "hi",
+      "meaning": "watch for men",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "men's watch",
+      "translation_ok": true,
+      "llm_ms": 668.4,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Timex Men White Dial Watch T2M707 [Watches]",
+        "Fastrack Men Red and Black Dial Watch [Watches]",
+        "Timex Men White Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "लाल साड़ी",
+      "lang": "hi",
+      "meaning": "red saree",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red saree",
+      "translation_ok": true,
+      "llm_ms": 631.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fabindia Red Self-Striped Saree [Sarees]",
+        "Fabindia Red Tie & Dye Ghicha Striped Saree [Sarees]",
+        "Fabindia Red Self-Striped Saree [Sarees]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "बच्चों के कपड़े",
+      "lang": "hi",
+      "meaning": "children's clothes",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "children's clothes",
+      "translation_ok": true,
+      "llm_ms": 650.9,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Gini and Jony Kids Boys Stripes Pink Shirts [Shirts]",
+        "Gini and Jony Kids Boys Stripes Pink Shirts [Shirts]",
+        "Gini and Jony Kids Girls Printed Pink Tops [Tops]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "सफेद जूते",
+      "lang": "hi",
+      "meaning": "white shoes",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shoes",
+      "translation_ok": true,
+      "llm_ms": 639.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "HM Women White Sandals [Heels]",
+        "Puma Men Tergament White White Casual Shoes [Casual Shoes]",
+        "HM Women White Sandals [Flats]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "चमड़े का बैग",
+      "lang": "hi",
+      "meaning": "leather bag",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "leather bag",
+      "translation_ok": true,
+      "llm_ms": 647.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fiorelli Women Black and Taupe Leather Handbag [Handbags]",
+        "Fiorelli Women Black Leather Handbag [Handbags]",
+        "Yelloe Women Leather Brown Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "गर्मियों के कपड़े",
+      "lang": "hi",
+      "meaning": "summer clothes",
+      "detected": "Hindi",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "summer clothes",
+      "translation_ok": true,
+      "llm_ms": 649.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Little Miss Girls Blazing Yellow Clothing Set [Clothing Set]",
+        "Allen Solly Woman Yellow Top [Tops]",
+        "Jungle Book Boys Baby Red Clothing Set [Clothing Set]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "atuendo playero",
+      "lang": "es",
+      "meaning": "beach outfit",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "playero outfit",
+      "translation_ok": false,
+      "llm_ms": 778.1,
+      "app_hybrid": 0.1,
+      "app_top3": [
+        "John Players Men Stripes Orange Polo T-Shirt [Tshirts]",
+        "John Players Men Blue Striped Polo T-Shirt [Tshirts]",
+        "John Players Men Stripes Green Polo T-Shirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.1,
+      "vector_translated": 0.1
+    },
+    {
+      "query": "vestido rojo para mujer",
+      "lang": "es",
+      "meaning": "red dress for women",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for woman",
+      "translation_ok": true,
+      "llm_ms": 686.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "chaqueta de invierno para hombre",
+      "lang": "es",
+      "meaning": "men's winter jacket",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter jacket for man",
+      "translation_ok": true,
+      "llm_ms": 761.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Just Natural Men Black Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Red Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Olive Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "zapatos deportivos",
+      "lang": "es",
+      "meaning": "sports shoes",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sports shoes",
+      "translation_ok": true,
+      "llm_ms": 638.5,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]",
+        "F Sports Men Black Pace Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "reloj de mujer",
+      "lang": "es",
+      "meaning": "women's watch",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "woman's watch",
+      "translation_ok": true,
+      "llm_ms": 645.3,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Titan Women Raga Mother Of Pearl Dial Watch [Watches]",
+        "Titan Women Mother Of Pearl Watch [Watches]",
+        "Fastrack Women White Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "gafas de sol",
+      "lang": "es",
+      "meaning": "sunglasses",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sunglasses",
+      "translation_ok": true,
+      "llm_ms": 615.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Fastrack Men Steal Sunglasses [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "camisa azul de hombre",
+      "lang": "es",
+      "meaning": "men's blue shirt",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "blue shirt for man",
+      "translation_ok": true,
+      "llm_ms": 678.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "John Miller Men Stripes Blue Blue Shirts [Shirts]",
+        "John Miller Men Check Blue Shirt [Shirts]",
+        "John Miller Men Blue Self Design Blue Shirts [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.1
+    },
+    {
+      "query": "bolso de cuero negro",
+      "lang": "es",
+      "meaning": "black leather handbag",
+      "detected": "Spanish",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather purse",
+      "translation_ok": true,
+      "llm_ms": 655.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Black Envelope Look Handbag [Handbags]",
+        "Lino Perros Women Leatherette Black Sling Bag [Handbags]",
+        "Lino Perros Women Leatherette Black Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "robe rouge pour femme",
+      "lang": "fr",
+      "meaning": "red dress for women",
+      "detected": "French",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for woman",
+      "translation_ok": true,
+      "llm_ms": 706.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "chaussures de sport pour homme",
+      "lang": "fr",
+      "meaning": "men's sports shoes",
+      "detected": "French",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "shoes for sports men",
+      "translation_ok": true,
+      "llm_ms": 718.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "sac à main noir",
+      "lang": "fr",
+      "meaning": "black handbag",
+      "detected": "French",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black handbag",
+      "translation_ok": true,
+      "llm_ms": 653.4,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Murcia Women Black Black Handbags [Handbags]",
+        "Murcia Women Black Handpainted Print Handbag [Handbags]",
+        "Yelloe Black Envelope Look Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "lunettes de soleil",
+      "lang": "fr",
+      "meaning": "sunglasses",
+      "detected": "French",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sunglasses",
+      "translation_ok": true,
+      "llm_ms": 682.5,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Fastrack Men Steal Sunglasses [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "rotes Kleid für Frauen",
+      "lang": "de",
+      "meaning": "red dress for women",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for women",
+      "translation_ok": true,
+      "llm_ms": 2084.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "schwarze Lederjacke für Herren",
+      "lang": "de",
+      "meaning": "black leather jacket for men",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather jacket for men",
+      "translation_ok": true,
+      "llm_ms": 762.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Ribstop 1348 Black Jacket [Jackets]",
+        "ADIDAS Men Black Jacket [Jackets]",
+        "Nike Men Black Puffer Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "bequeme Laufschuhe",
+      "lang": "de",
+      "meaning": "comfortable running shoes",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable running shoes",
+      "translation_ok": true,
+      "llm_ms": 759.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ASICS Men Gel Challenger 8 Running Black Sports Shoes [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Asics Women Gel Cushioning Active Running Blue Silver Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "Wintermantel aus Wolle",
+      "lang": "de",
+      "meaning": "wool winter coat",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "Wintermantel aus Wolle",
+      "translation_ok": false,
+      "llm_ms": 977.4,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Bulchee Men Tan Wallet [Wallets]",
+        "Wildcraft Men Red Wallet [Wallets]",
+        "Allen Solly Men Tan Belt [Belts]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "Sonnenbrille für den Sommer",
+      "lang": "de",
+      "meaning": "sunglasses for summer",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sun glasses for summer",
+      "translation_ok": true,
+      "llm_ms": 740.8,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Tantra Men's Glasses Mustard T-shirt [Tshirts]",
+        "Tantra Men's Glasses Blue T-shirt [Tshirts]",
+        "Puma Unisex K9 Grey Yellow Floater [Sandals]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "weißes Hemd für Männer",
+      "lang": "de",
+      "meaning": "white shirt for men",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shirt for men",
+      "translation_ok": true,
+      "llm_ms": 715.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Probase Men Classic White White Shirts [Shirts]",
+        "Wills Lifestyle Men Check White Shirt [Shirts]",
+        "John Miller Men Striped White Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.8
+    },
+    {
+      "query": "Handtasche aus Leder",
+      "lang": "de",
+      "meaning": "leather handbag",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "leather handbag",
+      "translation_ok": true,
+      "llm_ms": 896.3,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "Outfit für den Strand im Sommer",
+      "lang": "de",
+      "meaning": "outfit for the beach in summer",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "Outfit für den Strand im Sommer",
+      "translation_ok": false,
+      "llm_ms": 746.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wrangler Women Sunset Beach Yellow T-shirt [Tshirts]",
+        "Spykar Women Day Beach White Top [Tops]",
+        "Spykar Women's Day Beach  Blue Melange T-shirt [Tshirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "vestito rosso da donna",
+      "lang": "it",
+      "meaning": "red dress for women",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for woman",
+      "translation_ok": true,
+      "llm_ms": 755.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "giacca di pelle nera da uomo",
+      "lang": "it",
+      "meaning": "black leather jacket for men",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather jacket for men",
+      "translation_ok": true,
+      "llm_ms": 772.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Ribstop 1348 Black Jacket [Jackets]",
+        "ADIDAS Men Black Jacket [Jackets]",
+        "Nike Men Black Puffer Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "scarpe da corsa comode",
+      "lang": "it",
+      "meaning": "comfortable running shoes",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable running shoes",
+      "translation_ok": true,
+      "llm_ms": 796.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ASICS Men Gel Challenger 8 Running Black Sports Shoes [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Asics Women Gel Cushioning Active Running Blue Silver Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "cappotto invernale di lana",
+      "lang": "it",
+      "meaning": "wool winter coat",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter woolen coat",
+      "translation_ok": true,
+      "llm_ms": 1010.0,
+      "app_hybrid": 0.7,
+      "app_top3": [
+        "Jealous 21 Women Washed Blue Waistcoat [Waistcoat]",
+        "United Colors of Benetton Women Light Winter Mauve Vest [Sweaters]",
+        "United Colors Of Benetton Men Heavy Winter Grey Sweaters [Sweaters]"
+      ],
+      "hybrid_translated": 0.7,
+      "vector_translated": 0.7
+    },
+    {
+      "query": "occhiali da sole per l'estate",
+      "lang": "it",
+      "meaning": "sunglasses for summer",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "glasses for sun",
+      "translation_ok": false,
+      "llm_ms": 965.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Ray Ban Unisex Black Sunglass [Sunglasses]",
+        "Allen Solly Women Wayfarer Sunglasses AS 236 C2 [Sunglasses]",
+        "Allen Solly Men Black Sunglass [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "camicia bianca da uomo",
+      "lang": "it",
+      "meaning": "white shirt for men",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shirt for man",
+      "translation_ok": true,
+      "llm_ms": 730.3,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Probase Men Classic White White Shirts [Shirts]",
+        "Wills Lifestyle Men Check White Shirt [Shirts]",
+        "John Miller Men Striped White Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "borsa di pelle marrone",
+      "lang": "it",
+      "meaning": "brown leather bag",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "brown leather purse",
+      "translation_ok": true,
+      "llm_ms": 711.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Lino Perros Women Leatherette Brown Sling Bag [Handbags]",
+        "Lino Perros Women Leatherette Brown Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "abbigliamento per andare al mare",
+      "lang": "it",
+      "meaning": "clothing to go to the beach",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "clothing for going to the sea",
+      "translation_ok": false,
+      "llm_ms": 745.4,
+      "app_hybrid": 0.7,
+      "app_top3": [
+        "Elle Women Sea Green T-shirt [Tshirts]",
+        "Myntra Women Sea Green Leggings [Leggings]",
+        "Inkfruit Women's To do List Sea Green T-shirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.7,
+      "vector_translated": 0.7
+    },
+    {
+      "query": "vestido vermelho feminino",
+      "lang": "pt",
+      "meaning": "red dress for women",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red female dress",
+      "translation_ok": true,
+      "llm_ms": 673.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "Tonga Women Printed Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "jaqueta de couro preta masculina",
+      "lang": "pt",
+      "meaning": "black leather jacket for men",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather jacket for men",
+      "translation_ok": true,
+      "llm_ms": 741.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Ribstop 1348 Black Jacket [Jackets]",
+        "ADIDAS Men Black Jacket [Jackets]",
+        "Nike Men Black Puffer Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "tênis de corrida confortável",
+      "lang": "pt",
+      "meaning": "comfortable running shoes",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable running shoes",
+      "translation_ok": true,
+      "llm_ms": 1616.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ASICS Men Gel Challenger 8 Running Black Sports Shoes [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Asics Women Gel Cushioning Active Running Blue Silver Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "casaco de lã para o inverno",
+      "lang": "pt",
+      "meaning": "wool coat for winter",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "wool coat for winter",
+      "translation_ok": true,
+      "llm_ms": 1130.4,
+      "app_hybrid": 0.7,
+      "app_top3": [
+        "United Colors of Benetton Women Light Winter Mauve Vest [Sweaters]",
+        "United Colors Of Benetton Men Heavy Winter Grey Sweaters [Sweaters]",
+        "United Colors of Benetton Women Light Winter White Sweater [Sweaters]"
+      ],
+      "hybrid_translated": 0.7,
+      "vector_translated": 0.7
+    },
+    {
+      "query": "óculos de sol para o verão",
+      "lang": "pt",
+      "meaning": "sunglasses for summer",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sunglasses for summer",
+      "translation_ok": true,
+      "llm_ms": 718.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Mayhem Men Rectangular Sunglasses 1020-207 [Sunglasses]",
+        "Mayhem Men Rectangular Sunglasses 1020-205 [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "camisa branca masculina",
+      "lang": "pt",
+      "meaning": "white shirt for men",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shirt for man",
+      "translation_ok": true,
+      "llm_ms": 678.3,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Probase Men Classic White White Shirts [Shirts]",
+        "Wills Lifestyle Men Check White Shirt [Shirts]",
+        "John Miller Men Striped White Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "bolsa de couro marrom",
+      "lang": "pt",
+      "meaning": "brown leather bag",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "brown leather bag",
+      "translation_ok": true,
+      "llm_ms": 737.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Hidekraft Women Leather Brown Handbags [Handbags]",
+        "Murcia Women Leather Office Brown Bag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "roupa para ir à praia",
+      "lang": "pt",
+      "meaning": "clothes to go to the beach",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "clothes for going to the beach",
+      "translation_ok": true,
+      "llm_ms": 811.8,
+      "app_hybrid": 0.9,
+      "app_top3": [
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Disney Kids Boy's Crew Sea Life Sialing Navy Teen Kidswear [Tshirts]"
+      ],
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "فستان أحمر للنساء",
+      "lang": "ar",
+      "meaning": "red dress for women",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for women",
+      "translation_ok": true,
+      "llm_ms": 733.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "جاكيت جلد أسود للرجال",
+      "lang": "ar",
+      "meaning": "black leather jacket for men",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather jacket for men",
+      "translation_ok": true,
+      "llm_ms": 742.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Ribstop 1348 Black Jacket [Jackets]",
+        "ADIDAS Men Black Jacket [Jackets]",
+        "Nike Men Black Puffer Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "حذاء رياضي مريح",
+      "lang": "ar",
+      "meaning": "comfortable sports shoe",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable athletic shoe",
+      "translation_ok": true,
+      "llm_ms": 693.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ADIDAS Men's White Comfort Shoe [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Artengo 522 C Men Whit Blue 09 [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "معطف شتوي من الصوف",
+      "lang": "ar",
+      "meaning": "wool winter coat",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "outerwear from wool",
+      "translation_ok": false,
+      "llm_ms": 721.4,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Jockey SP-OW Men White Innerwear T-shirt SP12 [Innerwear Vests]",
+        "Hanes Men Racer Back White Innerwear Vests [Innerwear Vests]",
+        "Undercolors of Benetton Men Pack of 2 Innerwear Vests [Innerwear Vests]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "نظارات شمسية للصيف",
+      "lang": "ar",
+      "meaning": "sunglasses for summer",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sunglasses for summer",
+      "translation_ok": true,
+      "llm_ms": 697.4,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Mayhem Men Rectangular Sunglasses 1020-207 [Sunglasses]",
+        "Mayhem Men Rectangular Sunglasses 1020-205 [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "قميص أبيض للرجال",
+      "lang": "ar",
+      "meaning": "white shirt for men",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shirt for men",
+      "translation_ok": true,
+      "llm_ms": 712.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Probase Men Classic White White Shirts [Shirts]",
+        "Wills Lifestyle Men Check White Shirt [Shirts]",
+        "John Miller Men Striped White Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.8
+    },
+    {
+      "query": "حقيبة يد جلدية بنية",
+      "lang": "ar",
+      "meaning": "brown leather handbag",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "leather handbag",
+      "translation_ok": false,
+      "llm_ms": 707.6,
+      "app_hybrid": 0.6,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]"
+      ],
+      "hybrid_translated": 0.6,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "ملابس للذهاب إلى الشاطئ",
+      "lang": "ar",
+      "meaning": "clothes to go to the beach",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "clothes for going to the beach",
+      "translation_ok": true,
+      "llm_ms": 796.5,
+      "app_hybrid": 0.9,
+      "app_top3": [
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Disney Kids Boy's Crew Sea Life Sialing Navy Teen Kidswear [Tshirts]"
+      ],
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "女士红色连衣裙",
+      "lang": "zh",
+      "meaning": "red dress for women",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for women",
+      "translation_ok": true,
+      "llm_ms": 679.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "男士黑色皮夹克",
+      "lang": "zh",
+      "meaning": "black leather jacket for men",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "man suit black leather jacket",
+      "translation_ok": true,
+      "llm_ms": 749.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Solid 1349 Black Jacket [Jackets]",
+        "Fila Men Solid Black Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Black Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "舒适的跑步鞋",
+      "lang": "zh",
+      "meaning": "comfortable running shoes",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable running shoes",
+      "translation_ok": true,
+      "llm_ms": 711.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ASICS Men Gel Challenger 8 Running Black Sports Shoes [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Asics Women Gel Cushioning Active Running Blue Silver Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "冬季羊毛大衣",
+      "lang": "zh",
+      "meaning": "wool winter coat",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter wool coat",
+      "translation_ok": true,
+      "llm_ms": 729.4,
+      "app_hybrid": 0.6,
+      "app_top3": [
+        "Jealous 21 Women Washed Blue Waistcoat [Waistcoat]",
+        "United Colors Of Benetton Women Light Winter Black Jackets [Jackets]",
+        "Chromozome White Innerwear Vest PR-08 [Innerwear Vests]"
+      ],
+      "hybrid_translated": 0.6,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "夏季太阳镜",
+      "lang": "zh",
+      "meaning": "summer sunglasses",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "summer sunglasses",
+      "translation_ok": true,
+      "llm_ms": 656.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Mayhem Men Rectangular Sunglasses 1020-205 [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Mayhem Men Rectangular Sunglasses 1022-206 [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "男士白衬衫",
+      "lang": "zh",
+      "meaning": "white shirt for men",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "man suit white shirt",
+      "translation_ok": true,
+      "llm_ms": 730.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "John Miller Men Striped White Shirt [Shirts]",
+        "John Miller Men Check White Shirts [Shirts]",
+        "John Miller Men Solid White White Shirts [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "棕色皮革手提包",
+      "lang": "zh",
+      "meaning": "brown leather handbag",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "brown leather handbag",
+      "translation_ok": true,
+      "llm_ms": 706.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "去海滩穿的衣服",
+      "lang": "zh",
+      "meaning": "clothes to wear to the beach",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "clothes to wear to the beach",
+      "translation_ok": true,
+      "llm_ms": 758.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Lee Women Navy Blue Beach T-shirt [Tshirts]",
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Gini and Jony Boys Beach White Shorts [Shorts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "красное платье для женщин",
+      "lang": "ru",
+      "meaning": "red dress for women",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "red dress for women",
+      "translation_ok": true,
+      "llm_ms": 715.4,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "чёрная кожаная куртка для мужчин",
+      "lang": "ru",
+      "meaning": "black leather jacket for men",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black leather jacket for men",
+      "translation_ok": true,
+      "llm_ms": 771.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "C Vox Men Ribstop 1348 Black Jacket [Jackets]",
+        "ADIDAS Men Black Jacket [Jackets]",
+        "Nike Men Black Puffer Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "удобные кроссовки для бега",
+      "lang": "ru",
+      "meaning": "comfortable running sneakers",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable running shoes",
+      "translation_ok": true,
+      "llm_ms": 772.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "ASICS Men Gel Challenger 8 Running Black Sports Shoes [Sports Shoes]",
+        "Asics Men's Gel Cushioning Running White Black Yellow Shoe [Sports Shoes]",
+        "Asics Women Gel Cushioning Active Running Blue Silver Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "зимнее шерстяное пальто",
+      "lang": "ru",
+      "meaning": "winter wool coat",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter wool coat",
+      "translation_ok": true,
+      "llm_ms": 971.9,
+      "app_hybrid": 0.6,
+      "app_top3": [
+        "Jealous 21 Women Washed Blue Waistcoat [Waistcoat]",
+        "United Colors Of Benetton Women Light Winter Black Jackets [Jackets]",
+        "Chromozome White Innerwear Vest PR-08 [Innerwear Vests]"
+      ],
+      "hybrid_translated": 0.6,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "солнцезащитные очки на лето",
+      "lang": "ru",
+      "meaning": "sunglasses for summer",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sun protection glasses for summer",
+      "translation_ok": false,
+      "llm_ms": 748.5,
+      "app_hybrid": 0.0,
+      "app_top3": [
+        "Lucera Bead Necklace [Necklace and Chains]",
+        "Jealous 21 Women Cream Tunic With Mirror Print Top [Tops]",
+        "Lencia Grey Swarovski Pearl Necklace [Necklace and Chains]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "белая рубашка мужская",
+      "lang": "ru",
+      "meaning": "white shirt for men",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white men's shirt",
+      "translation_ok": true,
+      "llm_ms": 759.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wills Lifestyle Men Check White Shirt [Shirts]",
+        "Probase Men Classic White White Shirts [Shirts]",
+        "John Miller Men Check White Shirts [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.8
+    },
+    {
+      "query": "коричневая кожаная сумка",
+      "lang": "ru",
+      "meaning": "brown leather bag",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "brown leather handbag",
+      "translation_ok": true,
+      "llm_ms": 741.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Yelloe Women Leather Brown Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]",
+        "Fiorelli Women Chocolate Brown Leather Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "одежда для пляжа",
+      "lang": "ru",
+      "meaning": "beach clothes",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "clothes for beach",
+      "translation_ok": true,
+      "llm_ms": 698.9,
+      "app_hybrid": 0.9,
+      "app_top3": [
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Gini and Jony Boys Beach White Shorts [Shorts]",
+        "Disney Kids Boy's Crew Sea Life Sialing Navy Teen Kidswear [Tshirts]"
+      ],
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "Kleid für eine Hochzeit",
+      "lang": "de",
+      "meaning": "dress for a wedding",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "dress for a wedding",
+      "translation_ok": true,
+      "llm_ms": 1067.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Femella Women Peach Crepe Front Zipper Dress Dress [Dresses]",
+        "Femella Women Floral Red Dress [Dresses]",
+        "Elle Black Sheath Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "warme Winterjacke für Damen",
+      "lang": "de",
+      "meaning": "warm winter jacket for women",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "warm winter jacket for women",
+      "translation_ok": true,
+      "llm_ms": 733.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "United Colors Of Benetton Women Light Winter Black Jackets [Jackets]",
+        "Forever New Women Stone Cream Jacket [Jackets]",
+        "Forever New Women Long Peach Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.1
+    },
+    {
+      "query": "Turnschuhe in Weiß",
+      "lang": "de",
+      "meaning": "white sneakers",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white sneakers",
+      "translation_ok": true,
+      "llm_ms": 695.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Nike Women White and Red Sneakers [Casual Shoes]",
+        "Skechers Women White and Pink Shoe [Sports Shoes]",
+        "Puma Women Soleil White Sneakers [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "Armbanduhr für Herren",
+      "lang": "de",
+      "meaning": "wristwatch for men",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "bracelet watch for men",
+      "translation_ok": true,
+      "llm_ms": 702.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fastrack Men Brown Dial Watch NA3039sp02 [Watches]",
+        "Fossil Men Brown Dial Chronograph Watch FS4357 [Watches]",
+        "Fastrack Men Brown Dial Watch NE1478SM02 [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "Rucksack für die Arbeit",
+      "lang": "de",
+      "meaning": "backpack for work",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "backpack for work",
+      "translation_ok": true,
+      "llm_ms": 686.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wildcraft Unisex Grey Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Green Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Red Printed Laptop Backpack [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "schicke Sandalen für den Urlaub",
+      "lang": "de",
+      "meaning": "stylish sandals for vacation",
+      "detected": "German",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "send sandals for vacation",
+      "translation_ok": true,
+      "llm_ms": 1042.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Enroute Teens White Sandals [Sandals]",
+        "Enroute Teens White Sandals [Sandals]",
+        "Spalding Men Grey And  Navy Blue Sandals [Sandals]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "abito elegante per una festa",
+      "lang": "it",
+      "meaning": "elegant dress for a party",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "elegant dress for a party",
+      "translation_ok": true,
+      "llm_ms": 1013.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Black Sheath Dress [Dresses]",
+        "Avirate Black Dress [Dresses]",
+        "Avirate Women Purple Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "stivali neri da donna",
+      "lang": "it",
+      "meaning": "black boots for women",
+      "detected": "Italian",
+      "scored": false,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black boots for women",
+      "translation_ok": true,
+      "llm_ms": 731.1,
+      "app_hybrid": null,
+      "app_top3": [
+        "HM Women Black Wedges [Heels]",
+        "Carlton London Women Black Boots [Flats]",
+        "HM Women Black wedges [Heels]"
+      ],
+      "hybrid_translated": null,
+      "vector_translated": null
+    },
+    {
+      "query": "maglione di cotone blu",
+      "lang": "it",
+      "meaning": "blue cotton sweater",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "cotton blue sweater",
+      "translation_ok": true,
+      "llm_ms": 786.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "United Colors of Benetton Women Blue Sweater [Sweaters]",
+        "United Colors of Benetton Women Blue Sweater [Sweaters]",
+        "United Colors of Benetton Men Stripes Blue Sweater [Sweaters]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "orologio da polso per uomo",
+      "lang": "it",
+      "meaning": "wristwatch for men",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "watch for men",
+      "translation_ok": true,
+      "llm_ms": 725.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fastrack Men Red and Black Dial Watch [Watches]",
+        "Timex Men White Dial Watch [Watches]",
+        "Timex Men White Dial Watch T2M707 [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "zaino per l'università",
+      "lang": "it",
+      "meaning": "backpack for university",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "backpack for university",
+      "translation_ok": true,
+      "llm_ms": 713.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wildcraft Unisex Grey Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Blue Printed Backpack [Backpacks]",
+        "ADIDAS Unisex 3S Blue Black Backpack [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "sandali comodi per l'estate",
+      "lang": "it",
+      "meaning": "comfortable sandals for summer",
+      "detected": "Italian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable sandals for summer",
+      "translation_ok": true,
+      "llm_ms": 724.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Redtape Men Comfort Black Sandals [Sandals]",
+        "Redtape Men Comfort Black Sandal [Sandals]",
+        "Redtape Men Comfort Brown Sandals [Sandals]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "vestido elegante para festa",
+      "lang": "pt",
+      "meaning": "elegant dress for a party",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "elegant dress for party",
+      "translation_ok": true,
+      "llm_ms": 967.1,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Elle Black Sheath Dress [Dresses]",
+        "Avirate Women Purple Dress [Dresses]",
+        "Avirate Black Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "botas pretas femininas",
+      "lang": "pt",
+      "meaning": "black boots for women",
+      "detected": "Portuguese",
+      "scored": false,
+      "llm_used": true,
+      "translated": true,
+      "translation": "black women's boots",
+      "translation_ok": true,
+      "llm_ms": 734.6,
+      "app_hybrid": null,
+      "app_top3": [
+        "HM Women Black Sandals [Flats]",
+        "Carlton London Women Black Boots [Flats]",
+        "HM Women Black Wedges [Heels]"
+      ],
+      "hybrid_translated": null,
+      "vector_translated": null
+    },
+    {
+      "query": "camiseta de algodão azul",
+      "lang": "pt",
+      "meaning": "blue cotton t-shirt",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "cotton t-shirt blue",
+      "translation_ok": true,
+      "llm_ms": 717.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Flying Machine Women Cotton Blue T-shirt [Tshirts]",
+        "Wildcraft Men Organic Cotton Blue T-shirt [Tshirts]",
+        "Lotto Women Cathy Blue T-shirt [Tshirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "relógio de pulso masculino",
+      "lang": "pt",
+      "meaning": "men's wristwatch",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "men's wrist watch",
+      "translation_ok": true,
+      "llm_ms": 718.7,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fastrack Men Brown Dial Watch NA3039sp02 [Watches]",
+        "Fastrack Men Brown Dial Watch NE1478SM02 [Watches]",
+        "Fossil Men Brown Dial Chronograph Watch FS4357 [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "mochila para o trabalho",
+      "lang": "pt",
+      "meaning": "backpack for work",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "backpack for work",
+      "translation_ok": true,
+      "llm_ms": 646.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wildcraft Unisex Grey Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Green Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Red Printed Laptop Backpack [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "sandálias confortáveis para o verão",
+      "lang": "pt",
+      "meaning": "comfortable sandals for summer",
+      "detected": "Portuguese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "comfortable sandals for summer",
+      "translation_ok": true,
+      "llm_ms": 961.4,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Redtape Men Comfort Black Sandals [Sandals]",
+        "Redtape Men Comfort Black Sandal [Sandals]",
+        "Redtape Men Comfort Brown Sandals [Sandals]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "حذاء كعب عالي أسود",
+      "lang": "ar",
+      "meaning": "black high-heeled shoe",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "high heel shoe black",
+      "translation_ok": true,
+      "llm_ms": 718.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "HM Women Black Heels [Heels]",
+        "HM Women Black Heels [Heels]",
+        "Catwalk Women Black Heeled Shoes [Heels]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "ثوب قطني للصيف",
+      "lang": "ar",
+      "meaning": "cotton garment for summer",
+      "detected": "Arabic",
+      "scored": false,
+      "llm_used": true,
+      "translated": true,
+      "translation": "cotton dress for summer",
+      "translation_ok": true,
+      "llm_ms": 758.9,
+      "app_hybrid": null,
+      "app_top3": [
+        "Flying Machine Women Cotton Black Dress [Dresses]",
+        "Flying Machine Women Cotton Pink Dress [Dresses]",
+        "Tonga Women Purple Dress [Dresses]"
+      ],
+      "hybrid_translated": null,
+      "vector_translated": null
+    },
+    {
+      "query": "ساعة يد للرجال",
+      "lang": "ar",
+      "meaning": "wristwatch for men",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "watch for men",
+      "translation_ok": true,
+      "llm_ms": 700.8,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fastrack Men Red and Black Dial Watch [Watches]",
+        "Timex Men White Dial Watch [Watches]",
+        "Timex Men White Dial Watch T2M707 [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "حقيبة ظهر للمدرسة",
+      "lang": "ar",
+      "meaning": "school backpack",
+      "detected": "Arabic",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "backpack for school",
+      "translation_ok": true,
+      "llm_ms": 698.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wildcraft Unisex Grey Printed Laptop Backpack [Backpacks]",
+        "ADIDAS Unisex 3S Blue Black Backpack [Backpacks]",
+        "Belkin Unisex Simple Backpack Navy Blue Backpacks [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "冬天穿的保暖外套",
+      "lang": "zh",
+      "meaning": "warm coat for winter",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "winter warm jacket",
+      "translation_ok": true,
+      "llm_ms": 696.6,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "U.S. Polo Assn. Men Solid Red Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Olive Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Navy Blue Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "女式高跟鞋",
+      "lang": "zh",
+      "meaning": "women's high heels",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "women's high heel shoes",
+      "translation_ok": true,
+      "llm_ms": 992.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "HM Women Golden Heels [Heels]",
+        "Catwalk Women White Heeled Shoes [Heels]",
+        "Catwalk Women White Heeled Shoes [Heels]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "运动手表",
+      "lang": "zh",
+      "meaning": "sports watch",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "sports watch",
+      "translation_ok": true,
+      "llm_ms": 623.5,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Timex Men White Dial Watch [Watches]",
+        "ADIDAS Unisex New York Chronographic Digital Black Red Watch [Watches]",
+        "ADIDAS Unisex Seoul Black Gold Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "适合上班的衬衫",
+      "lang": "zh",
+      "meaning": "shirt for work",
+      "detected": "Chinese",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "suitable for work shirt",
+      "translation_ok": true,
+      "llm_ms": 755.0,
+      "app_hybrid": 0.2,
+      "app_top3": [
+        "Superman Men's Job Round Neck White T-shirt [Tshirts]",
+        "Wrangler Men City Work Navy Blue Shirts [Shirts]",
+        "Myntra Men's I work for money Black T-shirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.2,
+      "vector_translated": 0.2
+    },
+    {
+      "query": "вечернее платье для свадьбы",
+      "lang": "ru",
+      "meaning": "evening dress for a wedding",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "evening dress for wedding",
+      "translation_ok": true,
+      "llm_ms": 996.2,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Avirate Mushroom Brown Dress [Dresses]",
+        "109F Red & White A-Line Dress [Dresses]",
+        "AND by Anita Dongre Women Black Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "кроссовки белого цвета",
+      "lang": "ru",
+      "meaning": "white sneakers",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "white shoes",
+      "translation_ok": true,
+      "llm_ms": 703.8,
+      "app_hybrid": 0.5,
+      "app_top3": [
+        "HM Women White Sandals [Heels]",
+        "Puma Men Tergament White White Casual Shoes [Casual Shoes]",
+        "HM Women White Sandals [Flats]"
+      ],
+      "hybrid_translated": 0.5,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "наручные часы мужские",
+      "lang": "ru",
+      "meaning": "men's wristwatch",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "men's wristwatch",
+      "translation_ok": true,
+      "llm_ms": 722.0,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Fastrack Men Gunmetal-Toned Dial Watch N9333PP02 [Watches]",
+        "Fastrack Men White Dial Watch N1161SM03 [Watches]",
+        "Fastrack Men Silver-Toned Dial Watch N1229SM04 [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "рюкзак для работы",
+      "lang": "ru",
+      "meaning": "backpack for work",
+      "detected": "Russian",
+      "scored": true,
+      "llm_used": true,
+      "translated": true,
+      "translation": "backpack for work",
+      "translation_ok": true,
+      "llm_ms": 704.9,
+      "app_hybrid": 1.0,
+      "app_top3": [
+        "Wildcraft Unisex Grey Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Green Printed Laptop Backpack [Backpacks]",
+        "Wildcraft Unisex Grey & Red Printed Laptop Backpack [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    }
+  ]
+}

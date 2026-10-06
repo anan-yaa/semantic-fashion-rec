@@ -1,0 +1,361 @@
+{
+ "description": "Labelled queries for scripts/eval_language_detection.py. English/Spanish/French/Hindi rows are added from the existing eval sets.",
+ "rows": [
+  {
+   "query": "rotes Kleid für Frauen",
+   "language": "German"
+  },
+  {
+   "query": "schwarze Lederjacke für Herren",
+   "language": "German"
+  },
+  {
+   "query": "bequeme Laufschuhe",
+   "language": "German"
+  },
+  {
+   "query": "Wintermantel aus Wolle",
+   "language": "German"
+  },
+  {
+   "query": "Sonnenbrille für den Sommer",
+   "language": "German"
+  },
+  {
+   "query": "weißes Hemd für Männer",
+   "language": "German"
+  },
+  {
+   "query": "Handtasche aus Leder",
+   "language": "German"
+  },
+  {
+   "query": "Outfit für den Strand im Sommer",
+   "language": "German"
+  },
+  {
+   "query": "vestito rosso da donna",
+   "language": "Italian"
+  },
+  {
+   "query": "giacca di pelle nera da uomo",
+   "language": "Italian"
+  },
+  {
+   "query": "scarpe da corsa comode",
+   "language": "Italian"
+  },
+  {
+   "query": "cappotto invernale di lana",
+   "language": "Italian"
+  },
+  {
+   "query": "occhiali da sole per l'estate",
+   "language": "Italian"
+  },
+  {
+   "query": "camicia bianca da uomo",
+   "language": "Italian"
+  },
+  {
+   "query": "borsa di pelle marrone",
+   "language": "Italian"
+  },
+  {
+   "query": "abbigliamento per andare al mare",
+   "language": "Italian"
+  },
+  {
+   "query": "vestido vermelho feminino",
+   "language": "Portuguese"
+  },
+  {
+   "query": "jaqueta de couro preta masculina",
+   "language": "Portuguese"
+  },
+  {
+   "query": "tênis de corrida confortável",
+   "language": "Portuguese"
+  },
+  {
+   "query": "casaco de lã para o inverno",
+   "language": "Portuguese"
+  },
+  {
+   "query": "óculos de sol para o verão",
+   "language": "Portuguese"
+  },
+  {
+   "query": "camisa branca masculina",
+   "language": "Portuguese"
+  },
+  {
+   "query": "bolsa de couro marrom",
+   "language": "Portuguese"
+  },
+  {
+   "query": "roupa para ir à praia",
+   "language": "Portuguese"
+  },
+  {
+   "query": "فستان أحمر للنساء",
+   "language": "Arabic"
+  },
+  {
+   "query": "جاكيت جلد أسود للرجال",
+   "language": "Arabic"
+  },
+  {
+   "query": "حذاء رياضي مريح",
+   "language": "Arabic"
+  },
+  {
+   "query": "معطف شتوي من الصوف",
+   "language": "Arabic"
+  },
+  {
+   "query": "نظارات شمسية للصيف",
+   "language": "Arabic"
+  },
+  {
+   "query": "قميص أبيض للرجال",
+   "language": "Arabic"
+  },
+  {
+   "query": "حقيبة يد جلدية بنية",
+   "language": "Arabic"
+  },
+  {
+   "query": "ملابس للذهاب إلى الشاطئ",
+   "language": "Arabic"
+  },
+  {
+   "query": "女士红色连衣裙",
+   "language": "Chinese"
+  },
+  {
+   "query": "男士黑色皮夹克",
+   "language": "Chinese"
+  },
+  {
+   "query": "舒适的跑步鞋",
+   "language": "Chinese"
+  },
+  {
+   "query": "冬季羊毛大衣",
+   "language": "Chinese"
+  },
+  {
+   "query": "夏季太阳镜",
+   "language": "Chinese"
+  },
+  {
+   "query": "男士白衬衫",
+   "language": "Chinese"
+  },
+  {
+   "query": "棕色皮革手提包",
+   "language": "Chinese"
+  },
+  {
+   "query": "去海滩穿的衣服",
+   "language": "Chinese"
+  },
+  {
+   "query": "красное платье для женщин",
+   "language": "Russian"
+  },
+  {
+   "query": "чёрная кожаная куртка для мужчин",
+   "language": "Russian"
+  },
+  {
+   "query": "удобные кроссовки для бега",
+   "language": "Russian"
+  },
+  {
+   "query": "зимнее шерстяное пальто",
+   "language": "Russian"
+  },
+  {
+   "query": "солнцезащитные очки на лето",
+   "language": "Russian"
+  },
+  {
+   "query": "белая рубашка мужская",
+   "language": "Russian"
+  },
+  {
+   "query": "коричневая кожаная сумка",
+   "language": "Russian"
+  },
+  {
+   "query": "одежда для пляжа",
+   "language": "Russian"
+  },
+  {
+   "query": "polo shirt",
+   "language": "English"
+  },
+  {
+   "query": "kurta set",
+   "language": "English"
+  },
+  {
+   "query": "maroon saree",
+   "language": "English"
+  },
+  {
+   "query": "dupatta",
+   "language": "English"
+  },
+  {
+   "query": "lehenga choli",
+   "language": "English"
+  },
+  {
+   "query": "salwar kameez",
+   "language": "English"
+  },
+  {
+   "query": "jodhpuri suit",
+   "language": "English"
+  },
+  {
+   "query": "pashmina shawl",
+   "language": "English"
+  },
+  {
+   "query": "bandana",
+   "language": "English"
+  },
+  {
+   "query": "poncho",
+   "language": "English"
+  },
+  {
+   "query": "cardigan",
+   "language": "English"
+  },
+  {
+   "query": "ballet flats",
+   "language": "English"
+  },
+  {
+   "query": "espadrilles",
+   "language": "English"
+  },
+  {
+   "query": "stilettos",
+   "language": "English"
+  },
+  {
+   "query": "mules",
+   "language": "English"
+  },
+  {
+   "query": "fedora hat",
+   "language": "English"
+  },
+  {
+   "query": "blazer",
+   "language": "English"
+  },
+  {
+   "query": "chinos",
+   "language": "English"
+  },
+  {
+   "query": "cargo pants",
+   "language": "English"
+  },
+  {
+   "query": "peplum top",
+   "language": "English"
+  },
+  {
+   "query": "kimono jacket",
+   "language": "English"
+  },
+  {
+   "query": "bolero",
+   "language": "English"
+  },
+  {
+   "query": "sombrero",
+   "language": "English"
+  },
+  {
+   "query": "tank top",
+   "language": "English"
+  },
+  {
+   "query": "boots",
+   "language": "English"
+  },
+  {
+   "query": "sneakers",
+   "language": "English"
+  },
+  {
+   "query": "oxford shoes",
+   "language": "English"
+  },
+  {
+   "query": "denim jacket",
+   "language": "English"
+  },
+  {
+   "query": "trench coat",
+   "language": "English"
+  },
+  {
+   "query": "summer sandals",
+   "language": "English"
+  },
+  {
+   "query": "beige sandals",
+   "language": "English"
+  },
+  {
+   "query": "pink innerwear",
+   "language": "English"
+  },
+  {
+   "query": "jeans",
+   "language": "English"
+  },
+  {
+   "query": "flip flops",
+   "language": "English"
+  },
+  {
+   "query": "wedding outfit for men",
+   "language": "English"
+  },
+  {
+   "query": "something comfortable",
+   "language": "English"
+  },
+  {
+   "query": "nice accessory",
+   "language": "English"
+  },
+  {
+   "query": "good gift idea",
+   "language": "English"
+  },
+  {
+   "query": "casual wear for office",
+   "language": "English"
+  },
+  {
+   "query": "black dress",
+   "language": "English"
+  },
+  {
+   "query": "red top for women",
+   "language": "English"
+  }
+ ]
+}

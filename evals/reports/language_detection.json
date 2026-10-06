@@ -1,0 +1,66 @@
+{
+  "total": 263,
+  "correct": 260,
+  "per_language": {
+    "German": {
+      "queries": 14,
+      "correct": 14
+    },
+    "Italian": {
+      "queries": 14,
+      "correct": 14
+    },
+    "Portuguese": {
+      "queries": 14,
+      "correct": 14
+    },
+    "Arabic": {
+      "queries": 12,
+      "correct": 12
+    },
+    "Chinese": {
+      "queries": 12,
+      "correct": 12
+    },
+    "Russian": {
+      "queries": 12,
+      "correct": 12
+    },
+    "English": {
+      "queries": 151,
+      "correct": 149
+    },
+    "Spanish": {
+      "queries": 12,
+      "correct": 12
+    },
+    "French": {
+      "queries": 8,
+      "correct": 7
+    },
+    "Hindi": {
+      "queries": 14,
+      "correct": 14
+    }
+  },
+  "errors": [
+    {
+      "query": "beige sandals",
+      "language": "English",
+      "set": "main",
+      "predicted": "German"
+    },
+    {
+      "query": "veste en cuir marron",
+      "language": "French",
+      "set": "holdout",
+      "predicted": "English"
+    },
+    {
+      "query": "beige sandals",
+      "language": "English",
+      "set": "main",
+      "predicted": "German"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+{
+ "description": "Held-out queries written after the first detector run on language_detection_v1.json; never used to tune settings.",
+ "rows": [
+  {
+   "query": "Kleid für eine Hochzeit",
+   "language": "German"
+  },
+  {
+   "query": "warme Winterjacke für Damen",
+   "language": "German"
+  },
+  {
+   "query": "Turnschuhe in Weiß",
+   "language": "German"
+  },
+  {
+   "query": "Armbanduhr für Herren",
+   "language": "German"
+  },
+  {
+   "query": "Rucksack für die Arbeit",
+   "language": "German"
+  },
+  {
+   "query": "schicke Sandalen für den Urlaub",
+   "language": "German"
+  },
+  {
+   "query": "abito elegante per una festa",
+   "language": "Italian"
+  },
+  {
+   "query": "stivali neri da donna",
+   "language": "Italian"
+  },
+  {
+   "query": "maglione di cotone blu",
+   "language": "Italian"
+  },
+  {
+   "query": "orologio da polso per uomo",
+   "language": "Italian"
+  },
+  {
+   "query": "zaino per l'università",
+   "language": "Italian"
+  },
+  {
+   "query": "sandali comodi per l'estate",
+   "language": "Italian"
+  },
+  {
+   "query": "vestido elegante para festa",
+   "language": "Portuguese"
+  },
+  {
+   "query": "botas pretas femininas",
+   "language": "Portuguese"
+  },
+  {
+   "query": "camiseta de algodão azul",
+   "language": "Portuguese"
+  },
+  {
+   "query": "relógio de pulso masculino",
+   "language": "Portuguese"
+  },
+  {
+   "query": "mochila para o trabalho",
+   "language": "Portuguese"
+  },
+  {
+   "query": "sandálias confortáveis para o verão",
+   "language": "Portuguese"
+  },
+  {
+   "query": "حذاء كعب عالي أسود",
+   "language": "Arabic"
+  },
+  {
+   "query": "ثوب قطني للصيف",
+   "language": "Arabic"
+  },
+  {
+   "query": "ساعة يد للرجال",
+   "language": "Arabic"
+  },
+  {
+   "query": "حقيبة ظهر للمدرسة",
+   "language": "Arabic"
+  },
+  {
+   "query": "冬天穿的保暖外套",
+   "language": "Chinese"
+  },
+  {
+   "query": "女式高跟鞋",
+   "language": "Chinese"
+  },
+  {
+   "query": "运动手表",
+   "language": "Chinese"
+  },
+  {
+   "query": "适合上班的衬衫",
+   "language": "Chinese"
+  },
+  {
+   "query": "вечернее платье для свадьбы",
+   "language": "Russian"
+  },
+  {
+   "query": "кроссовки белого цвета",
+   "language": "Russian"
+  },
+  {
+   "query": "наручные часы мужские",
+   "language": "Russian"
+  },
+  {
+   "query": "рюкзак для работы",
+   "language": "Russian"
+  },
+  {
+   "query": "zapatos cómodos para caminar",
+   "language": "Spanish"
+  },
+  {
+   "query": "bolso pequeño para fiesta",
+   "language": "Spanish"
+  },
+  {
+   "query": "pantalones cortos para hombre",
+   "language": "Spanish"
+  },
+  {
+   "query": "abrigo de lana para invierno",
+   "language": "Spanish"
+  },
+  {
+   "query": "chaussures de ville pour homme",
+   "language": "French"
+  },
+  {
+   "query": "robe d'été légère",
+   "language": "French"
+  },
+  {
+   "query": "veste en cuir marron",
+   "language": "French"
+  },
+  {
+   "query": "montre pour femme",
+   "language": "French"
+  },
+  {
+   "query": "सर्दियों के लिए गर्म स्वेटर",
+   "language": "Hindi"
+  },
+  {
+   "query": "पुरुषों के लिए सफेद जूते",
+   "language": "Hindi"
+  },
+  {
+   "query": "शादी के लिए लहंगा",
+   "language": "Hindi"
+  },
+  {
+   "query": "लड़कियों के लिए कपड़े",
+   "language": "Hindi"
+  },
+  {
+   "query": "elegant dress for a wedding party",
+   "language": "English"
+  },
+  {
+   "query": "warm winter jacket for women",
+   "language": "English"
+  },
+  {
+   "query": "white sneakers for men",
+   "language": "English"
+  },
+  {
+   "query": "wristwatch for men",
+   "language": "English"
+  },
+  {
+   "query": "backpack for work",
+   "language": "English"
+  },
+  {
+   "query": "comfortable sandals for vacation",
+   "language": "English"
+  },
+  {
+   "query": "formal shoes for office",
+   "language": "English"
+  },
+  {
+   "query": "black boots for women",
+   "language": "English"
+  },
+  {
+   "query": "cotton t-shirt in blue",
+   "language": "English"
+  },
+  {
+   "query": "evening gown",
+   "language": "English"
+  },
+  {
+   "query": "leather belt for jeans",
+   "language": "English"
+  },
+  {
+   "query": "sports shoes for running",
+   "language": "English"
+  },
+  {
+   "query": "wool sweater for winter",
+   "language": "English"
+  },
+  {
+   "query": "summer dress with flowers",
+   "language": "English"
+  },
+  {
+   "query": "gift for my mother",
+   "language": "English"
+  },
+  {
+   "query": "outfit for a party",
+   "language": "English"
+  },
+  {
+   "query": "what to wear to a funeral",
+   "language": "English"
+  },
+  {
+   "query": "casual shirt for weekend",
+   "language": "English"
+  },
+  {
+   "query": "gym clothes for women",
+   "language": "English"
+  },
+  {
+   "query": "raincoat for monsoon",
+   "language": "English"
+  },
+  {
+   "query": "silk scarf",
+   "language": "English"
+  },
+  {
+   "query": "wedding saree",
+   "language": "English"
+  },
+  {
+   "query": "traditional kurta for festival",
+   "language": "English"
+  },
+  {
+   "query": "light cotton pants",
+   "language": "English"
+  },
+  {
+   "query": "smart casual outfit for men",
+   "language": "English"
+  },
+  {
+   "query": "school bag for kids",
+   "language": "English"
+  },
+  {
+   "query": "yoga pants",
+   "language": "English"
+  },
+  {
+   "query": "track pants for men",
+   "language": "English"
+  },
+  {
+   "query": "party wear gown",
+   "language": "English"
+  },
+  {
+   "query": "formal blazer for interview",
+   "language": "English"
+  },
+  {
+   "query": "slim fit jeans",
+   "language": "English"
+  },
+  {
+   "query": "high heels for women",
+   "language": "English"
+  },
+  {
+   "query": "winter gloves",
+   "language": "English"
+  },
+  {
+   "query": "woolen cap",
+   "language": "English"
+  },
+  {
+   "query": "beach shorts for men",
+   "language": "English"
+  },
+  {
+   "query": "anarkali suit for women",
+   "language": "English"
+  },
+  {
+   "query": "palazzo pants for women",
+   "language": "English"
+  },
+  {
+   "query": "kurta pajama for wedding",
+   "language": "English"
+  },
+  {
+   "query": "nehru jacket for men",
+   "language": "English"
+  },
+  {
+   "query": "dhoti kurta set",
+   "language": "English"
+  }
+ ]
+}

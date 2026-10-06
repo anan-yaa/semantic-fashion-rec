@@ -65,9 +65,61 @@ It was a clear win for Spanish and a clear loss for Hindi: it turned "सर्�
 | 2. Translate first; Gemma also detects the language | 0.65 | 0.76 | 0.47 | 0.72 |
 | **3. A library detects the language** | **0.85** | 0.76 | 0.89 | 1.00 |
 
-Run 2 failed because, asked whether a query was English, Gemma labelled every Spanish and French query as English and repeated it untranslated. Run 3 uses [lingua](https://github.com/pemistahl/lingua-py) (about 40 MB of RAM, 0.03 ms per query), limited to English, Spanish, French and Hindi. It labelled all 77 English eval queries English and all 22 others correctly.
+Run 2 failed because, asked whether a query was English, Gemma labelled every Spanish and French query as English and repeated it untranslated. Run 3 uses [lingua](https://github.com/pemistahl/lingua-py) (about 40 MB of RAM, 0.03 ms per query), limited to English, Spanish, French and Hindi at that point (extended to 10 languages below). It labelled all 77 English eval queries English and all 22 others correctly.
 
 **Remaining weak spots:** "काली जूती" (black jutti) → "black kurta", "बच्चों के कपड़े" (children's clothes), and "atuendo playero" → "playero outfit".
+
+### Extending to 10 languages
+
+Gemma is multilingual, but it was only ever told to translate when the detector recognised a language, so German, Italian and Portuguese queries were read as English and searched untranslated. The detector now recognises 10 languages: English, Spanish, French, German, Italian and Portuguese statistically, and Hindi, Arabic, Chinese and Russian by script (Unicode ranges, which can't be confused with English). Anything in another script is still labelled "non-English" and sent for translation.
+
+It is scored by [`scripts/eval_language_detection.py`](../scripts/eval_language_detection.py) on labelled queries ([`language_detection_v1.json`](queries/language_detection_v1.json), a held-out [`language_detection_holdout_v1.json`](queries/language_detection_holdout_v1.json), the existing 22 Hindi/Spanish/French queries and the English eval queries). No LLM or database is needed; results are in [`reports/language_detection.json`](reports/language_detection.json).
+
+| Language | Queries | Correct | Accuracy |
+|---|---|---|---|
+| English | 151 | 149 | 98.7% |
+| Arabic | 12 | 12 | 100.0% |
+| Chinese | 12 | 12 | 100.0% |
+| French | 8 | 7 | 87.5% |
+| German | 14 | 14 | 100.0% |
+| Hindi | 14 | 14 | 100.0% |
+| Italian | 14 | 14 | 100.0% |
+| Portuguese | 14 | 14 | 100.0% |
+| Russian | 12 | 12 | 100.0% |
+| Spanish | 12 | 12 | 100.0% |
+| **All** | **263** | **260** | **98.9%** |
+
+- **Held-out set:** it was written after the first run on the main set and never used for tuning: 81 of 82 correct.
+- **Before the change,** the same query set scored 68.5%: German, Italian, Portuguese and Russian queries were all wrong, and Arabic and Chinese only got the generic "non-English" label.
+- **Single words stay English.** Even the old detector misread 9 English loanwords ("poncho", "mules", "sombrero", "dupatta"…) as Spanish or French. A false "foreign" label risks a bad translation, while a foreign single word searched as written still works through the multilingual embedding model.
+- **The 0.2 margin was kept.** The weakest true foreign query sits at a margin of 0.27, but English queries such as "lehenga choli" and "summer topwear for men" are at 0.16 to 0.19, so loosening the margin trades English accuracy for foreign recall.
+- **Two known misreads:** "beige sandals" (English read as German at 0.75 confidence; its margin of 0.60 is above every real foreign query, so no threshold separates it) and "veste en cuir marron" (French read as English, just under the margin). Both are recorded as strict `xfail` tests.
+#### Translation and search quality in 10 languages
+
+Detection only decides when Gemma is asked to translate, so the new languages were also tested end to end with [`scripts/multilingual_languages_eval.py`](../scripts/multilingual_languages_eval.py): 100 queries (the 22 Hindi, Spanish and French queries plus 78 new ones), each sent through the real API with the LLM on, then again with the LLM switched off. Per query it records whether Gemma's English contains the right product, colour and gender words (checked automatically with word lists written before the run, so an acceptable paraphrase can fail), and the share of the top 10 results matching a hand-written rule. Results: [`reports/multilingual_10_languages.json`](reports/multilingual_10_languages.json) and [`reports/multilingual_10_languages_baseline.json`](reports/multilingual_10_languages_baseline.json). The LLM was used and translated on all 100 queries.
+
+| Language | Queries | Translation OK (automatic) | Translation correct (my review) | Relevant@10 with Gemma | Relevant@10 without the LLM | Translation better / tie / worse |
+|---|---|---|---|---|---|---|
+| Hindi | 10 | 9 | 9 | 0.760 | 0.790 | 3 / 5 / 2 |
+| Spanish | 8 | 7 | 7 | 0.887 | 0.475 | 5 / 2 / 1 |
+| French | 4 | 4 | 4 | 1.000 | 0.725 | 2 / 2 / 0 |
+| German | 14 | 12 | 12 | 0.857 | 0.407 | 7 / 7 / 0 |
+| Italian | 14 | 12 | 14 | 0.954 | 0.423 | 8 / 5 / 0 |
+| Portuguese | 14 | 14 | 14 | 0.969 | 0.600 | 7 / 6 / 0 |
+| Arabic | 12 | 10 | 10 (+1 partial) | 0.864 | 0.355 | 6 / 5 / 0 |
+| Chinese | 12 | 12 | 12 | 0.900 | 0.400 | 8 / 3 / 1 |
+| Russian | 12 | 11 | 12 | 0.833 | 0.450 | 7 / 3 / 2 |
+| **All** | **100** | **91** | **94 (+1 partial)** | **0.887** | **0.492** | **53 / 38 / 6** |
+
+- **Translation works for the new languages.** Of the 78 new queries, 71 pass the strict automatic check and 74 are correct on my read (1 partial, 3 wrong). The three "wrong" automatic marks that I judged acceptable were paraphrases: "glasses for sun", "clothing for going to the sea" and "sun protection glasses for summer".
+- **Search is much better with translation for the new languages:** 0.897 relevant@10 against 0.441 without the LLM (75 scored queries). The multilingual embedding model alone copes with Hindi (0.79) but not with the others. Translation was better on 53 of 97 scored queries, tied on 38 and worse on 6.
+- **Hindi is slightly worse with translation** (0.760 vs 0.790), as the earlier comparison found.
+- **Failure patterns** (6 of the 100 queries are wrong or partial):
+  - *Gemma returns the query unchanged:* two German queries ("Wintermantel aus Wolle", "Outfit für den Strand im Sommer"). The beach query still scored 1.0 through the embedding model; the winter-coat compound scored 0.0 both ways.
+  - *Literal wording that misses the catalogue's term:* "sun protection glasses for summer" scored 0.0 where the Russian text alone scored 0.9; German "sun glasses" scored 0.0 both ways.
+  - *Dropped or loosened words:* Arabic "brown leather handbag" came back as "leather handbag", and "wool winter coat" as "outerwear from wool". Known earlier failures remain: Hindi "काली जूती" → "black kurta" and Spanish "atuendo playero" → "playero outfit".
+- **Speed:** the LLM median is 656 to 753 ms per query in every language.
+- **Caveats:** only 4 to 14 queries per language, so differences between languages are indicative; one author wrote the queries, the rules and the review; three queries (two "black boots" ones and an ambiguous Arabic garment) have no matching catalogue type and are scored for translation only. Other languages and long queries weren't tested.
 
 ## 4. Should the LLM rewrite English queries?
 

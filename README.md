@@ -6,7 +6,7 @@ It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL
 
 | Requirement | How it's met |
 |---|---|
-| 1. Parse natural-language, multilingual queries | The query's language is detected (English, Hindi, Spanish, French). Gemma 3 1B translates non-English queries into English and extracts filters (color, gender, season); the multilingual-e5 embedding model matches meaning across languages |
+| 1. Parse natural-language, multilingual queries | The query's language is detected (10 languages: English, Spanish, French, German, Italian, Portuguese, Hindi, Arabic, Chinese, Russian). Gemma 3 1B translates non-English queries into English and extracts filters (color, gender, season); the multilingual-e5 embedding model matches meaning across languages |
 | 2. Find relevant products with semantic search and LLMs | Hybrid search: vector + keyword results fused with Reciprocal Rank Fusion, with LLM-inferred filters and product-type detection |
 | 3. Handle an evolving product catalogue | One sync command, run nightly by cron: adds new products, updates changed ones, hides removed ones, and re-embeds only what changed |
 
@@ -33,7 +33,7 @@ flowchart LR
 | Database | PostgreSQL 16 with pgvector: HNSW index for vectors, GIN index for full-text search |
 | Embeddings | `intfloat/multilingual-e5-base` via sentence-transformers (768 dimensions, L2-normalized, `query:` / `passage:` prefixes) |
 | LLM | Gemma 3 1B via Ollama, local (chosen over TinyLlama and Qwen 2.5 1.5B, see [`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)); the Gemini API is supported as an alternative provider |
-| Language detection | [lingua](https://github.com/pemistahl/lingua-py), limited to English, Spanish, French and Hindi (~40 MB RAM) |
+| Language detection | [lingua](https://github.com/pemistahl/lingua-py), recognising 10 languages: six Latin-script ones statistically, Hindi, Arabic, Chinese and Russian by script (~40 MB RAM) |
 | Frontend | Next.js 14, React 18, Tailwind CSS |
 | Data | [`HEBA2002/fashion-product-images-small`](https://huggingface.co/datasets/HEBA2002/fashion-product-images-small): 44,072 products, 141 product types (no prices or images are used) |
 
@@ -53,7 +53,7 @@ flowchart TD
 ```
 
 1. **LLM query understanding** ([`app/providers/ollama_llm.py`](app/providers/ollama_llm.py), [`app/services/query_understanding/`](app/services/query_understanding/))
-   - **The language is detected first,** by a small language-identification library rather than the LLM: a 1B model can't reliably tell Spanish or French from English. It's limited to English, Spanish, French and Hindi. A query only counts as non-English when that's clearly more likely than English, so short English queries like "beige sandals" aren't misread.
+   - **The language is detected first,** by a small language-identification library rather than the LLM: a 1B model can't reliably tell Spanish or French from English. It recognises 10 languages: English, Spanish, French, German, Italian and Portuguese (statistically), and Hindi, Arabic, Chinese and Russian (by script). Other scripts (Japanese, Korean, Tamil and so on) are labelled "non-English" and still sent for translation. A query only counts as non-English when that's clearly more likely than English, and single words stay English (fashion is full of loanwords such as "poncho" and "mules"), so almost all short English queries aren't misread. Detection scored 260 of 263 labelled queries ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#extending-to-10-languages)).
    - **Gemma 3 1B is told the language** ("Query (Spanish): …"). It returns the query in English, translating non-English queries, plus optional gender, color and season filters.
    - **Non-English queries are searched in English,** on both vector and keyword search: the catalogue is English, and the embedding model alone matches some words by spelling ("chaqueta" → "Red Chief" shoes). **English queries keep the user's own words;** the LLM only adds filters, because measured LLM rewrites of English queries dropped useful words.
    - Its output is forced into a **JSON schema** whose allowed values are the catalogue's own, read from the database and cached for 5 minutes. So it can't invent a color like "Male" or "Black, White".
@@ -365,7 +365,9 @@ tests/                 unit/, integration/, model/ (slow)
 ## Known limitations
 
 - **Multilingual coverage:**
-  - Language detection covers English, Spanish, French and Hindi. Other Latin-script languages may be read as English and searched untranslated.
+  - Language detection covers 10 languages. Other Latin-script languages (Dutch, Turkish and so on) may be read as English and searched untranslated.
+  - Detection was measured on 263 labelled queries (260 correct). Known misreads: "beige sandals" (English read as German) and "veste en cuir marron" (French read as English).
+  - **Translation was tested on 100 queries in 9 languages** (all but English): relevant@10 is 0.887 with Gemma against 0.492 with the LLM off, and 94 of 100 translations are correct on my review ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#translation-and-search-quality-in-10-languages)). Weak spots: Gemma sometimes returns the query unchanged (German compound words), and literal wordings such as "sun protection glasses" can miss the catalogue's terms. Hindi is slightly worse with translation than without.
   - Gemma 3 1B still mistranslates some queries, e.g. "काली जूती" (black jutti) → "black kurta".
   - The LLM adds about 0.7 s per search on a GTX 1650 (0.9 s on the multilingual queries), and Ollama serves one request at a time, which caps throughput at about 1.4 searches/s for new queries ([`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)). Repeated queries (paging, sorting, filter changes) are served from the LLM cache and skip that cost.
 - **Evaluation:** the answer key favours vector search, and 80 queries can only show fairly large differences. An earlier, human-reviewed answer key (`ground_truth_v1.json`) no longer matches the database's product IDs.
