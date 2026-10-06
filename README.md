@@ -1,4 +1,4 @@
-# Semantic Fashion Recommendation System
+# Threadly: Semantic Fashion Recommendation System
 
 [![CI](https://github.com/anan-yaa/semantic-fashion-rec/actions/workflows/ci.yml/badge.svg)](https://github.com/anan-yaa/semantic-fashion-rec/actions/workflows/ci.yml)
 
@@ -312,18 +312,16 @@ Run the quick demo with the memory limit in mind: the embedding script loads a s
 ## Testing
 
 ```bash
-python3 -m pytest tests/                 # backend: ~420 tests, about 1–5 minutes
+python3 -m pytest tests/                 # backend: about 470 tests, about 1–5 minutes
 python3 -m pytest tests/ -m slow         # opt-in tests that load the real embedding model
-cd frontend && npx vitest --run          # frontend: 70 tests
+cd frontend && npx vitest --run          # frontend: 76 tests
 ```
 
 - The backend tests use a fake LLM and fake embeddings, so they don't need Ollama or a GPU.
 - Integration tests use a separate `fashion_rec_test` database on the same PostgreSQL server, created automatically. Without PostgreSQL they're skipped.
 - Stop the backend and frontend while running the full suite on a machine with little memory.
 
-Current status: 418 passed and 2 known failures, both present before the latest changes:
-- `test_llm_inferred_filter_is_applied_and_changes_results` expects LLM filters to restrict *all* results, but they were deliberately limited to keyword search.
-- `test_e5_prefixes::test_batch_processing` is an embedding-model test that returns 4 results where it expects 3.
+Current status: all backend tests pass (about 470, none skipped) and all 76 frontend tests pass. CI runs both on every push and fails if any backend test is skipped.
 
 ## API
 
@@ -483,5 +481,6 @@ tests/                 unit/, integration/, model/ (slow)
 - **Deployment:**
   - Compose was verified with a 2,000-product sample on CPU, not with the full catalogue or the GPU override. The catalogue load is a manual step after `up`.
   - CI runs on GitHub Actions, but there is no automated deployment (CD), TLS or managed hosting setup.
+- **Catalogue data quality:** the source dataset contains at least one placeholder row, product 12348 "test dispName" (a green men's handbag), which can appear in results (for example the outfit builder's accessory slot). Ingestion doesn't filter such rows, and it's counted in the 44,072 products. A name-based skip rule at ingest would remove it.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.
 - **Feedback isn't used yet:** votes are collected and summarized, but they don't change ranking or feed the evaluation. The browser ID is anonymous and per device, so clearing site data starts fresh, and nothing stops someone voting many times from different browsers.

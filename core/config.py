@@ -11,7 +11,7 @@ class Settings(BaseSettings):
         case_sensitive=False,
     )
 
-    app_name: str = Field(default="Semantic Fashion Recommendation System")
+    app_name: str = Field(default="Threadly")
     debug: bool = Field(default=False)
     host: str = Field(default="0.0.0.0")
     port: int = Field(default=8000)

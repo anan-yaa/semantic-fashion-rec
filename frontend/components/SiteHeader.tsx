@@ -16,7 +16,7 @@ const NAV_LINK = 'text-sm px-3 py-1.5 rounded-full transition-colors'
 export function SiteHeader({ onBrandClick, active, subtitle }: SiteHeaderProps) {
   const brand = (
     <>
-      Fashion<span className="text-accent">Rec</span>
+      Thread<span className="text-accent">ly</span>
     </>
   )
   return (
