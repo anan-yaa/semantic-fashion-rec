@@ -7,7 +7,6 @@ metrics themselves truncate to k internally.
 import logging
 import time
 from datetime import datetime, timezone
-from typing import Dict, List, Optional
 
 from sqlalchemy import text
 from sqlalchemy.orm import Session
@@ -32,7 +31,7 @@ _METHODS = [SearchMethod.HYBRID, SearchMethod.VECTOR, SearchMethod.KEYWORD]
 _SEARCH_LIMIT = 50
 
 
-def preflight_check(session: Session, provider: EmbeddingProvider) -> Optional[str]:
+def preflight_check(session: Session, provider: EmbeddingProvider) -> str | None:
     """Validate that the eval environment is ready.
 
     Returns:
@@ -69,10 +68,10 @@ def preflight_check(session: Session, provider: EmbeddingProvider) -> Optional[s
 def run_eval(
     session: Session,
     provider: EmbeddingProvider,
-    judgments: List[GroundTruthEntry],
+    judgments: list[GroundTruthEntry],
     k: int = 10,
-    llm_provider: Optional[LLMProvider] = None,
-    throttle_seconds: Optional[float] = None,
+    llm_provider: LLMProvider | None = None,
+    throttle_seconds: float | None = None,
 ) -> EvalReport:
     """Run and score all 3 search methods against judged queries.
 
@@ -97,12 +96,12 @@ def run_eval(
     # if preflight_error:
     #     raise RuntimeError(f"Eval preflight check failed: {preflight_error}")
 
-    per_query: Dict[str, Dict[str, MethodScores]] = {}
-    relevance_lists_by_method: Dict[str, List[List[int]]] = {m.value: [] for m in _METHODS}
-    query_understanding_records: List[QueryUnderstandingRecord] = []
+    per_query: dict[str, dict[str, MethodScores]] = {}
+    relevance_lists_by_method: dict[str, list[list[int]]] = {m.value: [] for m in _METHODS}
+    query_understanding_records: list[QueryUnderstandingRecord] = []
     excluded_count = 0
-    last_llm_call_time: Optional[float] = None  # Monotonic clock for throttling
-    zero_result_counts: Dict[str, int] = {m.value: 0 for m in _METHODS}  # Track methods returning no results
+    last_llm_call_time: float | None = None  # Monotonic clock for throttling
+    zero_result_counts: dict[str, int] = {m.value: 0 for m in _METHODS}  # Track methods returning no results
     valid_filters = load_catalogue_facets(session) if llm_provider is not None else {}
 
     for gt in judgments:
@@ -194,7 +193,7 @@ def run_eval(
                 f"Run preflight checks and confirm /health returns 200."
             )
 
-    per_method: Dict[str, MethodScores] = {}
+    per_method: dict[str, MethodScores] = {}
     for method in _METHODS:
         lists = relevance_lists_by_method[method.value]
         if not lists:
@@ -225,12 +224,12 @@ def run_eval(
 def run_and_save_eval(
     session: Session,
     provider: EmbeddingProvider,
-    judgments: List[GroundTruthEntry],
+    judgments: list[GroundTruthEntry],
     ground_truth_source: str,
     output_prefix: str,
     k: int = 10,
-    llm_provider: Optional[LLMProvider] = None,
-    throttle_seconds: Optional[float] = None,
+    llm_provider: LLMProvider | None = None,
+    throttle_seconds: float | None = None,
 ) -> EvalReport:
     report = run_eval(session, provider, judgments, k=k, llm_provider=llm_provider, throttle_seconds=throttle_seconds)
     report.ground_truth_source = ground_truth_source

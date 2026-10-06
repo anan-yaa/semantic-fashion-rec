@@ -1,16 +1,16 @@
-from sqlalchemy import (
-    Column,
-    String,
-    Numeric,
-    Boolean,
-    DateTime,
-    Text,
-    JSON,
-    Index,
-)
-from sqlalchemy.sql import func
 from pgvector.sqlalchemy import Vector
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    Column,
+    DateTime,
+    Index,
+    Numeric,
+    String,
+    Text,
+)
 from sqlalchemy.dialects.postgresql import TSVECTOR
+from sqlalchemy.sql import func
 
 from app.db.database import Base
 

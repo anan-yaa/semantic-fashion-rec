@@ -2,18 +2,16 @@ import logging
 import threading
 
 from fastapi import FastAPI, status
-from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import text
-from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from core.config import settings
-from core.logging import setup_logging
-from app.db.database import engine
+from app.api.routes.feedback import router as feedback_router
 from app.api.routes.products import router as products_router
 from app.api.routes.search import router as search_router
-from app.api.routes.feedback import router as feedback_router
+from app.db.database import engine
+from core.config import settings
+from core.logging import setup_logging
 
 # Configure logging before anything else
 setup_logging()

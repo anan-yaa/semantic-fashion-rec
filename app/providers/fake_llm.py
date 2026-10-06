@@ -1,5 +1,4 @@
 """Deterministic fake LLM provider for testing. Never calls a real API."""
-from typing import Dict, List, Optional
 
 from app.providers.llm_base import LLMProvider, LLMProviderError, QueryUnderstanding
 from app.schemas.search import SearchFilter
@@ -15,15 +14,15 @@ class FakeLLMProvider(LLMProvider):
 
     def __init__(
         self,
-        canned_responses: Optional[Dict[str, QueryUnderstanding]] = None,
+        canned_responses: dict[str, QueryUnderstanding] | None = None,
         raise_error: bool = False,
     ):
         self.canned_responses = canned_responses or {}
         self.raise_error = raise_error
-        self.calls: List[str] = []
+        self.calls: list[str] = []
 
     def understand_query(
-        self, query: str, valid_filters: Dict[str, List[str]]
+        self, query: str, valid_filters: dict[str, list[str]]
     ) -> QueryUnderstanding:
         self.calls.append(query)
 

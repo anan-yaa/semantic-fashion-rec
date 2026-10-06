@@ -9,14 +9,13 @@ distance 0, i.e. guaranteed top rank via vector search), not textual
 similarity. Vector search itself has no relevance threshold, so every
 embedded product appears in its result set, just ranked by distance.
 """
-import pytest
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
 from app.providers.fake import FakeEmbeddingProvider
+from app.schemas.search import SearchFilter, SearchMethod
 from app.services.keyword_index import build_keyword_index
 from app.services.search.hybrid import search_hybrid
-from app.schemas.search import SearchMethod, SearchFilter
 
 QUERY = "distinctive zephyr product"
 

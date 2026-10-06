@@ -5,10 +5,9 @@ Revises: 743be6084b59
 Create Date: 2026-10-02 00:00:00.000000
 
 """
-from alembic import op
 import sqlalchemy as sa
-from sqlalchemy.dialects import postgresql
 
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = '0002_day2_search_columns'

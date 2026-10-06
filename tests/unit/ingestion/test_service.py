@@ -1,13 +1,10 @@
 """Unit tests for ingestion service orchestration."""
 
-import pytest
-from app.schemas.product import ProductIngestSchema
-from app.services.ingestion.service import (
-    ingest_records,
-    IngestionStats,
-    map_schema_to_product_model,
-)
 from app.db.repositories.product_repository import ProductRepository
+from app.services.ingestion.service import (
+    IngestionStats,
+    ingest_records,
+)
 
 
 class TestIngestionStats:

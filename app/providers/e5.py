@@ -1,7 +1,7 @@
 """HuggingFace E5 multilingual embedding provider."""
 import logging
 import threading
-from typing import List, Any
+from typing import Any
 
 from app.providers.base import EmbeddingProvider
 
@@ -66,15 +66,15 @@ class HuggingFaceE5Provider(EmbeddingProvider):
     def dim(self) -> int:
         return 768
 
-    def embed_passages(self, texts: List[str]) -> List[List[float]]:
+    def embed_passages(self, texts: list[str]) -> list[list[float]]:
         """Embed passages with 'passage: ' prefix."""
         return self._embed_texts([f"passage: {text}" for text in texts])
 
-    def embed_queries(self, texts: List[str]) -> List[List[float]]:
+    def embed_queries(self, texts: list[str]) -> list[list[float]]:
         """Embed queries with 'query: ' prefix."""
         return self._embed_texts([f"query: {text}" for text in texts])
 
-    def _embed_texts(self, texts: List[str]) -> List[List[float]]:
+    def _embed_texts(self, texts: list[str]) -> list[list[float]]:
         """Embed texts in batches.
 
         Args:
@@ -118,7 +118,7 @@ class HuggingFaceE5Provider(EmbeddingProvider):
 
         return embeddings
 
-    def _embed_texts_batch(self, texts: List[str], batch_size: int) -> List[List[float]]:
+    def _embed_texts_batch(self, texts: list[str], batch_size: int) -> list[list[float]]:
         """Embed texts with a specific batch size (used in OOM retry)."""
         embeddings = []
         for i in range(0, len(texts), batch_size):

@@ -1,12 +1,11 @@
 """Integration tests for vector similarity search on real pgvector."""
-import pytest
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
 from app.providers.fake import FakeEmbeddingProvider
-from app.services.search.vector_search import search_vector
 from app.schemas.search import SearchFilter
+from app.services.search.vector_search import search_vector
 
 
 def make_product(pid: str, name: str, search_text: str, **kwargs) -> Product:

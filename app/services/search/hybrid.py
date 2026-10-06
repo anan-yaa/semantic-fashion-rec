@@ -1,17 +1,16 @@
 """Hybrid search combining vector and keyword methods via Reciprocal Rank Fusion."""
 import logging
 import time
-from typing import List, Optional
 
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
 from app.providers.base import EmbeddingProvider
 from app.schemas.search import SearchFilter, SearchMethod
-from app.services.search.vector_search import search_vector
 from app.services.search.keyword_search import search_keyword
 from app.services.search.product_types import detect_article_types
 from app.services.search.rank_fusion import reciprocal_rank_fusion
+from app.services.search.vector_search import search_vector
 from app.services.timing import timed
 
 logger = logging.getLogger(__name__)
@@ -31,12 +30,12 @@ def _fused_search(
     session: Session,
     query_text: str,
     provider: EmbeddingProvider,
-    filters: Optional[SearchFilter],
+    filters: SearchFilter | None,
     kw_query_text: str,
-    kw_filters: Optional[SearchFilter],
+    kw_filters: SearchFilter | None,
     limit: int,
-    article_types: Optional[List[str]],
-) -> List[Product]:
+    article_types: list[str] | None,
+) -> list[Product]:
     """Run vector and keyword search and fuse them with Reciprocal Rank Fusion."""
     try:
         vector_results, _ = search_vector(
@@ -79,12 +78,12 @@ def search_hybrid(
     session: Session,
     query_text: str,
     provider: EmbeddingProvider,
-    filters: Optional[SearchFilter] = None,
+    filters: SearchFilter | None = None,
     method: SearchMethod = SearchMethod.HYBRID,
     limit: int = 50,
-    keyword_query_text: Optional[str] = None,
-    keyword_filters: Optional[SearchFilter] = None,
-) -> tuple[List[Product], SearchMethod, float]:
+    keyword_query_text: str | None = None,
+    keyword_filters: SearchFilter | None = None,
+) -> tuple[list[Product], SearchMethod, float]:
     """Unified search orchestration using Reciprocal Rank Fusion.
 
     Args:

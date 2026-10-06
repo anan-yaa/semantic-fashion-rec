@@ -12,10 +12,10 @@ import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from core.config import settings
-from core.logging import setup_logging
 from app.providers.factory import get_embedding_provider
 from app.services.eval import build_and_save_pool, load_query_set
+from core.config import settings
+from core.logging import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)

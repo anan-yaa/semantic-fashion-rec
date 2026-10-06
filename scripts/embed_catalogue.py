@@ -8,10 +8,10 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.providers.factory import get_embedding_provider
+from app.services.embedding import embed_products
 from core.config import settings
 from core.logging import setup_logging
-from app.services.embedding import embed_products
-from app.providers.factory import get_embedding_provider
 
 setup_logging()
 logger = logging.getLogger(__name__)

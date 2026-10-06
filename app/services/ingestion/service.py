@@ -1,12 +1,11 @@
 """Ingestion service that orchestrates the complete pipeline."""
 
-from typing import Optional
 import logging
 
 from sqlalchemy.orm import Session
 
-from app.db.repositories.product_repository import ProductRepository
 from app.db.models.product import Product
+from app.db.repositories.product_repository import ProductRepository
 from app.schemas.product import ProductIngestSchema
 from app.services.ingestion.mapper import map_record_to_product_schema
 
@@ -66,7 +65,7 @@ def deactivate_missing_products(
     active_ids = {
         ext_id
         for (ext_id,) in session.query(Product.external_product_id).filter(
-            Product.availability == True  # noqa: E712
+            Product.availability == True
         )
     }
     missing = sorted(active_ids - present_external_ids)

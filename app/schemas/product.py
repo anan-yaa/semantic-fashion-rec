@@ -1,20 +1,20 @@
-from typing import Optional
-from pydantic import BaseModel, Field
+
+from pydantic import BaseModel
 
 
 class ProductIngestSchema(BaseModel):
     """Schema for raw HuggingFace dataset records."""
 
     id: int
-    gender: Optional[str] = None
-    masterCategory: Optional[str] = None
-    subCategory: Optional[str] = None
-    articleType: Optional[str] = None
-    baseColour: Optional[str] = None
-    season: Optional[str] = None
-    year: Optional[float] = None
-    usage: Optional[str] = None
-    productDisplayName: Optional[str] = None
+    gender: str | None = None
+    masterCategory: str | None = None
+    subCategory: str | None = None
+    articleType: str | None = None
+    baseColour: str | None = None
+    season: str | None = None
+    year: float | None = None
+    usage: str | None = None
+    productDisplayName: str | None = None
 
     class Config:
         # Allow extra fields (e.g., image column) but ignore them
@@ -27,18 +27,18 @@ class ProductCreateSchema(BaseModel):
     id: str
     external_product_id: str
     name: str
-    description: Optional[str] = None
-    category: Optional[str] = None
-    subcategory: Optional[str] = None
-    brand: Optional[str] = None
-    gender: Optional[str] = None
-    color: Optional[str] = None
-    material: Optional[str] = None
-    style: Optional[str] = None
-    season: Optional[str] = None
-    price: Optional[str] = None
-    currency: Optional[str] = None
+    description: str | None = None
+    category: str | None = None
+    subcategory: str | None = None
+    brand: str | None = None
+    gender: str | None = None
+    color: str | None = None
+    material: str | None = None
+    style: str | None = None
+    season: str | None = None
+    price: str | None = None
+    currency: str | None = None
     availability: bool = True
-    attributes: Optional[dict] = None
-    search_text: Optional[str] = None
-    content_hash: Optional[str] = None
+    attributes: dict | None = None
+    search_text: str | None = None
+    content_hash: str | None = None

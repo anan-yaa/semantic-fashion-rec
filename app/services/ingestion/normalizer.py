@@ -1,9 +1,8 @@
 """Text normalization for deterministic hashing and search."""
 
-from typing import Optional
 
 
-def normalize_text(text: Optional[str]) -> Optional[str]:
+def normalize_text(text: str | None) -> str | None:
     """
     Normalize text for deterministic hashing and search.
 

@@ -1,7 +1,7 @@
 """Deterministic fake embedding provider for testing."""
 import hashlib
+
 import numpy as np
-from typing import List
 
 from app.providers.base import EmbeddingProvider
 
@@ -17,15 +17,15 @@ class FakeEmbeddingProvider(EmbeddingProvider):
     def dim(self) -> int:
         return 768
 
-    def embed_passages(self, texts: List[str]) -> List[List[float]]:
+    def embed_passages(self, texts: list[str]) -> list[list[float]]:
         """Embed passages (no prefix needed for fake)."""
         return self._embed_deterministic(texts)
 
-    def embed_queries(self, texts: List[str]) -> List[List[float]]:
+    def embed_queries(self, texts: list[str]) -> list[list[float]]:
         """Embed queries (no prefix needed for fake)."""
         return self._embed_deterministic(texts)
 
-    def _embed_deterministic(self, texts: List[str]) -> List[List[float]]:
+    def _embed_deterministic(self, texts: list[str]) -> list[list[float]]:
         """Generate deterministic, normalized embeddings from text hashes."""
         embeddings = []
         for text in texts:

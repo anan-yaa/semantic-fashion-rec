@@ -1,2 +1,0 @@
-[degraded_hang] c=4 run 1/1: p50=397ms p95=10443ms p99=22969ms 2.23 req/s errors=0.0%
-Wrote evals/reports/health_load_degraded.json

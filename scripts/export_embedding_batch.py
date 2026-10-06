@@ -22,9 +22,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.services.embedding.export import select_products_for_export, to_export_rows
 from core.config import settings
 from core.logging import setup_logging
-from app.services.embedding.export import select_products_for_export, to_export_rows
 
 setup_logging()
 logger = logging.getLogger(__name__)

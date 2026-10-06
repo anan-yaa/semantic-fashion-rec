@@ -8,7 +8,7 @@ in memory, per process.
 import math
 import threading
 import time
-from typing import Callable, Dict, Tuple
+from collections.abc import Callable
 
 from fastapi import HTTPException, Request, status
 
@@ -28,7 +28,7 @@ class TokenBucketLimiter:
         self._clock = clock
         self._max_clients = max_clients
         self._lock = threading.Lock()
-        self._buckets: Dict[str, Tuple[float, float]] = {}  # key -> (tokens, updated_at)
+        self._buckets: dict[str, tuple[float, float]] = {}  # key -> (tokens, updated_at)
 
     def acquire(self, key: str) -> float:
         """Take a token for `key`. Returns 0 if allowed, else seconds until a token is available."""

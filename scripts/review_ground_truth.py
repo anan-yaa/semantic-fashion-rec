@@ -106,7 +106,7 @@ def main():
             total_rel = sum(len(q['relevant_product_ids']) for q in judgments)
             total_products = sum(len(q['all_candidates']) for q in judgments)
             total_non_rel = total_products - total_rel
-            print(f"\n📈 Overall Stats:")
+            print("\n📈 Overall Stats:")
             print(f"   Queries: {len(judgments)}")
             print(f"   ✓ Relevant products: {total_rel}")
             print(f"   ✗ Non-relevant products: {total_non_rel}")

@@ -5,8 +5,7 @@ script) means a field rename or schema change only needs to happen in one
 place.
 """
 import json
-from dataclasses import dataclass, field, asdict
-from typing import List, Optional
+from dataclasses import asdict, dataclass, field
 
 
 @dataclass
@@ -16,7 +15,7 @@ class QuerySetEntry:
     category_tag: str
 
 
-def load_query_set(path: str) -> List[QuerySetEntry]:
+def load_query_set(path: str) -> list[QuerySetEntry]:
     with open(path) as f:
         data = json.load(f)
     return [QuerySetEntry(**q) for q in data["queries"]]
@@ -27,25 +26,25 @@ class PoolCandidate:
     product_id: str
     external_product_id: str
     name: str
-    category: Optional[str]
-    subcategory: Optional[str]
-    gender: Optional[str]
-    color: Optional[str]
-    season: Optional[str]
-    search_text: Optional[str]
-    found_by: List[str]
-    pre_label: Optional[int] = None
-    pre_label_rationale: Optional[str] = None
+    category: str | None
+    subcategory: str | None
+    gender: str | None
+    color: str | None
+    season: str | None
+    search_text: str | None
+    found_by: list[str]
+    pre_label: int | None = None
+    pre_label_rationale: str | None = None
 
 
 @dataclass
 class PoolEntry:
     query_id: str
     query: str
-    candidates: List[PoolCandidate]
+    candidates: list[PoolCandidate]
 
 
-def save_pool(path: str, pools: List[PoolEntry], source_query_set: str, k_per_method: int, built_at: str) -> None:
+def save_pool(path: str, pools: list[PoolEntry], source_query_set: str, k_per_method: int, built_at: str) -> None:
     data = {
         "version": 1,
         "source_query_set": source_query_set,
@@ -64,7 +63,7 @@ def save_pool(path: str, pools: List[PoolEntry], source_query_set: str, k_per_me
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def load_pool(path: str) -> List[PoolEntry]:
+def load_pool(path: str) -> list[PoolEntry]:
     with open(path) as f:
         data = json.load(f)
     return [
@@ -81,7 +80,7 @@ def load_pool(path: str) -> List[PoolEntry]:
 class GroundTruthCandidate:
     product_id: str
     relevance: int
-    pre_label: Optional[int]
+    pre_label: int | None
     human_flipped: bool
 
 
@@ -89,11 +88,11 @@ class GroundTruthCandidate:
 class GroundTruthEntry:
     query_id: str
     query: str
-    relevant_product_ids: List[str]
-    all_candidates: List[GroundTruthCandidate] = field(default_factory=list)
+    relevant_product_ids: list[str]
+    all_candidates: list[GroundTruthCandidate] = field(default_factory=list)
 
 
-def save_ground_truth(path: str, judgments: List[GroundTruthEntry], source_pool: str, labeled_at: str) -> None:
+def save_ground_truth(path: str, judgments: list[GroundTruthEntry], source_pool: str, labeled_at: str) -> None:
     data = {
         "version": 1,
         "source_pool": source_pool,
@@ -112,7 +111,7 @@ def save_ground_truth(path: str, judgments: List[GroundTruthEntry], source_pool:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
-def load_ground_truth(path: str) -> List[GroundTruthEntry]:
+def load_ground_truth(path: str) -> list[GroundTruthEntry]:
     with open(path) as f:
         data = json.load(f)
     return [
@@ -150,7 +149,7 @@ class QueryUnderstandingRecord:
     used_llm: bool
     cleaned_query: str
     filters: dict
-    error: Optional[str] = None
+    error: str | None = None
     translated: bool = False
 
 
@@ -163,7 +162,7 @@ class EvalReport:
     per_method: dict  # method name -> MethodScores
     per_query: dict  # query_id -> {method name -> MethodScores}
     query_understanding_enabled: bool = False
-    query_understanding: List[QueryUnderstandingRecord] = field(default_factory=list)
+    query_understanding: list[QueryUnderstandingRecord] = field(default_factory=list)
 
 
 def save_report(json_path: str, md_path: str, report: EvalReport) -> None:

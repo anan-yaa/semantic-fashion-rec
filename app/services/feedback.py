@@ -1,5 +1,4 @@
 """Store and summarize thumbs-up/down feedback on search results."""
-from typing import Dict
 
 from sqlalchemy import case, func, select
 from sqlalchemy.exc import IntegrityError
@@ -63,7 +62,7 @@ def _find(session: Session, client_id: str, query_normalized: str, product_id: s
     ).scalar_one_or_none()
 
 
-def votes_for(session: Session, client_id: str, query: str) -> Dict[str, int]:
+def votes_for(session: Session, client_id: str, query: str) -> dict[str, int]:
     rows = session.execute(
         select(SearchFeedback.product_id, SearchFeedback.vote).where(
             SearchFeedback.client_id == client_id,

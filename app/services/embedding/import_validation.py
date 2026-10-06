@@ -6,7 +6,6 @@ without Postgres or pyarrow.
 """
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Optional
 
 
 class ImportOutcome(str, Enum):
@@ -22,8 +21,8 @@ class ImportOutcome(str, Enum):
 class LocalProductRecord:
     """The subset of current local DB state needed to validate one import row."""
     id: str
-    content_hash: Optional[str]
-    embedding_content_hash: Optional[str]
+    content_hash: str | None
+    embedding_content_hash: str | None
 
 
 @dataclass
@@ -32,7 +31,7 @@ class ArtifactRow:
     id: str
     external_product_id: str
     content_hash: str
-    embedding: List[float]
+    embedding: list[float]
 
 
 @dataclass
@@ -42,7 +41,7 @@ class ImportDecision:
     external_product_id: str
     reason: str = ""
     # Only populated when outcome == IMPORTED.
-    update_payload: Optional[dict] = None
+    update_payload: dict | None = None
 
 
 EXPECTED_DIM = 768
@@ -50,7 +49,7 @@ EXPECTED_DIM = 768
 
 def classify_row(
     row: ArtifactRow,
-    local_products_by_external_id: Dict[str, LocalProductRecord],
+    local_products_by_external_id: dict[str, LocalProductRecord],
 ) -> ImportDecision:
     """Decide what to do with one artifact row against current local DB state.
 

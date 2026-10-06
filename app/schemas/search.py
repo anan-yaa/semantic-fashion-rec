@@ -1,8 +1,8 @@
 """Search request/response schemas."""
 from enum import Enum
-from typing import Dict, List, Literal, Optional
+from typing import Literal
+
 from pydantic import BaseModel, Field
-from decimal import Decimal
 
 from app.schemas.api import ProductResponse
 
@@ -27,11 +27,11 @@ MAX_SEARCH_RESULTS = 100
 
 class SearchFilter(BaseModel):
     """Filters for search results."""
-    category: Optional[str] = None
-    gender: Optional[str] = None
-    color: Optional[str] = None
-    season: Optional[str] = None
-    availability: Optional[bool] = None
+    category: str | None = None
+    gender: str | None = None
+    color: str | None = None
+    season: str | None = None
+    availability: bool | None = None
 
 
 class SearchRequest(BaseModel):
@@ -39,7 +39,7 @@ class SearchRequest(BaseModel):
     # Cap query length to bound LLM token usage and prompt-injection surface.
     # Typical fashion queries are <100 chars; 500 is ample (≈125 tokens at 4 chars/token).
     query: str = Field(..., min_length=1, max_length=500, description="Search query (max 500 chars)")
-    filters: Optional[SearchFilter] = None
+    filters: SearchFilter | None = None
     limit: int = Field(default=50, ge=1, le=100, description="Results per page")
     page: int = Field(default=1, ge=1, description="1-indexed page of the top matches")
     sort: SortOrder = SortOrder.RELEVANCE
@@ -50,16 +50,16 @@ class QueryUnderstandingInfo(BaseModel):
     """What the LLM understood from the query, for display."""
     used_llm: bool
     translated: bool = Field(False, description="The query wasn't English and was searched in English")
-    english_query: Optional[str] = Field(None, description="The English translation searched, when translated")
-    inferred_filters: Dict[str, str] = Field(
+    english_query: str | None = Field(None, description="The English translation searched, when translated")
+    inferred_filters: dict[str, str] = Field(
         default_factory=dict, description="Non-empty LLM-inferred filters, e.g. {'color': 'Red'}"
     )
-    fallback_reason: Optional[Literal["unsupported_query", "llm_unavailable"]] = None
+    fallback_reason: Literal["unsupported_query", "llm_unavailable"] | None = None
 
 
 class SearchResponse(BaseModel):
     """Search response."""
-    products: List[ProductResponse]
+    products: list[ProductResponse]
     query: str
     method: SearchMethod
     total_products: int = Field(description=f"Number of matches across all pages (at most {MAX_SEARCH_RESULTS})")
@@ -67,6 +67,6 @@ class SearchResponse(BaseModel):
     page_size: int
     total_pages: int
     took_ms: float
-    understanding: Optional[QueryUnderstandingInfo] = Field(
+    understanding: QueryUnderstandingInfo | None = Field(
         None, description="Null when query understanding is disabled"
     )

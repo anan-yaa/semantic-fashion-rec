@@ -1,9 +1,8 @@
 """Vector similarity search."""
 import logging
-from typing import List, Optional, Tuple
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
-from sqlalchemy import desc, text
 
 from app.db.models.product import Product
 from app.providers.base import EmbeddingProvider
@@ -18,10 +17,10 @@ def search_vector(
     session: Session,
     query_text: str,
     provider: EmbeddingProvider,
-    filters: Optional[SearchFilter] = None,
+    filters: SearchFilter | None = None,
     limit: int = 50,
-    article_types: Optional[List[str]] = None,
-) -> Tuple[List[Product], int]:
+    article_types: list[str] | None = None,
+) -> tuple[list[Product], int]:
     """Search using vector similarity.
 
     Args:
@@ -82,7 +81,7 @@ def search_vector(
     return ranked, total_count
 
 
-def calculate_similarity_score(vec1: List[float], vec2: List[float]) -> float:
+def calculate_similarity_score(vec1: list[float], vec2: list[float]) -> float:
     """Calculate cosine similarity between two vectors.
 
     Args:

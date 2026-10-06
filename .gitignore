@@ -31,3 +31,7 @@ embedding_result.parquet
 manifest.json
 # Cron sync logs
 logs/
+# Eval run logs (raw terminal output; keep .json/.md reports)
+evals/reports/*.log
+# Frontend build cache
+frontend/tsconfig.tsbuildinfo

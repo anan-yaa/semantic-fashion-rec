@@ -1,5 +1,4 @@
 """Re-order ranked search results by a user-chosen sort."""
-from typing import List
 
 from app.db.models.product import Product
 from app.schemas.search import SortOrder
@@ -11,7 +10,7 @@ def _year(product: Product):
     return year if isinstance(year, (int, float)) and not isinstance(year, bool) else None
 
 
-def sort_products(products: List[Product], sort: SortOrder) -> List[Product]:
+def sort_products(products: list[Product], sort: SortOrder) -> list[Product]:
     """Sort already-ranked results. Ties keep their relevance order (stable sort)."""
     if sort == SortOrder.NEWEST:
         # Products without a year go last.

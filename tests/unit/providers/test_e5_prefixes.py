@@ -1,7 +1,8 @@
 """Tests for HuggingFaceE5Provider prefixes and behavior."""
 from unittest.mock import MagicMock, patch
-import pytest
+
 import numpy as np
+import pytest
 
 pytest.importorskip("sentence_transformers", minversion=None)
 
@@ -52,7 +53,7 @@ class TestE5Provider:
         """Test that texts are batched correctly."""
         mock_model = MagicMock()
         mock_model.get_sentence_embedding_dimension.return_value = 768
-        mock_model.encode.return_value = np.zeros((2, 768), dtype=np.float32)
+        mock_model.encode.side_effect = lambda texts, **kw: np.zeros((len(texts), 768), dtype=np.float32)
 
         with patch('sentence_transformers.SentenceTransformer', return_value=mock_model):
             provider = HuggingFaceE5Provider(batch_size=2)

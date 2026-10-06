@@ -1,6 +1,6 @@
 from app.schemas.product import (
-    ProductIngestSchema,
     ProductCreateSchema,
+    ProductIngestSchema,
 )
 
-__all__ = ["ProductIngestSchema", "ProductCreateSchema"]
+__all__ = ["ProductCreateSchema", "ProductIngestSchema"]

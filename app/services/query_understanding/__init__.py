@@ -10,10 +10,10 @@ from app.services.query_understanding.vocabulary import get_catalogue_facets, lo
 
 __all__ = [
     "QueryUnderstandingResult",
+    "get_catalogue_facets",
+    "load_catalogue_facets",
     "merge_filters",
     "search_texts",
     "understand_query",
     "validate_filters",
-    "get_catalogue_facets",
-    "load_catalogue_facets",
 ]

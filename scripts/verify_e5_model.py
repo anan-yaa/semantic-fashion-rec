@@ -14,8 +14,8 @@ an automated equivalent.
 import logging
 import sys
 
-from core.logging import setup_logging
 from app.providers.e5 import HuggingFaceE5Provider
+from core.logging import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)

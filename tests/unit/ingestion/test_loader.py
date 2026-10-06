@@ -1,6 +1,5 @@
 """Unit tests for dataset loading."""
 
-import pytest
 from app.services.ingestion.loader import load_dataset_from_cache
 
 

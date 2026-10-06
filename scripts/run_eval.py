@@ -9,16 +9,15 @@ Usage:
 import argparse
 import logging
 import sys
-import time
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from core.config import settings
-from core.logging import setup_logging
 from app.providers.factory import get_embedding_provider
 from app.providers.llm_factory import get_llm_provider
 from app.services.eval import load_ground_truth, run_and_save_eval
+from core.config import settings
+from core.logging import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -81,24 +80,24 @@ def main() -> int:
             throttle_seconds=args.throttle_seconds,
         )
 
-        print("")
+        print()
         print(f"Queries scored: {report.query_count} (excluded: {report.excluded_query_count})")
         print(f"Query understanding enabled: {report.query_understanding_enabled}")
-        print("")
+        print()
         print(f"{'Method':<10}{'NDCG@10':<12}{'Precision@10':<16}{'MRR':<10}{'MRR@10':<10}{'Recall@10':<12}{'Recall@20':<12}{'Recall@50':<12}")
         for method, scores in report.per_method.items():
             print(
                 f"{method:<10}{scores.ndcg_at_10:<12.3f}{scores.precision_at_10:<16.3f}{scores.mrr:<10.3f}"
                 f"{scores.mrr_at_10:<10.3f}{scores.recall_at_10:<12.3f}{scores.recall_at_20:<12.3f}{scores.recall_at_50:<12.3f}"
             )
-        print("")
+        print()
 
         if report.query_understanding:
             fallback_count = sum(1 for r in report.query_understanding if not r.used_llm)
             real_count = len(report.query_understanding) - fallback_count
             print(f"Query understanding: {len(report.query_understanding)} calls, "
                   f"{real_count} real, {fallback_count} fell back to the original query")
-            print("")
+            print()
 
             # If any fallback occurred during a throttled run, fail loudly so the partial
             # run is never mistaken for a clean one.

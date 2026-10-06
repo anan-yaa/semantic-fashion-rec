@@ -11,27 +11,25 @@ Options:
 """
 
 import argparse
-import sys
 import logging
-from typing import Optional
 import os
+import sys
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.config import settings
-from core.logging import setup_logging
 from app.db.database import get_session
 from app.services.ingestion import (
+    ingest_records,
     load_dataset_from_cache,
     load_dataset_from_path,
-    ingest_records,
 )
+from core.logging import setup_logging
 
 logger = logging.getLogger(__name__)
 
 
-def load_dataset(dataset_path: Optional[str] = None):
+def load_dataset(dataset_path: str | None = None):
     """
     Load HuggingFace dataset, removing the image column to save memory.
 

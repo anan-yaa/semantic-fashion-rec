@@ -8,9 +8,9 @@ from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 import app.api.routes.search as search_route
-from app.main import app
 from app.db.database import get_session
 from app.db.models.product import Product
+from app.main import app
 from app.providers.fake import FakeEmbeddingProvider
 from app.providers.fake_llm import FakeLLMProvider
 from app.providers.llm_base import QueryUnderstanding
@@ -55,6 +55,8 @@ class TestSearchQueryUnderstanding:
         build_keyword_index(self.session, limit=100)
 
     def test_llm_inferred_filter_is_applied_and_changes_results(self):
+        # LLM-inferred filters apply to keyword path only (not vector path).
+        # Use method=keyword so the filter is exercised and results are deterministic.
         self._seed_gendered_products()
         canned = QueryUnderstanding(
             cleaned_query="blue shirt",
@@ -64,7 +66,7 @@ class TestSearchQueryUnderstanding:
             lambda: FakeLLMProvider(canned_responses={QUERY: canned})
         )
 
-        response = self.client.post("/search", json={"query": QUERY, "limit": 10})
+        response = self.client.post("/search", json={"query": QUERY, "method": "keyword", "limit": 10})
 
         assert response.status_code == 200
         data = response.json()

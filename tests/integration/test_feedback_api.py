@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from fastapi.testclient import TestClient
 
-import app.api.rate_limit as rate_limit
+from app.api import rate_limit
 from app.api.rate_limit import TokenBucketLimiter
 from app.db.database import get_session
 from app.db.models.feedback import SearchFeedback

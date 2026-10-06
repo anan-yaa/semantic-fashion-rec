@@ -1,21 +1,21 @@
 import os
-from typing import Generator
+from collections.abc import Generator
 
 import pytest
-from sqlalchemy import create_engine, Text, text
-from sqlalchemy.engine import make_url
-from sqlalchemy.orm import sessionmaker, Session
-from sqlalchemy.pool import StaticPool
-from sqlalchemy.ext.compiler import compiles
-from sqlalchemy.exc import OperationalError
 from pgvector.sqlalchemy import Vector
+from sqlalchemy import create_engine, text
 from sqlalchemy.dialects.postgresql import TSVECTOR
+from sqlalchemy.engine import make_url
+from sqlalchemy.exc import OperationalError
+from sqlalchemy.ext.compiler import compiles
+from sqlalchemy.orm import Session, sessionmaker
+from sqlalchemy.pool import StaticPool
 
+from app.api.rate_limit import feedback_rate_limiter, search_rate_limiter
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
-from app.services.query_understanding.vocabulary import _reset_catalogue_facets_cache
-from app.api.rate_limit import feedback_rate_limiter, search_rate_limiter
 from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
+from app.services.query_understanding.vocabulary import _reset_catalogue_facets_cache
 from app.services.search.product_types import _reset_article_type_cache
 from core.config import settings
 

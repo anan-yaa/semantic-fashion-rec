@@ -11,14 +11,13 @@ then runs `alembic upgrade head` for real. This exercises the actual
 migration 0002 file through the actual alembic machinery.
 """
 import os
+
 import pytest
-from sqlalchemy import create_engine, text
-from sqlalchemy.exc import OperationalError
 from alembic.config import Config
+from sqlalchemy import create_engine, text
+
 from alembic import command
-
-from tests.conftest import TEST_POSTGRES_URL, _postgres_available, _assert_safe_test_database
-
+from tests.conftest import TEST_POSTGRES_URL, _assert_safe_test_database, _postgres_available
 
 PHASE1_FIXED_SCHEMA_SQL = """
 CREATE EXTENSION IF NOT EXISTS vector;

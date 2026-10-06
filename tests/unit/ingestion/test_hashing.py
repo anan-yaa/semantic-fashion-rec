@@ -1,6 +1,7 @@
 """Unit tests for content hashing."""
 
 import hashlib
+
 from app.services.ingestion.hashing import compute_content_hash
 
 

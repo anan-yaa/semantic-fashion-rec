@@ -1,7 +1,6 @@
 """Full-text keyword search."""
 import logging
 import math
-from typing import List, Optional, Tuple
 
 from sqlalchemy import Integer, Text, cast, desc, func, or_, select
 from sqlalchemy.orm import Session
@@ -17,11 +16,11 @@ logger = logging.getLogger(__name__)
 def search_keyword(
     session: Session,
     query_text: str,
-    filters: Optional[SearchFilter] = None,
+    filters: SearchFilter | None = None,
     limit: int = 50,
     min_term_coverage: float = 0.0,
-    article_types: Optional[List[str]] = None,
-) -> Tuple[List[Product], int]:
+    article_types: list[str] | None = None,
+) -> tuple[list[Product], int]:
     """Search using keyword matching.
 
     On PostgreSQL, uses TSVECTOR full-text search: plainto_tsquery() to parse

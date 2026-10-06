@@ -2,7 +2,6 @@
 from collections import Counter
 from dataclasses import dataclass, field
 from statistics import median
-from typing import Dict, List, Optional
 
 import numpy as np
 
@@ -11,21 +10,21 @@ PERCENTILES = (50, 95, 99)
 
 @dataclass
 class RequestResult:
-    status: Optional[int]  # None when the request itself failed (timeout, connection error)
+    status: int | None  # None when the request itself failed (timeout, connection error)
     latency_ms: float
-    stages: Dict[str, float] = field(default_factory=dict)
-    used_llm: Optional[bool] = None
-    fallback_reason: Optional[str] = None
-    error: Optional[str] = None
+    stages: dict[str, float] = field(default_factory=dict)
+    used_llm: bool | None = None
+    fallback_reason: str | None = None
+    error: str | None = None
 
     @property
     def ok(self) -> bool:
         return self.status is not None and 200 <= self.status < 300
 
 
-def parse_server_timing(header: Optional[str]) -> Dict[str, float]:
+def parse_server_timing(header: str | None) -> dict[str, float]:
     """'llm;dur=312.4, embed;dur=21.0' -> {'llm': 312.4, 'embed': 21.0}. Ignores malformed parts."""
-    stages: Dict[str, float] = {}
+    stages: dict[str, float] = {}
     for part in (header or "").split(","):
         name, _, params = part.strip().partition(";")
         for param in params.split(";"):
@@ -38,7 +37,7 @@ def parse_server_timing(header: Optional[str]) -> Dict[str, float]:
     return stages
 
 
-def percentiles(values: List[float]) -> Dict[str, float]:
+def percentiles(values: list[float]) -> dict[str, float]:
     if not values:
         return {}
     arr = np.asarray(values, dtype=float)
@@ -48,7 +47,7 @@ def percentiles(values: List[float]) -> Dict[str, float]:
     return out
 
 
-def summarize(results: List[RequestResult], wall_seconds: float) -> dict:
+def summarize(results: list[RequestResult], wall_seconds: float) -> dict:
     """Latency percentiles, throughput, error and LLM fallback rates for one load-test run."""
     total = len(results)
     ok = [r for r in results if r.ok]
@@ -67,9 +66,9 @@ def summarize(results: List[RequestResult], wall_seconds: float) -> dict:
     }
 
 
-def median_of_runs(runs: List[dict], paths: List[List[str]]) -> Dict[str, Optional[float]]:
+def median_of_runs(runs: list[dict], paths: list[list[str]]) -> dict[str, float | None]:
     """Median across repeated runs of the numeric values at each key path, e.g. ['latency_ms', 'p95']."""
-    out: Dict[str, Optional[float]] = {}
+    out: dict[str, float | None] = {}
     for path in paths:
         values = []
         for run in runs:

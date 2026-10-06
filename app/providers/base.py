@@ -1,6 +1,5 @@
 """Abstract embedding provider interface."""
 from abc import ABC, abstractmethod
-from typing import List
 
 
 class EmbeddingProvider(ABC):
@@ -10,10 +9,9 @@ class EmbeddingProvider(ABC):
     @abstractmethod
     def dim(self) -> int:
         """Embedding dimension."""
-        pass
 
     @abstractmethod
-    def embed_passages(self, texts: List[str]) -> List[List[float]]:
+    def embed_passages(self, texts: list[str]) -> list[list[float]]:
         """Embed passages for indexing.
 
         Args:
@@ -22,13 +20,12 @@ class EmbeddingProvider(ABC):
         Returns:
             List of embeddings, each a list of floats.
         """
-        pass
 
     def warm_up(self) -> None:
         """Load any model weights ahead of the first request. No-op by default."""
 
     @abstractmethod
-    def embed_queries(self, texts: List[str]) -> List[List[float]]:
+    def embed_queries(self, texts: list[str]) -> list[list[float]]:
         """Embed queries for search.
 
         Args:
@@ -37,4 +34,3 @@ class EmbeddingProvider(ABC):
         Returns:
             List of embeddings, each a list of floats.
         """
-        pass

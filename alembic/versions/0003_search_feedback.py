@@ -5,9 +5,9 @@ Revises: 0002_day2_search_columns
 Create Date: 2026-10-06 00:00:00.000000
 
 """
-from alembic import op
 import sqlalchemy as sa
 
+from alembic import op
 
 revision = "0003_search_feedback"
 down_revision = "0002_day2_search_columns"

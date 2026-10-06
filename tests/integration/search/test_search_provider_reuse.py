@@ -12,8 +12,8 @@ from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 import app.api.routes.search as search_route
-from app.main import app
 from app.db.database import get_session
+from app.main import app
 from app.providers.fake import FakeEmbeddingProvider
 
 

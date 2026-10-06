@@ -1,6 +1,5 @@
 """Load HuggingFace fashion dataset without loading image data."""
 
-from typing import Optional
 from datasets import Dataset
 
 

@@ -10,7 +10,6 @@ import logging
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import List
 
 from sqlalchemy.orm import Session
 
@@ -34,11 +33,11 @@ class PoolBuildStats:
 def build_pool(
     session: Session,
     provider: EmbeddingProvider,
-    queries: List[QuerySetEntry],
+    queries: list[QuerySetEntry],
     k_per_method: int = 20,
-) -> tuple[List[PoolEntry], PoolBuildStats]:
+) -> tuple[list[PoolEntry], PoolBuildStats]:
     start = time.time()
-    pools: List[PoolEntry] = []
+    pools: list[PoolEntry] = []
     total_candidates = 0
 
     for q in queries:
@@ -84,7 +83,7 @@ def build_pool(
 def build_and_save_pool(
     session: Session,
     provider: EmbeddingProvider,
-    queries: List[QuerySetEntry],
+    queries: list[QuerySetEntry],
     output_path: str,
     source_query_set: str,
     k_per_method: int = 20,

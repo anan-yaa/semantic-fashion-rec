@@ -2,7 +2,8 @@
 import logging
 import threading
 import time
-from typing import Callable, Generic, Optional, TypeVar
+from collections.abc import Callable
+from typing import Generic, TypeVar
 
 from sqlalchemy.orm import Session
 
@@ -24,7 +25,7 @@ class CatalogueCache(Generic[T]):
     def __init__(self, loader: Callable[[Session], T]):
         self._loader = loader
         self._lock = threading.Lock()
-        self._value: Optional[T] = None
+        self._value: T | None = None
         self._loaded_at = 0.0
 
     def get(self, session: Session) -> T:

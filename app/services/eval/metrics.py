@@ -5,10 +5,9 @@ Pure functions over binary relevance lists (in ranked order, index 0 = rank
 style, which keeps these trivially unit-testable in isolation.
 """
 import math
-from typing import List
 
 
-def dcg_at_k(relevance: List[int], k: int) -> float:
+def dcg_at_k(relevance: list[int], k: int) -> float:
     """Discounted Cumulative Gain at rank k.
 
     DCG = sum_{i=1}^{k} relevance[i-1] / log2(i + 1)
@@ -19,7 +18,7 @@ def dcg_at_k(relevance: List[int], k: int) -> float:
     return total
 
 
-def ndcg_at_k(relevance: List[int], k: int) -> float:
+def ndcg_at_k(relevance: list[int], k: int) -> float:
     """Normalized DCG at rank k: dcg_at_k(relevance, k) / dcg_at_k(ideal, k).
 
     ideal = relevance sorted descending (all relevant items first). Returns
@@ -33,7 +32,7 @@ def ndcg_at_k(relevance: List[int], k: int) -> float:
     return dcg_at_k(relevance, k) / ideal_dcg
 
 
-def precision_at_k(relevance: List[int], k: int) -> float:
+def precision_at_k(relevance: list[int], k: int) -> float:
     """Fraction of the top-k results that are relevant.
 
     A list shorter than k is treated as padded with non-relevant (0) items
@@ -47,7 +46,7 @@ def precision_at_k(relevance: List[int], k: int) -> float:
     return sum(top_k) / k
 
 
-def recall_at_k(relevance: List[int], total_relevant: int, k: int) -> float:
+def recall_at_k(relevance: list[int], total_relevant: int, k: int) -> float:
     """Fraction of all relevant items (per the ground truth) found in the top k.
 
     `total_relevant` comes from the ground truth, not from `relevance`, since
@@ -58,7 +57,7 @@ def recall_at_k(relevance: List[int], total_relevant: int, k: int) -> float:
     return sum(relevance[:k]) / total_relevant
 
 
-def reciprocal_rank(relevance: List[int]) -> float:
+def reciprocal_rank(relevance: list[int]) -> float:
     """1 / rank of the first relevant item (1-indexed); 0.0 if none are relevant."""
     for i, rel in enumerate(relevance, start=1):
         if rel:
@@ -66,7 +65,7 @@ def reciprocal_rank(relevance: List[int]) -> float:
     return 0.0
 
 
-def mrr(relevance_lists: List[List[int]]) -> float:
+def mrr(relevance_lists: list[list[int]]) -> float:
     """Mean Reciprocal Rank across multiple queries' relevance lists."""
     if not relevance_lists:
         return 0.0

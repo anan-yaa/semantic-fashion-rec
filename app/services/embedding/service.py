@@ -2,14 +2,12 @@
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List
 
 from sqlalchemy.orm import Session
-from sqlalchemy.sql import func
 
-from app.providers.base import EmbeddingProvider
 from app.db.models.product import Product
 from app.db.repositories.product_repository import ProductRepository
+from app.providers.base import EmbeddingProvider
 from app.services.embedding.change_detector import get_products_needing_embedding
 
 logger = logging.getLogger(__name__)
@@ -24,7 +22,7 @@ class EmbeddingStats:
     total_time_ms: float
 
 
-def get_unembedded_products(session: Session, limit: int = 1000) -> List[Product]:
+def get_unembedded_products(session: Session, limit: int = 1000) -> list[Product]:
     """Get products that need embedding.
 
     Args:

@@ -1,9 +1,8 @@
 """Integration tests for complete ingestion pipeline."""
 
-import pytest
+from app.db.repositories.product_repository import ProductRepository
 from app.services.ingestion.loader import load_dataset_from_cache
 from app.services.ingestion.service import ingest_records
-from app.db.repositories.product_repository import ProductRepository
 
 
 class TestIngestionPipeline:

@@ -1,10 +1,9 @@
 """Tests for keyword search."""
-import pytest
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
-from app.services.search.keyword_search import search_keyword
 from app.schemas.search import SearchFilter
+from app.services.search.keyword_search import search_keyword
 
 
 class TestKeywordSearch:

@@ -1,14 +1,13 @@
 """Reciprocal Rank Fusion for combining search results."""
-from typing import List, Dict, Tuple
 
 from app.db.models.product import Product
 
 
 def reciprocal_rank_fusion(
-    vector_results: List[Product],
-    keyword_results: List[Product],
+    vector_results: list[Product],
+    keyword_results: list[Product],
     k: int = 60,
-) -> List[Product]:
+) -> list[Product]:
     """Fuse ranked results using Reciprocal Rank Fusion (RRF).
 
     RRF formula: score = 1 / (k + rank)
@@ -23,7 +22,7 @@ def reciprocal_rank_fusion(
         Fused and re-ranked product list.
     """
     # Build score dictionaries: product_id -> score
-    scores: Dict[str, float] = {}
+    scores: dict[str, float] = {}
 
     # Add vector search scores
     for rank, product in enumerate(vector_results, start=1):

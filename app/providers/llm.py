@@ -1,7 +1,6 @@
 """Gemini-backed LLM provider for query understanding."""
 import json
 import logging
-from typing import Dict, List, Optional
 
 import httpx
 from google import genai
@@ -36,11 +35,11 @@ _SYSTEM_PROMPT = (
 _INFERABLE_FIELDS = ("category", "gender", "color", "season")
 
 
-def _enum_or_null(values: List[str]) -> dict:
+def _enum_or_null(values: list[str]) -> dict:
     return {"anyOf": [{"type": "string", "enum": values}, {"type": "null"}]}
 
 
-def _build_response_schema(valid_filters: Dict[str, List[str]]) -> dict:
+def _build_response_schema(valid_filters: dict[str, list[str]]) -> dict:
     """Build the structured-output JSON schema, constraining each facet
     field's enum to the live catalogue vocabulary passed in (never hardcoded).
     """
@@ -63,7 +62,7 @@ def _build_response_schema(valid_filters: Dict[str, List[str]]) -> dict:
     }
 
 
-def _parse_model_output(raw: dict, valid_filters: Dict[str, List[str]]) -> QueryUnderstanding:
+def _parse_model_output(raw: dict, valid_filters: dict[str, list[str]]) -> QueryUnderstanding:
     """Parse and validate a decoded JSON response dict into a QueryUnderstanding.
 
     Pure function, no network calls - this is the belt-and-suspenders
@@ -100,7 +99,7 @@ class GeminiProvider(LLMProvider):
 
     def __init__(
         self,
-        api_key: Optional[str],
+        api_key: str | None,
         model: str,
         timeout_seconds: float,
         max_retries: int,
@@ -109,7 +108,7 @@ class GeminiProvider(LLMProvider):
         self._model = model
         self._timeout_seconds = timeout_seconds
         self._max_retries = max_retries
-        self._client: Optional[genai.Client] = None
+        self._client: genai.Client | None = None
 
     def _get_client(self) -> genai.Client:
         if self._client is None:
@@ -117,7 +116,7 @@ class GeminiProvider(LLMProvider):
         return self._client
 
     def understand_query(
-        self, query: str, valid_filters: Dict[str, List[str]]
+        self, query: str, valid_filters: dict[str, list[str]]
     ) -> QueryUnderstanding:
         schema = _build_response_schema(valid_filters)
         config = types.GenerateContentConfig(

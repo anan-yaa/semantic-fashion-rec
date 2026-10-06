@@ -4,7 +4,6 @@ Kept separate from scripts/export_embedding_batch.py's file I/O so the
 selection and shaping logic can be unit tested without Parquet/pyarrow.
 """
 from dataclasses import dataclass
-from typing import List
 
 from sqlalchemy.orm import Session
 
@@ -21,7 +20,7 @@ class ExportRow:
     search_text: str
 
 
-def select_products_for_export(session: Session, limit: int = 100000) -> List[Product]:
+def select_products_for_export(session: Session, limit: int = 100000) -> list[Product]:
     """Select products needing (re)embedding, in a deterministic order.
 
     Reuses the same change-detection query the live embedding job uses
@@ -36,7 +35,7 @@ def select_products_for_export(session: Session, limit: int = 100000) -> List[Pr
     return sorted(products, key=lambda p: (p.created_at, p.id))
 
 
-def to_export_rows(products: List[Product]) -> List[ExportRow]:
+def to_export_rows(products: list[Product]) -> list[ExportRow]:
     """Shape Product rows into the export artifact schema.
 
     Products with no search_text are skipped (there is nothing to embed)

@@ -1,7 +1,6 @@
 """Product catalogue API routes."""
 
 import logging
-from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
@@ -21,10 +20,10 @@ router = APIRouter(prefix="/products", tags=["products"])
 def list_products(
     page: int = Query(1, ge=1, description="Page number (1-indexed)"),
     page_size: int = Query(24, ge=1, le=100, description="Items per page"),
-    category: Optional[str] = Query(None),
-    gender: Optional[str] = Query(None),
-    color: Optional[str] = Query(None),
-    season: Optional[str] = Query(None),
+    category: str | None = Query(None),
+    gender: str | None = Query(None),
+    color: str | None = Query(None),
+    season: str | None = Query(None),
     sort: SortOrder = Query(SortOrder.RELEVANCE, description="relevance = catalogue order"),
     session: Session = Depends(get_session),
 ) -> PaginatedProductResponse:
@@ -56,7 +55,7 @@ def list_products(
     )
 
 
-@router.get("/facets", response_model=Dict[str, List[str]])
-def list_facets(session: Session = Depends(get_session)) -> Dict[str, List[str]]:
+@router.get("/facets", response_model=dict[str, list[str]])
+def list_facets(session: Session = Depends(get_session)) -> dict[str, list[str]]:
     """Filter values present among available products: category, gender, color, season."""
     return get_catalogue_facets(session)

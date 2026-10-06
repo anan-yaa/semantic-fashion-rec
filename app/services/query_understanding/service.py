@@ -4,8 +4,7 @@ filter-merge precedence rules. The route never talks to an LLMProvider
 directly - it only ever calls understand_query() below.
 """
 import logging
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
+from dataclasses import dataclass
 
 from app.providers.llm_base import (
     LLMProvider,
@@ -31,9 +30,9 @@ class QueryUnderstandingResult:
     cleaned_query: str
     filters: SearchFilter
     used_llm: bool
-    error: Optional[str] = None
+    error: str | None = None
     # Safe to show users, unlike `error`: FALLBACK_UNSUPPORTED_QUERY or FALLBACK_LLM_UNAVAILABLE.
-    fallback_reason: Optional[str] = None
+    fallback_reason: str | None = None
     # cleaned_query is an English translation of a non-English query
     translated: bool = False
 
@@ -43,7 +42,7 @@ FALLBACK_LLM_UNAVAILABLE = "llm_unavailable"
 
 
 def validate_filters(
-    raw: SearchFilter, valid_values: Dict[str, List[str]]
+    raw: SearchFilter, valid_values: dict[str, list[str]]
 ) -> SearchFilter:
     """Drop any filter value that is not an exact member of the live catalogue
     vocabulary. This is a plain equality check against real catalogue values,
@@ -63,7 +62,7 @@ def validate_filters(
     return validated
 
 
-def merge_filters(user_filters: Optional[SearchFilter], llm_filters: SearchFilter) -> SearchFilter:
+def merge_filters(user_filters: SearchFilter | None, llm_filters: SearchFilter) -> SearchFilter:
     """Merge user-supplied and LLM-inferred filters.
 
     An explicit user-supplied value always wins over an LLM-inferred one for
@@ -79,7 +78,7 @@ def merge_filters(user_filters: Optional[SearchFilter], llm_filters: SearchFilte
 
 
 def understand_query(
-    provider: LLMProvider, query: str, valid_filters: Dict[str, List[str]]
+    provider: LLMProvider, query: str, valid_filters: dict[str, list[str]]
 ) -> QueryUnderstandingResult:
     """Run query understanding with a mandatory, non-raising fallback.
 
@@ -130,7 +129,7 @@ def understand_query(
     )
 
 
-def search_texts(query: str, understanding: Optional[QueryUnderstandingResult]) -> Tuple[str, str]:
+def search_texts(query: str, understanding: QueryUnderstandingResult | None) -> tuple[str, str]:
     """(vector search text, keyword search text) for a query.
 
     A non-English query the LLM translated is searched in English on both

@@ -1,5 +1,4 @@
 """Tests for FakeEmbeddingProvider."""
-import pytest
 
 from app.providers.fake import FakeEmbeddingProvider
 

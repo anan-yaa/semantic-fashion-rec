@@ -2,7 +2,6 @@
 import json
 import logging
 import re
-from typing import Dict, List
 
 import requests
 
@@ -66,7 +65,7 @@ def _is_grounded(field_name: str, value: str, text: str) -> bool:
     return re.search(rf"\b(?:{pattern})\b", text) is not None
 
 
-def _build_format_schema(valid_filters: Dict[str, List[str]]) -> dict:
+def _build_format_schema(valid_filters: dict[str, list[str]]) -> dict:
     properties: dict = {"english_query": {"type": "string"}}
     for field_name in _INFERABLE_FIELDS:
         properties[field_name] = {
@@ -81,7 +80,7 @@ def _build_format_schema(valid_filters: Dict[str, List[str]]) -> dict:
 
 
 def _parse_model_output(
-    raw: dict, valid_filters: Dict[str, List[str]], query: str, translated: bool = False
+    raw: dict, valid_filters: dict[str, list[str]], query: str, translated: bool = False
 ) -> QueryUnderstanding:
     english = raw.get("english_query")
     if not isinstance(english, str) or not english.strip():
@@ -126,7 +125,7 @@ class OllamaProvider(LLMProvider):
         self._skip_non_latin = skip_non_latin
 
     def understand_query(
-        self, query: str, valid_filters: Dict[str, List[str]]
+        self, query: str, valid_filters: dict[str, list[str]]
     ) -> QueryUnderstanding:
         # English-only models (e.g. tinyllama) mistranslate non-Latin scripts
         # into unrelated products (Hindi "jewellery for women" -> "running

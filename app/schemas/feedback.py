@@ -1,6 +1,6 @@
 """Request/response schemas for search-result feedback."""
 from datetime import datetime
-from typing import Dict, List, Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -16,10 +16,10 @@ class FeedbackRequest(BaseModel):
     product_id: str = Field(..., min_length=1, max_length=36)
     vote: Literal[-1, 0, 1]
     position: int = Field(..., ge=1, le=10_000, description="1-based rank of the result across pages")
-    method: Optional[SearchMethod] = None
-    sort: Optional[SortOrder] = None
-    filters: Optional[SearchFilter] = None
-    understanding: Optional[QueryUnderstandingInfo] = None
+    method: SearchMethod | None = None
+    sort: SortOrder | None = None
+    filters: SearchFilter | None = None
+    understanding: QueryUnderstandingInfo | None = None
 
 
 class FeedbackResponse(BaseModel):
@@ -27,7 +27,7 @@ class FeedbackResponse(BaseModel):
 
 
 class VotesResponse(BaseModel):
-    votes: Dict[str, int] = Field(description="product_id -> vote for this client and query")
+    votes: dict[str, int] = Field(description="product_id -> vote for this client and query")
 
 
 class QueryFeedback(BaseModel):
@@ -42,7 +42,7 @@ class RecentFeedback(BaseModel):
     product_name: str
     vote: int
     position: int
-    llm_used: Optional[bool]
+    llm_used: bool | None
     updated_at: datetime
 
 
@@ -50,8 +50,8 @@ class FeedbackSummary(BaseModel):
     total_votes: int
     helpful: int
     not_helpful: int
-    helpful_rate: Optional[float] = Field(description="helpful / total_votes; null when there are no votes")
+    helpful_rate: float | None = Field(description="helpful / total_votes; null when there are no votes")
     queries: int
     clients: int
-    most_not_helpful: List[QueryFeedback]
-    recent: List[RecentFeedback]
+    most_not_helpful: list[QueryFeedback]
+    recent: list[RecentFeedback]

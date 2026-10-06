@@ -1,4 +1,3 @@
-from typing import Optional
 from uuid import UUID
 
 from sqlalchemy import desc
@@ -18,10 +17,10 @@ class ProductRepository:
         self.session.refresh(product)
         return product
 
-    def get_by_id(self, product_id: UUID) -> Optional[Product]:
+    def get_by_id(self, product_id: UUID) -> Product | None:
         return self.session.query(Product).filter(Product.id == product_id).first()
 
-    def get_by_external_id(self, external_product_id: str) -> Optional[Product]:
+    def get_by_external_id(self, external_product_id: str) -> Product | None:
         return (
             self.session.query(Product)
             .filter(Product.external_product_id == external_product_id)
@@ -51,7 +50,7 @@ class ProductRepository:
         limit: int = 100,
     ) -> tuple[list[Product], int]:
         """List available products matching exact-value filters, with sorting and pagination."""
-        query = self.session.query(Product).filter(Product.availability == True)  # noqa: E712
+        query = self.session.query(Product).filter(Product.availability == True)
         for field in ("category", "gender", "color", "season"):
             value = getattr(filters, field)
             if value is not None:

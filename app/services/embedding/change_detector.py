@@ -1,11 +1,10 @@
 """Detect products that need (re)embedding based on content changes."""
-from typing import List, Tuple
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
 
 
-def get_products_needing_embedding(session: Session, limit: int = 1000) -> List[Product]:
+def get_products_needing_embedding(session: Session, limit: int = 1000) -> list[Product]:
     """Get products that need embedding.
 
     A product needs embedding if:

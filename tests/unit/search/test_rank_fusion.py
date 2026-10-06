@@ -1,5 +1,4 @@
 """Tests for Reciprocal Rank Fusion."""
-import pytest
 
 from app.db.models.product import Product
 from app.services.search.rank_fusion import reciprocal_rank_fusion

@@ -1,11 +1,10 @@
 """Map HuggingFace records to internal Product schema."""
 
 import uuid
-from typing import Optional
 
-from app.schemas.product import ProductIngestSchema, ProductCreateSchema
-from app.services.ingestion.normalizer import normalize_text
+from app.schemas.product import ProductCreateSchema, ProductIngestSchema
 from app.services.ingestion.hashing import compute_content_hash
+from app.services.ingestion.normalizer import normalize_text
 
 
 def build_search_text(record: ProductIngestSchema) -> str:
@@ -45,7 +44,7 @@ def build_search_text(record: ProductIngestSchema) -> str:
     return search_text if search_text else ""
 
 
-def map_record_to_product_schema(record: ProductIngestSchema) -> Optional[ProductCreateSchema]:
+def map_record_to_product_schema(record: ProductIngestSchema) -> ProductCreateSchema | None:
     """
     Map HuggingFace record to ProductCreateSchema.
 

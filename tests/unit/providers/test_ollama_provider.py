@@ -144,9 +144,8 @@ class TestUnderstandQuery:
         from app.providers.llm_base import UnsupportedQueryError
 
         provider = OllamaProvider(model="tinyllama", skip_non_latin=True)
-        with patch("app.providers.ollama_llm.requests.post") as post:
-            with pytest.raises(UnsupportedQueryError):
-                provider.understand_query("नीली शर्ट", VALID_FILTERS)
+        with patch("app.providers.ollama_llm.requests.post") as post, pytest.raises(UnsupportedQueryError):
+            provider.understand_query("नीली शर्ट", VALID_FILTERS)
         post.assert_not_called()
 
     def test_accented_latin_query_uses_the_model_even_when_skipping_non_latin(self):

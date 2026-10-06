@@ -12,11 +12,11 @@ import json
 import logging
 import sys
 
-from core.config import settings
-from core.logging import setup_logging
 from app.db.database import get_session
 from app.providers.llm import GeminiProvider
 from app.services.query_understanding import load_catalogue_facets
+from core.config import settings
+from core.logging import setup_logging
 
 setup_logging()
 logger = logging.getLogger(__name__)

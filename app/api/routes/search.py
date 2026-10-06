@@ -3,7 +3,6 @@ import logging
 import math
 import threading
 import time
-from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
@@ -18,7 +17,6 @@ from app.schemas.search import (
     MAX_SEARCH_RESULTS,
     QueryUnderstandingInfo,
     SearchFilter,
-    SearchMethod,
     SearchRequest,
     SearchResponse,
 )
@@ -42,13 +40,13 @@ router = APIRouter(prefix="/search", tags=["search"])
 # (see HuggingFaceE5Provider._load_model). Caching the provider instance
 # here - instead of constructing a new one per request - is what makes that
 # lazy load happen once per process instead of once per request.
-_provider: Optional[EmbeddingProvider] = None
+_provider: EmbeddingProvider | None = None
 # Startup warm-up (background thread) and early requests may race to create it.
 _provider_lock = threading.Lock()
 
 # Process-wide LLM provider singleton, same rationale: avoid constructing a
 # new genai.Client on every request.
-_llm_provider: Optional[LLMProvider] = None
+_llm_provider: LLMProvider | None = None
 
 
 def get_search_provider() -> EmbeddingProvider:
@@ -179,7 +177,7 @@ def search(
 
         # Structured logging for observability
         logger.info(
-            f"search_complete",
+            "search_complete",
             extra={
                 "query": request.query[:100],  # Truncate for logging
                 "method": method_used.value,

@@ -1,7 +1,6 @@
 """Abstract LLM provider interface for query understanding."""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
 
 from app.schemas.search import SearchFilter
 
@@ -12,7 +11,7 @@ class QueryUnderstanding:
 
     cleaned_query: str
     filters: SearchFilter = field(default_factory=SearchFilter)
-    reasoning: Optional[str] = None
+    reasoning: str | None = None
     # True when cleaned_query is an English translation of a non-English query.
     translated: bool = False
 
@@ -50,7 +49,7 @@ class LLMProvider(ABC):
 
     @abstractmethod
     def understand_query(
-        self, query: str, valid_filters: Dict[str, List[str]]
+        self, query: str, valid_filters: dict[str, list[str]]
     ) -> QueryUnderstanding:
         """Extract a cleaned keyword phrase and structured filters from a query.
 

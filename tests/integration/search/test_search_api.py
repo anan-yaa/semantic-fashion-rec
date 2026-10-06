@@ -3,12 +3,12 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-from app.main import app
+from app.api.routes.search import get_query_understanding_provider, get_search_provider
 from app.db.database import get_session
 from app.db.models.product import Product
+from app.main import app
 from app.providers.fake import FakeEmbeddingProvider
 from app.providers.fake_llm import FakeLLMProvider
-from app.api.routes.search import get_search_provider, get_query_understanding_provider
 from app.services.keyword_index import build_keyword_index
 
 QUERY = "distinctive zephyr product"

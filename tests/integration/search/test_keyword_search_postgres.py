@@ -1,12 +1,11 @@
 """Integration tests for PostgreSQL full-text keyword search (ts_rank, OR-ed plainto_tsquery)."""
-import pytest
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
+from app.schemas.search import SearchFilter
 from app.services.keyword_index import build_keyword_index
 from app.services.search.keyword_search import search_keyword
-from app.schemas.search import SearchFilter
 
 
 def make_product(pid: str, name: str, search_text: str, **kwargs) -> Product:

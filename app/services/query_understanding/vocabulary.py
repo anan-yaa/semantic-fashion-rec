@@ -13,7 +13,6 @@ inferable from query text and is intentionally excluded.
 import logging
 import threading
 import time
-from typing import Dict, List, Optional
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -31,17 +30,17 @@ FACET_COLUMNS = {
 }
 
 _lock = threading.Lock()
-_cached: Optional[Dict[str, List[str]]] = None
+_cached: dict[str, list[str]] | None = None
 _cached_at = 0.0
 
 
-def load_catalogue_facets(session: Session) -> Dict[str, List[str]]:
+def load_catalogue_facets(session: Session) -> dict[str, list[str]]:
     """Query the distinct facet values of available products (uncached)."""
     facets = {}
     for name, column in FACET_COLUMNS.items():
         stmt = (
             select(column)
-            .where(column.is_not(None), Product.availability == True)  # noqa: E712
+            .where(column.is_not(None), Product.availability == True)
             .distinct()
             .order_by(column)
         )
@@ -49,7 +48,7 @@ def load_catalogue_facets(session: Session) -> Dict[str, List[str]]:
     return facets
 
 
-def get_catalogue_facets(session: Session) -> Dict[str, List[str]]:
+def get_catalogue_facets(session: Session) -> dict[str, list[str]]:
     """Return the facet vocabulary, refreshing it from the DB when the cache expires.
 
     If a refresh fails but an older copy exists, the older copy is returned so a

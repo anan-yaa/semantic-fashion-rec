@@ -1,5 +1,4 @@
 """Integration tests for keyword indexing on real PostgreSQL."""
-import pytest
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 

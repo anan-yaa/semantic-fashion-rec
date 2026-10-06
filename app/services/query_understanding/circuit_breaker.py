@@ -19,8 +19,8 @@ would never finish.
 import logging
 import threading
 import time
+from collections.abc import Callable
 from enum import Enum
-from typing import Callable
 
 from core.config import settings
 

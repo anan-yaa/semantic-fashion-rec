@@ -8,9 +8,9 @@ from datetime import datetime
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from app.services.keyword_index import build_keyword_index
 from core.config import settings
 from core.logging import setup_logging
-from app.services.keyword_index import build_keyword_index
 
 setup_logging()
 logger = logging.getLogger(__name__)

@@ -1,9 +1,8 @@
 """Tests for change detection in embedding service."""
-import pytest
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
-from app.services.embedding.change_detector import get_products_needing_embedding, count_products_needing_embedding
+from app.services.embedding.change_detector import count_products_needing_embedding, get_products_needing_embedding
 
 
 class TestChangeDetector:

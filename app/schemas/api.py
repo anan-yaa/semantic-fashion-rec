@@ -1,7 +1,7 @@
 """API response schemas for HTTP endpoints."""
 
-from typing import List, Optional
 from decimal import Decimal
+
 from pydantic import BaseModel
 
 
@@ -11,14 +11,14 @@ class ProductResponse(BaseModel):
     id: str
     external_product_id: str
     name: str
-    category: Optional[str] = None
-    subcategory: Optional[str] = None
-    article_type: Optional[str] = None
-    gender: Optional[str] = None
-    color: Optional[str] = None
-    style: Optional[str] = None
-    season: Optional[str] = None
-    price: Optional[Decimal] = None
+    category: str | None = None
+    subcategory: str | None = None
+    article_type: str | None = None
+    gender: str | None = None
+    color: str | None = None
+    style: str | None = None
+    season: str | None = None
+    price: Decimal | None = None
     currency: str
     availability: bool
 
@@ -29,7 +29,7 @@ class ProductResponse(BaseModel):
 class PaginatedProductResponse(BaseModel):
     """Paginated product list response."""
 
-    items: List[ProductResponse]
+    items: list[ProductResponse]
     total: int
     page: int
     page_size: int

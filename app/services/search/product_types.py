@@ -18,7 +18,6 @@ wanted: "warm layer to wear under a jacket" is not asking for a jacket, and
 "shoes to go with a red dress" is not asking for a dress.
 """
 import re
-from typing import Dict, FrozenSet, List
 
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -35,11 +34,11 @@ _CONTEXT_START = re.compile(
 )
 
 
-def load_article_type_lexemes(session: Session) -> Dict[str, FrozenSet[str]]:
+def load_article_type_lexemes(session: Session) -> dict[str, frozenset[str]]:
     """Map each available product's article type to its stemmed words."""
     stmt = (
         select(ARTICLE_TYPE, func.tsvector_to_array(func.to_tsvector("english", ARTICLE_TYPE)))
-        .where(ARTICLE_TYPE.is_not(None), Product.availability == True)  # noqa: E712
+        .where(ARTICLE_TYPE.is_not(None), Product.availability == True)
         .distinct()
     )
     return {name: frozenset(lexemes) for name, lexemes in session.execute(stmt) if lexemes}
@@ -48,7 +47,7 @@ def load_article_type_lexemes(session: Session) -> Dict[str, FrozenSet[str]]:
 _cache = CatalogueCache(load_article_type_lexemes)
 
 
-def detect_article_types(session: Session, query_text: str) -> List[str]:
+def detect_article_types(session: Session, query_text: str) -> list[str]:
     """Return the catalogue article types named in the query (PostgreSQL only)."""
     if session.bind.dialect.name != "postgresql":
         return []

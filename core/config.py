@@ -1,4 +1,3 @@
-from typing import Optional
 
 from pydantic import ConfigDict, Field
 from pydantic_settings import BaseSettings
@@ -32,8 +31,8 @@ class Settings(BaseSettings):
     embedding_batch_size: int = Field(default=64)
 
     # API keys / external services
-    openai_api_key: Optional[str] = Field(default=None)
-    gemini_api_key: Optional[str] = Field(default=None)
+    openai_api_key: str | None = Field(default=None)
+    gemini_api_key: str | None = Field(default=None)
 
     # LLM query understanding
     query_understanding_enabled: bool = Field(default=True)
