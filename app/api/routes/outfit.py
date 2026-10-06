@@ -1,6 +1,5 @@
 """Outfit builder API route."""
 import logging
-import time
 
 from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.exc import OperationalError
@@ -95,6 +94,6 @@ def outfit(
     except OperationalError as e:
         logger.error(f"Outfit failed, database unavailable: {e}")
         raise HTTPException(status_code=503, detail="Outfit builder is temporarily unavailable")
-    except Exception as e:
-        logger.error(f"Outfit failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Outfit failed")
         raise HTTPException(status_code=500, detail="Outfit failed")

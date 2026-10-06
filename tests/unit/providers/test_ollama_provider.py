@@ -129,7 +129,7 @@ class TestUnderstandQuery:
         assert payload["format"]["properties"]["color"]["enum"] == [*VALID_FILTERS["color"], None]
         assert "category" not in payload["format"]["properties"]
         assert "language" not in payload["format"]["properties"]
-        assert list(payload["format"]["properties"])[0] == "english_query"
+        assert next(iter(payload["format"]["properties"])) == "english_query"
         assert payload["messages"][-1]["content"] == "Query (English): red dress"
 
     def test_non_latin_query_is_sent_to_a_multilingual_model(self):

@@ -62,8 +62,8 @@ def main() -> int:
         logger.info(f"Skipped (no search_text): {len(products) - len(rows)}")
         return 0
 
-    except Exception as e:
-        logger.error(f"Export failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Export failed")
         return 1
     finally:
         session.close()

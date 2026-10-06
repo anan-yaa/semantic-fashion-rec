@@ -23,3 +23,10 @@ node_modules
 .claude
 README.md
 alembic/versions/__pycache__
+**/node_modules
+**/.next
+frontend
+*.parquet
+logs
+evals/reports
+.ruff_cache

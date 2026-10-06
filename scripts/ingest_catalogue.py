@@ -110,8 +110,8 @@ def main():
 
         return 0
 
-    except Exception as e:
-        logger.error(f"Ingestion failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Ingestion failed")
         return 1
 
 

@@ -109,8 +109,8 @@ def main() -> int:
         logger.info(f"Reports written to {args.output_prefix}.json and {args.output_prefix}.md")
         return 0
 
-    except Exception as e:
-        logger.error(f"Eval run failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Eval run failed")
         return 1
     finally:
         session.close()

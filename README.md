@@ -124,7 +124,7 @@ It's safe to re-run: on an unchanged catalogue it takes about a minute and chang
 
 ## Evaluation
 
-80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**. The experiments behind the design choices (LLM selection, local vs hosted, multilingual handling, keyword strictness, how far to trust the answer key) are collected in **[`evals/EXPLORATION.md`](evals/EXPLORATION.md)**.
+80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**. **System health** (latency, throughput, reliability when the LLM fails, startup, memory), measured with the current LLM: **[`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)**. Headlines: p50 0.8 s for one user, about 1.4 searches/s under load (the LLM is the bottleneck), 0 errors in 1,360 requests, and no failed searches when the LLM hangs. The experiments behind the design choices (LLM selection, local vs hosted, multilingual handling, keyword strictness, how far to trust the answer key) are collected in **[`evals/EXPLORATION.md`](evals/EXPLORATION.md)**.
 
 **Choosing the LLM:** TinyLlama, Qwen 2.5 1.5B and Gemma 3 1B were compared, one at a time on the GPU ([`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)):
 
@@ -211,11 +211,29 @@ The embedding model and the LLM load in the background when the backend starts (
 
 ### Docker Compose
 
-Copy `.env.example` to `.env` and set `POSTGRES_PASSWORD` (Compose refuses to start without it). Then `docker compose up --build` starts PostgreSQL, Ollama (it pulls the configured model automatically), the API on http://localhost:8000 and the UI on http://localhost:3000. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit).
+Copy `.env.example` to `.env` and set `POSTGRES_PASSWORD` (Compose refuses to start without it). Then:
 
-The Compose file is validated and both images build, but the whole stack has not been run together with the Compose plugin; see [Known limitations](#known-limitations).
+```bash
+docker compose up --build        # first run: about 15 minutes (image pulls and builds)
+```
 
-Configuration worth knowing: `CORS_ORIGINS` (browser origins allowed to call the API), `LOG_FORMAT=json` (structured logs with a per-request `X-Request-ID`), and `LLM_CACHE_TTL_SECONDS` (repeat queries skip the LLM; 0 disables).
+This starts PostgreSQL, Ollama (it pulls the configured model automatically), a one-shot `migrate` step that creates the schema, the API on http://localhost:8000 and the UI on http://localhost:3000. The database starts **empty**, so load a catalogue:
+
+```bash
+# Quick demo: 2,000 products (about 3 minutes on CPU)
+docker compose exec -e PYTHONPATH=/app app python scripts/ingest_catalogue.py --sample 2000
+docker compose exec -e PYTHONPATH=/app app python scripts/embed_catalogue.py
+docker compose exec -e PYTHONPATH=/app app python scripts/index_keywords.py --limit 100000
+
+# Full catalogue (44,072 products): downloads the dataset and embeds on CPU, about 35 minutes
+docker compose exec -e PYTHONPATH=/app app python scripts/sync_catalogue.py
+```
+
+Run the quick demo with the memory limit in mind: the embedding script loads a second copy of the embedding model (about 1.1 GB).
+
+**CPU or GPU:** without the GPU override, Ollama runs on CPU and each LLM call takes about 8 s (about 1 s on a GPU), so Compose sets a 25 s LLM timeout (`LLM_QUERY_UNDERSTANDING_TIMEOUT_SECONDS`). For a GPU, add the override (requires the NVIDIA Container Toolkit) and set the timeout back to 8: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up`. The first search after startup takes about a minute while the models load; repeating a query takes about 0.1 s.
+
+**Verified:** the stack was run end to end on CPU (WSL2, 3.7 GB of RAM) with the 2,000-product sample: schema creation, ingest, embed, index, search with the LLM, outfit builder, CORS and the UI responding. **Not run in Compose:** the full 44k load, and the GPU override. Details: [`evals/reports/compose_verification.md`](evals/reports/compose_verification.md).
 
 ## API
 
@@ -349,7 +367,7 @@ tests/                 unit/, integration/, model/ (slow)
 - **Multilingual coverage:**
   - Language detection covers English, Spanish, French and Hindi. Other Latin-script languages may be read as English and searched untranslated.
   - Gemma 3 1B still mistranslates some queries, e.g. "काली जूती" (black jutti) → "black kurta".
-  - The LLM adds ~0.9 s per search on a GTX 1650, and Ollama serves one request at a time, which caps throughput at about 1 search/s for new queries. Repeated queries (paging, sorting, filter changes) are served from the LLM cache and skip that cost.
+  - The LLM adds about 0.7 s per search on a GTX 1650 (0.9 s on the multilingual queries), and Ollama serves one request at a time, which caps throughput at about 1.4 searches/s for new queries ([`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)). Repeated queries (paging, sorting, filter changes) are served from the LLM cache and skip that cost.
 - **Evaluation:** the answer key favours vector search, and 80 queries can only show fairly large differences. An earlier, human-reviewed answer key (`ground_truth_v1.json`) no longer matches the database's product IDs.
 - **The vector index may miss matches.** Vector Recall@20 is 0.71 against an answer key made of the embedding model's own top 20. Approximate HNSW search with the default `ef_search = 40` is the likely cause, but this isn't confirmed yet.
 - **Outfit builder:**
@@ -366,7 +384,7 @@ tests/                 unit/, integration/, model/ (slow)
   - The default database password in `core/config.py` is a development one; Compose requires you to set your own.
   - No metrics, dashboards or alerts (logs are structured and carry request IDs).
 - **Deployment:**
-  - The full Compose stack hasn't been run end-to-end (the Compose plugin wasn't available when it was written); the images build.
+  - Compose was verified with a 2,000-product sample on CPU, not with the full catalogue or the GPU override. The catalogue load is a manual step after `up`.
   - There's no CI/CD and no production configuration.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.
 - **Feedback isn't used yet:** votes are collected and summarized, but they don't change ranking or feed the evaluation. The browser ID is anonymous and per device, so clearing site data starts fresh, and nothing stops someone voting many times from different browsers.

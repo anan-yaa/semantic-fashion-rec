@@ -4,6 +4,7 @@ Kept separate from scripts/import_embeddings.py's DB/Parquet I/O so the
 data-integrity rules (the part that actually matters) can be unit tested
 without Postgres or pyarrow.
 """
+import math
 from dataclasses import dataclass
 from enum import Enum
 
@@ -137,6 +138,6 @@ def _is_valid_embedding(embedding) -> bool:
             fv = float(v)
         except (TypeError, ValueError):
             return False
-        if fv != fv or fv in (float("inf"), float("-inf")):  # NaN/Inf check
+        if not math.isfinite(fv):
             return False
     return True

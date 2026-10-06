@@ -3,7 +3,7 @@
 import argparse
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -29,9 +29,9 @@ def main():
 
     try:
         logger.info(f"Building keyword index (limit={args.limit})")
-        start_dt = datetime.utcnow()
+        start_dt = datetime.now(timezone.utc)
         stats = build_keyword_index(session, limit=args.limit)
-        elapsed = datetime.utcnow() - start_dt
+        elapsed = datetime.now(timezone.utc) - start_dt
 
         logger.info(f"Keyword indexing complete in {elapsed.total_seconds():.2f}s")
         logger.info(f"  Indexed: {stats.indexed_count}")
@@ -40,8 +40,8 @@ def main():
 
         return 0
 
-    except Exception as e:
-        logger.error(f"Keyword indexing failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Keyword indexing failed")
         return 1
     finally:
         session.close()

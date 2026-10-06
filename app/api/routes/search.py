@@ -210,6 +210,6 @@ def search(
         # Database unreachable: tell load balancers/clients to retry, like /health does.
         logger.error(f"Search failed, database unavailable: {e}")
         raise HTTPException(status_code=503, detail="Search is temporarily unavailable")
-    except Exception as e:
-        logger.error(f"Search failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Search failed")
         raise HTTPException(status_code=500, detail="Search failed")

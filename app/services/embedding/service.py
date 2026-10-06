@@ -1,12 +1,11 @@
 """Orchestrates embedding generation and persistence."""
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy.orm import Session
 
 from app.db.models.product import Product
-from app.db.repositories.product_repository import ProductRepository
 from app.providers.base import EmbeddingProvider
 from app.services.embedding.change_detector import get_products_needing_embedding
 
@@ -55,7 +54,6 @@ def embed_products(
     import time
     start_time = time.time()
 
-    repo = ProductRepository(session)
     embedded_count = 0
     error_count = 0
     skipped_count = 0
@@ -92,7 +90,7 @@ def embed_products(
         return EmbeddingStats(0, skipped_count, len(search_texts), elapsed_ms)
 
     # Persist embeddings
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     for product_id, embedding in zip(product_ids, embeddings):
         try:
             product = session.query(Product).filter_by(id=product_id).first()

@@ -135,8 +135,8 @@ def main() -> int:
 
         return 0 if counts[ImportOutcome.FAILURE] == 0 else 1
 
-    except Exception as e:
-        logger.error(f"Import failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Import failed")
         session.rollback()
         return 1
     finally:

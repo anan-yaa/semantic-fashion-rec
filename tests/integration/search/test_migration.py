@@ -15,6 +15,7 @@ import os
 import pytest
 from alembic.config import Config
 from sqlalchemy import create_engine, text
+from sqlalchemy.exc import IntegrityError
 
 from alembic import command
 from tests.conftest import TEST_POSTGRES_URL, _assert_safe_test_database, _postgres_available
@@ -237,7 +238,7 @@ class TestMigration0003:
                 "INSERT INTO search_feedback (client_id, query, query_normalized, product_id, vote, position) "
                 "VALUES ('client-1234', 'shirt', 'shirt', 'p1', 1, 1)"
             ))
-            with pytest.raises(Exception):
+            with pytest.raises(IntegrityError):
                 conn.execute(text(
                     "INSERT INTO search_feedback (client_id, query, query_normalized, product_id, vote, position) "
                     "VALUES ('client-1234', 'shirt', 'shirt', 'p1', 5, 1)"

@@ -65,8 +65,8 @@ def main() -> int:
             f"embedded={embedded} embed_errors={embed_errors} | indexed={indexed}"
         )
         return 0 if embed_errors == 0 else 1
-    except Exception as e:
-        logger.error(f"Sync failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Sync failed")
         return 1
     finally:
         session.close()

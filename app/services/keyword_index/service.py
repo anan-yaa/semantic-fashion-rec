@@ -88,8 +88,8 @@ def build_keyword_index(session: Session, limit: int = 10000) -> KeywordIndexSta
 
         return KeywordIndexStats(indexed_count, skipped_count, elapsed_ms)
 
-    except Exception as e:
-        logger.error(f"Keyword indexing failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Keyword indexing failed")
         session.rollback()
         elapsed_ms = (time.time() - start_time) * 1000
         return KeywordIndexStats(0, 0, elapsed_ms)

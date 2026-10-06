@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Load-test POST /search with the eval query mix.
+"""Load-test POST /search (or POST /outfit) with the eval query mix.
 
 Reports latency percentiles, throughput, error rate, LLM fallback rate and the
 per-stage server timings (Server-Timing header) at each concurrency level.
@@ -9,7 +9,7 @@ will be rejected with 429.
 Usage:
     PYTHONPATH=. python3 scripts/load_test.py --label with_llm \\
         --concurrency 1 4 8 --requests 200 --repeats 3 \\
-        --output evals/reports/load_with_llm.json [--backend-pid PID]
+        --output evals/reports/load_with_llm.json [--backend-pid PID] [--endpoint outfit]
 """
 import argparse
 import json
@@ -35,8 +35,9 @@ MEDIAN_PATHS = [
 
 def one_request(client: httpx.Client, url: str, query: str, method: str) -> RequestResult:
     start = time.perf_counter()
+    body = {"query": query, "per_slot": 4} if url.endswith("/outfit") else {"query": query, "method": method, "limit": 24}
     try:
-        response = client.post(url, json={"query": query, "method": method, "limit": 24})
+        response = client.post(url, json=body)
     except httpx.HTTPError as e:
         return RequestResult(status=None, latency_ms=(time.perf_counter() - start) * 1000, error=type(e).__name__)
     latency_ms = (time.perf_counter() - start) * 1000
@@ -57,9 +58,9 @@ def rss_mb(pid: int) -> float:
     return 0.0
 
 
-def run_level(base_url, queries, concurrency, n_requests, method, seed, timeout, backend_pid):
+def run_level(base_url, queries, concurrency, n_requests, method, seed, timeout, backend_pid, endpoint="search"):
     picks = random.Random(seed).choices(queries, k=n_requests)
-    url = f"{base_url}/search"
+    url = f"{base_url}/{endpoint}"
     peak = {"rss_mb": 0.0}
     stop = threading.Event()
 
@@ -84,7 +85,7 @@ def run_level(base_url, queries, concurrency, n_requests, method, seed, timeout,
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Load-test POST /search")
+    parser = argparse.ArgumentParser(description="Load-test POST /search or POST /outfit")
     parser.add_argument("--base-url", default="http://127.0.0.1:8000")
     parser.add_argument("--concurrency", type=int, nargs="+", default=[1, 4, 8])
     parser.add_argument("--requests", type=int, default=200, help="Requests per concurrency level per repeat")
@@ -94,6 +95,7 @@ def main() -> int:
     parser.add_argument("--seed", type=int, default=7)
     parser.add_argument("--timeout", type=float, default=60.0)
     parser.add_argument("--backend-pid", type=int, default=None, help="Sample this process's RSS during the run")
+    parser.add_argument("--endpoint", default="search", choices=["search", "outfit"])
     parser.add_argument("--label", required=True)
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
@@ -102,7 +104,7 @@ def main() -> int:
 
     with httpx.Client(timeout=args.timeout) as client:
         for q in random.Random(0).choices(queries, k=args.warmup):
-            one_request(client, f"{args.base_url}/search", q, args.method)
+            one_request(client, f"{args.base_url}/{args.endpoint}", q, args.method)
     idle_rss = rss_mb(args.backend_pid) if args.backend_pid else None
 
     levels = {}
@@ -110,7 +112,7 @@ def main() -> int:
         runs = []
         for rep in range(args.repeats):
             run = run_level(args.base_url, queries, concurrency, args.requests, args.method,
-                            args.seed + rep, args.timeout, args.backend_pid)
+                            args.seed + rep, args.timeout, args.backend_pid, args.endpoint)
             runs.append(run)
             lat = run["latency_ms"]
             print(f"[{args.label}] c={concurrency} run {rep + 1}/{args.repeats}: "
@@ -118,7 +120,7 @@ def main() -> int:
                   f"{run['throughput_rps']:.2f} req/s errors={run['error_rate']:.1%}", flush=True)
         levels[str(concurrency)] = {"runs": runs, "median": median_of_runs(runs, MEDIAN_PATHS)}
 
-    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
+    commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, check=False).stdout.strip()
     report = {
         "label": args.label,
         "generated_at": datetime.now(timezone.utc).isoformat(),

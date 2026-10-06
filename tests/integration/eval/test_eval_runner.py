@@ -43,7 +43,7 @@ class TestRunEvalIntegration:
 
         assert report.query_count == 1
         assert report.excluded_query_count == 0
-        for method, scores in report.per_method.items():
+        for scores in report.per_method.values():
             assert 0.0 <= scores.ndcg_at_10 <= 1.0
             assert 0.0 <= scores.precision_at_10 <= 1.0
             assert 0.0 <= scores.mrr <= 1.0

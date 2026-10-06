@@ -1,5 +1,7 @@
 """Unit tests for ingestion service orchestration."""
 
+from typing import ClassVar
+
 from app.db.repositories.product_repository import ProductRepository
 from app.services.ingestion.service import (
     IngestionStats,
@@ -197,7 +199,7 @@ class TestIngestRecords:
 class TestCatalogueAvailabilitySync:
     """Products leaving and re-entering the feed."""
 
-    FEED = [
+    FEED: ClassVar[list[dict]] = [
         {"id": 8001, "productDisplayName": "Shirt", "gender": "Men"},
         {"id": 8002, "productDisplayName": "Dress", "gender": "Women"},
         {"id": 8003, "productDisplayName": "Belt", "gender": "Men"},

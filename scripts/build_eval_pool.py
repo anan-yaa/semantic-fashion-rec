@@ -52,8 +52,8 @@ def main() -> int:
         logger.info(f"Written to {args.output}")
         return 0
 
-    except Exception as e:
-        logger.error(f"Pool build failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Pool build failed")
         return 1
     finally:
         session.close()

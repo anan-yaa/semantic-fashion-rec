@@ -151,7 +151,7 @@ def search_hybrid(
 
         return results, actual_method, elapsed_ms
 
-    except Exception as e:
-        logger.error(f"Search failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Search failed")
         elapsed_ms = (time.time() - start_time) * 1000
         return [], method, elapsed_ms

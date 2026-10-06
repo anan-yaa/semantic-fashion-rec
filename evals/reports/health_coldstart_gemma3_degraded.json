@@ -1,0 +1,10 @@
+{
+  "health_ready_s": 10.53173667700321,
+  "models_loaded_s": 45.21327709400066,
+  "llm_loaded_s": null,
+  "gpu_memory_used_mb": 2122,
+  "gpu_memory_total_mb": 4096,
+  "backend_rss_mb": 1435.0234375,
+  "ollama_ps": "NAME         ID              SIZE      PROCESSOR    CONTEXT    UNTIL               \ngemma3:1b    8648f39daa8f    877 MB    100% GPU     4096       27 minutes from now",
+  "backend_pid": 88486
+}

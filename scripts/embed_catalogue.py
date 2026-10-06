@@ -3,7 +3,7 @@
 import argparse
 import logging
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -38,9 +38,9 @@ def main():
 
         # Embed
         logger.info(f"Starting embedding run (limit={args.limit})")
-        start_dt = datetime.utcnow()
+        start_dt = datetime.now(timezone.utc)
         stats = embed_products(session, provider, limit=args.limit, batch_size=args.batch_size)
-        elapsed = datetime.utcnow() - start_dt
+        elapsed = datetime.now(timezone.utc) - start_dt
 
         # Report
         logger.info(f"Embedding complete in {elapsed.total_seconds():.2f}s")
@@ -51,8 +51,8 @@ def main():
 
         return 0 if stats.error_count == 0 else 1
 
-    except Exception as e:
-        logger.error(f"Embedding failed: {e}", exc_info=True)
+    except Exception:
+        logger.exception("Embedding failed")
         return 1
     finally:
         session.close()

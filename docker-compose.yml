@@ -43,8 +43,22 @@ services:
         condition: service_healthy
     restart: "no"
 
+  # One-shot: creates or updates the database schema before the API starts.
+  migrate:
+    build: .
+    image: fashion-rec-backend
+    container_name: fashion_rec_migrate
+    command: ["alembic", "upgrade", "head"]
+    environment:
+      - DATABASE_URL=postgresql+psycopg://fashion_rec:${POSTGRES_PASSWORD}@db:5432/fashion_rec
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
   app:
     build: .
+    image: fashion-rec-backend
     container_name: fashion_rec_app
     ports:
       - "8000:8000"
@@ -53,6 +67,8 @@ services:
     environment:
       - DATABASE_URL=postgresql+psycopg://fashion_rec:${POSTGRES_PASSWORD}@db:5432/fashion_rec
       - OLLAMA_BASE_URL=http://ollama:11434
+      # Ollama on CPU takes ~8 s per query (about 1 s on a GPU), so give it more time than the 8 s default.
+      - LLM_QUERY_UNDERSTANDING_TIMEOUT_SECONDS=${LLM_QUERY_UNDERSTANDING_TIMEOUT_SECONDS:-25}
       - LOG_FORMAT=json
       - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
     healthcheck:
@@ -64,6 +80,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
       ollama-pull:
         condition: service_completed_successfully
 
