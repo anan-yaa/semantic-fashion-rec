@@ -12,22 +12,35 @@ It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL
 | 2. Find relevant products with semantic search and LLMs | Hybrid search: vector + keyword results fused with Reciprocal Rank Fusion, with LLM-inferred filters and product-type detection |
 | 3. Handle an evolving product catalogue | One sync command, run nightly by cron: adds new products, updates changed ones, hides removed ones, and re-embeds only what changed |
 
-**Contents:** [Architecture](#architecture) · [How a search works](#how-a-search-works) · [Outfit builder](#outfit-builder) · [Evolving catalogue](#evolving-catalogue) · [Evaluation](#evaluation) · [Getting started](#getting-started) · [API](#api) · [Configuration](#configuration) · [Testing](#testing) · [Project structure](#project-structure) · [Known limitations](#known-limitations)
+**Where to find what**
+
+| Looking for | Go to |
+|---|---|
+| Problem and approach | [Problem and approach](#problem-and-approach) |
+| Architecture diagram | [Architecture](#architecture), [How a search works](#how-a-search-works) |
+| Design decisions | [Key design decisions](#key-design-decisions) |
+| Additional exploration | [Additional exploration](#additional-exploration), [`evals/EXPLORATION.md`](evals/EXPLORATION.md) |
+| Evals and system health | [Evaluation](#evaluation), [`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md) |
+| Production-scale considerations | [Production scale](#production-scale) |
+| Run the code | [Getting started](#getting-started) (or [Docker Compose](#docker-compose)) |
 
 ---
 
+## Problem and approach
+
+**The problem.** A fashion shop's catalogue is searched with keywords, but shoppers write the way they think: *"an outfit for the beach this summer"*, *"जूते पुरुषों के लिए"*. Keyword search misses these (no product contains the word "beach"), shoppers write in many languages while the catalogue is in English, and the catalogue keeps changing as products are added, edited and removed.
+
+**The approach.** Three pieces, each covering a different weakness:
+
+- **Embeddings** (multilingual-e5, stored in pgvector) match meaning across languages, so "beach" finds sandals and shorts.
+- **Keyword search** keeps exact matches reliable (brands, product types), which embeddings blur.
+- **A small LLM** translates non-English queries and turns phrases like "for men" or "in summer" into filters. It is optional: if it is slow or down, search falls back to the original query.
+
+A nightly sync keeps the catalogue current by re-embedding only what changed. Beyond the brief, the project adds an **outfit builder**, a **feedback loop** and **evals of system health** (see [Additional exploration](#additional-exploration)).
+
 ## Architecture
 
-```mermaid
-flowchart LR
-    UI["Next.js frontend<br/>(search, filters, sort, pages)"] -->|HTTP| API["FastAPI backend"]
-    API -->|"query understanding<br/>(translation + filters)"| LLM["Ollama<br/>Gemma 3 1B"]
-    API -->|embed query| E5["multilingual-e5-base<br/>(768-dim, GPU if available)"]
-    API -->|"vector (HNSW) +<br/>keyword (GIN) search"| DB[("PostgreSQL 16<br/>+ pgvector")]
-    CRON["cron: nightly sync"] --> SYNC["sync_catalogue.py"]
-    FEED["Catalogue feed<br/>(Hugging Face dataset)"] --> SYNC
-    SYNC -->|"ingest, embed changed,<br/>index changed"| DB
-```
+![System architecture](docs/Fashion_Recommendation.png)
 
 | Component | Technology |
 |---|---|
@@ -41,18 +54,26 @@ flowchart LR
 
 ## How a search works
 
+Example query: *"black leather jacket for men"*
+
 ```mermaid
-flowchart TD
-    Q["POST /search<br/>'black leather jacket for men'"] --> U["1. LLM query understanding<br/>keywords: 'black leather jacket'<br/>filters: gender=Men, color=Black"]
-    Q --> T["2. Product-type detection<br/>'jacket' → Jackets"]
-    U --> K["4. Keyword search<br/>LLM keywords + user and LLM filters"]
-    Q --> V["3. Vector search<br/>original query + user filters only"]
-    T --> V
-    T --> K
-    V --> F["5. Reciprocal Rank Fusion (k=60)"]
-    K --> F
-    F --> S["6. Sort and paginate the top 100 matches"]
+flowchart LR
+    Q["Your query"] --> A["1. Understand<br/>translate to English,<br/>pick out filters"]
+    A --> B["2. Search two ways<br/>by meaning (vectors)<br/>by words (keywords)"]
+    B --> C["3. Merge the two<br/>result lists"]
+    C --> D["4. Sort and<br/>paginate"]
 ```
+
+1. **Understand the query.** Gemma 3 1B translates a non-English query into English and picks out filters it mentions (gender, colour, season). Here: *men* and *black*. If the query names a product type ("jacket"), results are limited to it. If the LLM is slow or down, the original query is searched as written.
+2. **Search two ways.** *Vector search* finds products with a similar meaning; *keyword search* finds products containing the words. They catch different things, so both run.
+3. **Merge.** Reciprocal Rank Fusion combines the two ranked lists into one.
+4. **Sort and paginate** the top 100 matches by relevance, newest or name.
+
+Filters chosen by the user always override the LLM's and apply to both searches. LLM-inferred filters apply to keyword search only, so a wrong guess can't hide good semantic matches. Products that left the catalogue are excluded unless a request asks for them.
+
+<details>
+<summary><b>Step-by-step details</b> (language detection, circuit breaker, matching rules)</summary>
+
 
 1. **LLM query understanding** ([`app/providers/ollama_llm.py`](app/providers/ollama_llm.py), [`app/services/query_understanding/`](app/services/query_understanding/))
    - **The language is detected first,** by a small language-identification library rather than the LLM: a 1B model can't reliably tell Spanish or French from English. It recognises 10 languages: English, Spanish, French, German, Italian and Portuguese (statistically), and Hindi, Arabic, Chinese and Russian (by script). Other scripts (Japanese, Korean, Tamil and so on) are labelled "non-English" and still sent for translation. A query only counts as non-English when that's clearly more likely than English, and single words stay English (fashion is full of loanwords such as "poncho" and "mules"), so almost all short English queries aren't misread. Detection scored 260 of 263 labelled queries ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#extending-to-10-languages)).
@@ -77,7 +98,33 @@ flowchart TD
 5. **Fusion:** results from both searches are combined with Reciprocal Rank Fusion.
 6. **Sorting and pages:** the top 100 matches can be sorted by relevance, newest (product year) or name, and are returned in pages.
 
-Filters chosen by the user always override the LLM's, and apply to both searches. LLM-inferred filters apply to keyword search only, so a wrong guess can't hide good semantic matches. Products that left the catalogue are excluded unless a request asks for them.
+
+</details>
+
+## Key design decisions
+
+| Decision | Why | Evidence |
+|---|---|---|
+| **Hybrid search** (vectors + keywords, fused with RRF) | Vectors catch meaning, keywords catch exact terms; RRF needs no score tuning | [Evaluation](#evaluation) |
+| **PostgreSQL + pgvector**, not a separate vector database | One store for products, filters, full-text and vectors; one thing to back up and sync | [Architecture](#architecture) |
+| **Small local LLM (Gemma 3 1B)**, Gemini optional | No per-query cost or rate limit; Gemini was slightly worse on the answer key and hit its free-tier limit | [EXPLORATION §1-2](evals/EXPLORATION.md#1-which-local-llm) |
+| **Language detected by a library, not the LLM** | A 1B model labelled every Spanish and French query as English | [EXPLORATION §3](evals/EXPLORATION.md#3-multilingual-queries) |
+| **Non-English queries are searched in English** | The catalogue is English; the embedding model alone matched some words by spelling | [EXPLORATION §3](evals/EXPLORATION.md#3-multilingual-queries) |
+| **English queries keep the user's words**; the LLM only adds filters | LLM rewrites dropped useful words (NDCG@10 0.770 → 0.794 once stopped) | [EXPLORATION §4](evals/EXPLORATION.md#4-should-the-llm-rewrite-english-queries) |
+| **LLM filters apply to keyword search only, and must be grounded** | A wrong guess can't hide good semantic matches; output is constrained to the catalogue's real values | [EXPLORATION §7](evals/EXPLORATION.md#7-grounding-llm-filters) |
+| **Keyword match: at least 75% of words** | "Every word" was too strict, "any word" flooded results with noise | [EXPLORATION §5](evals/EXPLORATION.md#5-keyword-matching-strictness) |
+| **Every LLM failure falls back to plain search**, behind a circuit breaker | Search must never fail because of an optional component | [SYSTEM_HEALTH](evals/SYSTEM_HEALTH.md) |
+| **Incremental nightly sync** | Re-embedding 44k products takes about 35 minutes on CPU; only changed ones are redone | [Evolving catalogue](#evolving-catalogue) |
+
+## Additional exploration
+
+Beyond the brief:
+
+- **Outfit builder** ([below](#outfit-builder)): turns a request like "beach outfit" into a top, bottom, footwear and accessory, instead of a ranked list.
+- **Search feedback loop:** 👍/👎 on every result, with a summary page of the queries that return the worst results ([API](#api)).
+- **Ten-language support** with a measured detection and translation test ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#extending-to-10-languages)).
+- **Experiments behind each design choice** (which LLM, local vs hosted, keyword strictness, how far to trust the answer key): [`evals/EXPLORATION.md`](evals/EXPLORATION.md).
+- **Failure-mode testing:** latency, throughput, a hung LLM, a dead LLM and a stopped database, measured in [`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md).
 
 ## Outfit builder
 
@@ -99,6 +146,54 @@ curl -X POST localhost:8000/outfit -H 'Content-Type: application/json' \
 The response lists `slots` (`top`, `bottom`, `footwear`, `accessory`, each with `products`), the `gender` it was built for, and what the LLM understood. It shares the search rate limit, since each outfit runs one search per slot.
 
 **Measured:** about 1.3 to 1.9 s per outfit on the real catalogue once the models are warm (about 1 s of it is the LLM; a repeated request skips that), checked by reading outfits for several occasions. It has **no quality evaluation** like the search eval, because there is no answer key for "a good outfit".
+
+## Evaluation
+
+80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**. **System health** (latency, throughput, reliability when the LLM fails, startup, memory), measured with the current LLM: **[`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)**. Headlines: p50 0.8 s for one user, about 1.4 searches/s under load (the LLM is the bottleneck), 0 errors in 1,360 requests, and no failed searches when the LLM hangs. The experiments behind the design choices (LLM selection, local vs hosted, multilingual handling, keyword strictness, how far to trust the answer key) are collected in **[`evals/EXPLORATION.md`](evals/EXPLORATION.md)**.
+
+**Choosing the LLM:** TinyLlama, Qwen 2.5 1.5B and Gemma 3 1B were compared, one at a time on the GPU ([`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)):
+
+| | TinyLlama 1.1B (before) | **Gemma 3 1B (now)** |
+|---|---|---|
+| Multilingual queries: share of top 10 that's relevant (22 Hindi/Spanish/French queries) | 0.69 | **0.85** |
+| ↳ Spanish / French / Hindi | 0.54 / 0.72 / 0.79 | **0.89 / 1.00** / 0.76 |
+| English queries: hybrid NDCG@10 (70 queries) | 0.808 | 0.794 |
+| LLM time per query (GTX 1650) | ~0.3 s | ~0.9 s |
+
+- **Multilingual search improves a lot; English is essentially unchanged.** English is level with search without any LLM (0.795). The extra ~0.6 s per search is a deliberate trade of speed for accuracy.
+- **Qwen 2.5 1.5B was ruled out:** it invented Hindi translations (red saree → "lilac").
+- **Why a dedicated test for non-English queries:** the main answer key was built from the embedding model's own top results. It favours vector search (0.923 NDCG@10), and for Hindi it rewards searching the Hindi text unchanged, even over a correct translation. Multilingual quality is therefore measured with written relevance rules ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#3-multilingual-queries)).
+
+```bash
+PYTHONPATH=. python3 scripts/run_eval.py \
+  --ground-truth evals/ground_truth/ground_truth_v2_real.json \
+  --output-prefix evals/reports/my_run --use-query-understanding
+```
+
+## Production scale
+
+**What is in place now**
+
+- **Reliability:** LLM timeout, circuit breaker and fallback to plain search; a 503 (not a crash) when the database is down; `/health` for load balancers.
+- **Protection:** per-IP rate limiting, an LLM result cache (repeat queries, paging and sorting skip the LLM), and CORS and secrets taken from configuration (Compose refuses to start without a database password).
+- **Observability:** structured JSON logs with a request ID on every line and in the `X-Request-ID` header, and a `Server-Timing` header with per-stage timings. Health is measured in [`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md).
+- **Search at 44k products:** HNSW (vectors) and GIN (full-text) indexes; the first search after a start is slower while the filter values load.
+- **Delivery:** Docker Compose for the whole stack (database, migrations, LLM, API, frontend) and GitHub Actions CI running lint, backend tests against a pgvector database, frontend tests and build, and the Docker build.
+- **Catalogue changes:** an idempotent nightly sync that adds, updates and hides products and re-embeds only what changed.
+
+**Measured limits:** about 1.4 new searches per second on one GPU, because Ollama serves one request at a time; 0 errors in 1,360 requests, including with the LLM hung ([`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)).
+
+**What changes at larger scale**
+
+| Bottleneck today | What I would do |
+|---|---|
+| One local LLM serves one request at a time | Several Ollama workers, a GPU server, or a hosted model for the translation step |
+| Rate limit, circuit breaker and LLM cache are per process | Move them to a shared store such as Redis when running several API workers |
+| One database | Read replicas for search; the sync is the only writer |
+| Query embedding runs in the API process | A separate embedding service that can scale independently |
+| Metrics are only in logs and reports | Prometheus metrics (latency per stage, fallback rate, breaker state) with alerts |
+| The sync is a cron job | A job runner with an alert on failure, and an endpoint or event for urgent changes |
+| Feedback is collected but unused | Use the votes to re-rank results and to grow the evaluation set |
 
 ## Evolving catalogue
 
@@ -122,29 +217,6 @@ It's safe to re-run: on an unchanged catalogue it takes about a minute and chang
 
 ```bash
 (crontab -l 2>/dev/null; echo "0 2 * * * $PWD/scripts/cron_sync_catalogue.sh") | crontab -
-```
-
-## Evaluation
-
-80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**. **System health** (latency, throughput, reliability when the LLM fails, startup, memory), measured with the current LLM: **[`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md)**. Headlines: p50 0.8 s for one user, about 1.4 searches/s under load (the LLM is the bottleneck), 0 errors in 1,360 requests, and no failed searches when the LLM hangs. The experiments behind the design choices (LLM selection, local vs hosted, multilingual handling, keyword strictness, how far to trust the answer key) are collected in **[`evals/EXPLORATION.md`](evals/EXPLORATION.md)**.
-
-**Choosing the LLM:** TinyLlama, Qwen 2.5 1.5B and Gemma 3 1B were compared, one at a time on the GPU ([`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)):
-
-| | TinyLlama 1.1B (before) | **Gemma 3 1B (now)** |
-|---|---|---|
-| Multilingual queries: share of top 10 that's relevant (22 Hindi/Spanish/French queries) | 0.69 | **0.85** |
-| ↳ Spanish / French / Hindi | 0.54 / 0.72 / 0.79 | **0.89 / 1.00** / 0.76 |
-| English queries: hybrid NDCG@10 (70 queries) | 0.808 | 0.794 |
-| LLM time per query (GTX 1650) | ~0.3 s | ~0.9 s |
-
-- **Multilingual search improves a lot; English is essentially unchanged.** English is level with search without any LLM (0.795). The extra ~0.6 s per search is a deliberate trade of speed for accuracy.
-- **Qwen 2.5 1.5B was ruled out:** it invented Hindi translations (red saree → "lilac").
-- **Why a dedicated test for non-English queries:** the main answer key was built from the embedding model's own top results. It favours vector search (0.923 NDCG@10), and for Hindi it rewards searching the Hindi text unchanged, even over a correct translation. Multilingual quality is therefore measured with written relevance rules ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#3-multilingual-queries)).
-
-```bash
-PYTHONPATH=. python3 scripts/run_eval.py \
-  --ground-truth evals/ground_truth/ground_truth_v2_real.json \
-  --output-prefix evals/reports/my_run --use-query-understanding
 ```
 
 ## Getting started
@@ -237,7 +309,27 @@ Run the quick demo with the memory limit in mind: the embedding script loads a s
 
 **Verified:** the stack was run end to end on CPU (WSL2, 3.7 GB of RAM) with the 2,000-product sample: schema creation, ingest, embed, index, search with the LLM, outfit builder, CORS and the UI responding. **Not run in Compose:** the full 44k load, and the GPU override. Details: [`evals/reports/compose_verification.md`](evals/reports/compose_verification.md).
 
+## Testing
+
+```bash
+python3 -m pytest tests/                 # backend: ~420 tests, about 1–5 minutes
+python3 -m pytest tests/ -m slow         # opt-in tests that load the real embedding model
+cd frontend && npx vitest --run          # frontend: 70 tests
+```
+
+- The backend tests use a fake LLM and fake embeddings, so they don't need Ollama or a GPU.
+- Integration tests use a separate `fashion_rec_test` database on the same PostgreSQL server, created automatically. Without PostgreSQL they're skipped.
+- Stop the backend and frontend while running the full suite on a machine with little memory.
+
+Current status: 418 passed and 2 known failures, both present before the latest changes:
+- `test_llm_inferred_filter_is_applied_and_changes_results` expects LLM filters to restrict *all* results, but they were deliberately limited to keyword search.
+- `test_e5_prefixes::test_batch_processing` is an embedding-model test that returns 4 results where it expects 3.
+
 ## API
+
+<details>
+<summary>Endpoints, rate limiting and examples</summary>
+
 
 Interactive documentation: **http://localhost:8000/docs**.
 
@@ -291,7 +383,14 @@ Request fields:
 - `page`: starting at 1
 - `sort`: `relevance`, `newest` or `name`
 
+
+</details>
+
 ## Configuration
+
+<details>
+<summary>All settings</summary>
+
 
 All settings come from environment variables or `.env` ([`core/config.py`](core/config.py)).
 
@@ -325,23 +424,14 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 
 Frontend: `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
 
-## Testing
 
-```bash
-python3 -m pytest tests/                 # backend: ~420 tests, about 1–5 minutes
-python3 -m pytest tests/ -m slow         # opt-in tests that load the real embedding model
-cd frontend && npx vitest --run          # frontend: 70 tests
-```
-
-- The backend tests use a fake LLM and fake embeddings, so they don't need Ollama or a GPU.
-- Integration tests use a separate `fashion_rec_test` database on the same PostgreSQL server, created automatically. Without PostgreSQL they're skipped.
-- Stop the backend and frontend while running the full suite on a machine with little memory.
-
-Current status: 418 passed and 2 known failures, both present before the latest changes:
-- `test_llm_inferred_filter_is_applied_and_changes_results` expects LLM filters to restrict *all* results, but they were deliberately limited to keyword search.
-- `test_e5_prefixes::test_batch_processing` is an embedding-model test that returns 4 results where it expects 3.
+</details>
 
 ## Project structure
+
+<details>
+<summary>Folder layout</summary>
+
 
 ```
 app/
@@ -363,6 +453,9 @@ evals/                 queries, answer keys, reports, EVAL_RESULTS.md
 frontend/              Next.js app (app/, components/, lib/api.ts)
 tests/                 unit/, integration/, model/ (slow)
 ```
+
+
+</details>
 
 ## Known limitations
 
@@ -389,6 +482,6 @@ tests/                 unit/, integration/, model/ (slow)
   - No metrics, dashboards or alerts (logs are structured and carry request IDs).
 - **Deployment:**
   - Compose was verified with a 2,000-product sample on CPU, not with the full catalogue or the GPU override. The catalogue load is a manual step after `up`.
-  - There's no CI/CD and no production configuration.
+  - CI runs on GitHub Actions, but there is no automated deployment (CD), TLS or managed hosting setup.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.
 - **Feedback isn't used yet:** votes are collected and summarized, but they don't change ranking or feed the evaluation. The browser ID is anonymous and per device, so clearing site data starts fresh, and nothing stops someone voting many times from different browsers.
