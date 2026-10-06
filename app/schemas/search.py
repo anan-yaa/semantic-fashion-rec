@@ -32,6 +32,8 @@ class SearchFilter(BaseModel):
     color: str | None = None
     season: str | None = None
     availability: bool | None = None
+    # Restrict to any of these product groups, e.g. ["Topwear"]; used by the outfit builder
+    subcategories: list[str] | None = None
 
 
 class SearchRequest(BaseModel):

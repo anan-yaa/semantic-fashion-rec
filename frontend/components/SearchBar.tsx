@@ -10,9 +10,21 @@ interface SearchBarProps {
   onSubmit: (query: string) => void
   onClear: () => void
   isLoading?: boolean
+  placeholder?: string
+  submitLabel?: string
+  loadingLabel?: string
 }
 
-export function SearchBar({ value, onChange, onSubmit, onClear, isLoading = false }: SearchBarProps) {
+export function SearchBar({
+  value,
+  onChange,
+  onSubmit,
+  onClear,
+  isLoading = false,
+  placeholder = 'Search for fashion in your own words…',
+  submitLabel = 'Search',
+  loadingLabel = 'Searching',
+}: SearchBarProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (value.trim()) {
@@ -41,7 +53,7 @@ export function SearchBar({ value, onChange, onSubmit, onClear, isLoading = fals
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search for fashion in your own words…"
+        placeholder={placeholder}
         aria-label="Search query"
         className="flex-1 min-w-0 bg-transparent py-2 text-base placeholder:text-muted focus:outline-none disabled:opacity-60"
         disabled={isLoading}
@@ -66,7 +78,7 @@ export function SearchBar({ value, onChange, onSubmit, onClear, isLoading = fals
         {isLoading && (
           <span className="h-4 w-4 rounded-full border-2 border-white/40 border-t-white animate-spin" aria-hidden="true" />
         )}
-        {isLoading ? 'Searching' : 'Search'}
+        {isLoading ? loadingLabel : submitLabel}
       </button>
     </form>
   )

@@ -67,3 +67,19 @@ export interface SearchResponse {
   /** Null when query understanding is disabled on the backend */
   understanding: QueryUnderstanding | null
 }
+
+export interface OutfitSlot {
+  key: string
+  label: string
+  /** The first product is the pick; the rest are alternatives */
+  products: Product[]
+}
+
+export interface OutfitResponse {
+  query: string
+  /** Who the outfit was built for, when it could be determined */
+  gender: string | null
+  slots: OutfitSlot[]
+  took_ms: number
+  understanding: QueryUnderstanding | null
+}

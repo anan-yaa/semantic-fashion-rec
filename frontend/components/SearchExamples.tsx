@@ -13,13 +13,14 @@ const EXAMPLE_QUERIES = [
 interface SearchExamplesProps {
   onSelect: (query: string) => void
   disabled?: boolean
+  examples?: string[]
 }
 
-export function SearchExamples({ onSelect, disabled = false }: SearchExamplesProps) {
+export function SearchExamples({ onSelect, disabled = false, examples = EXAMPLE_QUERIES }: SearchExamplesProps) {
   return (
     <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
       <span className="text-sm text-muted mr-1">Try:</span>
-      {EXAMPLE_QUERIES.map((query) => (
+      {examples.map((query) => (
         <button
           key={query}
           type="button"

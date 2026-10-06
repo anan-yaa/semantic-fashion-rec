@@ -105,11 +105,11 @@ def merge_filters(user_filters: SearchFilter | None, llm_filters: SearchFilter) 
     """Merge user-supplied and LLM-inferred filters.
 
     An explicit user-supplied value always wins over an LLM-inferred one for
-    the same field. `availability` is always sourced from the user only - the
-    LLM never populates it.
+    the same field. `availability` and `subcategories` are always sourced from
+    the user only - the LLM never populates them.
     """
     user_filters = user_filters or SearchFilter()
-    merged = SearchFilter(availability=user_filters.availability)
+    merged = SearchFilter(availability=user_filters.availability, subcategories=user_filters.subcategories)
     for field_name in _INFERABLE_FIELDS:
         user_value = getattr(user_filters, field_name)
         setattr(merged, field_name, user_value if user_value is not None else getattr(llm_filters, field_name))

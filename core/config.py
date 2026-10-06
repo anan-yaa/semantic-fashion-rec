@@ -74,9 +74,6 @@ class Settings(BaseSettings):
     # clients could send the header themselves to dodge the limit.
     trust_proxy_headers: bool = Field(default=False)
 
-    # Redis
-    redis_url: str = Field(default="redis://localhost:6379/0")
-
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]

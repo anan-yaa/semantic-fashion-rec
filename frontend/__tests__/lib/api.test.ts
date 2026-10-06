@@ -4,6 +4,7 @@ import {
   getFeedbackSummary,
   getHealth,
   getMyVotes,
+  buildOutfit,
   getProducts,
   RateLimitError,
   searchProducts,
@@ -265,6 +266,30 @@ describe('API client', () => {
 
       await expect(getFeedbackSummary(5)).resolves.toEqual({ total_votes: 3 })
       expect((global.fetch as any).mock.calls[0][0]).toContain('/feedback/summary?limit=5')
+    })
+  })
+  describe('buildOutfit', () => {
+    it('posts the query, filters and per-slot count', async () => {
+      const mockResponse = { query: 'beach', gender: 'Women', slots: [], took_ms: 5, understanding: null }
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => mockResponse })
+
+      const result = await buildOutfit('beach', { filters: { gender: 'Women' }, perSlot: 3 })
+
+      const [url, init] = (global.fetch as any).mock.calls[0]
+      expect(url).toContain('/outfit')
+      expect(JSON.parse(init.body)).toEqual({ query: 'beach', filters: { gender: 'Women' }, per_slot: 3 })
+      expect(result).toEqual(mockResponse)
+    })
+
+    it('throws RateLimitError with the retry delay on 429', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({
+        ok: false,
+        status: 429,
+        headers: { get: () => '7' },
+        json: async () => ({ detail: 'slow down' }),
+      })
+
+      await expect(buildOutfit('beach')).rejects.toMatchObject({ name: 'RateLimitError', retryAfterSeconds: 7 })
     })
   })
 })

@@ -10,7 +10,7 @@ It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL
 | 2. Find relevant products with semantic search and LLMs | Hybrid search: vector + keyword results fused with Reciprocal Rank Fusion, with LLM-inferred filters and product-type detection |
 | 3. Handle an evolving product catalogue | One sync command, run nightly by cron: adds new products, updates changed ones, hides removed ones, and re-embeds only what changed |
 
-**Contents:** [Architecture](#architecture) · [How a search works](#how-a-search-works) · [Evolving catalogue](#evolving-catalogue) · [Evaluation](#evaluation) · [Getting started](#getting-started) · [API](#api) · [Configuration](#configuration) · [Testing](#testing) · [Project structure](#project-structure) · [Known limitations](#known-limitations)
+**Contents:** [Architecture](#architecture) · [How a search works](#how-a-search-works) · [Outfit builder](#outfit-builder) · [Evolving catalogue](#evolving-catalogue) · [Evaluation](#evaluation) · [Getting started](#getting-started) · [API](#api) · [Configuration](#configuration) · [Testing](#testing) · [Project structure](#project-structure) · [Known limitations](#known-limitations)
 
 ---
 
@@ -77,6 +77,27 @@ flowchart TD
 
 Filters chosen by the user always override the LLM's, and apply to both searches. LLM-inferred filters apply to keyword search only, so a wrong guess can't hide good semantic matches. Products that left the catalogue are excluded unless a request asks for them.
 
+## Outfit builder
+
+Beyond search, **`POST /outfit`** (and the **Outfit builder** page in the UI) answers a request like "I need an outfit to go to the beach this summer" with a *combination* of items instead of one ranked list: a **top, bottom, footwear and accessory**, each with a pick and alternatives.
+
+How it works ([`app/services/outfit.py`](app/services/outfit.py)):
+
+1. **Fixed slots over the catalogue's own subcategories:** Top (Topwear), Bottom (Bottomwear), Footwear, and Accessory (Bags, Watches, Eyewear, Jewellery). An LLM doesn't invent the slots, because a 1B model can't reliably split a request into parts.
+2. **One hybrid search per slot**, with the full query restricted to that slot. The occasion therefore decides which footwear or accessory ranks first: for the beach query, sandals and a beach bag; for a men's wedding, formal shoes and sunglasses.
+3. **The LLM adds what it already adds to search:** gender, colour and season, with the same rules (user filters win, LLM filters apply to the keyword side only, the result is cached). Non-English requests are translated first, as in search.
+4. **One wearer per outfit.** The gender comes from the user's filter, else the LLM's, else a vote among the first slot's top 10 results, so the outfit isn't men's shorts with women's sandals.
+5. **Repeat listings are collapsed:** the catalogue lists some products twice under one name.
+
+```bash
+curl -X POST localhost:8000/outfit -H 'Content-Type: application/json' \
+  -d '{"query": "formal outfit for a wedding for men", "per_slot": 3}'
+```
+
+The response lists `slots` (`top`, `bottom`, `footwear`, `accessory`, each with `products`), the `gender` it was built for, and what the LLM understood. It shares the search rate limit, since each outfit runs one search per slot.
+
+**Measured:** about 1.3 to 1.9 s per outfit on the real catalogue once the models are warm (about 1 s of it is the LLM; a repeated request skips that), checked by reading outfits for several occasions. It has **no quality evaluation** like the search eval, because there is no answer key for "a good outfit".
+
 ## Evolving catalogue
 
 ```bash
@@ -103,7 +124,7 @@ It's safe to re-run: on an unchanged catalogue it takes about a minute and chang
 
 ## Evaluation
 
-80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**.
+80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**. The experiments behind the design choices (LLM selection, local vs hosted, multilingual handling, keyword strictness, how far to trust the answer key) are collected in **[`evals/EXPLORATION.md`](evals/EXPLORATION.md)**.
 
 **Choosing the LLM:** TinyLlama, Qwen 2.5 1.5B and Gemma 3 1B were compared, one at a time on the GPU ([`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)):
 
@@ -116,7 +137,7 @@ It's safe to re-run: on an unchanged catalogue it takes about a minute and chang
 
 - **Multilingual search improves a lot; English is essentially unchanged.** English is level with search without any LLM (0.795). The extra ~0.6 s per search is a deliberate trade of speed for accuracy.
 - **Qwen 2.5 1.5B was ruled out:** it invented Hindi translations (red saree → "lilac").
-- **Why a dedicated test for non-English queries:** the main answer key was built from the embedding model's own top results. It favours vector search (0.923 NDCG@10), and for Hindi it rewards searching the Hindi text unchanged, even over a correct translation. Multilingual quality is therefore measured with written relevance rules ([`evals/MULTILINGUAL_EXPERIMENT.md`](evals/MULTILINGUAL_EXPERIMENT.md)).
+- **Why a dedicated test for non-English queries:** the main answer key was built from the embedding model's own top results. It favours vector search (0.923 NDCG@10), and for Hindi it rewards searching the Hindi text unchanged, even over a correct translation. Multilingual quality is therefore measured with written relevance rules ([`evals/EXPLORATION.md`](evals/EXPLORATION.md#3-multilingual-queries)).
 
 ```bash
 PYTHONPATH=. python3 scripts/run_eval.py \
@@ -190,7 +211,7 @@ The embedding model and the LLM load in the background when the backend starts (
 
 ### Docker Compose
 
-Copy `.env.example` to `.env` and set `POSTGRES_PASSWORD` (Compose refuses to start without it). Then `docker compose up --build` starts PostgreSQL, Redis, Ollama (it pulls the configured model automatically), the API on http://localhost:8000 and the UI on http://localhost:3000. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit).
+Copy `.env.example` to `.env` and set `POSTGRES_PASSWORD` (Compose refuses to start without it). Then `docker compose up --build` starts PostgreSQL, Ollama (it pulls the configured model automatically), the API on http://localhost:8000 and the UI on http://localhost:3000. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit).
 
 The Compose file is validated and both images build, but the whole stack has not been run together with the Compose plugin; see [Known limitations](#known-limitations).
 
@@ -202,7 +223,8 @@ Interactive documentation: **http://localhost:8000/docs**.
 
 | Method | Path | Purpose |
 |---|---|---|
-| `POST` | `/search` | Hybrid, vector or keyword search with filters, sorting and pages |
+| `POST` | `/search` | Hybrid, vector or keyword search with filters, sorting and pages. 429 when rate limited, 503 when the database is down |
+| `POST` | `/outfit` | Build an outfit for an occasion: a top, bottom, footwear and accessory, each with alternatives. Same 429 and 503 behaviour as `/search` |
 | `GET` | `/products` | Browse available products: `page`, `page_size`, `category`, `gender`, `color`, `season`, `sort` |
 | `GET` | `/products/facets` | Filter values in the catalogue (for dropdowns) |
 | `POST` | `/feedback` | Thumbs up (1), down (-1) or remove (0) on one search result, with its context |
@@ -268,6 +290,7 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 | `LLM_QUERY_UNDERSTANDING_EVAL_TIMEOUT_SECONDS` | `15.0` | LLM time limit during evals |
 | `LLM_CIRCUIT_FAILURE_THRESHOLD` | `3` | Consecutive LLM timeouts or connection errors before it's skipped |
 | `LLM_CIRCUIT_COOLDOWN_SECONDS` | `30` | How long the LLM is skipped before checking whether it has recovered |
+| `LLM_CACHE_TTL_SECONDS` / `LLM_CACHE_MAX_ENTRIES` | `600` / `1000` | Successful LLM results are cached per query, so paging, sorting and filter changes skip the LLM; `0` disables. Failures are never cached |
 | `CATALOGUE_FACETS_CACHE_SECONDS` | `300` | How often filter values and product types are re-read from the database |
 | `WARM_UP_MODELS_ON_STARTUP` | `true` | Load the models in the background at startup |
 | `RATE_LIMIT_ENABLED` | `true` | Limit how often each client can search |
@@ -276,6 +299,9 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 | `FEEDBACK_RATE_LIMIT_PER_MINUTE` / `FEEDBACK_RATE_LIMIT_BURST` | `120` / `30` | The same limits for `POST /feedback` |
 | `TRUST_PROXY_HEADERS` | `false` | Read the client IP from `X-Forwarded-For`; enable only behind a reverse proxy that sets it |
 | `LOG_LEVEL` | `INFO` | Logging level |
+| `LOG_FORMAT` | `text` | `json` for one structured object per line, with `request_id` and fields such as `llm_latency_ms` |
+| `CORS_ORIGINS` | `http://localhost:3000,http://127.0.0.1:3000` | Comma-separated browser origins allowed to call the API |
+| `POSTGRES_PASSWORD` | – | Required by Docker Compose; also used in its `DATABASE_URL` |
 
 Frontend: `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
 
@@ -299,11 +325,12 @@ Current status: 418 passed and 2 known failures, both present before the latest 
 
 ```
 app/
-  api/routes/          search.py (POST /search), products.py (browse, facets)
+  api/routes/          search.py (POST /search), outfit.py (POST /outfit), products.py (browse, facets)
   providers/           e5.py (embeddings), ollama_llm.py, llm.py (Gemini), fakes for tests
   services/
     search/            hybrid.py, vector_search.py, keyword_search.py, rank_fusion.py,
                        product_types.py, sorting.py
+    outfit.py          outfit slots, per-slot search, one gender per outfit
     query_understanding/  LLM orchestration, fallback, filter validation, circuit breaker
     ingestion/         dataset loading, normalization, hashing, insert/update/deactivate
     embedding/         batch embedding of new or changed products, Colab export/import
@@ -322,21 +349,24 @@ tests/                 unit/, integration/, model/ (slow)
 - **Multilingual coverage:**
   - Language detection covers English, Spanish, French and Hindi. Other Latin-script languages may be read as English and searched untranslated.
   - Gemma 3 1B still mistranslates some queries, e.g. "काली जूती" (black jutti) → "black kurta".
-  - The LLM adds ~0.9 s per search on a GTX 1650, and Ollama serves one request at a time, which caps throughput at about 1 search/s.
+  - The LLM adds ~0.9 s per search on a GTX 1650, and Ollama serves one request at a time, which caps throughput at about 1 search/s for new queries. Repeated queries (paging, sorting, filter changes) are served from the LLM cache and skip that cost.
 - **Evaluation:** the answer key favours vector search, and 80 queries can only show fairly large differences. An earlier, human-reviewed answer key (`ground_truth_v1.json`) no longer matches the database's product IDs.
 - **The vector index may miss matches.** Vector Recall@20 is 0.71 against an answer key made of the embedding model's own top 20. Approximate HNSW search with the default `ef_search = 40` is the likely cause, but this isn't confirmed yet.
-- **Data:** the dataset has no prices or usable images, so there's no price sorting and product cards show a color tile instead of a photo. "Outfit" queries return a single ranked list, not a combination of items.
+- **Outfit builder:**
+  - Slots are fixed (no dresses, sarees or layers such as jackets), and picks are the best match per slot, so items aren't checked against each other for colour or style.
+  - Quality depends on the embedding model and catalogue labels: a winter query can still return sandals, and the dataset has mislabelled items (a "Kids Boys" short filed under Men).
+  - A category filter is ignored, since an outfit spans categories.
+- **Data:** the dataset has no prices or usable images, so there's no price sorting and product cards show a color tile instead of a photo. `POST /search` returns one ranked list even for "outfit" queries; use the outfit builder for combinations.
 - **Reliability:**
   - There's no overall request timeout.
   - The circuit breaker's state is kept per process, so with several API workers each one finds an outage separately.
 - **Security and operations:**
   - No authentication or HTTPS.
-  - Rate limits are per IP address, so people sharing one IP (an office network) share a limit. They're also per API process; several workers or servers would need a shared store such as Redis.
+  - Rate limits are per IP address, so people sharing one IP (an office network) share a limit. They're also per API process; several workers or servers would need a shared store such as Redis. The circuit breaker and the LLM result cache are per process for the same reason.
   - The default database password in `core/config.py` is a development one; Compose requires you to set your own.
   - No metrics, dashboards or alerts (logs are structured and carry request IDs).
 - **Deployment:**
   - The full Compose stack hasn't been run end-to-end (the Compose plugin wasn't available when it was written); the images build.
-  - Redis is configured but not used.
   - There's no CI/CD and no production configuration.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.
 - **Feedback isn't used yet:** votes are collected and summarized, but they don't change ranking or feed the evaluation. The browser ID is anonymous and per device, so clearing site data starts fresh, and nothing stops someone voting many times from different browsers.

@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import text
 
 from app.api.routes.feedback import router as feedback_router
+from app.api.routes.outfit import router as outfit_router
 from app.api.routes.products import router as products_router
 from app.api.routes.search import router as search_router
 from app.db.database import engine
@@ -48,6 +49,7 @@ async def request_id_middleware(request: Request, call_next):
 # Register routes
 app.include_router(products_router)
 app.include_router(search_router)
+app.include_router(outfit_router)
 app.include_router(feedback_router)
 
 

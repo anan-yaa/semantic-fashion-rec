@@ -53,6 +53,8 @@ def search_vector(
             query_obj = query_obj.filter_by(season=filters.season)
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
+        if filters.subcategories:
+            query_obj = query_obj.filter(Product.subcategory.in_(filters.subcategories))
     if article_types:
         query_obj = query_obj.filter(ARTICLE_TYPE.in_(article_types))
     if session.bind.dialect.name == "postgresql":
@@ -62,7 +64,8 @@ def search_vector(
         # searching until enough rows pass. Set on every call because SET LOCAL
         # lasts for the whole transaction and would otherwise leak into later
         # unfiltered searches.
-        mode = "strict_order" if article_types else "off"
+        narrowed = bool(article_types) or bool(filters and (filters.subcategories or filters.category))
+        mode = "strict_order" if narrowed else "off"
         session.execute(text(f"SET LOCAL hnsw.iterative_scan = {mode}"))
 
     with timed("vector_db"):

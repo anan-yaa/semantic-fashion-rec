@@ -27,7 +27,7 @@ All numbers are read from result files in [`reports/`](reports/); nothing is cop
 | Total GPU memory used (with embedding model) | 1943 MiB | 2372 MiB | 2114 MiB | 2114 MiB |
 
 **What the tests measure:**
-- **Multilingual relevant@10:** the share of the top 10 results matching a written rule for what the query asks for (product type, plus color and gender when stated). There are 22 Hindi, Spanish and French queries; see [`MULTILINGUAL_EXPERIMENT.md`](MULTILINGUAL_EXPERIMENT.md). This test doesn't depend on the embedding model.
+- **Multilingual relevant@10:** the share of the top 10 results matching a written rule for what the query asks for (product type, plus color and gender when stated). There are 22 Hindi, Spanish and French queries; see [`EXPLORATION.md`](EXPLORATION.md#3-multilingual-queries). This test doesn't depend on the embedding model.
 - **Main eval:** the 80-query answer key from [`EVAL_RESULTS.md`](EVAL_RESULTS.md). Its labels come from the embedding model's own top results, so it favours plain vector search and penalises changes to the search text, including correct translations (see finding 4).
 
 ## Findings

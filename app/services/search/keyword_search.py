@@ -59,6 +59,8 @@ def search_keyword(
             query_obj = query_obj.filter_by(season=filters.season)
         if filters.availability is not None:
             query_obj = query_obj.filter_by(availability=filters.availability)
+        if filters.subcategories:
+            query_obj = query_obj.filter(Product.subcategory.in_(filters.subcategories))
     if article_types:
         query_obj = query_obj.filter(ARTICLE_TYPE.in_(article_types))
 

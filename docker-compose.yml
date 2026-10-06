@@ -16,17 +16,6 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    image: redis:7-alpine
-    container_name: fashion_rec_redis
-    ports:
-      - "127.0.0.1:6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   # No published port: the app reaches it on the compose network, and a host
   # Ollama install may already be using 11434.
   ollama:
@@ -63,7 +52,6 @@ services:
       - .env
     environment:
       - DATABASE_URL=postgresql+psycopg://fashion_rec:${POSTGRES_PASSWORD}@db:5432/fashion_rec
-      - REDIS_URL=redis://redis:6379/0
       - OLLAMA_BASE_URL=http://ollama:11434
       - LOG_FORMAT=json
       - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
@@ -75,8 +63,6 @@ services:
       start_period: 30s
     depends_on:
       db:
-        condition: service_healthy
-      redis:
         condition: service_healthy
       ollama-pull:
         condition: service_completed_successfully

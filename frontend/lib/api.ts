@@ -5,6 +5,7 @@
 
 import {
   Facets,
+  OutfitResponse,
   PaginatedProductResponse,
   SearchFilters,
   SearchMethod,
@@ -111,6 +112,43 @@ export async function searchProducts(
     return await response.json()
   } catch (error) {
     console.error('Error searching products:', error)
+    throw error
+  }
+}
+
+/**
+ * Build an outfit (top, bottom, footwear, accessory) for an occasion
+ */
+export async function buildOutfit(
+  query: string,
+  options?: { filters?: SearchFilters; perSlot?: number }
+): Promise<OutfitResponse> {
+  try {
+    const response = await fetch(`${API_URL}/outfit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query,
+        filters: options?.filters,
+        per_slot: options?.perSlot ?? 4,
+      }),
+    })
+
+    if (response.status === 429) {
+      const retryAfter = Number(response.headers.get('Retry-After')) || 1
+      const body = await response.json().catch(() => null)
+      throw new RateLimitError(
+        body?.detail ?? `Too many searches. Try again in ${retryAfter} seconds.`,
+        retryAfter
+      )
+    }
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error building outfit:', error)
     throw error
   }
 }

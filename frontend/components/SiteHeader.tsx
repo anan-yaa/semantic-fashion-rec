@@ -7,7 +7,7 @@ import Link from 'next/link'
 interface SiteHeaderProps {
   /** On the search page the brand resets the search instead of navigating */
   onBrandClick?: () => void
-  active: 'search' | 'feedback'
+  active: 'search' | 'outfit' | 'feedback'
   subtitle?: string
 }
 
@@ -40,6 +40,12 @@ export function SiteHeader({ onBrandClick, active, subtitle }: SiteHeaderProps) 
             className={`${NAV_LINK} ${active === 'search' ? 'bg-hover text-primary' : 'text-secondary hover:text-primary'}`}
           >
             Search
+          </Link>
+          <Link
+            href="/outfit"
+            className={`${NAV_LINK} ${active === 'outfit' ? 'bg-hover text-primary' : 'text-secondary hover:text-primary'}`}
+          >
+            Outfit builder
           </Link>
           <Link
             href="/feedback"
