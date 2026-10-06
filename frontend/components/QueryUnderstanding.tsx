@@ -46,14 +46,16 @@ export function QueryUnderstanding({ understanding }: QueryUnderstandingProps) {
   }
 
   const filters = Object.entries(understanding.inferred_filters)
+  const translation = understanding.translated ? understanding.english_query : null
+  if (!translation && filters.length === 0) return null
 
   return (
     <div className="flex flex-wrap items-center gap-2 text-sm" aria-label="Query understanding">
       <SparkIcon />
-      <span className="text-secondary">Understood as:</span>
-      {understanding.keywords && (
+      <span className="text-secondary">{translation ? 'Searched in English as:' : 'Understood as:'}</span>
+      {translation && (
         <span className="px-2.5 py-0.5 rounded-full border border-accent-border bg-white text-primary">
-          “{understanding.keywords}”
+          “{translation}”
         </span>
       )}
       {filters.map(([field, value]) => (

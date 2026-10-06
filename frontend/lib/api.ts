@@ -11,6 +11,7 @@ import {
   SearchResponse,
   SortOrder,
 } from '@/types/product'
+import { FeedbackContext, FeedbackSummary, Vote } from '@/types/feedback'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
@@ -119,6 +120,66 @@ export async function searchProducts(
  */
 export async function getFacets(): Promise<Facets> {
   const response = await fetch(`${API_URL}/products/facets`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+  }
+  return response.json()
+}
+
+/**
+ * Record (or with vote 0, remove) a vote on one search result. Returns the vote now stored.
+ */
+export async function sendFeedback(
+  clientId: string,
+  query: string,
+  productId: string,
+  vote: Vote,
+  context: FeedbackContext
+): Promise<Vote> {
+  const response = await fetch(`${API_URL}/feedback`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      client_id: clientId,
+      query,
+      product_id: productId,
+      vote,
+      position: context.position,
+      method: context.method,
+      sort: context.sort,
+      filters: context.filters,
+      understanding: context.understanding ?? undefined,
+    }),
+  })
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+  }
+  return (await response.json()).vote
+}
+
+/**
+ * This browser's votes for a query: product id -> vote
+ */
+export async function getMyVotes(clientId: string, query: string): Promise<Record<string, Vote>> {
+  const params = new URLSearchParams({ client_id: clientId, query })
+  const response = await fetch(`${API_URL}/feedback/votes?${params}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+  }
+  return (await response.json()).votes
+}
+
+/**
+ * Feedback totals, worst queries and recent votes
+ */
+export async function getFeedbackSummary(limit: number = 10): Promise<FeedbackSummary> {
+  const response = await fetch(`${API_URL}/feedback/summary?limit=${limit}`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
   })

@@ -1,0 +1,8 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:   4%|▍         | 8/199 [00:00<00:08, 21.23it/s]Loading weights:   6%|▌         | 11/199 [00:00<00:08, 21.61it/s]Loading weights:   7%|▋         | 14/199 [00:00<00:13, 14.09it/s]Loading weights:  10%|▉         | 19/199 [00:03<00:51,  3.47it/s]Loading weights:  19%|█▊        | 37/199 [00:03<00:14, 10.87it/s]Loading weights:  27%|██▋       | 54/199 [00:03<00:07, 19.65it/s]Loading weights:  37%|███▋      | 73/199 [00:04<00:04, 31.32it/s]Loading weights:  44%|████▍     | 88/199 [00:04<00:02, 41.92it/s]Loading weights:  73%|███████▎  | 146/199 [00:04<00:00, 104.47it/s]Loading weights: 100%|██████████| 199/199 [00:04<00:00, 46.69it/s] 
+/home/ananyaa/code/fashion-rec/app/providers/e5.py:56: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  logger.info(f"Model loaded. Output dimension: {self._model.get_sentence_embedding_dimension()}")
+run 1/3: 2000 products in 13.9s = 144 products/s
+run 2/3: 2000 products in 14.1s = 142 products/s
+run 3/3: 2000 products in 10.8s = 185 products/s
+median 144 products/s; full catalogue (44072) ≈ 5.1 min

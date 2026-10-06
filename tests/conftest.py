@@ -14,7 +14,7 @@ from sqlalchemy.dialects.postgresql import TSVECTOR
 from app.db.database import Base
 from app.db.repositories.product_repository import ProductRepository
 from app.services.query_understanding.vocabulary import _reset_catalogue_facets_cache
-from app.api.rate_limit import search_rate_limiter
+from app.api.rate_limit import feedback_rate_limiter, search_rate_limiter
 from app.services.query_understanding.circuit_breaker import llm_circuit_breaker
 from app.services.search.product_types import _reset_article_type_cache
 from core.config import settings
@@ -32,11 +32,13 @@ def reset_catalogue_caches():
     _reset_article_type_cache()
     llm_circuit_breaker.reset()
     search_rate_limiter.reset()
+    feedback_rate_limiter.reset()
     yield
     _reset_catalogue_facets_cache()
     _reset_article_type_cache()
     llm_circuit_breaker.reset()
     search_rate_limiter.reset()
+    feedback_rate_limiter.reset()
 
 
 @compiles(Vector, "sqlite")

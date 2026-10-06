@@ -3,16 +3,20 @@
  */
 
 import { Product } from '@/types/product'
+import { Vote } from '@/types/feedback'
 import { ProductCard } from './ProductCard'
 
 interface ProductGridProps {
   products: Product[]
   isLoading?: boolean
+  /** When given, each card shows thumbs up/down (search results only) */
+  votes?: Record<string, Vote>
+  onVote?: (product: Product, index: number, vote: Vote) => void
 }
 
 const GRID = 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'
 
-export function ProductGrid({ products, isLoading = false }: ProductGridProps) {
+export function ProductGrid({ products, isLoading = false, votes, onVote }: ProductGridProps) {
   if (isLoading) {
     return (
       <div className={GRID} aria-busy="true">
@@ -41,8 +45,16 @@ export function ProductGrid({ products, isLoading = false }: ProductGridProps) {
 
   return (
     <div className={GRID}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+      {products.map((product, index) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          feedback={
+            onVote
+              ? { vote: votes?.[product.id] ?? 0, onVote: (vote) => onVote(product, index, vote) }
+              : undefined
+          }
+        />
       ))}
     </div>
   )

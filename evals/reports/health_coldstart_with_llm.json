@@ -1,0 +1,7 @@
+{
+  "health_ready_s": 1.7545833587646484,
+  "models_loaded_s": 27.8392550945282,
+  "first_search_s": 8.447541,
+  "gpu_memory_used_mb": 1943,
+  "backend_rss_after_first_search_mb": 1563.29
+}

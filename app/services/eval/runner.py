@@ -23,7 +23,7 @@ from app.services.eval.io import (
     save_report,
 )
 from app.services.eval.metrics import mrr, ndcg_at_k, precision_at_k, recall_at_k, reciprocal_rank
-from app.services.query_understanding import load_catalogue_facets, merge_filters, understand_query
+from app.services.query_understanding import load_catalogue_facets, merge_filters, search_texts, understand_query
 from app.services.search import search_hybrid
 
 logger = logging.getLogger(__name__)
@@ -78,12 +78,12 @@ def run_eval(
 
     When llm_provider is given, each query is first passed through
     understand_query() exactly as app/api/routes/search.py does for a plain
-    query with no user-supplied filters: the resulting cleaned_query is used
-    only for the keyword path (via keyword_query_text). LLM-inferred filters
+    query with no user-supplied filters. The search text follows the same rule
+    (search_texts): a translated non-English query is searched in English on
+    both paths, anything else with its original text. LLM-inferred filters
     apply ONLY to the keyword path, not to vector search, matching production
-    behavior. Vector search always receives the original query text and no
-    LLM-inferred filters. When llm_provider is None (the default), behavior
-    is byte-for-byte identical to before this parameter existed.
+    behavior. When llm_provider is None (the default), every query is searched
+    with its original text and no LLM filters.
 
     When throttle_seconds is given, enforce a minimum interval between
     consecutive LLM calls (using monotonic time) to respect rate limits.
@@ -111,7 +111,7 @@ def run_eval(
             excluded_count += 1
             continue
 
-        keyword_query_text = None
+        understanding = None
         vector_filters = None  # No user filters in eval - LLM filters never apply here
         keyword_filters = None  # LLM filters only apply to keyword path
         if llm_provider is not None:
@@ -126,7 +126,6 @@ def run_eval(
 
             last_llm_call_time = time.monotonic()
             understanding = understand_query(llm_provider, gt.query, valid_filters)
-            keyword_query_text = understanding.cleaned_query
             # LLM-inferred filters apply to keyword search only.
             keyword_filters = merge_filters(None, understanding.filters)
             query_understanding_records.append(
@@ -137,9 +136,12 @@ def run_eval(
                     cleaned_query=understanding.cleaned_query,
                     filters=understanding.filters.model_dump(),
                     error=understanding.error,
+                    translated=understanding.translated,
                 )
             )
 
+        # Same rule as POST /search: translated queries are searched in English.
+        vector_text, keyword_text = search_texts(gt.query, understanding)
         relevant_ids = set(gt.relevant_product_ids)
         per_query[gt.query_id] = {}
 
@@ -147,12 +149,12 @@ def run_eval(
             try:
                 results, _, _ = search_hybrid(
                     session,
-                    gt.query,
+                    vector_text,
                     provider,
                     filters=vector_filters,  # User filters only (None in eval)
                     method=method,
                     limit=_SEARCH_LIMIT,
-                    keyword_query_text=keyword_query_text,
+                    keyword_query_text=keyword_text,
                     keyword_filters=keyword_filters,  # LLM filters only for keyword path
                 )
             except Exception as e:
@@ -169,6 +171,8 @@ def run_eval(
                 ndcg_at_10=ndcg_at_k(relevance, k),
                 precision_at_10=precision_at_k(relevance, k),
                 mrr=reciprocal_rank(relevance),
+                mrr_at_10=reciprocal_rank(relevance[:10]),
+                recall_at_10=recall_at_k(relevance, len(relevant_ids), 10),
                 recall_at_20=recall_at_k(relevance, len(relevant_ids), 20),
                 recall_at_50=recall_at_k(relevance, len(relevant_ids), 50),
             )
@@ -200,6 +204,8 @@ def run_eval(
             ndcg_at_10=sum(ndcg_at_k(r, k) for r in lists) / len(lists),
             precision_at_10=sum(precision_at_k(r, k) for r in lists) / len(lists),
             mrr=mrr(lists),
+            mrr_at_10=sum(s.mrr_at_10 for s in scored) / len(scored),
+            recall_at_10=sum(s.recall_at_10 for s in scored) / len(scored),
             recall_at_20=sum(s.recall_at_20 for s in scored) / len(scored),
             recall_at_50=sum(s.recall_at_50 for s in scored) / len(scored),
         )

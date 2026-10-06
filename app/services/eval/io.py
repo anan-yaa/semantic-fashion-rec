@@ -131,6 +131,8 @@ class MethodScores:
     ndcg_at_10: float
     precision_at_10: float
     mrr: float
+    mrr_at_10: float = 0.0
+    recall_at_10: float = 0.0
     recall_at_20: float = 0.0
     recall_at_50: float = 0.0
 
@@ -149,6 +151,7 @@ class QueryUnderstandingRecord:
     cleaned_query: str
     filters: dict
     error: Optional[str] = None
+    translated: bool = False
 
 
 @dataclass
@@ -187,15 +190,15 @@ def save_report(json_path: str, md_path: str, report: EvalReport) -> None:
         f"Queries scored: {report.query_count} (excluded for having zero relevant items: {report.excluded_query_count})",
         f"Query understanding enabled: {report.query_understanding_enabled}",
         "",
-        "| Method  | NDCG@10 | Precision@10 | MRR   | Recall@20 | Recall@50 |",
-        "|---------|---------|--------------|-------|-----------|-----------|",
+        "| Method  | NDCG@10 | Precision@10 | MRR   | MRR@10 | Recall@10 | Recall@20 | Recall@50 |",
+        "|---------|---------|--------------|-------|--------|-----------|-----------|-----------|",
     ]
     for method in ("hybrid", "vector", "keyword"):
         if method in report.per_method:
             s = report.per_method[method]
             lines.append(
                 f"| {method:<7} | {s.ndcg_at_10:.3f}   | {s.precision_at_10:.3f}        | {s.mrr:.3f} "
-                f"| {s.recall_at_20:.3f}     | {s.recall_at_50:.3f}     |"
+                f"| {s.mrr_at_10:.3f}  | {s.recall_at_10:.3f}     | {s.recall_at_20:.3f}     | {s.recall_at_50:.3f}     |"
             )
     with open(md_path, "w") as f:
         f.write("\n".join(lines) + "\n")

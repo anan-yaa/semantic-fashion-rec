@@ -1,0 +1,2 @@
+qwen2.5:1.5b    65ec06548149    1.2 GB    100% GPU     4096       29 minutes from now    
+2372 MiB

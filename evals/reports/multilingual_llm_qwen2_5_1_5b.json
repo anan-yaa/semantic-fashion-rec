@@ -1,0 +1,429 @@
+{
+  "generated_at": "2026-10-06T07:23:04.485947+00:00",
+  "translator": "app LLM (Ollama)",
+  "llm_ms_median": 546.7,
+  "summary_relevant_at_10": {
+    "all": {
+      "app_hybrid": 0.7090909090909091,
+      "hybrid_translated": 0.6227272727272727,
+      "vector_translated": 0.5727272727272728
+    },
+    "hi": {
+      "app_hybrid": 0.73,
+      "hybrid_translated": 0.35,
+      "vector_translated": 0.29
+    },
+    "es": {
+      "app_hybrid": 0.6625,
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.8375
+    },
+    "fr": {
+      "app_hybrid": 0.75,
+      "hybrid_translated": 0.75,
+      "vector_translated": 0.75
+    }
+  },
+  "rows": [
+    {
+      "query": "नीली शर्ट",
+      "lang": "hi",
+      "meaning": "blue shirt",
+      "translation": "blue shorts",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Blue"
+      },
+      "llm_ms": 585.0,
+      "app_hybrid": 0.2,
+      "app_hybrid_top3": [
+        "Nike Black Dri-fit Cotton     Cricket  Shorts [Shorts]",
+        "Doodle Girl Hot shorts ice wash Blue Shorts [Shorts]",
+        "Gini and Jony BoysCore Navy Blue Shirt [Shirts]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "सर्दियों का ऊनी कोट",
+      "lang": "hi",
+      "meaning": "winter woollen coat",
+      "translation": "saree for boys",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Boys"
+      },
+      "llm_ms": 714.1,
+      "app_hybrid": 0.0,
+      "app_hybrid_top3": [
+        "Span Women Orange Kurta [Kurtas]",
+        "Folklore Women Orange Kurta [Kurtas]",
+        "Aneri Women Orange Kurta [Kurtas]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "काली जूती",
+      "lang": "hi",
+      "meaning": "black jutti (flat shoe)",
+      "translation": "kale green kurti",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Green"
+      },
+      "llm_ms": 541.8,
+      "app_hybrid": 0.9,
+      "app_hybrid_top3": [
+        "Kalenji Men's Kapteren Black Shoe [Sports Shoes]",
+        "Fila Men's Cavier Black Shoe [Sports Shoes]",
+        "Fila Men Cerchi Lite Black Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "महिलाओं के लिए गहने",
+      "lang": "hi",
+      "meaning": "jewellery for women",
+      "translation": "strong shoes",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 559.2,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "पुरुषों के लिए घड़ी",
+      "lang": "hi",
+      "meaning": "watch for men",
+      "translation": "clock for men",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Men"
+      },
+      "llm_ms": 519.8,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Timex Men Cream Dial Chronograph Watch [Watches]",
+        "Espirit Men Grey Dial Chronograph Watch [Watches]",
+        "Timex Men Cream Toned Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "लाल साड़ी",
+      "lang": "hi",
+      "meaning": "red saree",
+      "translation": "lilac",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 545.8,
+      "app_hybrid": 0.2,
+      "app_hybrid_top3": [
+        "Fabindia Red Hand Printed Chanderi Dupatta [Dupatta]",
+        "s.Oliver Women Faded Lilac Top [Tops]",
+        "Fabindia Red Jaipur Print Cotton Sari [Sarees]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "बच्चों के कपड़े",
+      "lang": "hi",
+      "meaning": "children's clothes",
+      "translation": "boys pants",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Boys"
+      },
+      "llm_ms": 681.9,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Disney Kids Boy's Mickey Mouse Print Pants [Trousers]",
+        "Disney Kids Boy's Tiger Print Denim Pants [Trousers]",
+        "Chhota Bheem Kids Boys Flying High TShirt [Tshirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "सफेद जूते",
+      "lang": "hi",
+      "meaning": "white shoes",
+      "translation": "saffron jacket",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 617.7,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "ADIDAS White  Sports Shoe [Sports Shoes]",
+        "Disney Kids-Unisex White Shoes [Casual Shoes]",
+        "Puma Men Volt White Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "चमड़े का बैग",
+      "lang": "hi",
+      "meaning": "leather bag",
+      "translation": "camera",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 547.6,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Baggit Women Bingri Club Silver Clutch [Clutches]",
+        "Wildcraft Unisex Grey Camera Bag [Handbags]",
+        "Baggit Women Beige Selection Camo Sling Bag [Handbags]"
+      ],
+      "hybrid_translated": 0.5,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "गर्मियों के कपड़े",
+      "lang": "hi",
+      "meaning": "summer clothes",
+      "translation": "summer clothes",
+      "llm_used": true,
+      "llm_filters": {
+        "season": "Summer"
+      },
+      "llm_ms": 556.6,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Little Miss Girls Blazing Yellow Clothing Set [Clothing Set]",
+        "Doodle Girls Printed Grey Top [Tops]",
+        "Jungle Book Boys Baby Red Clothing Set [Clothing Set]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "atuendo playero",
+      "lang": "es",
+      "meaning": "beach outfit",
+      "translation": "swimwear",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 518.4,
+      "app_hybrid": 0.3,
+      "app_hybrid_top3": [
+        "John Players Men Solid Maroon Polo T-Shirt [Tshirts]",
+        "Amante Pink & Blue Swimwear [Swimwear]",
+        "Puma Men Athletic Stellar Blue Polo Tshirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.3,
+      "vector_translated": 0.8
+    },
+    {
+      "query": "vestido rojo para mujer",
+      "lang": "es",
+      "meaning": "red dress for women",
+      "translation": "red dress",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Red"
+      },
+      "llm_ms": 580.6,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "Tonga Women Printed Red Dress [Dresses]",
+        "Femella Women Floral Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "chaqueta de invierno para hombre",
+      "lang": "es",
+      "meaning": "men's winter jacket",
+      "translation": "winter jacket",
+      "llm_used": true,
+      "llm_filters": {
+        "season": "Winter"
+      },
+      "llm_ms": 578.9,
+      "app_hybrid": 0.5,
+      "app_hybrid_top3": [
+        "Red Chief Men Khaki Shoes [Casual Shoes]",
+        "U.S. Polo Assn. Men Solid Navy Blue Jacket [Jackets]",
+        "Red Chief Men Khaki Shoes [Casual Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.9
+    },
+    {
+      "query": "zapatos deportivos",
+      "lang": "es",
+      "meaning": "sports shoes",
+      "translation": "sport shoes",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 465.3,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "reloj de mujer",
+      "lang": "es",
+      "meaning": "women's watch",
+      "translation": "woman's watch",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Women"
+      },
+      "llm_ms": 507.0,
+      "app_hybrid": 0.0,
+      "app_hybrid_top3": [
+        "Murcia Women Office Red Handbag [Handbags]",
+        "Murcia Women Lorra Red Red Handbags [Handbags]",
+        "Murcia Women Red Leatherite Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "gafas de sol",
+      "lang": "es",
+      "meaning": "sunglasses",
+      "translation": "sunglasses",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 548.0,
+      "app_hybrid": 0.5,
+      "app_hybrid_top3": [
+        "Vans Men Grey Del Norte Canvas Shoes [Casual Shoes]",
+        "Fastrack Unisex Fastrack Black sunglass with Black frame Black Sunglasses [Sunglasses]",
+        "Nike Unisex Solarsoft Thong Orange Flip Flops [Flip Flops]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "camisa azul de hombre",
+      "lang": "es",
+      "meaning": "men's blue shirt",
+      "translation": "blue shirt",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Blue"
+      },
+      "llm_ms": 507.0,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "U.S.Polo Assn. Men Blue Shirt [Shirts]",
+        "U.S. Polo Assn. Men Striped Blue Shirt [Shirts]",
+        "John Miller Men Stripes Blue Blue Shirts [Shirts]"
+      ],
+      "hybrid_translated": 0.9,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "bolso de cuero negro",
+      "lang": "es",
+      "meaning": "black leather handbag",
+      "translation": "black leather bag",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Black"
+      },
+      "llm_ms": 567.0,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Belkin Unisex Pace Tall Messenger Black Netbook Bag [Laptop Bag]",
+        "Tortoise Men Black Leather Laptop Bag [Laptop Bag]",
+        "Belkin Unisex Netbook Roadie Black Backpacks [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "robe rouge pour femme",
+      "lang": "fr",
+      "meaning": "red dress for women",
+      "translation": "red robe",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Red"
+      },
+      "llm_ms": 492.7,
+      "app_hybrid": 0.0,
+      "app_hybrid_top3": [
+        "Bwitch Women Pink Lily Robe [Robe]",
+        "Amante Black Robe [Robe]",
+        "Enamor Women Maroon Robe [Robe]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "chaussures de sport pour homme",
+      "lang": "fr",
+      "meaning": "men's sports shoes",
+      "translation": "sport shoes",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 479.6,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Nike Men Zoom Vomero Black Sports Shoes [Sports Shoes]",
+        "Nike Men Air Visi Pro II Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Duramo 4 M Black Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "sac à main noir",
+      "lang": "fr",
+      "meaning": "black handbag",
+      "translation": "black handbag",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Black"
+      },
+      "llm_ms": 484.4,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Baggit Women Chakde Naag Black Handbag [Handbags]",
+        "Mod-acc Women Black Handbag [Handbags]",
+        "Baggit Women Roxy Net Black Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "lunettes de soleil",
+      "lang": "fr",
+      "meaning": "sunglasses",
+      "translation": "sunglasses",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 489.2,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Louis Philippe Men Sunglasses LP045-C2 [Sunglasses]",
+        "Allen Solly Unisex Sunglasses [Sunglasses]",
+        "Louis Philippe Men Golden Sunglass [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    }
+  ]
+}

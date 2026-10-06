@@ -85,11 +85,11 @@ def main() -> int:
         print(f"Queries scored: {report.query_count} (excluded: {report.excluded_query_count})")
         print(f"Query understanding enabled: {report.query_understanding_enabled}")
         print("")
-        print(f"{'Method':<10}{'NDCG@10':<12}{'Precision@10':<16}{'MRR':<10}{'Recall@20':<12}{'Recall@50':<12}")
+        print(f"{'Method':<10}{'NDCG@10':<12}{'Precision@10':<16}{'MRR':<10}{'MRR@10':<10}{'Recall@10':<12}{'Recall@20':<12}{'Recall@50':<12}")
         for method, scores in report.per_method.items():
             print(
                 f"{method:<10}{scores.ndcg_at_10:<12.3f}{scores.precision_at_10:<16.3f}{scores.mrr:<10.3f}"
-                f"{scores.recall_at_20:<12.3f}{scores.recall_at_50:<12.3f}"
+                f"{scores.mrr_at_10:<10.3f}{scores.recall_at_10:<12.3f}{scores.recall_at_20:<12.3f}{scores.recall_at_50:<12.3f}"
             )
         print("")
 

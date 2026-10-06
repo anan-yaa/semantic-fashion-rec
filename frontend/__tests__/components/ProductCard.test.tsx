@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { ProductCard } from '@/components/ProductCard'
 import { Product } from '@/types/product'
 
@@ -78,5 +78,18 @@ describe('ProductCard', () => {
     render(<ProductCard product={minimalProduct} />)
     expect(screen.getByText('Blue Cotton Shirt')).toBeInTheDocument()
     expect(screen.queryByText(/Price/)).not.toBeInTheDocument()
+  })
+
+  it('shows no feedback buttons unless asked to', () => {
+    render(<ProductCard product={mockProduct} />)
+    expect(screen.queryByRole('button', { name: 'Good result' })).not.toBeInTheDocument()
+  })
+
+  it('shows feedback buttons with the current vote', () => {
+    const onVote = vi.fn()
+    render(<ProductCard product={mockProduct} feedback={{ vote: -1, onVote }} />)
+    expect(screen.getByRole('button', { name: 'Bad result' })).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(screen.getByRole('button', { name: 'Good result' }))
+    expect(onVote).toHaveBeenCalledWith(1)
   })
 })

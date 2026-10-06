@@ -1,0 +1,2 @@
+gemma3:1b    8648f39daa8f    877 MB    100% GPU     4096       29 minutes from now    
+2114 MiB

@@ -151,7 +151,8 @@ class TestSearchQueryUnderstanding:
 
         assert response.json()["understanding"] == {
             "used_llm": True,
-            "keywords": "blue shirt",
+            "translated": False,
+            "english_query": None,
             "inferred_filters": {"gender": "Men"},
             "fallback_reason": None,
         }
@@ -167,8 +168,47 @@ class TestSearchQueryUnderstanding:
         understanding = response.json()["understanding"]
         assert understanding == {
             "used_llm": False,
-            "keywords": None,
+            "translated": False,
+            "english_query": None,
             "inferred_filters": {},
             "fallback_reason": "llm_unavailable",
         }
         assert "FakeLLMProvider" not in response.text
+
+    def _spy_search(self):
+        from unittest.mock import patch
+        return patch.object(search_route, "search_hybrid", wraps=search_route.search_hybrid)
+
+    def test_translated_query_is_searched_in_english(self):
+        self._seed_gendered_products()
+        canned = QueryUnderstanding(cleaned_query="blue shirt for men", translated=True)
+        app.dependency_overrides[search_route.get_query_understanding_provider] = (
+            lambda: FakeLLMProvider(canned_responses={"camisa azul de hombre": canned})
+        )
+
+        with self._spy_search() as spy:
+            response = self.client.post("/search", json={"query": "camisa azul de hombre", "limit": 10})
+
+        kwargs = spy.call_args.kwargs
+        assert kwargs["query_text"] == "blue shirt for men"
+        assert kwargs["keyword_query_text"] == "blue shirt for men"
+        understanding = response.json()["understanding"]
+        assert understanding["translated"] is True
+        assert understanding["english_query"] == "blue shirt for men"
+        assert response.json()["query"] == "camisa azul de hombre"
+
+    def test_english_query_is_searched_with_the_users_words(self):
+        self._seed_gendered_products()
+        canned = QueryUnderstanding(cleaned_query="blue shirt", filters=SearchFilter(gender="Men"))
+        app.dependency_overrides[search_route.get_query_understanding_provider] = (
+            lambda: FakeLLMProvider(canned_responses={QUERY: canned})
+        )
+
+        with self._spy_search() as spy:
+            self.client.post("/search", json={"query": QUERY, "limit": 10})
+
+        kwargs = spy.call_args.kwargs
+        assert kwargs["query_text"] == QUERY
+        assert kwargs["keyword_query_text"] == QUERY
+        assert kwargs["keyword_filters"].gender == "Men"
+

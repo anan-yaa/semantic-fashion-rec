@@ -1,0 +1,10 @@
+[with_llm] c=1 run 1/3: p50=502ms p95=901ms p99=1576ms 1.86 req/s errors=0.0%
+[with_llm] c=1 run 2/3: p50=463ms p95=689ms p99=765ms 2.28 req/s errors=0.0%
+[with_llm] c=1 run 3/3: p50=507ms p95=825ms p99=1104ms 1.99 req/s errors=0.0%
+[with_llm] c=4 run 1/3: p50=1308ms p95=1727ms p99=1890ms 3.25 req/s errors=0.0%
+[with_llm] c=4 run 2/3: p50=1292ms p95=1827ms p99=8863ms 2.97 req/s errors=0.0%
+[with_llm] c=4 run 3/3: p50=1395ms p95=1859ms p99=3505ms 3.06 req/s errors=0.0%
+[with_llm] c=8 run 1/3: p50=2741ms p95=3430ms p99=3871ms 3.16 req/s errors=0.0%
+[with_llm] c=8 run 2/3: p50=2846ms p95=3391ms p99=3672ms 3.13 req/s errors=0.0%
+[with_llm] c=8 run 3/3: p50=2930ms p95=3491ms p99=3618ms 3.03 req/s errors=0.0%
+Wrote evals/reports/health_load_with_llm.json

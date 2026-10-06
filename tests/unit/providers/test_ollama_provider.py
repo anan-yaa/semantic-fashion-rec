@@ -19,8 +19,8 @@ VALID_FILTERS = {
 }
 
 
-def _raw(cleaned_query="q", gender=None, color=None, season=None):
-    return {"cleaned_query": cleaned_query, "gender": gender, "color": color, "season": season}
+def _raw(english_query="q", gender=None, color=None, season=None):
+    return {"english_query": english_query, "gender": gender, "color": color, "season": season}
 
 
 def _mock_response(content: str) -> MagicMock:
@@ -80,6 +80,35 @@ class TestParseModelOutput:
             _parse_model_output(_raw(cleaned), VALID_FILTERS, "query")
 
 
+class TestTranslation:
+    def test_english_query_is_not_translated(self):
+        result = _parse_model_output(_raw("red dress for women"), VALID_FILTERS, "red dress for women")
+        assert result.translated is False
+
+    def test_translated_query_is_grounded_in_english(self):
+        raw = _raw("red dress for women", color="Red", gender="Women")
+        result = _parse_model_output(raw, VALID_FILTERS, "vestido rojo para mujer", translated=True)
+        assert result.translated is True
+        assert result.cleaned_query == "red dress for women"
+        assert (result.filters.color, result.filters.gender) == ("Red", "Women")
+
+    @pytest.mark.parametrize(
+        "query, label, translated",
+        [
+            ("black leather jacket for men", "English", False),
+            ("vestido rojo para mujer", "Spanish", True),
+            ("robe rouge pour femme", "French", True),
+            ("नीली शर्ट", "Hindi", True),
+        ],
+    )
+    def test_the_detected_language_is_given_to_the_model(self, query, label, translated):
+        provider = OllamaProvider(model="gemma3:1b")
+        with patch("app.providers.ollama_llm.requests.post", return_value=_mock_response(json.dumps(_raw("x")))) as post:
+            result = provider.understand_query(query, VALID_FILTERS)
+        assert post.call_args.kwargs["json"]["messages"][-1]["content"] == f"Query ({label}): {query}"
+        assert result.translated is translated
+
+
 class TestUnderstandQuery:
     def setup_method(self):
         self.provider = OllamaProvider(model="tinyllama", base_url="http://ollama:11434/", timeout_seconds=3)
@@ -99,18 +128,32 @@ class TestUnderstandQuery:
         assert payload["options"]["temperature"] == 0
         assert payload["format"]["properties"]["color"]["enum"] == [*VALID_FILTERS["color"], None]
         assert "category" not in payload["format"]["properties"]
-        assert payload["messages"][-1]["content"] == "Query: red dress"
+        assert "language" not in payload["format"]["properties"]
+        assert list(payload["format"]["properties"])[0] == "english_query"
+        assert payload["messages"][-1]["content"] == "Query (English): red dress"
 
-    def test_non_latin_query_skips_the_model(self):
+    def test_non_latin_query_is_sent_to_a_multilingual_model(self):
+        content = json.dumps(_raw("blue shirt", color="Blue"))
+        with patch("app.providers.ollama_llm.requests.post", return_value=_mock_response(content)) as post:
+            result = self.provider.understand_query("नीली शर्ट", VALID_FILTERS)
+        post.assert_called_once()
+        # Grounded through the English translation, since the Hindi text has no English words.
+        assert result.filters.color == "Blue"
+
+    def test_non_latin_query_skips_an_english_only_model(self):
+        from app.providers.llm_base import UnsupportedQueryError
+
+        provider = OllamaProvider(model="tinyllama", skip_non_latin=True)
         with patch("app.providers.ollama_llm.requests.post") as post:
-            with pytest.raises(LLMProviderError):
-                self.provider.understand_query("नीली शर्ट", VALID_FILTERS)
+            with pytest.raises(UnsupportedQueryError):
+                provider.understand_query("नीली शर्ट", VALID_FILTERS)
         post.assert_not_called()
 
-    def test_accented_latin_query_still_uses_the_model(self):
+    def test_accented_latin_query_uses_the_model_even_when_skipping_non_latin(self):
+        provider = OllamaProvider(model="tinyllama", skip_non_latin=True)
         content = json.dumps(_raw("robe rouge"))
         with patch("app.providers.ollama_llm.requests.post", return_value=_mock_response(content)) as post:
-            self.provider.understand_query("robe rouge élégante", VALID_FILTERS)
+            provider.understand_query("robe rouge élégante", VALID_FILTERS)
         post.assert_called_once()
 
     @pytest.mark.parametrize(

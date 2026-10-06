@@ -1,0 +1,716 @@
+{
+  "generated_at": "2026-10-06T07:04:02.392726+00:00",
+  "translator": "Helsinki-NLP/opus-mt-mul-en",
+  "device": "cuda",
+  "translate_ms_median": 53.08334749997812,
+  "summary_relevant_at_10": {
+    "all": {
+      "hybrid_original": 0.6863636363636364,
+      "hybrid_translated": 0.5590909090909091,
+      "vector_original": 0.6636363636363636,
+      "vector_translated": 0.5681818181818182
+    },
+    "hi": {
+      "hybrid_original": 0.79,
+      "hybrid_translated": 0.24,
+      "vector_original": 0.79,
+      "vector_translated": 0.27999999999999997
+    },
+    "es": {
+      "hybrid_original": 0.5375,
+      "hybrid_translated": 0.9875,
+      "vector_original": 0.475,
+      "vector_translated": 0.975
+    },
+    "fr": {
+      "hybrid_original": 0.725,
+      "hybrid_translated": 0.5,
+      "vector_original": 0.725,
+      "vector_translated": 0.475
+    }
+  },
+  "rows": [
+    {
+      "query": "नीली शर्ट",
+      "lang": "hi",
+      "meaning": "blue shirt",
+      "translation": "Blue Shirt",
+      "translate_ms": 66.07684600021457,
+      "hybrid_original": 0.6,
+      "hybrid_original_top3": [
+        "Nike Black Dri-fit Cotton     Cricket  Shorts [Shorts]",
+        "Gini and Jony BoysCore Navy Blue Shirt [Shirts]",
+        "Nike Men AD Striker Navy Blue Track Pants [Track Pants]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "John Miller Men Check Blue Shirt [Shirts]",
+        "Gini and Jony Boys Check Blue Shirt [Shirts]",
+        "John Miller Men Stripes Blue Blue Shirts [Shirts]"
+      ],
+      "vector_original": 0.6,
+      "vector_original_top3": [
+        "Nike Black Dri-fit Cotton     Cricket  Shorts [Shorts]",
+        "Gini and Jony BoysCore Navy Blue Shirt [Shirts]",
+        "Nike Men AD Striker Navy Blue Track Pants [Track Pants]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Wrangler Men Miriam Checks Blue Shirt [Shirts]",
+        "Lee Men checks Blue Shirt [Shirts]",
+        "Reid & Taylor Men Check Blue Shirt [Shirts]"
+      ]
+    },
+    {
+      "query": "सर्दियों का ऊनी कोट",
+      "lang": "hi",
+      "meaning": "winter woollen coat",
+      "translation": "The Unicorn’s Unicorn",
+      "translate_ms": 111.88347400002385,
+      "hybrid_original": 0.0,
+      "hybrid_original_top3": [
+        "Span Women Orange Kurta [Kurtas]",
+        "Folklore Women Orange Kurta [Kurtas]",
+        "Aneri Women Orange Kurta [Kurtas]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Puma Unisex Graphic Red Scarf [Scarves]",
+        "United Colors of Benetton Unisex Black Sunglasses [Sunglasses]",
+        "Puma Unisex Graphic Black Scarf [Scarves]"
+      ],
+      "vector_original": 0.0,
+      "vector_original_top3": [
+        "Span Women Orange Kurta [Kurtas]",
+        "Folklore Women Orange Kurta [Kurtas]",
+        "Aneri Women Orange Kurta [Kurtas]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Puma Unisex Graphic Red Scarf [Scarves]",
+        "United Colors of Benetton Unisex Black Sunglasses [Sunglasses]",
+        "Puma Unisex Graphic Black Scarf [Scarves]"
+      ]
+    },
+    {
+      "query": "काली जूती",
+      "lang": "hi",
+      "meaning": "black jutti (flat shoe)",
+      "translation": "black joker",
+      "translate_ms": 41.79267000017717,
+      "hybrid_original": 0.9,
+      "hybrid_original_top3": [
+        "Kalenji Men's Kapteren Black Shoe [Sports Shoes]",
+        "Fila Men's Cavier Black Shoe [Sports Shoes]",
+        "Fila Men Cerchi Lite Black Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Jockey Lace Stretch Black Boy Leg Brief [Briefs]",
+        "Dark Knight Men's Joker Color Splash Black T-shirt [Tshirts]",
+        "Jockey Women Black Racer Back Top [Tops]"
+      ],
+      "vector_original": 0.9,
+      "vector_original_top3": [
+        "Kalenji Men's Kapteren Black Shoe [Sports Shoes]",
+        "Fila Men's Cavier Black Shoe [Sports Shoes]",
+        "Fila Men Cerchi Lite Black Sports Shoes [Sports Shoes]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Jockey Lace Stretch Black Boy Leg Brief [Briefs]",
+        "Jockey Women Black Racer Back Top [Tops]",
+        "Jockey Women Black V-neck T-Shirt [Tshirts]"
+      ]
+    },
+    {
+      "query": "महिलाओं के लिए गहने",
+      "lang": "hi",
+      "meaning": "jewellery for women",
+      "translation": "The Wounds of Women",
+      "translate_ms": 56.11759700059338,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "W Women Rust Printed Kurta [Kurtas]",
+        "Visudh Women Printed Rust Kurta [Kurtas]",
+        "W Women Striped Rust Kurta [Kurtas]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]",
+        "Rreverie Golden Earrings [Earrings]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "W Women Rust Printed Kurta [Kurtas]",
+        "Visudh Women Printed Rust Kurta [Kurtas]",
+        "W Women Striped Rust Kurta [Kurtas]"
+      ]
+    },
+    {
+      "query": "पुरुषों के लिए घड़ी",
+      "lang": "hi",
+      "meaning": "watch for men",
+      "translation": "A Time for Men",
+      "translate_ms": 43.53285599972878,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Timex Men Cream Dial Chronograph Watch [Watches]",
+        "Espirit Men Grey Dial Chronograph Watch [Watches]",
+        "Timex Men Cream Toned Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 0.6,
+      "hybrid_translated_top3": [
+        "Timex Men Cream Toned Dial Watch [Watches]",
+        "Tantra Men's Time Zone Yellow T-shirt [Tshirts]",
+        "Timex Men Gunmetal Toned Dial Watch [Watches]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Timex Men Cream Dial Chronograph Watch [Watches]",
+        "Espirit Men Grey Dial Chronograph Watch [Watches]",
+        "Timex Men Cream Toned Dial Watch [Watches]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Timex Men Cream Toned Dial Watch [Watches]",
+        "Timex Men Gunmetal Toned Dial Watch [Watches]",
+        "Timex Men Off White Dial Watch [Watches]"
+      ]
+    },
+    {
+      "query": "लाल साड़ी",
+      "lang": "hi",
+      "meaning": "red saree",
+      "translation": "red joker",
+      "translate_ms": 52.012895999723696,
+      "hybrid_original": 0.6,
+      "hybrid_original_top3": [
+        "Fabindia Red Hand Printed Chanderi Dupatta [Dupatta]",
+        "Fabindia Red Jaipur Print Cotton Sari [Sarees]",
+        "Vishudh Red Leggings [Leggings]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "DC Comics Men Crew Red T-shirt [Tshirts]",
+        "Jack & Jones Men Red Check Shirt [Shirts]",
+        "Guerrilla Men's Rider Red T-shirt [Tshirts]"
+      ],
+      "vector_original": 0.6,
+      "vector_original_top3": [
+        "Fabindia Red Hand Printed Chanderi Dupatta [Dupatta]",
+        "Fabindia Red Jaipur Print Cotton Sari [Sarees]",
+        "Vishudh Red Leggings [Leggings]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "DC Comics Men Crew Red T-shirt [Tshirts]",
+        "Jack & Jones Men Red Check Shirt [Shirts]",
+        "Guerrilla Men's Rider Red T-shirt [Tshirts]"
+      ]
+    },
+    {
+      "query": "बच्चों के कपड़े",
+      "lang": "hi",
+      "meaning": "children's clothes",
+      "translation": "Children’s Picture Search",
+      "translate_ms": 64.20264999997016,
+      "hybrid_original": 0.8,
+      "hybrid_original_top3": [
+        "Chhota Bheem Kids Boys Flying High TShirt [Tshirts]",
+        "Disney Kids Boy's Red Twofur Layered Kidswear [Shirts]",
+        "Disney Kids Boy's Denim Mickey Surf Kidswear [Shorts]"
+      ],
+      "hybrid_translated": 0.8,
+      "hybrid_translated_top3": [
+        "Disney Kids Boy's White Regatta Annual Competition Kidswear [Tshirts]",
+        "Disney Kids Boy's Red Mickeys Scrap Book Kidswear [Tshirts]",
+        "Disney Kids Boy's Red Stripes Little Captain Kidswear [Tshirts]"
+      ],
+      "vector_original": 0.8,
+      "vector_original_top3": [
+        "Chhota Bheem Kids Boys Flying High TShirt [Tshirts]",
+        "Disney Kids Boy's Red Twofur Layered Kidswear [Shirts]",
+        "Disney Kids Boy's Denim Mickey Surf Kidswear [Shorts]"
+      ],
+      "vector_translated": 0.8,
+      "vector_translated_top3": [
+        "Disney Kids Boy's White Regatta Annual Competition Kidswear [Tshirts]",
+        "Disney Kids Boy's Red Mickeys Scrap Book Kidswear [Tshirts]",
+        "Disney Kids Boy's Red Stripes Little Captain Kidswear [Tshirts]"
+      ]
+    },
+    {
+      "query": "सफेद जूते",
+      "lang": "hi",
+      "meaning": "white shoes",
+      "translation": "Whitechess-side",
+      "translate_ms": 56.60622699997475,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "ADIDAS White  Sports Shoe [Sports Shoes]",
+        "Disney Kids-Unisex White Shoes [Casual Shoes]",
+        "Puma Men Volt White Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Amante Off-White Striped Bra BCSY01 [Bra]",
+        "Bw!tch White Spirit Briefs [Briefs]",
+        "Little Miss Girls Blazing White Top [Tops]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "ADIDAS White  Sports Shoe [Sports Shoes]",
+        "Disney Kids-Unisex White Shoes [Casual Shoes]",
+        "Puma Men Volt White Sports Shoes [Sports Shoes]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Amante Off-White Striped Bra BCSY01 [Bra]",
+        "Bw!tch White Spirit Briefs [Briefs]",
+        "Little Miss Girls Blazing White Top [Tops]"
+      ]
+    },
+    {
+      "query": "चमड़े का बैग",
+      "lang": "hi",
+      "meaning": "leather bag",
+      "translation": "the jack of clubs",
+      "translate_ms": 38.37684700010868,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Baggit Women Bingri Club Silver Clutch [Clutches]",
+        "Baggit Women Beige Selection Camo Sling Bag [Handbags]",
+        "Baggit Women Bingri Club Gold Clutch [Clutches]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Nike Men's Club Pique Red T-shirt [Tshirts]",
+        "Nike Men Red Football Club Muffler [Mufflers]",
+        "Jockey LCESCBRA Men Pack of 3 Socks 2004 [Socks]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Baggit Women Bingri Club Silver Clutch [Clutches]",
+        "Baggit Women Beige Selection Camo Sling Bag [Handbags]",
+        "Baggit Women Bingri Club Gold Clutch [Clutches]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Nike Men's Club Pique Red T-shirt [Tshirts]",
+        "Nike Men Red Football Club Muffler [Mufflers]",
+        "Jockey LCESCBRA Men Pack of 3 Socks 2004 [Socks]"
+      ]
+    },
+    {
+      "query": "गर्मियों के कपड़े",
+      "lang": "hi",
+      "meaning": "summer clothes",
+      "translation": "The clothes of the men of war",
+      "translate_ms": 73.84034000006068,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Doodle Girls Printed Grey Top [Tops]",
+        "Mr. Men Little Miss Girls Yellow Top [Tops]",
+        "Little Miss Girls Blazing Yellow Clothing Set [Clothing Set]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Arrow Men Check Red Shirts [Shirts]",
+        "Arrow Men Check Grey Shirts [Shirts]",
+        "Gini and Jony Men Check Blue Shirts [Shirts]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Doodle Girls Printed Grey Top [Tops]",
+        "Mr. Men Little Miss Girls Yellow Top [Tops]",
+        "Little Miss Girls Blazing Yellow Clothing Set [Clothing Set]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Arrow Men Check Red Shirts [Shirts]",
+        "Arrow Men Check Grey Shirts [Shirts]",
+        "Gini and Jony Men Check Blue Shirts [Shirts]"
+      ]
+    },
+    {
+      "query": "atuendo playero",
+      "lang": "es",
+      "meaning": "beach outfit",
+      "translation": "playing a player",
+      "translate_ms": 35.85103100067499,
+      "hybrid_original": 0.4,
+      "hybrid_original_top3": [
+        "John Players Men Solid Maroon Polo T-Shirt [Tshirts]",
+        "Puma Men Athletic Stellar Blue Polo Tshirt [Tshirts]",
+        "John Players Men Solid Black Polo T-Shirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.9,
+      "hybrid_translated_top3": [
+        "John Players Men Orange And Blue Check Shirt [Shirts]",
+        "John Players Men Satin Striped Shirt [Shirts]",
+        "John Players Men Soft Check Shirt [Shirts]"
+      ],
+      "vector_original": 0.4,
+      "vector_original_top3": [
+        "John Players Men Solid Maroon Polo T-Shirt [Tshirts]",
+        "Puma Men Athletic Stellar Blue Polo Tshirt [Tshirts]",
+        "John Players Men Solid Black Polo T-Shirt [Tshirts]"
+      ],
+      "vector_translated": 0.9,
+      "vector_translated_top3": [
+        "John Players Men Orange And Blue Check Shirt [Shirts]",
+        "John Players Men Satin Striped Shirt [Shirts]",
+        "John Players Men Soft Check Shirt [Shirts]"
+      ]
+    },
+    {
+      "query": "vestido rojo para mujer",
+      "lang": "es",
+      "meaning": "red dress for women",
+      "translation": "Red dress for women",
+      "translate_ms": 61.5746269995725,
+      "hybrid_original": 0.9,
+      "hybrid_original_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "Vero Moda Women Coral Coloured Dress [Dresses]",
+        "Elle Women Red Dress [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "vector_original": 0.9,
+      "vector_original_top3": [
+        "Vero Moda Women Coral Coloured Dress [Dresses]",
+        "Elle Women Red Dress [Dresses]",
+        "W Women Red Dress [Kurtas]"
+      ],
+      "vector_translated": 0.9,
+      "vector_translated_top3": [
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]",
+        "Elle Women Red Dress [Dresses]"
+      ]
+    },
+    {
+      "query": "chaqueta de invierno para hombre",
+      "lang": "es",
+      "meaning": "men's winter jacket",
+      "translation": "winter jacket for man",
+      "translate_ms": 45.506614000260015,
+      "hybrid_original": 0.0,
+      "hybrid_original_top3": [
+        "Red Chief Men Khaki Shoes [Casual Shoes]",
+        "Red Chief Men Khaki Shoes [Casual Shoes]",
+        "Red Chief Men Khaki Shoes [Casual Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Just Natural Men Black Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Red Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Olive Jacket [Jackets]"
+      ],
+      "vector_original": 0.0,
+      "vector_original_top3": [
+        "Red Chief Men Khaki Shoes [Casual Shoes]",
+        "Red Chief Men Khaki Shoes [Casual Shoes]",
+        "Red Chief Men Khaki Shoes [Casual Shoes]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Just Natural Men Black Jacket [Jackets]",
+        "Wildcraft Men Black Husky Jacket [Jackets]",
+        "Quechua Men Warm Fleece Black Jacket [Jackets]"
+      ]
+    },
+    {
+      "query": "zapatos deportivos",
+      "lang": "es",
+      "meaning": "sports shoes",
+      "translation": "Sports shoes",
+      "translate_ms": 41.70507299932069,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "ADIDAS Men's Sports Shoe [Sports Shoes]",
+        "ADIDAS Men Black Twenty2yds Sports Shoes [Sports Shoes]",
+        "ADIDAS White  Sports Shoe [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "F Sports Men Black Pace Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "ADIDAS Men's Sports Shoe [Sports Shoes]",
+        "ADIDAS Men Black Twenty2yds Sports Shoes [Sports Shoes]",
+        "ADIDAS White  Sports Shoe [Sports Shoes]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "ADIDAS Men's Sports Shoe [Sports Shoes]",
+        "Btwin Sport 5 Shoes [Sports Shoes]",
+        "Spalding Men's Running Black Yellow Shoe [Sports Shoes]"
+      ]
+    },
+    {
+      "query": "reloj de mujer",
+      "lang": "es",
+      "meaning": "women's watch",
+      "translation": "women's watches",
+      "translate_ms": 83.52299899979698,
+      "hybrid_original": 0.5,
+      "hybrid_original_top3": [
+        "Murcia Women Office Red Handbag [Handbags]",
+        "Ice Watch Women Flower Black Watch [Watches]",
+        "Murcia Women Lorra Red Red Handbags [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Titan Women Mother Of Pearl Watch [Watches]",
+        "Titan Women Raga Mother Of Pearl Dial Watch [Watches]",
+        "Fastrack Women White Dial Watch [Watches]"
+      ],
+      "vector_original": 0.0,
+      "vector_original_top3": [
+        "Murcia Women Office Red Handbag [Handbags]",
+        "Murcia Women Lorra Red Red Handbags [Handbags]",
+        "Murcia Women Red Leatherite Handbag [Handbags]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Guess Women Party Girl White Watch [Watches]",
+        "Guess Women Netted White Watch [Watches]",
+        "Guess Women Party Girl Red Watch [Watches]"
+      ]
+    },
+    {
+      "query": "gafas de sol",
+      "lang": "es",
+      "meaning": "sunglasses",
+      "translation": "sunglasses",
+      "translate_ms": 61.57737699959398,
+      "hybrid_original": 0.0,
+      "hybrid_original_top3": [
+        "Vans Men Grey Del Norte Canvas Shoes [Casual Shoes]",
+        "Nike Unisex Solarsoft Thong Orange Flip Flops [Flip Flops]",
+        "ADIDAS Originals Men Adi Sun M Olive Slippers [Sandals]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Fastrack Men Steal Sunglasses [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "vector_original": 0.0,
+      "vector_original_top3": [
+        "Vans Men Grey Del Norte Canvas Shoes [Casual Shoes]",
+        "Nike Unisex Solarsoft Thong Orange Flip Flops [Flip Flops]",
+        "ADIDAS Originals Men Adi Sun M Olive Slippers [Sandals]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Fastrack Men Pale Gold Sunglasses [Sunglasses]",
+        "Image Men Sunglasses [Sunglasses]",
+        "Image Men Sunglasses [Sunglasses]"
+      ]
+    },
+    {
+      "query": "camisa azul de hombre",
+      "lang": "es",
+      "meaning": "men's blue shirt",
+      "translation": "man's blue shirt",
+      "translate_ms": 54.15379900023254,
+      "hybrid_original": 0.5,
+      "hybrid_original_top3": [
+        "U.S.Polo Assn. Men Blue Shirt [Shirts]",
+        "Tantra Men's Dirty Man Blue T-shirt [Tshirts]",
+        "U.S. Polo Assn. Men Stripes Blue Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "John Miller Men Stripes Blue Blue Shirts [Shirts]",
+        "John Miller Men Check Blue Shirt [Shirts]",
+        "John Miller Men Striped Blue Shirt [Shirts]"
+      ],
+      "vector_original": 0.5,
+      "vector_original_top3": [
+        "U.S.Polo Assn. Men Blue Shirt [Shirts]",
+        "U.S. Polo Assn. Men Stripes Blue Shirt [Shirts]",
+        "U.S. Polo Assn. Men Blue Shirt [Shirts]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "U.S. Polo Assn. Men Checks  Blue Shirt [Shirts]",
+        "U.S. Polo Assn. Men Checks Blue Shirt [Shirts]",
+        "U.S. Polo Assn. Men Checks Blue Shirt [Shirts]"
+      ]
+    },
+    {
+      "query": "bolso de cuero negro",
+      "lang": "es",
+      "meaning": "black leather handbag",
+      "translation": "black leather bag",
+      "translate_ms": 40.55563499969139,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Belkin Unisex Pace Tall Messenger Black Netbook Bag [Laptop Bag]",
+        "Belkin Unisex Netbook Roadie Black Backpacks [Backpacks]",
+        "Nike Black Backpack [Backpacks]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "New Hide Unisex Black Leather Laptop Bag [Laptop Bag]",
+        "New Hide Unisex Black Leather Laptop Bag [Laptop Bag]",
+        "Hidekraft Women Leather Black Handbags [Handbags]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Belkin Unisex Pace Tall Messenger Black Netbook Bag [Laptop Bag]",
+        "Belkin Unisex Netbook Roadie Black Backpacks [Backpacks]",
+        "Nike Black Backpack [Backpacks]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "New Hide Unisex Black Leather Laptop Bag [Laptop Bag]",
+        "New Hide Unisex Black Leather Laptop Bag [Laptop Bag]",
+        "Hidekraft Women Leather Black Handbags [Handbags]"
+      ]
+    },
+    {
+      "query": "robe rouge pour femme",
+      "lang": "fr",
+      "meaning": "red dress for women",
+      "translation": "Red dress for women",
+      "translate_ms": 40.90149399962684,
+      "hybrid_original": 0.0,
+      "hybrid_original_top3": [
+        "Bwitch Women Pink Lily Robe [Robe]",
+        "Amante Black Robe [Robe]",
+        "Enamor Women Maroon Robe [Robe]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Elle Women Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "French Connection Women Red Dress [Dresses]"
+      ],
+      "vector_original": 0.0,
+      "vector_original_top3": [
+        "Red Rose Women Pink Bath Robe [Bath Robe]",
+        "Red Rose Women Red Bathrobe [Bath Robe]",
+        "Red Rose Women Cream Floral Print Bath Robe [Bath Robe]"
+      ],
+      "vector_translated": 0.9,
+      "vector_translated_top3": [
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]",
+        "Elle Women Red Dress [Dresses]"
+      ]
+    },
+    {
+      "query": "chaussures de sport pour homme",
+      "lang": "fr",
+      "meaning": "men's sports shoes",
+      "translation": "sports shoes for man",
+      "translate_ms": 47.860167999715486,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "Nike Men Zoom Vomero Black Sports Shoes [Sports Shoes]",
+        "Nike Men Air Visi Pro II Black Sports Shoes [Sports Shoes]",
+        "ADIDAS  Men Smoove Black Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "hybrid_translated_top3": [
+        "Artengo Artengo 633d Man Black [Sports Shoes]",
+        "Artengo Artengo 633d Man [Sports Shoes]",
+        "Skechers Men Prospeed Black Sports Shoes [Sports Shoes]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "Puma Men Cell Turin Perf 2 Black Sports Shoes [Sports Shoes]",
+        "Puma Men Cell Turin Perf Black Sports Shoes [Sports Shoes]",
+        "Puma Men Cell Turin Perf 2 White Sports Shoes [Sports Shoes]"
+      ],
+      "vector_translated": 1.0,
+      "vector_translated_top3": [
+        "Skechers Men Prospeed Black Sports Shoes [Sports Shoes]",
+        "ADIDAS  Men Smoove Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]"
+      ]
+    },
+    {
+      "query": "sac à main noir",
+      "lang": "fr",
+      "meaning": "black handbag",
+      "translation": "black joker",
+      "translate_ms": 44.91039099957561,
+      "hybrid_original": 0.9,
+      "hybrid_original_top3": [
+        "Baggit Women Black Fingers Crush Clutch [Clutches]",
+        "Baggit Women Chakde Naag Black Handbag [Handbags]",
+        "Mod'acc Women Black Coin Purse [Clutches]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Jockey Lace Stretch Black Boy Leg Brief [Briefs]",
+        "Dark Knight Men's Joker Color Splash Black T-shirt [Tshirts]",
+        "Jockey Women Black Racer Back Top [Tops]"
+      ],
+      "vector_original": 0.9,
+      "vector_original_top3": [
+        "Baggit Women Black Fingers Crush Clutch [Clutches]",
+        "Baggit Women Chakde Naag Black Handbag [Handbags]",
+        "Mod'acc Women Black Coin Purse [Clutches]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Jockey Lace Stretch Black Boy Leg Brief [Briefs]",
+        "Jockey Women Black Racer Back Top [Tops]",
+        "Jockey Women Black V-neck T-Shirt [Tshirts]"
+      ]
+    },
+    {
+      "query": "lunettes de soleil",
+      "lang": "fr",
+      "meaning": "sunglasses",
+      "translation": "Sunshines",
+      "translate_ms": 63.97942300009163,
+      "hybrid_original": 1.0,
+      "hybrid_original_top3": [
+        "United Colors of Benetton Women Funky Eyewear Black Sunglass [Sunglasses]",
+        "United Colors of Benetton Women Sunglass [Sunglasses]",
+        "United Colors of Benetton Women Sunglass [Sunglasses]"
+      ],
+      "hybrid_translated": 0.0,
+      "hybrid_translated_top3": [
+        "Gini and Jony Girls Pretty Blossom Blue Top [Tops]",
+        "Disney Kids Girl's Pink Minnie Sunshine Kidswear [Tshirts]",
+        "Gini and Jony Girls Pretty Blossom Blue Top [Tops]"
+      ],
+      "vector_original": 1.0,
+      "vector_original_top3": [
+        "United Colors of Benetton Women Funky Eyewear Black Sunglass [Sunglasses]",
+        "United Colors of Benetton Women Sunglass [Sunglasses]",
+        "United Colors of Benetton Women Sunglass [Sunglasses]"
+      ],
+      "vector_translated": 0.0,
+      "vector_translated_top3": [
+        "Gini and Jony Girls Pretty Blossom Blue Top [Tops]",
+        "Gini and Jony Girls Pretty Blossom Blue Top [Tops]",
+        "Gini and Jony Girls Pretty Blossom Blue Top [Tops]"
+      ]
+    }
+  ]
+}

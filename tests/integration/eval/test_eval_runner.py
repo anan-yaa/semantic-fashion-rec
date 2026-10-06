@@ -47,6 +47,8 @@ class TestRunEvalIntegration:
             assert 0.0 <= scores.ndcg_at_10 <= 1.0
             assert 0.0 <= scores.precision_at_10 <= 1.0
             assert 0.0 <= scores.mrr <= 1.0
+            assert 0.0 <= scores.mrr_at_10 <= scores.mrr
+            assert 0.0 <= scores.recall_at_10 <= scores.recall_at_20 <= scores.recall_at_50 <= 1.0
 
     def test_vector_findable_only_item_scores_zero_on_keyword_method(self, postgres_session: Session):
         """A relevant product only findable via semantic/vector match (unrelated

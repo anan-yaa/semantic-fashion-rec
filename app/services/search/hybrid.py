@@ -12,6 +12,7 @@ from app.services.search.vector_search import search_vector
 from app.services.search.keyword_search import search_keyword
 from app.services.search.product_types import detect_article_types
 from app.services.search.rank_fusion import reciprocal_rank_fusion
+from app.services.timing import timed
 
 logger = logging.getLogger(__name__)
 
@@ -129,7 +130,8 @@ def search_hybrid(
 
         else:  # HYBRID
             try:
-                article_types = detect_article_types(session, query_text)
+                with timed("types"):
+                    article_types = detect_article_types(session, query_text)
             except Exception as e:
                 logger.warning(f"Product type detection failed, searching all types: {e}")
                 article_types = []

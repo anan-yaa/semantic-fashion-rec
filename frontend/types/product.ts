@@ -47,7 +47,9 @@ export interface SearchFilters {
 
 export interface QueryUnderstanding {
   used_llm: boolean
-  keywords: string | null
+  /** The query wasn't English and was searched in English */
+  translated: boolean
+  english_query: string | null
   inferred_filters: Partial<Record<'category' | 'gender' | 'color' | 'season', string>>
   fallback_reason: 'unsupported_query' | 'llm_unavailable' | null
 }

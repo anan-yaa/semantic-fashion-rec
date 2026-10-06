@@ -1,0 +1,2359 @@
+{
+  "generated_at": "2026-10-06T04:10:10.395323+00:00",
+  "ground_truth_source": "evals/ground_truth/ground_truth_v2_real.json",
+  "query_count": 80,
+  "excluded_query_count": 0,
+  "per_method": {
+    "hybrid": {
+      "ndcg_at_10": 0.8202666811181729,
+      "precision_at_10": 0.72,
+      "mrr": 0.925,
+      "mrr_at_10": 0.925,
+      "recall_at_10": 0.36,
+      "recall_at_20": 0.585,
+      "recall_at_50": 0.7056250000000001
+    },
+    "vector": {
+      "ndcg_at_10": 0.9233765623543333,
+      "precision_at_10": 0.8412499999999999,
+      "mrr": 0.925,
+      "mrr_at_10": 0.925,
+      "recall_at_10": 0.42062499999999997,
+      "recall_at_20": 0.713125,
+      "recall_at_50": 0.71875
+    },
+    "keyword": {
+      "ndcg_at_10": 0.3090889191302192,
+      "precision_at_10": 0.18875,
+      "mrr": 0.3845915686065143,
+      "mrr_at_10": 0.38015376984126986,
+      "recall_at_10": 0.094375,
+      "recall_at_20": 0.15437499999999998,
+      "recall_at_50": 0.259375
+    }
+  },
+  "per_query": {
+    "q001": {
+      "hybrid": {
+        "ndcg_at_10": 0.5390031312763821,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.46927872602275644,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q002": {
+      "hybrid": {
+        "ndcg_at_10": 0.6473362615659566,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.27487633291429087,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.35
+      }
+    },
+    "q003": {
+      "hybrid": {
+        "ndcg_at_10": 0.5919268187287083,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.5,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.39564672360221187,
+        "precision_at_10": 0.2,
+        "mrr": 0.16666666666666666,
+        "mrr_at_10": 0.16666666666666666,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q004": {
+      "hybrid": {
+        "ndcg_at_10": 0.5836175861945262,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.6,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.39106560501896365,
+        "precision_at_10": 0.2,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q005": {
+      "hybrid": {
+        "ndcg_at_10": 0.8521705090845474,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3098064936645125,
+        "precision_at_10": 0.4,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.8
+      }
+    },
+    "q006": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8165901947515999,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.8,
+        "recall_at_50": 1.0
+      }
+    },
+    "q007": {
+      "hybrid": {
+        "ndcg_at_10": 0.841492960259019,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.7,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.1584091525685025,
+        "precision_at_10": 0.2,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.6
+      }
+    },
+    "q008": {
+      "hybrid": {
+        "ndcg_at_10": 0.727329844310522,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.3557772116892465,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.55
+      }
+    },
+    "q009": {
+      "hybrid": {
+        "ndcg_at_10": 0.7819835854675755,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.6,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.14279514403613733,
+        "precision_at_10": 0.2,
+        "mrr": 0.14285714285714285,
+        "mrr_at_10": 0.14285714285714285,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.9
+      }
+    },
+    "q010": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      }
+    },
+    "q011": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.95
+      }
+    },
+    "q012": {
+      "hybrid": {
+        "ndcg_at_10": 0.5326208815196265,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0625,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q013": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6131471927654584,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q014": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q015": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.65
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q016": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6934264036172708,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q017": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.7653606369886217,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.15
+      }
+    },
+    "q018": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8104616303452685,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.35
+      }
+    },
+    "q019": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q020": {
+      "hybrid": {
+        "ndcg_at_10": 0.7799082337019199,
+        "precision_at_10": 0.9,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.45,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.12647135138382856,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.4
+      }
+    },
+    "q021": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.7,
+        "recall_at_50": 0.7
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q022": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q023": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.021739130434782608,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.1
+      }
+    },
+    "q024": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q025": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q026": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6309297535714575,
+        "precision_at_10": 0.1,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q027": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.08333333333333333,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.2
+      }
+    },
+    "q028": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "keyword": {
+        "ndcg_at_10": 0.1884441521277154,
+        "precision_at_10": 0.2,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.55
+      }
+    },
+    "q029": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "keyword": {
+        "ndcg_at_10": 0.6934264036172708,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q030": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q031": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.030303030303030304,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q032": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.10893649261775588,
+        "precision_at_10": 0.1,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.4
+      }
+    },
+    "q033": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      }
+    },
+    "q034": {
+      "hybrid": {
+        "ndcg_at_10": 0.9052116356304493,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.45,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9068250379649666,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      }
+    },
+    "q035": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q036": {
+      "hybrid": {
+        "ndcg_at_10": 0.43231813227099475,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.045454545454545456,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q037": {
+      "hybrid": {
+        "ndcg_at_10": 0.4779671403625728,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.2530614822099702,
+        "precision_at_10": 0.2,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.25
+      }
+    },
+    "q038": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.35,
+        "recall_at_50": 0.35
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q039": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.4
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8415908474314976,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      }
+    },
+    "q040": {
+      "hybrid": {
+        "ndcg_at_10": 0.4690000933206748,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.18154179253735267,
+        "precision_at_10": 0.1,
+        "mrr": 0.2,
+        "mrr_at_10": 0.2,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.15
+      }
+    },
+    "q041": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.5
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q042": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.65
+      },
+      "keyword": {
+        "ndcg_at_10": 0.8701249883466593,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.4,
+        "recall_at_50": 0.5
+      }
+    },
+    "q043": {
+      "hybrid": {
+        "ndcg_at_10": 0.8415908474314976,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.65,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9060254355346823,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q044": {
+      "hybrid": {
+        "ndcg_at_10": 0.7849818707050383,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.6
+      },
+      "vector": {
+        "ndcg_at_10": 0.8701249883466593,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.6,
+        "recall_at_50": 0.6
+      },
+      "keyword": {
+        "ndcg_at_10": 0.22784037450527975,
+        "precision_at_10": 0.3,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.7
+      }
+    },
+    "q045": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      }
+    },
+    "q046": {
+      "hybrid": {
+        "ndcg_at_10": 0.9896062251871525,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.25
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5834330535576521,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      }
+    },
+    "q047": {
+      "hybrid": {
+        "ndcg_at_10": 0.9266360779006401,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.45,
+        "recall_at_20": 0.8,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.42602766053340346,
+        "precision_at_10": 0.5,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.75,
+        "recall_at_50": 1.0
+      }
+    },
+    "q048": {
+      "hybrid": {
+        "ndcg_at_10": 0.7314470771099789,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.65,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5012658353418871,
+        "precision_at_10": 0.2,
+        "mrr": 0.25,
+        "mrr_at_10": 0.25,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.1
+      }
+    },
+    "q049": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.9216017310213247,
+        "precision_at_10": 0.9,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.45,
+        "recall_at_20": 0.85,
+        "recall_at_50": 1.0
+      }
+    },
+    "q050": {
+      "hybrid": {
+        "ndcg_at_10": 0.7709363892380909,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.35
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.038461538461538464,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.2
+      }
+    },
+    "q051": {
+      "hybrid": {
+        "ndcg_at_10": 0.857980942822373,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.65,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.2816372027313761,
+        "precision_at_10": 0.4,
+        "mrr": 0.16666666666666666,
+        "mrr_at_10": 0.16666666666666666,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.9
+      }
+    },
+    "q052": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.23573241784227986,
+        "precision_at_10": 0.2,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.25,
+        "recall_at_50": 0.4
+      }
+    },
+    "q053": {
+      "hybrid": {
+        "ndcg_at_10": 0.5415879285615245,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.5,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q054": {
+      "hybrid": {
+        "ndcg_at_10": 0.7564477297898766,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.37326895379685443,
+        "precision_at_10": 0.4,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.5
+      }
+    },
+    "q055": {
+      "hybrid": {
+        "ndcg_at_10": 0.7034066032439746,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.55,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.38685280723454163,
+        "precision_at_10": 0.1,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q056": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.5075394027672818,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.8
+      }
+    },
+    "q057": {
+      "hybrid": {
+        "ndcg_at_10": 0.7967610662472993,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.12647135138382856,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.4
+      }
+    },
+    "q058": {
+      "hybrid": {
+        "ndcg_at_10": 0.7058075148678526,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.19519002499605084,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.2
+      }
+    },
+    "q059": {
+      "hybrid": {
+        "ndcg_at_10": 0.47674870152787435,
+        "precision_at_10": 0.5,
+        "mrr": 0.5,
+        "mrr_at_10": 0.5,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.45,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q060": {
+      "hybrid": {
+        "ndcg_at_10": 0.5548989126424904,
+        "precision_at_10": 0.5,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.25,
+        "recall_at_20": 0.5,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.027777777777777776,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q061": {
+      "hybrid": {
+        "ndcg_at_10": 0.46927872602275644,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.1,
+        "recall_at_50": 0.15
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "keyword": {
+        "ndcg_at_10": 0.19342640361727081,
+        "precision_at_10": 0.1,
+        "mrr": 0.125,
+        "mrr_at_10": 0.125,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.1
+      }
+    },
+    "q062": {
+      "hybrid": {
+        "ndcg_at_10": 0.7849818707050383,
+        "precision_at_10": 0.7,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.35,
+        "recall_at_20": 0.55,
+        "recall_at_50": 0.7
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 1.0,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.42332408484280865,
+        "precision_at_10": 0.3,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.15,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.45
+      }
+    },
+    "q063": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.8,
+        "recall_at_50": 0.8
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q064": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.33627415762678553,
+        "precision_at_10": 0.2,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.45
+      }
+    },
+    "q065": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.1,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.05,
+        "recall_at_50": 0.05
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.045454545454545456,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.05
+      }
+    },
+    "q066": {
+      "hybrid": {
+        "ndcg_at_10": 0.7663491917568946,
+        "precision_at_10": 0.8,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.4,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q067": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.11004588314904008,
+        "precision_at_10": 0.1,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.5
+      }
+    },
+    "q068": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.3
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.6,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.3,
+        "recall_at_20": 0.3,
+        "recall_at_50": 0.3
+      },
+      "keyword": {
+        "ndcg_at_10": 0.39106560501896365,
+        "precision_at_10": 0.2,
+        "mrr": 0.3333333333333333,
+        "mrr_at_10": 0.3333333333333333,
+        "recall_at_10": 0.1,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.15
+      }
+    },
+    "q069": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.10209739512291163,
+        "precision_at_10": 0.1,
+        "mrr": 0.1111111111111111,
+        "mrr_at_10": 0.1111111111111111,
+        "recall_at_10": 0.05,
+        "recall_at_20": 0.15,
+        "recall_at_50": 0.25
+      }
+    },
+    "q070": {
+      "hybrid": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "vector": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q071": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 0.4,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.2,
+        "recall_at_20": 0.2,
+        "recall_at_50": 0.2
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q072": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q073": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q074": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.95
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q075": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q076": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.95,
+        "recall_at_50": 1.0
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q077": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q078": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.85,
+        "recall_at_50": 0.85
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q079": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.9,
+        "recall_at_50": 0.9
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    },
+    "q080": {
+      "hybrid": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "vector": {
+        "ndcg_at_10": 1.0,
+        "precision_at_10": 1.0,
+        "mrr": 1.0,
+        "mrr_at_10": 1.0,
+        "recall_at_10": 0.5,
+        "recall_at_20": 0.75,
+        "recall_at_50": 0.75
+      },
+      "keyword": {
+        "ndcg_at_10": 0.0,
+        "precision_at_10": 0.0,
+        "mrr": 0.0,
+        "mrr_at_10": 0.0,
+        "recall_at_10": 0.0,
+        "recall_at_20": 0.0,
+        "recall_at_50": 0.0
+      }
+    }
+  },
+  "query_understanding_enabled": false,
+  "query_understanding": []
+}

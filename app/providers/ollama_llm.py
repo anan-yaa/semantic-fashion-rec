@@ -14,6 +14,7 @@ from app.providers.llm_base import (
     UnsupportedQueryError,
 )
 from app.schemas.search import SearchFilter
+from app.services.query_understanding.language import ENGLISH, detect_language
 
 logger = logging.getLogger(__name__)
 
@@ -32,18 +33,22 @@ _SEASON_WORDS = {"Fall": r"fall|autumn"}
 
 # Small models follow examples far better than instructions, and the allowed
 # values are enforced by the JSON schema, so the prompt stays short.
-_SYSTEM_PROMPT = """You turn a fashion shop search query into JSON.
-cleaned_query: the important keywords (item, color, material, occasion, place).
+_SYSTEM_PROMPT = """You turn a fashion shop search query into JSON. The shop's catalogue is in English.
+Each query comes labelled with its language.
+english_query: the query in English. Translate it if the language is not English; copy English queries unchanged.
 gender, color, season: set only if the query clearly says so, otherwise null.
 
-Query: black leather jacket for men
-{"cleaned_query": "black leather jacket", "gender": "Men", "color": "Black", "season": null}
+Query (English): black leather jacket for men
+{"english_query": "black leather jacket for men", "gender": "Men", "color": "Black", "season": null}
 
-Query: I need an outfit to go to the beach this summer
-{"cleaned_query": "beach summer outfit", "gender": null, "color": null, "season": "Summer"}
+Query (English): I need an outfit to go to the beach this summer
+{"english_query": "I need an outfit to go to the beach this summer", "gender": null, "color": null, "season": "Summer"}
 
-Query: comfortable running shoes for women
-{"cleaned_query": "comfortable running shoes", "gender": "Women", "color": null, "season": null}"""
+Query (Hindi): हरी कुर्ती
+{"english_query": "green kurti", "gender": null, "color": "Green", "season": null}
+
+Query (Spanish): pantalones cortos azules para niño
+{"english_query": "blue shorts for boys", "gender": "Boys", "color": "Blue", "season": null}"""
 
 
 def _has_non_latin_letters(text: str) -> bool:
@@ -62,7 +67,7 @@ def _is_grounded(field_name: str, value: str, text: str) -> bool:
 
 
 def _build_format_schema(valid_filters: Dict[str, List[str]]) -> dict:
-    properties: dict = {"cleaned_query": {"type": "string"}}
+    properties: dict = {"english_query": {"type": "string"}}
     for field_name in _INFERABLE_FIELDS:
         properties[field_name] = {
             "type": ["string", "null"],
@@ -71,21 +76,21 @@ def _build_format_schema(valid_filters: Dict[str, List[str]]) -> dict:
     return {
         "type": "object",
         "properties": properties,
-        "required": ["cleaned_query", *_INFERABLE_FIELDS],
+        "required": ["english_query", *_INFERABLE_FIELDS],
     }
 
 
 def _parse_model_output(
-    raw: dict, valid_filters: Dict[str, List[str]], query: str
+    raw: dict, valid_filters: Dict[str, List[str]], query: str, translated: bool = False
 ) -> QueryUnderstanding:
-    cleaned_query = raw.get("cleaned_query")
-    if not isinstance(cleaned_query, str) or not cleaned_query.strip():
-        raise LLMProviderError(f"Ollama response missing a usable cleaned_query: {raw!r}")
-    cleaned_query = cleaned_query.strip()
+    english = raw.get("english_query")
+    if not isinstance(english, str) or not english.strip():
+        raise LLMProviderError(f"Ollama response missing a usable english_query: {raw!r}")
+    english = english.strip()
 
-    # Ground against the cleaned query too, so translated non-English queries
+    # Ground against the English text too, so translated queries
     # ("नीली शर्ट" -> "blue shirt") can still yield filters.
-    text = f"{query} {cleaned_query}".lower()
+    text = f"{query} {english}".lower()
     filters = SearchFilter()
     for field_name in _INFERABLE_FIELDS:
         value = raw.get(field_name)
@@ -96,7 +101,7 @@ def _parse_model_output(
         else:
             logger.info(f"Dropping ungrounded {field_name}={value!r} for query {query!r}")
 
-    return QueryUnderstanding(cleaned_query=cleaned_query, filters=filters)
+    return QueryUnderstanding(cleaned_query=english, filters=filters, translated=translated)
 
 
 class OllamaProvider(LLMProvider):
@@ -112,31 +117,37 @@ class OllamaProvider(LLMProvider):
         base_url: str = "http://localhost:11434",
         timeout_seconds: float = 15.0,
         keep_alive: str = "30m",
+        skip_non_latin: bool = False,
     ):
         self._model = model
         self._base_url = base_url.rstrip("/")
         self._timeout_seconds = timeout_seconds
         self._keep_alive = keep_alive
+        self._skip_non_latin = skip_non_latin
 
     def understand_query(
         self, query: str, valid_filters: Dict[str, List[str]]
     ) -> QueryUnderstanding:
-        # Small local models mistranslate non-Latin scripts into unrelated
-        # products (Hindi "jewellery for women" -> "running shoes"). Falling
-        # back leaves these to multilingual-e5 vector search, which handles them.
-        if _has_non_latin_letters(query):
+        # English-only models (e.g. tinyllama) mistranslate non-Latin scripts
+        # into unrelated products (Hindi "jewellery for women" -> "running
+        # shoes"). Skipping leaves these to multilingual-e5 vector search.
+        if self._skip_non_latin and _has_non_latin_letters(query):
             raise UnsupportedQueryError("Non-Latin-script query skipped by local model; using raw query")
 
+        # The code, not the model, decides the language: small models can't
+        # reliably tell Spanish or French from English (see language.py).
+        language = detect_language(query)
         payload = {
             "model": self._model,
             "messages": [
                 {"role": "system", "content": _SYSTEM_PROMPT},
-                {"role": "user", "content": f"Query: {query}"},
+                {"role": "user", "content": f"Query ({language}): {query}"},
             ],
             "format": _build_format_schema(valid_filters),
             "stream": False,
             "keep_alive": self._keep_alive,
-            "options": {"temperature": 0, "num_predict": 96},
+            # Room for the full query repeated in English plus the filters
+            "options": {"temperature": 0, "num_predict": 192},
         }
 
         try:
@@ -165,7 +176,7 @@ class OllamaProvider(LLMProvider):
         if not isinstance(raw, dict):
             raise LLMProviderError(f"Ollama response was not a JSON object: {text[:200]!r}")
 
-        return _parse_model_output(raw, valid_filters, query)
+        return _parse_model_output(raw, valid_filters, query, translated=language != ENGLISH)
 
     def warm_up(self) -> None:
         """Load the model into memory so the first real request doesn't pay the load time."""

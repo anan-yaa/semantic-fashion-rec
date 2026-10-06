@@ -1,0 +1,263 @@
+INFO:     Started server process [23689]
+INFO:     Waiting for application startup.
+2026-10-06 07:19:03,558 - app.main - INFO - Application starting up
+2026-10-06 07:19:03,558 - app.main - INFO - Environment: debug=False, host=0.0.0.0, port=8000
+2026-10-06 07:19:03,558 - app.providers.factory - INFO - Using HuggingFaceE5Provider: intfloat/multilingual-e5-base
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54626 - "GET /health HTTP/1.1" 200 OK
+2026-10-06 07:19:14,872 - app.providers.e5 - INFO - E5Provider initialized: model=intfloat/multilingual-e5-base, device=cuda
+2026-10-06 07:19:17,047 - app.providers.ollama_llm - INFO - Ollama model qwen2.5:1.5b loaded
+2026-10-06 07:19:30,725 - app.providers.e5 - INFO - Loading model intfloat/multilingual-e5-base on cuda...
+2026-10-06 07:19:31,051 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-06 07:19:31,052 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-06 07:19:31,067 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-06 07:19:31,312 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:19:31,313 - sentence_transformers.base.model - INFO - Loading SentenceTransformer model from intfloat/multilingual-e5-base.
+2026-10-06 07:19:31,555 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:19:31,784 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:19:31,800 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/README.md?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2FREADME.md=&etag=%22cb9a717ebcd784123f8bc5ea79b4ba0db4cf2f1d%22 "HTTP/1.1 200 OK"
+2026-10-06 07:19:32,047 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:19:32,063 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-06 07:19:32,305 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:19:32,319 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/sentence_bert_config.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eca68d85ecd3034cf4174d8a4033a75344ea62d%22 "HTTP/1.1 200 OK"
+2026-10-06 07:19:32,566 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:19:32,818 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:19:33,140 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  25%|██▍       | 49/199 [00:00<00:00, 459.63it/s]Loading weights:  48%|████▊     | 95/199 [00:00<00:00, 442.62it/s]Loading weights:  70%|███████   | 140/199 [00:00<00:00, 418.83it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 589.98it/s]
+2026-10-06 07:19:33,955 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:19:34,306 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-06 07:19:34,548 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-06 07:19:38,098 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:19:38,430 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:19:38,444 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/1_Pooling%2Fconfig.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%222a824fa43c359360ecddb16808b539c6be892fef%22 "HTTP/1.1 200 OK"
+2026-10-06 07:19:38,674 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:19:38,923 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+/home/ananyaa/code/fashion-rec/app/providers/e5.py:56: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  logger.info(f"Model loaded. Output dimension: {self._model.get_sentence_embedding_dimension()}")
+2026-10-06 07:19:41,164 - app.providers.e5 - INFO - Model loaded. Output dimension: 768
+2026-10-06 07:19:42,109 - app.providers.e5 - INFO - Embedding model warmed up
+2026-10-06 07:19:42,685 - app.providers.llm_factory - INFO - Using OllamaProvider: qwen2.5:1.5b at http://localhost:11434, timeout=8.0s
+2026-10-06 07:19:49,096 - app.services.search.hybrid - INFO - Search completed: 100 results in 3855.7ms using SearchMethod.HYBRID
+2026-10-06 07:19:49,096 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:50652 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:19:53,201 - app.services.search.hybrid - INFO - Search completed: 100 results in 480.3ms using SearchMethod.HYBRID
+2026-10-06 07:19:53,203 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:19:56,089 - app.services.search.hybrid - INFO - Search completed: 100 results in 280.9ms using SearchMethod.HYBRID
+2026-10-06 07:19:56,090 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:19:58,883 - app.services.search.hybrid - INFO - Search completed: 42 results in 163.1ms using SearchMethod.VECTOR
+2026-10-06 07:19:58,883 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:01,942 - app.services.search.hybrid - INFO - Search completed: 52 results in 240.3ms using SearchMethod.HYBRID
+2026-10-06 07:20:01,942 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:06,900 - app.services.search.hybrid - INFO - Search completed: 100 results in 2320.4ms using SearchMethod.HYBRID
+2026-10-06 07:20:06,900 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:09,661 - app.services.search.hybrid - INFO - Search completed: 43 results in 170.4ms using SearchMethod.VECTOR
+2026-10-06 07:20:09,661 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:12,488 - app.services.search.hybrid - INFO - Search completed: 41 results in 181.4ms using SearchMethod.HYBRID
+2026-10-06 07:20:12,488 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:15,274 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Khaki' for query 'kale green kurti'
+2026-10-06 07:20:15,498 - app.services.search.hybrid - INFO - Search completed: 100 results in 223.8ms using SearchMethod.HYBRID
+2026-10-06 07:20:15,498 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:18,221 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Khaki' for query 'kale green kurti'
+2026-10-06 07:20:23,473 - app.services.search.hybrid - INFO - Search completed: 42 results in 5252.2ms using SearchMethod.VECTOR
+2026-10-06 07:20:23,473 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:26,623 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'महिलाओं के लिए गहने'
+2026-10-06 07:20:26,776 - app.services.search.hybrid - INFO - Search completed: 48 results in 151.9ms using SearchMethod.HYBRID
+2026-10-06 07:20:26,776 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:29,540 - app.services.search.hybrid - INFO - Search completed: 42 results in 126.5ms using SearchMethod.HYBRID
+2026-10-06 07:20:29,540 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:32,089 - app.services.search.hybrid - INFO - Search completed: 42 results in 34.9ms using SearchMethod.VECTOR
+2026-10-06 07:20:32,089 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:34,879 - app.services.search.hybrid - INFO - Search completed: 44 results in 166.0ms using SearchMethod.HYBRID
+2026-10-06 07:20:34,880 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:37,623 - app.services.search.hybrid - INFO - Search completed: 42 results in 96.8ms using SearchMethod.HYBRID
+2026-10-06 07:20:37,623 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:40,193 - app.services.search.hybrid - INFO - Search completed: 42 results in 38.3ms using SearchMethod.VECTOR
+2026-10-06 07:20:40,194 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:42,843 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Lavender' for query 'लाल साड़ी'
+2026-10-06 07:20:43,051 - app.services.search.hybrid - INFO - Search completed: 57 results in 207.6ms using SearchMethod.HYBRID
+2026-10-06 07:20:43,051 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:45,738 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Lavender' for query 'lilac'
+2026-10-06 07:20:45,864 - app.services.search.hybrid - INFO - Search completed: 43 results in 125.2ms using SearchMethod.HYBRID
+2026-10-06 07:20:45,864 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:48,497 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Lavender' for query 'lilac'
+2026-10-06 07:20:48,533 - app.services.search.hybrid - INFO - Search completed: 40 results in 35.4ms using SearchMethod.VECTOR
+2026-10-06 07:20:48,533 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:51,449 - app.services.search.hybrid - INFO - Search completed: 51 results in 129.8ms using SearchMethod.HYBRID
+2026-10-06 07:20:51,449 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:54,096 - app.services.search.hybrid - INFO - Search completed: 45 results in 60.3ms using SearchMethod.HYBRID
+2026-10-06 07:20:54,096 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:57,263 - app.services.search.hybrid - INFO - Search completed: 43 results in 34.0ms using SearchMethod.VECTOR
+2026-10-06 07:20:57,263 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:20:59,984 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Skin' for query 'सफेद जूते'
+2026-10-06 07:21:00,124 - app.services.search.hybrid - INFO - Search completed: 42 results in 138.9ms using SearchMethod.HYBRID
+2026-10-06 07:21:00,124 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:02,900 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Skin' for query 'saffron jacket'
+2026-10-06 07:21:03,089 - app.services.search.hybrid - INFO - Search completed: 100 results in 188.8ms using SearchMethod.HYBRID
+2026-10-06 07:21:03,089 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:05,809 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Skin' for query 'saffron jacket'
+2026-10-06 07:21:05,916 - app.services.search.hybrid - INFO - Search completed: 56 results in 106.5ms using SearchMethod.VECTOR
+2026-10-06 07:21:05,916 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:08,810 - app.services.search.hybrid - INFO - Search completed: 48 results in 242.3ms using SearchMethod.HYBRID
+2026-10-06 07:21:08,810 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:11,605 - app.services.search.hybrid - INFO - Search completed: 49 results in 172.8ms using SearchMethod.HYBRID
+2026-10-06 07:21:11,606 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:14,241 - app.services.search.hybrid - INFO - Search completed: 41 results in 37.2ms using SearchMethod.VECTOR
+2026-10-06 07:21:14,241 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:17,136 - app.services.search.hybrid - INFO - Search completed: 54 results in 234.2ms using SearchMethod.HYBRID
+2026-10-06 07:21:17,136 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:19,908 - app.services.search.hybrid - INFO - Search completed: 50 results in 124.9ms using SearchMethod.HYBRID
+2026-10-06 07:21:19,908 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:22,568 - app.services.search.hybrid - INFO - Search completed: 43 results in 40.2ms using SearchMethod.VECTOR
+2026-10-06 07:21:22,568 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:25,366 - app.services.search.hybrid - INFO - Search completed: 58 results in 174.6ms using SearchMethod.HYBRID
+2026-10-06 07:21:25,366 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:27,941 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Summer' for query 'swimwear'
+2026-10-06 07:21:28,024 - app.services.search.hybrid - INFO - Search completed: 17 results in 83.3ms using SearchMethod.HYBRID
+2026-10-06 07:21:28,025 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:31,152 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Summer' for query 'swimwear'
+2026-10-06 07:21:31,247 - app.services.search.hybrid - INFO - Search completed: 44 results in 94.9ms using SearchMethod.VECTOR
+2026-10-06 07:21:31,248 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:33,932 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'vestido rojo para mujer'
+2026-10-06 07:21:34,059 - app.services.search.hybrid - INFO - Search completed: 53 results in 126.7ms using SearchMethod.HYBRID
+2026-10-06 07:21:34,059 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:36,904 - app.services.search.hybrid - INFO - Search completed: 100 results in 215.7ms using SearchMethod.HYBRID
+2026-10-06 07:21:36,904 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:39,550 - app.services.search.hybrid - INFO - Search completed: 44 results in 81.5ms using SearchMethod.VECTOR
+2026-10-06 07:21:39,551 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:42,233 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Men' for query 'chaqueta de invierno para hombre'
+2026-10-06 07:21:42,345 - app.services.search.hybrid - INFO - Search completed: 72 results in 111.3ms using SearchMethod.HYBRID
+2026-10-06 07:21:42,345 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:45,107 - app.services.search.hybrid - INFO - Search completed: 100 results in 131.4ms using SearchMethod.HYBRID
+2026-10-06 07:21:45,107 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:47,822 - app.services.search.hybrid - INFO - Search completed: 40 results in 96.9ms using SearchMethod.VECTOR
+2026-10-06 07:21:47,822 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:50,589 - app.services.search.hybrid - INFO - Search completed: 100 results in 196.9ms using SearchMethod.HYBRID
+2026-10-06 07:21:50,589 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:53,595 - app.services.search.hybrid - INFO - Search completed: 100 results in 470.2ms using SearchMethod.HYBRID
+2026-10-06 07:21:53,596 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:56,295 - app.services.search.hybrid - INFO - Search completed: 41 results in 86.0ms using SearchMethod.VECTOR
+2026-10-06 07:21:56,295 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:21:59,014 - app.services.search.hybrid - INFO - Search completed: 42 results in 107.1ms using SearchMethod.HYBRID
+2026-10-06 07:21:59,014 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:02,728 - app.services.search.hybrid - INFO - Search completed: 100 results in 1097.9ms using SearchMethod.HYBRID
+2026-10-06 07:22:02,728 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:05,397 - app.services.search.hybrid - INFO - Search completed: 42 results in 114.0ms using SearchMethod.VECTOR
+2026-10-06 07:22:05,398 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:08,238 - app.services.search.hybrid - INFO - Search completed: 100 results in 188.1ms using SearchMethod.HYBRID
+2026-10-06 07:22:08,238 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:11,089 - app.services.search.hybrid - INFO - Search completed: 100 results in 276.2ms using SearchMethod.HYBRID
+2026-10-06 07:22:11,089 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:13,804 - app.services.search.hybrid - INFO - Search completed: 45 results in 96.3ms using SearchMethod.VECTOR
+2026-10-06 07:22:13,804 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:16,415 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Men' for query 'camisa azul de hombre'
+2026-10-06 07:22:16,609 - app.services.search.hybrid - INFO - Search completed: 100 results in 193.7ms using SearchMethod.HYBRID
+2026-10-06 07:22:16,609 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:19,899 - app.services.search.hybrid - INFO - Search completed: 100 results in 640.8ms using SearchMethod.HYBRID
+2026-10-06 07:22:19,900 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:22,586 - app.services.search.hybrid - INFO - Search completed: 52 results in 126.8ms using SearchMethod.VECTOR
+2026-10-06 07:22:22,586 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:25,411 - app.services.search.hybrid - INFO - Search completed: 53 results in 154.4ms using SearchMethod.HYBRID
+2026-10-06 07:22:25,411 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:28,153 - app.services.search.hybrid - INFO - Search completed: 41 results in 133.5ms using SearchMethod.HYBRID
+2026-10-06 07:22:28,153 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:30,801 - app.services.search.hybrid - INFO - Search completed: 41 results in 41.8ms using SearchMethod.VECTOR
+2026-10-06 07:22:30,801 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:33,398 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'robe rouge pour femme'
+2026-10-06 07:22:33,502 - app.services.search.hybrid - INFO - Search completed: 4 results in 103.5ms using SearchMethod.HYBRID
+2026-10-06 07:22:33,502 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:36,706 - app.services.search.hybrid - INFO - Search completed: 4 results in 96.0ms using SearchMethod.HYBRID
+2026-10-06 07:22:36,706 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:39,417 - app.services.search.hybrid - INFO - Search completed: 43 results in 104.5ms using SearchMethod.VECTOR
+2026-10-06 07:22:39,417 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:42,000 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Men' for query 'chaussures de sport pour homme'
+2026-10-06 07:22:42,233 - app.services.search.hybrid - INFO - Search completed: 100 results in 232.5ms using SearchMethod.HYBRID
+2026-10-06 07:22:42,233 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:45,309 - app.services.search.hybrid - INFO - Search completed: 100 results in 441.0ms using SearchMethod.HYBRID
+2026-10-06 07:22:45,309 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:47,918 - app.services.search.hybrid - INFO - Search completed: 41 results in 64.2ms using SearchMethod.VECTOR
+2026-10-06 07:22:47,919 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:50,691 - app.services.search.hybrid - INFO - Search completed: 100 results in 184.1ms using SearchMethod.HYBRID
+2026-10-06 07:22:50,692 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:53,734 - app.services.search.hybrid - INFO - Search completed: 100 results in 378.2ms using SearchMethod.HYBRID
+2026-10-06 07:22:53,734 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:56,395 - app.services.search.hybrid - INFO - Search completed: 43 results in 47.1ms using SearchMethod.VECTOR
+2026-10-06 07:22:56,396 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:22:59,110 - app.services.search.hybrid - INFO - Search completed: 100 results in 121.0ms using SearchMethod.HYBRID
+2026-10-06 07:22:59,110 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:23:01,864 - app.services.search.hybrid - INFO - Search completed: 100 results in 157.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:01,864 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+2026-10-06 07:23:04,481 - app.services.search.hybrid - INFO - Search completed: 45 results in 41.0ms using SearchMethod.VECTOR
+2026-10-06 07:23:04,481 - app.api.routes.search - INFO - search_complete
+INFO:     127.0.0.1:32916 - "POST /search HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-10-06 07:23:04,736 - app.main - INFO - Application shutting down
+INFO:     Application shutdown complete.
+INFO:     Finished server process [23689]

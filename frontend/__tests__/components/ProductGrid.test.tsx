@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { ProductGrid } from '@/components/ProductGrid'
 import { Product } from '@/types/product'
 
@@ -57,5 +57,12 @@ describe('ProductGrid', () => {
   it('renders correct number of product cards', () => {
     render(<ProductGrid products={mockProducts} />)
     expect(screen.getAllByRole('article')).toHaveLength(mockProducts.length)
+  })
+
+  it('reports votes with the product and its position on the page', () => {
+    const onVote = vi.fn()
+    render(<ProductGrid products={mockProducts} votes={{}} onVote={onVote} />)
+    fireEvent.click(screen.getAllByRole('button', { name: 'Bad result' })[1])
+    expect(onVote).toHaveBeenCalledWith(mockProducts[1], 1, -1)
   })
 })

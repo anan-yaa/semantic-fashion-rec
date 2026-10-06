@@ -28,6 +28,7 @@ def main() -> int:
         model=settings.ollama_model,
         base_url=settings.ollama_base_url,
         timeout_seconds=settings.llm_query_understanding_timeout_seconds,
+        skip_non_latin=settings.llm_skip_non_latin_queries,
     )
     print(f"Model: {settings.ollama_model} at {settings.ollama_base_url}")
     session = next(get_session())

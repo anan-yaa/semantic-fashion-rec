@@ -13,6 +13,8 @@ class QueryUnderstanding:
     cleaned_query: str
     filters: SearchFilter = field(default_factory=SearchFilter)
     reasoning: Optional[str] = None
+    # True when cleaned_query is an English translation of a non-English query.
+    translated: bool = False
 
 
 class LLMProviderError(Exception):

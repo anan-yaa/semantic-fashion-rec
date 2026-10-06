@@ -34,6 +34,7 @@ def get_llm_provider(settings: Settings, use_fake: bool = False, for_eval: bool 
             model=settings.ollama_model,
             base_url=settings.ollama_base_url,
             timeout_seconds=timeout,
+            skip_non_latin=settings.llm_skip_non_latin_queries,
         )
     else:
         from app.providers.llm import GeminiProvider

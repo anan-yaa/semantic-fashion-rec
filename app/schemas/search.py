@@ -49,7 +49,8 @@ class SearchRequest(BaseModel):
 class QueryUnderstandingInfo(BaseModel):
     """What the LLM understood from the query, for display."""
     used_llm: bool
-    keywords: Optional[str] = Field(None, description="Keyword rephrasing used for keyword search")
+    translated: bool = Field(False, description="The query wasn't English and was searched in English")
+    english_query: Optional[str] = Field(None, description="The English translation searched, when translated")
     inferred_filters: Dict[str, str] = Field(
         default_factory=dict, description="Non-empty LLM-inferred filters, e.g. {'color': 'Red'}"
     )

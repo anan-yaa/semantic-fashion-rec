@@ -1,0 +1,44 @@
+'नीली शर्ट'                          -> 'blue shorts'                      filters={'color': 'Blue'}  app 0.2  translated-hybrid 0.0  (585 ms)
+'सर्दियों का ऊनी कोट'                -> 'saree for boys'                   filters={'gender': 'Boys'}  app 0.0  translated-hybrid 0.0  (714 ms)
+'काली जूती'                          -> 'kale green kurti'                 filters={'color': 'Green'}  app 0.9  translated-hybrid 0.0  (542 ms)
+'महिलाओं के लिए गहने'                -> 'strong shoes'                     filters={}  app 1.0  translated-hybrid 0.0  (559 ms)
+'पुरुषों के लिए घड़ी'                -> 'clock for men'                    filters={'gender': 'Men'}  app 1.0  translated-hybrid 1.0  (520 ms)
+'लाल साड़ी'                          -> 'lilac'                            filters={}  app 0.2  translated-hybrid 0.0  (546 ms)
+'बच्चों के कपड़े'                    -> 'boys pants'                       filters={'gender': 'Boys'}  app 1.0  translated-hybrid 1.0  (682 ms)
+'सफेद जूते'                          -> 'saffron jacket'                   filters={}  app 1.0  translated-hybrid 0.0  (618 ms)
+'चमड़े का बैग'                       -> 'camera'                           filters={}  app 1.0  translated-hybrid 0.5  (548 ms)
+'गर्मियों के कपड़े'                  -> 'summer clothes'                   filters={'season': 'Summer'}  app 1.0  translated-hybrid 1.0  (557 ms)
+'atuendo playero'                    -> 'swimwear'                         filters={}  app 0.3  translated-hybrid 0.3  (518 ms)
+'vestido rojo para mujer'            -> 'red dress'                        filters={'color': 'Red'}  app 1.0  translated-hybrid 1.0  (581 ms)
+'chaqueta de invierno para hombre'   -> 'winter jacket'                    filters={'season': 'Winter'}  app 0.5  translated-hybrid 1.0  (579 ms)
+'zapatos deportivos'                 -> 'sport shoes'                      filters={}  app 1.0  translated-hybrid 1.0  (465 ms)
+'reloj de mujer'                     -> "woman's watch"                    filters={'gender': 'Women'}  app 0.0  translated-hybrid 1.0  (507 ms)
+'gafas de sol'                       -> 'sunglasses'                       filters={}  app 0.5  translated-hybrid 1.0  (548 ms)
+'camisa azul de hombre'              -> 'blue shirt'                       filters={'color': 'Blue'}  app 1.0  translated-hybrid 0.9  (507 ms)
+'bolso de cuero negro'               -> 'black leather bag'                filters={'color': 'Black'}  app 1.0  translated-hybrid 1.0  (567 ms)
+'robe rouge pour femme'              -> 'red robe'                         filters={'color': 'Red'}  app 0.0  translated-hybrid 0.0  (493 ms)
+'chaussures de sport pour homme'     -> 'sport shoes'                      filters={}  app 1.0  translated-hybrid 1.0  (480 ms)
+'sac à main noir'                    -> 'black handbag'                    filters={'color': 'Black'}  app 1.0  translated-hybrid 1.0  (484 ms)
+'lunettes de soleil'                 -> 'sunglasses'                       filters={}  app 1.0  translated-hybrid 1.0  (489 ms)
+{
+  "all": {
+    "app_hybrid": 0.7090909090909091,
+    "hybrid_translated": 0.6227272727272727,
+    "vector_translated": 0.5727272727272728
+  },
+  "hi": {
+    "app_hybrid": 0.73,
+    "hybrid_translated": 0.35,
+    "vector_translated": 0.29
+  },
+  "es": {
+    "app_hybrid": 0.6625,
+    "hybrid_translated": 0.9,
+    "vector_translated": 0.8375
+  },
+  "fr": {
+    "app_hybrid": 0.75,
+    "hybrid_translated": 0.75,
+    "vector_translated": 0.75
+  }
+}

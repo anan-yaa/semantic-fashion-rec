@@ -9,6 +9,7 @@ from app.db.models.product import Product
 from app.providers.base import EmbeddingProvider
 from app.schemas.search import SearchFilter
 from app.services.search.product_types import ARTICLE_TYPE
+from app.services.timing import timed
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +36,8 @@ def search_vector(
         Tuple of (products, total_count).
     """
     # Embed the query
-    query_embedding = provider.embed_queries([query_text])[0]
+    with timed("embed"):
+        query_embedding = provider.embed_queries([query_text])[0]
 
     # Start with products that have embeddings
     query_obj = session.query(Product).filter(Product.embedding.isnot(None))
@@ -64,19 +66,18 @@ def search_vector(
         mode = "strict_order" if article_types else "off"
         session.execute(text(f"SET LOCAL hnsw.iterative_scan = {mode}"))
 
-    # Get total count
-    total_count = query_obj.count()
+    with timed("vector_db"):
+        total_count = query_obj.count()
 
-    # Vector similarity ranking (using cosine distance <=>)
-    # Note: On SQLite this won't work; on PostgreSQL it uses HNSW index
-    try:
-        # PostgreSQL: ORDER BY cosine distance
-        ranked = query_obj.order_by(
-            Product.embedding.cosine_distance(query_embedding)
-        ).limit(limit).all()
-    except Exception as e:
-        logger.debug(f"Vector search failed (expected on SQLite): {e}, falling back to empty")
-        ranked = []
+        # Vector similarity ranking (using cosine distance <=>)
+        # Note: On SQLite this won't work; on PostgreSQL it uses HNSW index
+        try:
+            ranked = query_obj.order_by(
+                Product.embedding.cosine_distance(query_embedding)
+            ).limit(limit).all()
+        except Exception as e:
+            logger.debug(f"Vector search failed (expected on SQLite): {e}, falling back to empty")
+            ranked = []
 
     return ranked, total_count
 

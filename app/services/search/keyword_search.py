@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from app.db.models.product import Product
 from app.schemas.search import SearchFilter
 from app.services.search.product_types import ARTICLE_TYPE
+from app.services.timing import timed
 
 logger = logging.getLogger(__name__)
 
@@ -77,9 +78,10 @@ def search_keyword(
 
         if min_term_coverage > 0:
             # Same parsing as plainto_tsquery: stemmed, stopword-free lexemes
-            lexemes = session.execute(
-                select(func.tsvector_to_array(func.to_tsvector("english", query_text)))
-            ).scalar() or []
+            with timed("keyword_db"):
+                lexemes = session.execute(
+                    select(func.tsvector_to_array(func.to_tsvector("english", query_text)))
+                ).scalar() or []
             if lexemes:
                 # Lexemes are already stemmed, so match them with 'simple' to
                 # avoid stemming them a second time
@@ -100,8 +102,9 @@ def search_keyword(
             Product.id,  # Deterministic tiebreaker for stable ordering of tied ranks
         )
 
-        total_count = query_obj.count()
-        results = query_obj.limit(limit).all()
+        with timed("keyword_db"):
+            total_count = query_obj.count()
+            results = query_obj.limit(limit).all()
         return results, total_count
 
     # Fallback to ILIKE (SQLite compatible, no tsvector support there)
@@ -115,7 +118,8 @@ def search_keyword(
     if conditions:
         query_obj = query_obj.filter(or_(*conditions))
 
-    total_count = query_obj.count()
-    results = query_obj.limit(limit).all()
+    with timed("keyword_db"):
+        total_count = query_obj.count()
+        results = query_obj.limit(limit).all()
 
     return results, total_count

@@ -65,6 +65,10 @@ search_rate_limiter = TokenBucketLimiter(
     rate_per_minute=settings.search_rate_limit_per_minute,
     burst=settings.search_rate_limit_burst,
 )
+feedback_rate_limiter = TokenBucketLimiter(
+    rate_per_minute=settings.feedback_rate_limit_per_minute,
+    burst=settings.feedback_rate_limit_burst,
+)
 
 
 def client_key(request: Request) -> str:
@@ -82,15 +86,24 @@ def client_key(request: Request) -> str:
     return request.client.host if request.client else "unknown"
 
 
-def limit_search_rate(request: Request) -> None:
-    """FastAPI dependency: 429 with Retry-After when a client searches too fast."""
+def _enforce(limiter: TokenBucketLimiter, request: Request, what: str) -> None:
     if not settings.rate_limit_enabled:
         return
-    wait_seconds = search_rate_limiter.acquire(client_key(request))
+    wait_seconds = limiter.acquire(client_key(request))
     if wait_seconds > 0:
         retry_after = max(1, math.ceil(wait_seconds))
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail=f"Too many searches. Try again in {retry_after} seconds.",
+            detail=f"Too many {what}. Try again in {retry_after} seconds.",
             headers={"Retry-After": str(retry_after)},
         )
+
+
+def limit_search_rate(request: Request) -> None:
+    """FastAPI dependency: 429 with Retry-After when a client searches too fast."""
+    _enforce(search_rate_limiter, request, "searches")
+
+
+def limit_feedback_rate(request: Request) -> None:
+    """FastAPI dependency: 429 with Retry-After when a client sends feedback too fast."""
+    _enforce(feedback_rate_limiter, request, "feedback requests")

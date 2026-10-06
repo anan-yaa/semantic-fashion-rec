@@ -2,11 +2,11 @@
 
 A search microservice for a 44,072-product fashion catalogue that understands human-like, multilingual queries such as *"I need an outfit to go to the beach this summer"* or *"महिलाओं के लिए गहने"* (jewellery for women), not just keywords like "t-shirt".
 
-It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL + pgvector), **keyword search** (PostgreSQL full-text search) and **LLM query understanding** (TinyLlama, running locally through Ollama), behind a FastAPI backend with a Next.js frontend.
+It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL + pgvector), **keyword search** (PostgreSQL full-text search) and **LLM query understanding** (Gemma 3 1B, running locally through Ollama), behind a FastAPI backend with a Next.js frontend.
 
 | Requirement | How it's met |
 |---|---|
-| 1. Parse natural-language, multilingual queries | multilingual-e5 understands queries in English, Hindi and other languages; TinyLlama extracts keywords and filters (color, gender, season) from English queries |
+| 1. Parse natural-language, multilingual queries | The query's language is detected (English, Hindi, Spanish, French). Gemma 3 1B translates non-English queries into English and extracts filters (color, gender, season); the multilingual-e5 embedding model matches meaning across languages |
 | 2. Find relevant products with semantic search and LLMs | Hybrid search: vector + keyword results fused with Reciprocal Rank Fusion, with LLM-inferred filters and product-type detection |
 | 3. Handle an evolving product catalogue | One sync command, run nightly by cron: adds new products, updates changed ones, hides removed ones, and re-embeds only what changed |
 
@@ -19,7 +19,7 @@ It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL
 ```mermaid
 flowchart LR
     UI["Next.js frontend<br/>(search, filters, sort, pages)"] -->|HTTP| API["FastAPI backend"]
-    API -->|"query understanding<br/>(keywords + filters)"| LLM["Ollama<br/>TinyLlama 1.1B"]
+    API -->|"query understanding<br/>(translation + filters)"| LLM["Ollama<br/>Gemma 3 1B"]
     API -->|embed query| E5["multilingual-e5-base<br/>(768-dim, GPU if available)"]
     API -->|"vector (HNSW) +<br/>keyword (GIN) search"| DB[("PostgreSQL 16<br/>+ pgvector")]
     CRON["cron: nightly sync"] --> SYNC["sync_catalogue.py"]
@@ -32,7 +32,8 @@ flowchart LR
 | API | FastAPI, Pydantic, SQLAlchemy 2 |
 | Database | PostgreSQL 16 with pgvector: HNSW index for vectors, GIN index for full-text search |
 | Embeddings | `intfloat/multilingual-e5-base` via sentence-transformers (768 dimensions, L2-normalized, `query:` / `passage:` prefixes) |
-| LLM | TinyLlama 1.1B (Q4) via Ollama, local; the Gemini API is supported as an alternative provider |
+| LLM | Gemma 3 1B via Ollama, local (chosen over TinyLlama and Qwen 2.5 1.5B, see [`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)); the Gemini API is supported as an alternative provider |
+| Language detection | [lingua](https://github.com/pemistahl/lingua-py), limited to English, Spanish, French and Hindi (~40 MB RAM) |
 | Frontend | Next.js 14, React 18, Tailwind CSS |
 | Data | [`HEBA2002/fashion-product-images-small`](https://huggingface.co/datasets/HEBA2002/fashion-product-images-small): 44,072 products, 141 product types (no prices or images are used) |
 
@@ -52,19 +53,21 @@ flowchart TD
 ```
 
 1. **LLM query understanding** ([`app/providers/ollama_llm.py`](app/providers/ollama_llm.py), [`app/services/query_understanding/`](app/services/query_understanding/))
-   - TinyLlama turns the query into a keyword phrase plus optional gender, color and season filters.
+   - **The language is detected first,** by a small language-identification library rather than the LLM: a 1B model can't reliably tell Spanish or French from English. It's limited to English, Spanish, French and Hindi. A query only counts as non-English when that's clearly more likely than English, so short English queries like "beige sandals" aren't misread.
+   - **Gemma 3 1B is told the language** ("Query (Spanish): …"). It returns the query in English, translating non-English queries, plus optional gender, color and season filters.
+   - **Non-English queries are searched in English,** on both vector and keyword search: the catalogue is English, and the embedding model alone matches some words by spelling ("chaqueta" → "Red Chief" shoes). **English queries keep the user's own words;** the LLM only adds filters, because measured LLM rewrites of English queries dropped useful words.
    - Its output is forced into a **JSON schema** whose allowed values are the catalogue's own, read from the database and cached for 5 minutes. So it can't invent a color like "Male" or "Black, White".
    - A filter is kept only if the query actually **mentions** it ("autumn" counts as Fall, "ladies" as Women). That stops guesses like *woollen coat → Summer*.
    - Category isn't inferred: the small model got it wrong too often (*saree → Footwear*).
-   - Non-Latin-script queries (e.g. Hindi) skip the LLM; TinyLlama mistranslated them into unrelated products.
+   - English-only models can skip non-Latin-script queries instead (`LLM_SKIP_NON_LATIN_QUERIES=true`, used with TinyLlama).
    - **Any failure falls back** to plain search with the original query: timeout (8 s), connection error or invalid output. Search never fails because of the LLM.
    - **Circuit breaker** ([`circuit_breaker.py`](app/services/query_understanding/circuit_breaker.py)): after 3 timeouts or connection errors in a row (or one rate limit), the LLM is skipped instantly for 30 s instead of every search waiting for it. After the cooldown one request checks whether it has recovered. Invalid answers and skipped Hindi queries don't count, since the service is still up.
-   - The response's `understanding` field reports what the LLM understood, or why it wasn't used. The UI shows it as "Understood as: …".
+   - The response's `understanding` field reports the filters, the English translation when there was one, or why the LLM wasn't used. The UI shows it as "Understood as: …" or "Searched in English as: …".
 2. **Product-type detection** ([`app/services/search/product_types.py`](app/services/search/product_types.py))
    - If the query names one of the catalogue's 141 product types, results are limited to that type.
    - Matching uses the same English stemming as keyword search. Words after *for / to / with / under* are ignored, so "warm layer to wear under a jacket" doesn't become a jacket search.
    - This fixes *black leather jacket for men* returning leather wallets: the catalogue has no leather jackets, and embeddings weigh "black leather" heavily.
-3. **Vector search** ([`vector_search.py`](app/services/search/vector_search.py)): cosine similarity on e5 embeddings through the HNSW index, always using the **original** query. This is what handles Hindi and vague, descriptive queries.
+3. **Vector search** ([`vector_search.py`](app/services/search/vector_search.py)): cosine similarity on e5 embeddings through the HNSW index. It uses the user's query, or the English translation for non-English queries.
 4. **Keyword search** ([`keyword_search.py`](app/services/search/keyword_search.py))
    - PostgreSQL full-text search (`ts_rank`) on the LLM's keyword phrase, with the LLM's filters applied.
    - In hybrid mode a product must match at least 75% of the query's words; partial matches of long queries were mostly noise.
@@ -102,16 +105,18 @@ It's safe to re-run: on an unchanged catalogue it takes about a minute and chang
 
 80 queries (keyword-style, natural-language, occasion, gender, vague and 10 Hindi) are scored against an answer key of 20 relevant products per query. Full results, the per-query breakdown and the Gemini comparison are in **[`evals/EVAL_RESULTS.md`](evals/EVAL_RESULTS.md)**.
 
-Hybrid search (what the app uses), same code with and without the LLM:
+**Choosing the LLM:** TinyLlama, Qwen 2.5 1.5B and Gemma 3 1B were compared, one at a time on the GPU ([`evals/LLM_COMPARISON.md`](evals/LLM_COMPARISON.md)):
 
-| | NDCG@10 | Precision@10 | MRR | Recall@20 | Recall@50 |
-|---|---|---|---|---|---|
-| Without LLM | 0.820 | 0.720 | 0.925 | 0.585 | 0.706 |
-| With TinyLlama | **0.831** | **0.731** | **0.931** | **0.594** | 0.705 |
+| | TinyLlama 1.1B (before) | **Gemma 3 1B (now)** |
+|---|---|---|
+| Multilingual queries: share of top 10 that's relevant (22 Hindi/Spanish/French queries) | 0.69 | **0.85** |
+| ↳ Spanish / French / Hindi | 0.54 / 0.72 / 0.79 | **0.89 / 1.00** / 0.76 |
+| English queries: hybrid NDCG@10 (70 queries) | 0.808 | 0.794 |
+| LLM time per query (GTX 1650) | ~0.3 s | ~0.9 s |
 
-- **TinyLlama used for all 70 English queries with 0 failures** (10 Hindi queries skipped by design). On a GTX 1650 it takes about 0.3 s per query (about 1.2 s on CPU).
-- **The gain is real but small:** 3 queries improved and none got worse. In an earlier run on older code, the Gemini API made hybrid search slightly worse (0.825 → 0.803), mostly by shortening vague queries to one word.
-- **Caveat:** the answer key was built from the embedding model's own top results, so it favours vector search (0.923 NDCG@10) and understates what keyword search and the LLM add.
+- **Multilingual search improves a lot; English is essentially unchanged.** English is level with search without any LLM (0.795). The extra ~0.6 s per search is a deliberate trade of speed for accuracy.
+- **Qwen 2.5 1.5B was ruled out:** it invented Hindi translations (red saree → "lilac").
+- **Why a dedicated test for non-English queries:** the main answer key was built from the embedding model's own top results. It favours vector search (0.923 NDCG@10), and for Hindi it rewards searching the Hindi text unchanged, even over a correct translation. Multilingual quality is therefore measured with written relevance rules ([`evals/MULTILINGUAL_EXPERIMENT.md`](evals/MULTILINGUAL_EXPERIMENT.md)).
 
 ```bash
 PYTHONPATH=. python3 scripts/run_eval.py \
@@ -165,7 +170,7 @@ This downloads the dataset, ingests the 44,072 products, computes their embeddin
 ### 5. Start the LLM
 
 ```bash
-ollama pull tinyllama
+ollama pull gemma3:1b
 ollama ps      # after the first query: PROCESSOR should say "100% GPU" if you have one
 ```
 
@@ -181,11 +186,11 @@ PYTHONPATH=. python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8000
 cd frontend && npm install && npm run dev
 ```
 
-The embedding model and TinyLlama load in the background when the backend starts (about a minute). Searches made during that time are slower.
+The embedding model and the LLM load in the background when the backend starts (about a minute). Searches made during that time are slower.
 
 ### Docker Compose
 
-`docker compose up` starts PostgreSQL, Redis, Ollama (it pulls TinyLlama automatically) and the API. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit). The frontend isn't included in Compose yet; see [Known limitations](#known-limitations).
+`docker compose up` starts PostgreSQL, Redis, Ollama (it pulls the configured model automatically) and the API. For GPU support, add the override: `docker compose -f docker-compose.yml -f docker-compose.gpu.yml up` (requires the NVIDIA Container Toolkit). The frontend isn't included in Compose yet; see [Known limitations](#known-limitations).
 
 ## API
 
@@ -196,7 +201,14 @@ Interactive documentation: **http://localhost:8000/docs**.
 | `POST` | `/search` | Hybrid, vector or keyword search with filters, sorting and pages |
 | `GET` | `/products` | Browse available products: `page`, `page_size`, `category`, `gender`, `color`, `season`, `sort` |
 | `GET` | `/products/facets` | Filter values in the catalogue (for dropdowns) |
+| `POST` | `/feedback` | Thumbs up (1), down (-1) or remove (0) on one search result, with its context |
+| `GET` | `/feedback/votes` | This browser's votes for a query (`client_id`, `query`) |
+| `GET` | `/feedback/summary` | Totals, share of good matches, queries with the most bad results, recent votes |
 | `GET` | `/health` | 200 when the database is reachable, 503 otherwise |
+
+**Search feedback:** each search result has 👍/👎 buttons, and the **Feedback** page in the UI summarizes the votes.
+- Each browser gets an anonymous ID (no accounts). Voting again on the same result for the same query replaces the vote.
+- Each vote is stored with its context: position, search method, sort, filters and what the LLM understood. That makes it possible to see *why* a result was bad, and later to turn votes into evaluation labels.
 
 **Rate limiting:** each search can call the LLM and the embedding model, so `POST /search` is limited per client IP: 30 searches per minute, with bursts of up to 10. Over the limit, the API returns `429 Too Many Requests` with a `Retry-After` header and `{"detail": "Too many searches. Try again in N seconds."}`, and the UI shows that message. Browsing, facets and `/health` aren't limited.
 
@@ -244,7 +256,8 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 | `EMBEDDING_BATCH_SIZE` | `64` | Batch size when embedding products |
 | `QUERY_UNDERSTANDING_ENABLED` | `true` | Use the LLM on each search |
 | `LLM_PROVIDER` | `ollama` | `ollama` (local) or `gemini` |
-| `OLLAMA_MODEL` | `tinyllama` | Ollama model name |
+| `OLLAMA_MODEL` | `gemma3:1b` | Ollama model name |
+| `LLM_SKIP_NON_LATIN_QUERIES` | `false` | Skip the LLM for non-Latin-script queries; set `true` for English-only models such as TinyLlama |
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama server |
 | `GEMINI_API_KEY` / `GEMINI_MODEL` | – / `gemini-3.5-flash-lite` | Only for `LLM_PROVIDER=gemini` |
 | `LLM_QUERY_UNDERSTANDING_TIMEOUT_SECONDS` | `8.0` | LLM time limit per search before falling back |
@@ -256,6 +269,7 @@ All settings come from environment variables or `.env` ([`core/config.py`](core/
 | `RATE_LIMIT_ENABLED` | `true` | Limit how often each client can search |
 | `SEARCH_RATE_LIMIT_PER_MINUTE` | `30` | Sustained searches allowed per client per minute |
 | `SEARCH_RATE_LIMIT_BURST` | `10` | Searches a client can make in a quick burst |
+| `FEEDBACK_RATE_LIMIT_PER_MINUTE` / `FEEDBACK_RATE_LIMIT_BURST` | `120` / `30` | The same limits for `POST /feedback` |
 | `TRUST_PROXY_HEADERS` | `false` | Read the client IP from `X-Forwarded-For`; enable only behind a reverse proxy that sets it |
 | `LOG_LEVEL` | `INFO` | Logging level |
 
@@ -264,16 +278,16 @@ Frontend: `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
 ## Testing
 
 ```bash
-python3 -m pytest tests/                 # backend: ~355 tests, about 1–5 minutes
+python3 -m pytest tests/                 # backend: ~420 tests, about 1–5 minutes
 python3 -m pytest tests/ -m slow         # opt-in tests that load the real embedding model
-cd frontend && npx vitest --run          # frontend: 55 tests
+cd frontend && npx vitest --run          # frontend: 70 tests
 ```
 
 - The backend tests use a fake LLM and fake embeddings, so they don't need Ollama or a GPU.
 - Integration tests use a separate `fashion_rec_test` database on the same PostgreSQL server, created automatically. Without PostgreSQL they're skipped.
 - Stop the backend and frontend while running the full suite on a machine with little memory.
 
-Current status: 355 passed and 2 known failures, both present before the latest changes:
+Current status: 418 passed and 2 known failures, both present before the latest changes:
 - `test_llm_inferred_filter_is_applied_and_changes_results` expects LLM filters to restrict *all* results, but they were deliberately limited to keyword search.
 - `test_e5_prefixes::test_batch_processing` is an embedding-model test that returns 4 results where it expects 3.
 
@@ -301,7 +315,10 @@ tests/                 unit/, integration/, model/ (slow)
 
 ## Known limitations
 
-- **The LLM step only helps Latin-script queries.** TinyLlama can't handle Hindi, so Hindi queries rely on the multilingual embedding search alone. The LLM's measured gain is small (+0.011 NDCG@10).
+- **Multilingual coverage:**
+  - Language detection covers English, Spanish, French and Hindi. Other Latin-script languages may be read as English and searched untranslated.
+  - Gemma 3 1B still mistranslates some queries, e.g. "काली जूती" (black jutti) → "black kurta".
+  - The LLM adds ~0.9 s per search on a GTX 1650, and Ollama serves one request at a time, which caps throughput at about 1 search/s.
 - **Evaluation:** the answer key favours vector search, and 80 queries can only show fairly large differences. An earlier, human-reviewed answer key (`ground_truth_v1.json`) no longer matches the database's product IDs.
 - **The vector index may miss matches.** Vector Recall@20 is 0.71 against an answer key made of the embedding model's own top 20. Approximate HNSW search with the default `ef_search = 40` is the likely cause, but this isn't confirmed yet.
 - **Data:** the dataset has no prices or usable images, so there's no price sorting and product cards show a color tile instead of a photo. "Outfit" queries return a single ranked list, not a combination of items.
@@ -320,3 +337,4 @@ tests/                 unit/, integration/, model/ (slow)
   - Redis is configured but not used.
   - There's no CI/CD and no production configuration.
 - **Catalogue sync** runs from cron or by hand; there's no endpoint or event-driven trigger.
+- **Feedback isn't used yet:** votes are collected and summarized, but they don't change ranking or feed the evaluation. The browser ID is anonymous and per device, so clearing site data starts fresh, and nothing stops someone voting many times from different browsers.

@@ -1,0 +1,120 @@
+{
+  "label": "degraded_hang",
+  "generated_at": "2026-10-06T05:14:59.733221+00:00",
+  "commit": "c818e43",
+  "config": {
+    "base_url": "http://127.0.0.1:8000",
+    "concurrency": [
+      4
+    ],
+    "requests": 200,
+    "repeats": 1,
+    "warmup": 0,
+    "method": "hybrid",
+    "seed": 7,
+    "timeout": 60.0,
+    "backend_pid": 13478,
+    "label": "degraded_hang"
+  },
+  "backend_idle_rss_mb": 1485.203125,
+  "levels": {
+    "4": {
+      "runs": [
+        {
+          "requests": 200,
+          "succeeded": 200,
+          "error_rate": 0.0,
+          "errors": {},
+          "throughput_rps": 2.228290982865157,
+          "latency_ms": {
+            "p50": 397.01245500009463,
+            "p95": 10442.97676879989,
+            "p99": 22969.12834007006,
+            "max": 24454.430010000124,
+            "mean": 1762.621700015004
+          },
+          "stages_ms": {
+            "embed": {
+              "p50": 133.45,
+              "p95": 1856.6449999999795,
+              "p99": 11601.817999999992,
+              "max": 12604.0,
+              "mean": 526.7845
+            },
+            "facets": {
+              "p50": 0.0,
+              "p95": 0.0,
+              "p99": 0.1,
+              "max": 0.7,
+              "mean": 0.006999999999999999
+            },
+            "keyword_db": {
+              "p50": 66.85,
+              "p95": 441.2699999999978,
+              "p99": 5342.6389999999965,
+              "max": 16921.8,
+              "mean": 286.276
+            },
+            "llm": {
+              "p50": 0.0,
+              "p95": 0.2,
+              "p99": 8126.956,
+              "max": 8224.7,
+              "mean": 243.93099999999998
+            },
+            "total": {
+              "p50": 378.95,
+              "p95": 10334.789999999999,
+              "p99": 22912.076999999997,
+              "max": 24430.4,
+              "mean": 1721.9495000000002
+            },
+            "types": {
+              "p50": 3.6500000000000004,
+              "p95": 115.60499999999999,
+              "p99": 563.4959999999999,
+              "max": 576.5,
+              "mean": 22.366000000000003
+            },
+            "vector_db": {
+              "p50": 149.85,
+              "p95": 2648.0249999999915,
+              "p99": 7973.329999999943,
+              "max": 17411.5,
+              "mean": 622.391
+            }
+          },
+          "llm_used_rate": 0.0,
+          "llm_fallbacks": {
+            "llm_unavailable": 200
+          },
+          "wall_seconds": 89.75488459000007,
+          "backend_peak_rss_mb": 1485.203125
+        }
+      ],
+      "median": {
+        "latency_ms.p50": 397.01245500009463,
+        "latency_ms.p95": 10442.97676879989,
+        "latency_ms.p99": 22969.12834007006,
+        "latency_ms.max": 24454.430010000124,
+        "throughput_rps": 2.228290982865157,
+        "error_rate": 0.0,
+        "llm_used_rate": 0.0,
+        "stages_ms.llm.p50": 0.0,
+        "stages_ms.llm.p95": 0.2,
+        "stages_ms.embed.p50": 133.45,
+        "stages_ms.embed.p95": 1856.6449999999795,
+        "stages_ms.vector_db.p50": 149.85,
+        "stages_ms.vector_db.p95": 2648.0249999999915,
+        "stages_ms.keyword_db.p50": 66.85,
+        "stages_ms.keyword_db.p95": 441.2699999999978,
+        "stages_ms.types.p50": 3.6500000000000004,
+        "stages_ms.types.p95": 115.60499999999999,
+        "stages_ms.facets.p50": 0.0,
+        "stages_ms.facets.p95": 0.0,
+        "stages_ms.total.p50": 378.95,
+        "stages_ms.total.p95": 10334.789999999999
+      }
+    }
+  }
+}

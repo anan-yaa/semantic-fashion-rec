@@ -5,13 +5,17 @@
  */
 
 import { Product } from '@/types/product'
+import { Vote } from '@/types/feedback'
 import { swatchBackground, tileBackground } from '@/lib/colors'
+import { FeedbackButtons } from './FeedbackButtons'
 
 interface ProductCardProps {
   product: Product
+  /** Search results only: the viewer's vote on this result */
+  feedback?: { vote: Vote; onVote: (vote: Vote) => void; disabled?: boolean }
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, feedback }: ProductCardProps) {
   const typeLabel = product.article_type ?? product.subcategory ?? product.category
   const details = [product.gender, product.color, product.season].filter(Boolean).join(' · ')
 
@@ -59,6 +63,12 @@ export function ProductCard({ product }: ProductCardProps) {
             {!product.availability && (
               <span className="text-xs px-2 py-0.5 rounded-full bg-red-50 text-red-700">Unavailable</span>
             )}
+          </div>
+        )}
+
+        {feedback && (
+          <div className="mt-auto pt-3 flex justify-end">
+            <FeedbackButtons {...feedback} />
           </div>
         )}
       </div>

@@ -24,7 +24,7 @@ PHASE1_FIXED_SCHEMA_SQL = """
 CREATE EXTENSION IF NOT EXISTS vector;
 
 CREATE TABLE products (
-    id UUID NOT NULL,
+    id VARCHAR(36) NOT NULL,  -- matches 743be6084b59 (sa.String(36))
     external_product_id VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     description TEXT,
@@ -74,6 +74,7 @@ def fresh_postgres_for_migration():
 
     engine = create_engine(TEST_POSTGRES_URL)
     with engine.connect() as conn:
+        conn.execute(text("DROP TABLE IF EXISTS search_feedback CASCADE"))
         conn.execute(text("DROP TABLE IF EXISTS products CASCADE"))
         conn.execute(text("DROP TABLE IF EXISTS alembic_version CASCADE"))
         conn.commit()
@@ -81,6 +82,7 @@ def fresh_postgres_for_migration():
     yield engine
 
     with engine.connect() as conn:
+        conn.execute(text("DROP TABLE IF EXISTS search_feedback CASCADE"))
         conn.execute(text("DROP TABLE IF EXISTS products CASCADE"))
         conn.execute(text("DROP TABLE IF EXISTS alembic_version CASCADE"))
         conn.commit()
@@ -107,7 +109,7 @@ class TestMigration0002:
         alembic_cfg.set_main_option("sqlalchemy.url", TEST_POSTGRES_URL)
 
         command.stamp(alembic_cfg, "743be6084b59")
-        command.upgrade(alembic_cfg, "head")
+        command.upgrade(alembic_cfg, "0002_day2_search_columns")
 
         # Verify migration 0002's effects
         with engine.connect() as conn:
@@ -157,7 +159,7 @@ class TestMigration0002:
         alembic_cfg.set_main_option("sqlalchemy.url", TEST_POSTGRES_URL)
 
         command.stamp(alembic_cfg, "743be6084b59")
-        command.upgrade(alembic_cfg, "head")
+        command.upgrade(alembic_cfg, "0002_day2_search_columns")
         command.downgrade(alembic_cfg, "743be6084b59")
 
         with engine.connect() as conn:
@@ -193,3 +195,62 @@ class TestMigration0002:
 
         assert result is not None
         assert "<=>" in result[0]
+
+
+class TestMigration0003:
+    """Migration 0003_search_feedback: table for thumbs-up/down votes on search results."""
+
+    def _alembic_at_0002(self, engine):
+        with engine.connect() as conn:
+            conn.execute(text(PHASE1_FIXED_SCHEMA_SQL))
+            conn.commit()
+        repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+        alembic_cfg = Config(os.path.join(repo_root, "alembic.ini"))
+        alembic_cfg.set_main_option("sqlalchemy.url", TEST_POSTGRES_URL)
+        command.stamp(alembic_cfg, "743be6084b59")
+        command.upgrade(alembic_cfg, "0002_day2_search_columns")
+        return alembic_cfg
+
+    def test_upgrade_creates_feedback_table_with_constraints(self, fresh_postgres_for_migration):
+        engine = fresh_postgres_for_migration
+        alembic_cfg = self._alembic_at_0002(engine)
+
+        command.upgrade(alembic_cfg, "0003_search_feedback")
+
+        with engine.connect() as conn:
+            constraints = {
+                row[0] for row in conn.execute(text(
+                    "SELECT conname FROM pg_constraint WHERE conrelid = 'search_feedback'::regclass"
+                ))
+            }
+            assert {
+                "search_feedback_product_id_fkey",
+                "uq_feedback_client_query_product",
+                "ck_feedback_vote",
+                "ck_feedback_position",
+            } <= constraints
+
+            conn.execute(text(
+                "INSERT INTO products (id, external_product_id, name, currency, availability) "
+                "VALUES ('p1', 'e1', 'Shirt', 'USD', true)"
+            ))
+            conn.execute(text(
+                "INSERT INTO search_feedback (client_id, query, query_normalized, product_id, vote, position) "
+                "VALUES ('client-1234', 'shirt', 'shirt', 'p1', 1, 1)"
+            ))
+            with pytest.raises(Exception):
+                conn.execute(text(
+                    "INSERT INTO search_feedback (client_id, query, query_normalized, product_id, vote, position) "
+                    "VALUES ('client-1234', 'shirt', 'shirt', 'p1', 5, 1)"
+                ))
+
+    def test_downgrade_drops_feedback_table(self, fresh_postgres_for_migration):
+        engine = fresh_postgres_for_migration
+        alembic_cfg = self._alembic_at_0002(engine)
+        command.upgrade(alembic_cfg, "0003_search_feedback")
+
+        command.downgrade(alembic_cfg, "0002_day2_search_columns")
+
+        with engine.connect() as conn:
+            assert conn.execute(text("SELECT to_regclass('search_feedback')")).scalar() is None
+

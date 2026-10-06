@@ -5,7 +5,7 @@ import threading
 import time
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session
 
 from app.api.rate_limit import limit_search_rate
@@ -22,9 +22,15 @@ from app.schemas.search import (
     SearchRequest,
     SearchResponse,
 )
-from app.services.query_understanding import get_catalogue_facets, merge_filters, understand_query
+from app.services.query_understanding import (
+    get_catalogue_facets,
+    merge_filters,
+    search_texts,
+    understand_query,
+)
 from app.services.search import search_hybrid
 from app.services.search.sorting import sort_products
+from app.services.timing import server_timing_header, start_timing, timed
 from core.config import settings
 
 logger = logging.getLogger(__name__)
@@ -89,6 +95,7 @@ def _reset_query_understanding_provider_cache() -> None:
 )
 def search(
     request: SearchRequest,
+    response: Response,
     session: Session = Depends(get_session),
     provider: EmbeddingProvider = Depends(get_search_provider),
     llm_provider: LLMProvider = Depends(get_query_understanding_provider),
@@ -113,7 +120,9 @@ def search(
         SearchResponse with ranked products.
     """
     try:
-        keyword_query_text = None
+        request_start = time.perf_counter()
+        timings = start_timing()
+        understanding = None
         user_filters = request.filters or SearchFilter()
         if user_filters.availability is None:
             # Products dropped from the catalogue feed stay in the DB as
@@ -127,13 +136,12 @@ def search(
         understanding_info = None
 
         if settings.query_understanding_enabled:
-            llm_start = time.time()
-            understanding = understand_query(
-                llm_provider, request.query, get_catalogue_facets(session)
-            )
-            llm_latency_ms = (time.time() - llm_start) * 1000
+            with timed("facets"):
+                facets = get_catalogue_facets(session)
+            with timed("llm"):
+                understanding = understand_query(llm_provider, request.query, facets)
+            llm_latency_ms = timings["llm"]
 
-            keyword_query_text = understanding.cleaned_query
             used_llm = understanding.used_llm
             llm_error = understanding.error
 
@@ -143,22 +151,26 @@ def search(
 
             understanding_info = QueryUnderstandingInfo(
                 used_llm=used_llm,
-                keywords=understanding.cleaned_query if used_llm else None,
+                translated=understanding.translated,
+                english_query=understanding.cleaned_query if understanding.translated else None,
                 inferred_filters=understanding.filters.model_dump(
                     include={"category", "gender", "color", "season"}, exclude_none=True
                 ),
                 fallback_reason=understanding.fallback_reason,
             )
 
+        # Non-English queries the LLM translated are searched in English.
+        vector_text, keyword_text = search_texts(request.query, understanding)
+
         # Rank the top matches once, then sort and page through them.
         matches, method_used, search_time_ms = search_hybrid(
             session,
-            query_text=request.query,
+            query_text=vector_text,
             provider=provider,
             filters=vector_filters,  # User filters only - LLM filters never constrain vector search
             method=request.method,
             limit=MAX_SEARCH_RESULTS,
-            keyword_query_text=keyword_query_text,
+            keyword_query_text=keyword_text,
             keyword_filters=keyword_filters,  # User + LLM-inferred filters for keyword path
         )
         matches = sort_products(matches, request.sort)
@@ -179,7 +191,10 @@ def search(
             }
         )
 
-        # Build response
+        # Per-stage durations for clients and load tests (browser DevTools show them too).
+        timings["total"] = (time.perf_counter() - request_start) * 1000
+        response.headers["Server-Timing"] = server_timing_header(timings)
+
         return SearchResponse(
             products=[p for p in products],  # Schema will convert via from_attributes
             query=request.query,

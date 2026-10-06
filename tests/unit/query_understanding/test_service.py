@@ -7,7 +7,9 @@ from app.providers.fake_llm import FakeLLMProvider
 from app.providers.llm_base import QueryUnderstanding
 from app.schemas.search import SearchFilter
 from app.services.query_understanding.service import (
+    QueryUnderstandingResult,
     merge_filters,
+    search_texts,
     understand_query,
     validate_filters,
 )
@@ -217,3 +219,25 @@ class TestCircuitBreakerIntegration:
         understand_query(failing, "q", VALID_FILTERS)
 
         assert self.breaker.state == CircuitState.CLOSED
+
+
+class TestSearchTexts:
+    def _result(self, translated, used_llm=True):
+        return QueryUnderstandingResult(
+            cleaned_query="red dress for women", filters=SearchFilter(), used_llm=used_llm, translated=translated
+        )
+
+    def test_translated_query_is_searched_in_english_on_both_paths(self):
+        assert search_texts("vestido rojo", self._result(True)) == ("red dress for women", "red dress for women")
+
+    def test_english_query_keeps_the_users_words(self):
+        assert search_texts("red dresses, women", self._result(False)) == ("red dresses, women", "red dresses, women")
+
+    def test_no_llm_or_fallback_uses_the_original(self):
+        assert search_texts("vestido rojo", None) == ("vestido rojo", "vestido rojo")
+        assert search_texts("vestido rojo", self._result(True, used_llm=False)) == ("vestido rojo", "vestido rojo")
+
+    def test_service_passes_the_providers_translated_flag(self):
+        canned = QueryUnderstanding(cleaned_query="blue shirt", translated=True)
+        result = understand_query(FakeLLMProvider(canned_responses={"नीली शर्ट": canned}), "नीली शर्ट", VALID_FILTERS)
+        assert result.translated is True

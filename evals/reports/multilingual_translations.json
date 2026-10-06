@@ -1,0 +1,94 @@
+{
+  "translator": "Helsinki-NLP/opus-mt-mul-en",
+  "device": "cuda",
+  "translations": {
+    "नीली शर्ट": {
+      "english": "Blue Shirt",
+      "ms": 66.07684600021457
+    },
+    "सर्दियों का ऊनी कोट": {
+      "english": "The Unicorn’s Unicorn",
+      "ms": 111.88347400002385
+    },
+    "काली जूती": {
+      "english": "black joker",
+      "ms": 41.79267000017717
+    },
+    "महिलाओं के लिए गहने": {
+      "english": "The Wounds of Women",
+      "ms": 56.11759700059338
+    },
+    "पुरुषों के लिए घड़ी": {
+      "english": "A Time for Men",
+      "ms": 43.53285599972878
+    },
+    "लाल साड़ी": {
+      "english": "red joker",
+      "ms": 52.012895999723696
+    },
+    "बच्चों के कपड़े": {
+      "english": "Children’s Picture Search",
+      "ms": 64.20264999997016
+    },
+    "सफेद जूते": {
+      "english": "Whitechess-side",
+      "ms": 56.60622699997475
+    },
+    "चमड़े का बैग": {
+      "english": "the jack of clubs",
+      "ms": 38.37684700010868
+    },
+    "गर्मियों के कपड़े": {
+      "english": "The clothes of the men of war",
+      "ms": 73.84034000006068
+    },
+    "atuendo playero": {
+      "english": "playing a player",
+      "ms": 35.85103100067499
+    },
+    "vestido rojo para mujer": {
+      "english": "Red dress for women",
+      "ms": 61.5746269995725
+    },
+    "chaqueta de invierno para hombre": {
+      "english": "winter jacket for man",
+      "ms": 45.506614000260015
+    },
+    "zapatos deportivos": {
+      "english": "Sports shoes",
+      "ms": 41.70507299932069
+    },
+    "reloj de mujer": {
+      "english": "women's watches",
+      "ms": 83.52299899979698
+    },
+    "gafas de sol": {
+      "english": "sunglasses",
+      "ms": 61.57737699959398
+    },
+    "camisa azul de hombre": {
+      "english": "man's blue shirt",
+      "ms": 54.15379900023254
+    },
+    "bolso de cuero negro": {
+      "english": "black leather bag",
+      "ms": 40.55563499969139
+    },
+    "robe rouge pour femme": {
+      "english": "Red dress for women",
+      "ms": 40.90149399962684
+    },
+    "chaussures de sport pour homme": {
+      "english": "sports shoes for man",
+      "ms": 47.860167999715486
+    },
+    "sac à main noir": {
+      "english": "black joker",
+      "ms": 44.91039099957561
+    },
+    "lunettes de soleil": {
+      "english": "Sunshines",
+      "ms": 63.97942300009163
+    }
+  }
+}

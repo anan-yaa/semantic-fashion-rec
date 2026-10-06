@@ -41,7 +41,10 @@ class Settings(BaseSettings):
     catalogue_facets_cache_seconds: int = Field(default=300)
     llm_provider: str = Field(default="ollama")  # "gemini" or "ollama"
     gemini_model: str = Field(default="gemini-3.5-flash-lite")
-    ollama_model: str = Field(default="tinyllama")
+    ollama_model: str = Field(default="gemma3:1b")
+    # For English-only models (e.g. tinyllama): skip the LLM for non-Latin-script
+    # queries instead of letting it mistranslate them
+    llm_skip_non_latin_queries: bool = Field(default=False)
     ollama_base_url: str = Field(default="http://localhost:11434")
     # Request-path timeout: TinyLlama 1.1B is fast (~2-3s on GTX 1650)
     llm_query_understanding_timeout_seconds: float = Field(default=8.0)
@@ -58,6 +61,8 @@ class Settings(BaseSettings):
     rate_limit_enabled: bool = Field(default=True)
     search_rate_limit_per_minute: float = Field(default=30.0, gt=0)
     search_rate_limit_burst: int = Field(default=10, ge=1)
+    feedback_rate_limit_per_minute: float = Field(default=120.0, gt=0)
+    feedback_rate_limit_burst: int = Field(default=30, ge=1)
     # Only enable behind a reverse proxy that sets X-Forwarded-For; otherwise
     # clients could send the header themselves to dodge the limit.
     trust_proxy_headers: bool = Field(default=False)

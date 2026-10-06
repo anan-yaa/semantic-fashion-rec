@@ -14,7 +14,17 @@ import {
   SearchResponse,
   SortOrder,
 } from '@/types/product'
-import { getFacets, getProducts, RateLimitError, searchProducts } from '@/lib/api'
+import { Vote } from '@/types/feedback'
+import {
+  getFacets,
+  getMyVotes,
+  getProducts,
+  RateLimitError,
+  searchProducts,
+  sendFeedback,
+} from '@/lib/api'
+import { getClientId } from '@/lib/clientId'
+import { SiteHeader } from '@/components/SiteHeader'
 import { ProductGrid } from '@/components/ProductGrid'
 import { SearchBar } from '@/components/SearchBar'
 import { SearchExamples } from '@/components/SearchExamples'
@@ -56,6 +66,9 @@ export default function CataloguePage() {
   const [isSlow, setIsSlow] = useState(false)
   const [searchError, setSearchError] = useState<string | null>(null)
   const [isRateLimited, setIsRateLimited] = useState(false)
+
+  // This browser's thumbs up/down on the current query's results
+  const [votes, setVotes] = useState<Record<string, Vote>>({})
 
   const inSearchMode = activeQuery !== ''
 
@@ -127,6 +140,21 @@ export default function CataloguePage() {
     }
   }, [activeQuery, inSearchMode, searchRun, filters, sort, searchPage])
 
+  // Show votes this browser already gave for the query
+  useEffect(() => {
+    setVotes({})
+    if (!inSearchMode) return
+    let cancelled = false
+    getMyVotes(getClientId(), activeQuery)
+      .then((saved) => {
+        if (!cancelled) setVotes(saved)
+      })
+      .catch(() => {}) // votes are optional; search works without them
+    return () => {
+      cancelled = true
+    }
+  }, [activeQuery, inSearchMode])
+
   // After a few seconds, explain why a search might be slow
   useEffect(() => {
     if (!isSearching) {
@@ -167,6 +195,25 @@ export default function CataloguePage() {
     setSearchRun((n) => n + 1)
   }
 
+  const handleVote = (product: Product, index: number, vote: Vote) => {
+    const previous = votes[product.id] ?? 0
+    setVotes((v) => ({ ...v, [product.id]: vote }))
+    sendFeedback(getClientId(), activeQuery, product.id, vote, {
+      position: (searchPage - 1) * PAGE_SIZE + index + 1,
+      method: searchResult?.method,
+      sort,
+      filters,
+      understanding: searchResult?.understanding,
+    }).catch(() => setVotes((v) => ({ ...v, [product.id]: previous })))
+  }
+
+  // /?q=... (e.g. from the feedback page) runs that search on load
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q')?.trim()
+    if (q) runQuery(q)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const handleClear = () => {
     setQuery('')
     setActiveQuery('')
@@ -194,17 +241,13 @@ export default function CataloguePage() {
 
   return (
     <main className="min-h-screen bg-surface text-primary">
-      {/* Top bar */}
-      <header className="sticky top-0 z-10 border-b border-border bg-white/85 backdrop-blur">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
-          <button onClick={handleClear} className="font-semibold tracking-tight text-lg">
-            Fashion<span className="text-accent">Rec</span>
-          </button>
-          <p className="hidden sm:block text-xs text-muted">
-            Semantic + keyword search · local LLM query understanding · {total ? total.toLocaleString() : '44K'} products
-          </p>
-        </div>
-      </header>
+      <SiteHeader
+        active="search"
+        onBrandClick={handleClear}
+        subtitle={`Semantic + keyword search · local LLM query understanding · ${
+          total ? total.toLocaleString() : '44K'
+        } products`}
+      />
 
       {/* Search hero */}
       <section className="border-b border-border bg-white">
@@ -264,7 +307,12 @@ export default function CataloguePage() {
                 {!isSearching && <QueryUnderstanding understanding={searchResult?.understanding} />}
               </div>
               {filterBar}
-              <ProductGrid products={searchResult?.products ?? []} isLoading={isSearching} />
+              <ProductGrid
+                products={searchResult?.products ?? []}
+                isLoading={isSearching}
+                votes={votes}
+                onVote={handleVote}
+              />
               <Pagination
                 page={searchPage}
                 totalPages={searchResult?.total_pages ?? 0}

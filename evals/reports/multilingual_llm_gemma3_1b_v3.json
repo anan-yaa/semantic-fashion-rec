@@ -1,0 +1,439 @@
+{
+  "generated_at": "2026-10-06T08:01:11.523861+00:00",
+  "translator": "app LLM (Ollama)",
+  "llm_ms_median": 907.65,
+  "summary_relevant_at_10": {
+    "all": {
+      "app_hybrid": 0.85,
+      "hybrid_translated": 0.85,
+      "vector_translated": 0.7636363636363637
+    },
+    "hi": {
+      "app_hybrid": 0.76,
+      "hybrid_translated": 0.76,
+      "vector_translated": 0.6599999999999999
+    },
+    "es": {
+      "app_hybrid": 0.8875,
+      "hybrid_translated": 0.8875,
+      "vector_translated": 0.775
+    },
+    "fr": {
+      "app_hybrid": 1.0,
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    }
+  },
+  "rows": [
+    {
+      "query": "नीली शर्ट",
+      "lang": "hi",
+      "meaning": "blue shirt",
+      "translation": "blue shirt",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Blue"
+      },
+      "llm_ms": 894.1,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Gini and Jony Boys Check Blue Shirt [Shirts]",
+        "Turtle Check Men Blue Shirt [Shirts]",
+        "John Miller Men Check Blue Shirt [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "सर्दियों का ऊनी कोट",
+      "lang": "hi",
+      "meaning": "winter woollen coat",
+      "translation": "winter wool coat",
+      "llm_used": true,
+      "llm_filters": {
+        "season": "Winter"
+      },
+      "llm_ms": 1061.8,
+      "app_hybrid": 0.6,
+      "app_hybrid_top3": [
+        "Jealous 21 Women Washed Blue Waistcoat [Waistcoat]",
+        "United Colors Of Benetton Women Light Winter Black Jackets [Jackets]",
+        "Chromozome White Innerwear Vest PR-08 [Innerwear Vests]"
+      ],
+      "hybrid_translated": 0.6,
+      "vector_translated": 0.6
+    },
+    {
+      "query": "काली जूती",
+      "lang": "hi",
+      "meaning": "black jutti (flat shoe)",
+      "translation": "black kurta",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Black"
+      },
+      "llm_ms": 4881.0,
+      "app_hybrid": 0.0,
+      "app_hybrid_top3": [
+        "Sushilas Women Printed Black Kurta [Kurtas]",
+        "Fabindia Men Printed Black Kurta [Kurtas]",
+        "W Women Printed Black Kurta [Kurtas]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "महिलाओं के लिए गहने",
+      "lang": "hi",
+      "meaning": "jewellery for women",
+      "translation": "women's jewelry",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Women"
+      },
+      "llm_ms": 917.6,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Ivory Tag Women Glinting Pearls Cream Necklace [Necklace and Chains]",
+        "Ivory Tag Women Swirling Jazz Golden Coloured Necklace [Necklace and Chains]",
+        "Ivory Tag Women Blazing Stone Multicolour Necklace [Necklace and Chains]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "पुरुषों के लिए घड़ी",
+      "lang": "hi",
+      "meaning": "watch for men",
+      "translation": "men's watch",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Men"
+      },
+      "llm_ms": 1017.0,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Timex Men White Dial Watch T2M707 [Watches]",
+        "Fastrack Men Red and Black Dial Watch [Watches]",
+        "Timex Men White Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "लाल साड़ी",
+      "lang": "hi",
+      "meaning": "red saree",
+      "translation": "red saree",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Red"
+      },
+      "llm_ms": 991.5,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Fabindia Red Self-Striped Saree [Sarees]",
+        "Fabindia Red Tie & Dye Ghicha Striped Saree [Sarees]",
+        "Fabindia Red Self-Striped Saree [Sarees]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "बच्चों के कपड़े",
+      "lang": "hi",
+      "meaning": "children's clothes",
+      "translation": "children's clothes",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 1053.0,
+      "app_hybrid": 0.0,
+      "app_hybrid_top3": [
+        "Gini and Jony Kids Boys Stripes Pink Shirts [Shirts]",
+        "Gini and Jony Kids Boys Stripes Pink Shirts [Shirts]",
+        "Gini and Jony Kids Girls Printed Pink Tops [Tops]"
+      ],
+      "hybrid_translated": 0.0,
+      "vector_translated": 0.0
+    },
+    {
+      "query": "सफेद जूते",
+      "lang": "hi",
+      "meaning": "white shoes",
+      "translation": "white shoes",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "White"
+      },
+      "llm_ms": 880.8,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "HM Women White Sandals [Heels]",
+        "Puma Men Tergament White White Casual Shoes [Casual Shoes]",
+        "HM Women White Sandals [Flats]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "चमड़े का बैग",
+      "lang": "hi",
+      "meaning": "leather bag",
+      "translation": "leather bag",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 910.5,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Fiorelli Women Black and Taupe Leather Handbag [Handbags]",
+        "Fiorelli Women Black Leather Handbag [Handbags]",
+        "Yelloe Women Leather Brown Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "गर्मियों के कपड़े",
+      "lang": "hi",
+      "meaning": "summer clothes",
+      "translation": "summer clothes",
+      "llm_used": true,
+      "llm_filters": {
+        "season": "Summer"
+      },
+      "llm_ms": 834.9,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Little Miss Girls Blazing Yellow Clothing Set [Clothing Set]",
+        "Allen Solly Woman Yellow Top [Tops]",
+        "Jungle Book Boys Baby Red Clothing Set [Clothing Set]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "atuendo playero",
+      "lang": "es",
+      "meaning": "beach outfit",
+      "translation": "playero outfit",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 896.1,
+      "app_hybrid": 0.1,
+      "app_hybrid_top3": [
+        "John Players Men Stripes Orange Polo T-Shirt [Tshirts]",
+        "John Players Men Blue Striped Polo T-Shirt [Tshirts]",
+        "John Players Men Stripes Green Polo T-Shirt [Tshirts]"
+      ],
+      "hybrid_translated": 0.1,
+      "vector_translated": 0.1
+    },
+    {
+      "query": "vestido rojo para mujer",
+      "lang": "es",
+      "meaning": "red dress for women",
+      "translation": "red dress for woman",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Women",
+        "color": "Red"
+      },
+      "llm_ms": 901.4,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "chaqueta de invierno para hombre",
+      "lang": "es",
+      "meaning": "men's winter jacket",
+      "translation": "winter jacket for man",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Men",
+        "season": "Winter"
+      },
+      "llm_ms": 974.8,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Just Natural Men Black Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Red Jacket [Jackets]",
+        "U.S. Polo Assn. Men Solid Olive Jacket [Jackets]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "zapatos deportivos",
+      "lang": "es",
+      "meaning": "sports shoes",
+      "translation": "sports shoes",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 866.4,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]",
+        "F Sports Men Black Pace Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "reloj de mujer",
+      "lang": "es",
+      "meaning": "women's watch",
+      "translation": "woman's watch",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Women"
+      },
+      "llm_ms": 933.7,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Titan Women Raga Mother Of Pearl Dial Watch [Watches]",
+        "Titan Women Mother Of Pearl Watch [Watches]",
+        "Fastrack Women White Dial Watch [Watches]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "gafas de sol",
+      "lang": "es",
+      "meaning": "sunglasses",
+      "translation": "sunglasses",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 859.7,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Fastrack Men Steal Sunglasses [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "camisa azul de hombre",
+      "lang": "es",
+      "meaning": "men's blue shirt",
+      "translation": "blue shirt for man",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Men",
+        "color": "Blue"
+      },
+      "llm_ms": 938.8,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "John Miller Men Stripes Blue Blue Shirts [Shirts]",
+        "John Miller Men Check Blue Shirt [Shirts]",
+        "John Miller Men Blue Self Design Blue Shirts [Shirts]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 0.1
+    },
+    {
+      "query": "bolso de cuero negro",
+      "lang": "es",
+      "meaning": "black leather handbag",
+      "translation": "black leather purse",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Black"
+      },
+      "llm_ms": 869.7,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Yelloe Black Envelope Look Handbag [Handbags]",
+        "Lino Perros Women Leatherette Black Sling Bag [Handbags]",
+        "Lino Perros Women Leatherette Black Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "robe rouge pour femme",
+      "lang": "fr",
+      "meaning": "red dress for women",
+      "translation": "red dress for woman",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Women",
+        "color": "Red"
+      },
+      "llm_ms": 845.7,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Arrow Woman Rima Red Dress [Dresses]",
+        "AND Women Red Dress [Dresses]",
+        "AND by Anita Dongre Women Printed Red Dresses [Dresses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "chaussures de sport pour homme",
+      "lang": "fr",
+      "meaning": "men's sports shoes",
+      "translation": "shoes for sports men",
+      "llm_used": true,
+      "llm_filters": {
+        "gender": "Men"
+      },
+      "llm_ms": 895.3,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "ADIDAS Men Sports Black Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]",
+        "ADIDAS Men Sports White Sports Shoes [Sports Shoes]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "sac à main noir",
+      "lang": "fr",
+      "meaning": "black handbag",
+      "translation": "black handbag",
+      "llm_used": true,
+      "llm_filters": {
+        "color": "Black"
+      },
+      "llm_ms": 940.2,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Murcia Women Black Black Handbags [Handbags]",
+        "Murcia Women Black Handpainted Print Handbag [Handbags]",
+        "Yelloe Black Envelope Look Handbag [Handbags]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    },
+    {
+      "query": "lunettes de soleil",
+      "lang": "fr",
+      "meaning": "sunglasses",
+      "translation": "sunglasses",
+      "llm_used": true,
+      "llm_filters": {},
+      "llm_ms": 904.8,
+      "app_hybrid": 1.0,
+      "app_hybrid_top3": [
+        "Speedo Men Sheet Sunglasses [Sunglasses]",
+        "Fastrack Men Steal Sunglasses [Sunglasses]",
+        "Speedo Men Sheet Sunglasses [Sunglasses]"
+      ],
+      "hybrid_translated": 1.0,
+      "vector_translated": 1.0
+    }
+  ]
+}

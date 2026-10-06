@@ -1,5 +1,14 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { getFacets, getProducts, getHealth, RateLimitError, searchProducts } from '@/lib/api'
+import {
+  getFacets,
+  getFeedbackSummary,
+  getHealth,
+  getMyVotes,
+  getProducts,
+  RateLimitError,
+  searchProducts,
+  sendFeedback,
+} from '@/lib/api'
 
 // Mock fetch
 global.fetch = vi.fn()
@@ -221,6 +230,41 @@ describe('API client', () => {
       expect(error).toBeInstanceOf(RateLimitError)
       expect(error.message).toBe('Too many searches. Try again in 7 seconds.')
       expect(error.retryAfterSeconds).toBe(7)
+    })
+  })
+
+  describe('feedback', () => {
+    it('sends a vote with its search context', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => ({ vote: -1 }) })
+
+      const stored = await sendFeedback('client-1234', 'red dress', 'p1', -1, {
+        position: 5,
+        method: 'hybrid',
+        sort: 'relevance',
+        filters: { gender: 'Women' },
+      })
+
+      expect(stored).toBe(-1)
+      const [url, init] = (global.fetch as any).mock.calls[0]
+      expect(url).toContain('/feedback')
+      expect(JSON.parse(init.body)).toMatchObject({
+        client_id: 'client-1234', query: 'red dress', product_id: 'p1', vote: -1, position: 5,
+        method: 'hybrid', filters: { gender: 'Women' },
+      })
+    })
+
+    it('gets this browser\'s votes for a query', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => ({ votes: { p1: 1 } }) })
+
+      await expect(getMyVotes('client-1234', 'red dress')).resolves.toEqual({ p1: 1 })
+      expect((global.fetch as any).mock.calls[0][0]).toContain('/feedback/votes?client_id=client-1234&query=red+dress')
+    })
+
+    it('gets the summary', async () => {
+      ;(global.fetch as any).mockResolvedValueOnce({ ok: true, json: async () => ({ total_votes: 3 }) })
+
+      await expect(getFeedbackSummary(5)).resolves.toEqual({ total_votes: 3 })
+      expect((global.fetch as any).mock.calls[0][0]).toContain('/feedback/summary?limit=5')
     })
   })
 })

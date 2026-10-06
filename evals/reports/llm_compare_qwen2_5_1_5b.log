@@ -1,0 +1,299 @@
+2026-10-06 07:23:06,705 - __main__ - INFO - Loaded 80 judged queries from evals/ground_truth/ground_truth_v2_real.json
+2026-10-06 07:23:06,705 - app.providers.factory - INFO - Using HuggingFaceE5Provider: intfloat/multilingual-e5-base
+2026-10-06 07:23:13,356 - app.providers.e5 - INFO - E5Provider initialized: model=intfloat/multilingual-e5-base, device=cuda
+2026-10-06 07:23:13,447 - app.providers.llm_factory - INFO - Using OllamaProvider: qwen2.5:1.5b at http://localhost:11434, timeout=15.0s
+2026-10-06 07:23:13,447 - __main__ - INFO - Query understanding ENABLED for this eval run - making real LLM API calls
+2026-10-06 07:23:20,936 - app.providers.e5 - INFO - Loading model intfloat/multilingual-e5-base on cuda...
+2026-10-06 07:23:21,248 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-06 07:23:21,248 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-06 07:23:21,266 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-06 07:23:21,497 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:23:21,500 - sentence_transformers.base.model - INFO - Loading SentenceTransformer model from intfloat/multilingual-e5-base.
+2026-10-06 07:23:21,730 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/config_sentence_transformers.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:23:21,961 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:23:21,982 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/README.md?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2FREADME.md=&etag=%22cb9a717ebcd784123f8bc5ea79b4ba0db4cf2f1d%22 "HTTP/1.1 200 OK"
+2026-10-06 07:23:22,228 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:23:22,252 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/modules.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fmodules.json=&etag=%22ac2039abdf6ff023b27c919bb9675cfe378cb10f%22 "HTTP/1.1 200 OK"
+2026-10-06 07:23:22,483 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:23:22,500 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/sentence_bert_config.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eca68d85ecd3034cf4174d8a4033a75344ea62d%22 "HTTP/1.1 200 OK"
+2026-10-06 07:23:22,733 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:23:22,996 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:23:23,317 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  23%|██▎       | 46/199 [00:00<00:00, 449.47it/s]Loading weights:  48%|████▊     | 96/199 [00:00<00:00, 470.14it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 682.72it/s]
+2026-10-06 07:23:24,067 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:23:24,384 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-06 07:23:24,625 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-06 07:23:26,549 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+2026-10-06 07:23:26,847 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-06 07:23:26,870 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/intfloat/multilingual-e5-base/d128750597153bb5987e10b1c3493a34e5a4502a/1_Pooling%2Fconfig.json?%2Fintfloat%2Fmultilingual-e5-base%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%222a824fa43c359360ecddb16808b539c6be892fef%22 "HTTP/1.1 200 OK"
+2026-10-06 07:23:27,113 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/intfloat/multilingual-e5-base/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-06 07:23:27,354 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/intfloat/multilingual-e5-base "HTTP/1.1 200 OK"
+/home/ananyaa/code/fashion-rec/app/providers/e5.py:56: FutureWarning: The `get_sentence_embedding_dimension` method has been renamed to `get_embedding_dimension`.
+  logger.info(f"Model loaded. Output dimension: {self._model.get_sentence_embedding_dimension()}")
+2026-10-06 07:23:28,672 - app.providers.e5 - INFO - Model loaded. Output dimension: 768
+2026-10-06 07:23:29,609 - app.services.search.hybrid - INFO - Search completed: 50 results in 15488.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:29,753 - app.services.search.hybrid - INFO - Search completed: 41 results in 142.2ms using SearchMethod.VECTOR
+2026-10-06 07:23:29,832 - app.services.search.hybrid - INFO - Search completed: 50 results in 79.5ms using SearchMethod.KEYWORD
+2026-10-06 07:23:30,581 - app.services.search.hybrid - INFO - Search completed: 50 results in 198.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:30,623 - app.services.search.hybrid - INFO - Search completed: 43 results in 41.9ms using SearchMethod.VECTOR
+2026-10-06 07:23:30,702 - app.services.search.hybrid - INFO - Search completed: 50 results in 78.4ms using SearchMethod.KEYWORD
+2026-10-06 07:23:31,307 - app.services.search.hybrid - INFO - Search completed: 50 results in 217.8ms using SearchMethod.HYBRID
+2026-10-06 07:23:31,355 - app.services.search.hybrid - INFO - Search completed: 43 results in 47.5ms using SearchMethod.VECTOR
+2026-10-06 07:23:31,393 - app.services.search.hybrid - INFO - Search completed: 50 results in 37.1ms using SearchMethod.KEYWORD
+2026-10-06 07:23:32,400 - app.services.search.hybrid - INFO - Search completed: 50 results in 644.0ms using SearchMethod.HYBRID
+2026-10-06 07:23:32,620 - app.services.search.hybrid - INFO - Search completed: 40 results in 219.3ms using SearchMethod.VECTOR
+2026-10-06 07:23:32,692 - app.services.search.hybrid - INFO - Search completed: 50 results in 71.9ms using SearchMethod.KEYWORD
+2026-10-06 07:23:33,825 - app.services.search.hybrid - INFO - Search completed: 50 results in 772.1ms using SearchMethod.HYBRID
+2026-10-06 07:23:34,040 - app.services.search.hybrid - INFO - Search completed: 43 results in 214.7ms using SearchMethod.VECTOR
+2026-10-06 07:23:34,095 - app.services.search.hybrid - INFO - Search completed: 50 results in 54.1ms using SearchMethod.KEYWORD
+2026-10-06 07:23:35,136 - app.services.search.hybrid - INFO - Search completed: 50 results in 471.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:35,387 - app.services.search.hybrid - INFO - Search completed: 43 results in 250.2ms using SearchMethod.VECTOR
+2026-10-06 07:23:35,423 - app.services.search.hybrid - INFO - Search completed: 50 results in 35.2ms using SearchMethod.KEYWORD
+2026-10-06 07:23:35,922 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'pink innerwear'
+2026-10-06 07:23:36,151 - app.services.search.hybrid - INFO - Search completed: 42 results in 227.8ms using SearchMethod.HYBRID
+2026-10-06 07:23:36,219 - app.services.search.hybrid - INFO - Search completed: 42 results in 67.3ms using SearchMethod.VECTOR
+2026-10-06 07:23:36,283 - app.services.search.hybrid - INFO - Search completed: 50 results in 63.7ms using SearchMethod.KEYWORD
+2026-10-06 07:23:37,803 - app.services.search.hybrid - INFO - Search completed: 50 results in 955.4ms using SearchMethod.HYBRID
+2026-10-06 07:23:37,993 - app.services.search.hybrid - INFO - Search completed: 43 results in 189.6ms using SearchMethod.VECTOR
+2026-10-06 07:23:38,022 - app.services.search.hybrid - INFO - Search completed: 50 results in 28.4ms using SearchMethod.KEYWORD
+2026-10-06 07:23:39,051 - app.services.search.hybrid - INFO - Search completed: 50 results in 513.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:39,206 - app.services.search.hybrid - INFO - Search completed: 43 results in 154.9ms using SearchMethod.VECTOR
+2026-10-06 07:23:39,259 - app.services.search.hybrid - INFO - Search completed: 50 results in 52.4ms using SearchMethod.KEYWORD
+2026-10-06 07:23:40,623 - app.services.search.hybrid - INFO - Search completed: 50 results in 808.3ms using SearchMethod.HYBRID
+2026-10-06 07:23:40,755 - app.services.search.hybrid - INFO - Search completed: 50 results in 131.8ms using SearchMethod.VECTOR
+2026-10-06 07:23:40,780 - app.services.search.hybrid - INFO - Search completed: 50 results in 24.9ms using SearchMethod.KEYWORD
+2026-10-06 07:23:41,682 - app.services.search.hybrid - INFO - Search completed: 50 results in 439.7ms using SearchMethod.HYBRID
+2026-10-06 07:23:41,991 - app.services.search.hybrid - INFO - Search completed: 41 results in 308.6ms using SearchMethod.VECTOR
+2026-10-06 07:23:42,021 - app.services.search.hybrid - INFO - Search completed: 50 results in 29.1ms using SearchMethod.KEYWORD
+2026-10-06 07:23:43,166 - app.services.search.hybrid - INFO - Search completed: 50 results in 610.2ms using SearchMethod.HYBRID
+2026-10-06 07:23:43,354 - app.services.search.hybrid - INFO - Search completed: 44 results in 187.4ms using SearchMethod.VECTOR
+2026-10-06 07:23:43,392 - app.services.search.hybrid - INFO - Search completed: 50 results in 38.0ms using SearchMethod.KEYWORD
+2026-10-06 07:23:43,817 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Summer' for query 'lightweight breathable top for hot days'
+2026-10-06 07:23:44,426 - app.services.search.hybrid - INFO - Search completed: 50 results in 608.4ms using SearchMethod.HYBRID
+2026-10-06 07:23:44,627 - app.services.search.hybrid - INFO - Search completed: 42 results in 200.8ms using SearchMethod.VECTOR
+2026-10-06 07:23:44,666 - app.services.search.hybrid - INFO - Search completed: 50 results in 38.0ms using SearchMethod.KEYWORD
+2026-10-06 07:23:45,685 - app.services.search.hybrid - INFO - Search completed: 45 results in 230.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:45,723 - app.services.search.hybrid - INFO - Search completed: 42 results in 38.0ms using SearchMethod.VECTOR
+2026-10-06 07:23:46,014 - app.services.search.hybrid - INFO - Search completed: 50 results in 290.7ms using SearchMethod.KEYWORD
+2026-10-06 07:23:47,071 - app.services.search.hybrid - INFO - Search completed: 50 results in 582.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:47,327 - app.services.search.hybrid - INFO - Search completed: 40 results in 255.4ms using SearchMethod.VECTOR
+2026-10-06 07:23:47,370 - app.services.search.hybrid - INFO - Search completed: 50 results in 42.5ms using SearchMethod.KEYWORD
+2026-10-06 07:23:48,153 - app.services.search.hybrid - INFO - Search completed: 48 results in 181.1ms using SearchMethod.HYBRID
+2026-10-06 07:23:48,199 - app.services.search.hybrid - INFO - Search completed: 48 results in 46.1ms using SearchMethod.VECTOR
+2026-10-06 07:23:48,268 - app.services.search.hybrid - INFO - Search completed: 50 results in 68.1ms using SearchMethod.KEYWORD
+2026-10-06 07:23:49,261 - app.services.search.hybrid - INFO - Search completed: 40 results in 372.7ms using SearchMethod.HYBRID
+2026-10-06 07:23:49,311 - app.services.search.hybrid - INFO - Search completed: 40 results in 49.2ms using SearchMethod.VECTOR
+2026-10-06 07:23:49,350 - app.services.search.hybrid - INFO - Search completed: 50 results in 39.1ms using SearchMethod.KEYWORD
+2026-10-06 07:23:49,995 - app.services.search.hybrid - INFO - Search completed: 50 results in 216.7ms using SearchMethod.HYBRID
+2026-10-06 07:23:50,043 - app.services.search.hybrid - INFO - Search completed: 50 results in 47.1ms using SearchMethod.VECTOR
+2026-10-06 07:23:50,078 - app.services.search.hybrid - INFO - Search completed: 50 results in 34.8ms using SearchMethod.KEYWORD
+2026-10-06 07:23:50,802 - app.services.search.hybrid - INFO - Search completed: 50 results in 352.1ms using SearchMethod.HYBRID
+2026-10-06 07:23:50,872 - app.services.search.hybrid - INFO - Search completed: 43 results in 69.9ms using SearchMethod.VECTOR
+2026-10-06 07:23:50,892 - app.services.search.hybrid - INFO - Search completed: 50 results in 19.3ms using SearchMethod.KEYWORD
+2026-10-06 07:23:51,732 - app.services.search.hybrid - INFO - Search completed: 42 results in 191.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:51,822 - app.services.search.hybrid - INFO - Search completed: 42 results in 89.7ms using SearchMethod.VECTOR
+2026-10-06 07:23:51,907 - app.services.search.hybrid - INFO - Search completed: 50 results in 84.3ms using SearchMethod.KEYWORD
+2026-10-06 07:23:52,554 - app.services.search.hybrid - INFO - Search completed: 40 results in 173.0ms using SearchMethod.HYBRID
+2026-10-06 07:23:52,601 - app.services.search.hybrid - INFO - Search completed: 40 results in 46.3ms using SearchMethod.VECTOR
+2026-10-06 07:23:52,647 - app.services.search.hybrid - INFO - Search completed: 50 results in 45.6ms using SearchMethod.KEYWORD
+2026-10-06 07:23:53,184 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Winter' for query 'warm layer to wear under a jacket'
+2026-10-06 07:23:53,326 - app.services.search.hybrid - INFO - Search completed: 40 results in 142.1ms using SearchMethod.HYBRID
+2026-10-06 07:23:53,389 - app.services.search.hybrid - INFO - Search completed: 40 results in 62.0ms using SearchMethod.VECTOR
+2026-10-06 07:23:53,418 - app.services.search.hybrid - INFO - Search completed: 50 results in 29.2ms using SearchMethod.KEYWORD
+2026-10-06 07:23:54,342 - app.services.search.hybrid - INFO - Search completed: 50 results in 301.8ms using SearchMethod.HYBRID
+2026-10-06 07:23:54,468 - app.services.search.hybrid - INFO - Search completed: 43 results in 124.7ms using SearchMethod.VECTOR
+2026-10-06 07:23:54,489 - app.services.search.hybrid - INFO - Search completed: 50 results in 21.2ms using SearchMethod.KEYWORD
+2026-10-06 07:23:55,424 - app.services.search.hybrid - INFO - Search completed: 50 results in 462.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:55,550 - app.services.search.hybrid - INFO - Search completed: 40 results in 125.7ms using SearchMethod.VECTOR
+2026-10-06 07:23:55,581 - app.services.search.hybrid - INFO - Search completed: 50 results in 30.7ms using SearchMethod.KEYWORD
+2026-10-06 07:23:56,108 - app.services.search.hybrid - INFO - Search completed: 44 results in 165.1ms using SearchMethod.HYBRID
+2026-10-06 07:23:56,157 - app.services.search.hybrid - INFO - Search completed: 44 results in 48.7ms using SearchMethod.VECTOR
+2026-10-06 07:23:56,160 - app.services.search.hybrid - INFO - Search completed: 1 results in 3.7ms using SearchMethod.KEYWORD
+2026-10-06 07:23:56,744 - app.services.search.hybrid - INFO - Search completed: 41 results in 214.2ms using SearchMethod.HYBRID
+2026-10-06 07:23:56,796 - app.services.search.hybrid - INFO - Search completed: 41 results in 51.8ms using SearchMethod.VECTOR
+2026-10-06 07:23:56,915 - app.services.search.hybrid - INFO - Search completed: 50 results in 118.9ms using SearchMethod.KEYWORD
+2026-10-06 07:23:57,398 - app.services.search.hybrid - INFO - Search completed: 44 results in 123.2ms using SearchMethod.HYBRID
+2026-10-06 07:23:57,451 - app.services.search.hybrid - INFO - Search completed: 44 results in 52.9ms using SearchMethod.VECTOR
+2026-10-06 07:23:57,468 - app.services.search.hybrid - INFO - Search completed: 24 results in 17.0ms using SearchMethod.KEYWORD
+2026-10-06 07:23:57,833 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Summer' for query 'beach vacation outfit'
+2026-10-06 07:23:57,972 - app.services.search.hybrid - INFO - Search completed: 41 results in 138.5ms using SearchMethod.HYBRID
+2026-10-06 07:23:58,015 - app.services.search.hybrid - INFO - Search completed: 41 results in 42.5ms using SearchMethod.VECTOR
+2026-10-06 07:23:58,034 - app.services.search.hybrid - INFO - Search completed: 31 results in 18.3ms using SearchMethod.KEYWORD
+2026-10-06 07:23:58,482 - app.services.search.hybrid - INFO - Search completed: 48 results in 87.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:58,516 - app.services.search.hybrid - INFO - Search completed: 48 results in 34.2ms using SearchMethod.VECTOR
+2026-10-06 07:23:58,520 - app.services.search.hybrid - INFO - Search completed: 0 results in 3.2ms using SearchMethod.KEYWORD
+2026-10-06 07:23:59,065 - app.services.search.hybrid - INFO - Search completed: 41 results in 170.3ms using SearchMethod.HYBRID
+2026-10-06 07:23:59,105 - app.services.search.hybrid - INFO - Search completed: 41 results in 39.6ms using SearchMethod.VECTOR
+2026-10-06 07:23:59,125 - app.services.search.hybrid - INFO - Search completed: 50 results in 19.3ms using SearchMethod.KEYWORD
+2026-10-06 07:23:59,511 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Winter' for query 'clothes for a night out'
+2026-10-06 07:23:59,598 - app.services.search.hybrid - INFO - Search completed: 45 results in 86.9ms using SearchMethod.HYBRID
+2026-10-06 07:23:59,630 - app.services.search.hybrid - INFO - Search completed: 45 results in 31.9ms using SearchMethod.VECTOR
+2026-10-06 07:23:59,649 - app.services.search.hybrid - INFO - Search completed: 50 results in 19.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:00,056 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Spring' for query 'sportswear for running a marathon'
+2026-10-06 07:24:00,207 - app.services.search.hybrid - INFO - Search completed: 40 results in 151.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:00,244 - app.services.search.hybrid - INFO - Search completed: 40 results in 36.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:00,247 - app.services.search.hybrid - INFO - Search completed: 3 results in 3.0ms using SearchMethod.KEYWORD
+2026-10-06 07:24:04,523 - app.services.search.hybrid - INFO - Search completed: 48 results in 3814.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:04,600 - app.services.search.hybrid - INFO - Search completed: 48 results in 76.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:04,807 - app.services.search.hybrid - INFO - Search completed: 50 results in 207.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:05,564 - app.services.search.hybrid - INFO - Search completed: 45 results in 129.8ms using SearchMethod.HYBRID
+2026-10-06 07:24:05,605 - app.services.search.hybrid - INFO - Search completed: 42 results in 41.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:05,649 - app.services.search.hybrid - INFO - Search completed: 50 results in 43.2ms using SearchMethod.KEYWORD
+2026-10-06 07:24:06,083 - app.services.search.hybrid - INFO - Search completed: 50 results in 107.9ms using SearchMethod.HYBRID
+2026-10-06 07:24:06,122 - app.services.search.hybrid - INFO - Search completed: 49 results in 38.5ms using SearchMethod.VECTOR
+2026-10-06 07:24:06,170 - app.services.search.hybrid - INFO - Search completed: 50 results in 47.7ms using SearchMethod.KEYWORD
+2026-10-06 07:24:06,727 - app.services.search.hybrid - INFO - Search completed: 50 results in 232.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:06,798 - app.services.search.hybrid - INFO - Search completed: 44 results in 70.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:06,875 - app.services.search.hybrid - INFO - Search completed: 50 results in 77.2ms using SearchMethod.KEYWORD
+2026-10-06 07:24:07,425 - app.services.search.hybrid - INFO - Search completed: 50 results in 189.3ms using SearchMethod.HYBRID
+2026-10-06 07:24:07,538 - app.services.search.hybrid - INFO - Search completed: 41 results in 111.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:07,578 - app.services.search.hybrid - INFO - Search completed: 50 results in 40.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:08,037 - app.providers.ollama_llm - INFO - Dropping ungrounded color='White' for query 'spring light jacket'
+2026-10-06 07:24:08,171 - app.services.search.hybrid - INFO - Search completed: 50 results in 133.5ms using SearchMethod.HYBRID
+2026-10-06 07:24:08,285 - app.services.search.hybrid - INFO - Search completed: 40 results in 114.3ms using SearchMethod.VECTOR
+2026-10-06 07:24:08,314 - app.services.search.hybrid - INFO - Search completed: 50 results in 28.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:08,825 - app.services.search.hybrid - INFO - Search completed: 50 results in 141.9ms using SearchMethod.HYBRID
+2026-10-06 07:24:08,899 - app.services.search.hybrid - INFO - Search completed: 50 results in 73.6ms using SearchMethod.VECTOR
+2026-10-06 07:24:08,939 - app.services.search.hybrid - INFO - Search completed: 50 results in 40.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:09,484 - app.services.search.hybrid - INFO - Search completed: 50 results in 213.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:09,589 - app.services.search.hybrid - INFO - Search completed: 48 results in 104.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:09,690 - app.services.search.hybrid - INFO - Search completed: 50 results in 100.3ms using SearchMethod.KEYWORD
+2026-10-06 07:24:10,112 - app.providers.ollama_llm - INFO - Dropping ungrounded season='Summer' for query 'monsoon footwear'
+2026-10-06 07:24:10,336 - app.services.search.hybrid - INFO - Search completed: 41 results in 223.7ms using SearchMethod.HYBRID
+2026-10-06 07:24:10,442 - app.services.search.hybrid - INFO - Search completed: 41 results in 106.0ms using SearchMethod.VECTOR
+2026-10-06 07:24:10,845 - app.services.search.hybrid - INFO - Search completed: 50 results in 401.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:11,666 - app.services.search.hybrid - INFO - Search completed: 50 results in 201.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:11,818 - app.services.search.hybrid - INFO - Search completed: 41 results in 151.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:11,860 - app.services.search.hybrid - INFO - Search completed: 50 results in 42.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:13,458 - app.services.search.hybrid - INFO - Search completed: 50 results in 983.9ms using SearchMethod.HYBRID
+2026-10-06 07:24:13,507 - app.services.search.hybrid - INFO - Search completed: 42 results in 48.8ms using SearchMethod.VECTOR
+2026-10-06 07:24:13,574 - app.services.search.hybrid - INFO - Search completed: 50 results in 66.0ms using SearchMethod.KEYWORD
+2026-10-06 07:24:14,206 - app.services.search.hybrid - INFO - Search completed: 50 results in 249.1ms using SearchMethod.HYBRID
+2026-10-06 07:24:14,260 - app.services.search.hybrid - INFO - Search completed: 50 results in 53.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:14,328 - app.services.search.hybrid - INFO - Search completed: 50 results in 67.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:15,054 - app.services.search.hybrid - INFO - Search completed: 50 results in 287.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:15,165 - app.services.search.hybrid - INFO - Search completed: 41 results in 111.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:15,205 - app.services.search.hybrid - INFO - Search completed: 50 results in 38.7ms using SearchMethod.KEYWORD
+2026-10-06 07:24:16,160 - app.services.search.hybrid - INFO - Search completed: 50 results in 294.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:16,359 - app.services.search.hybrid - INFO - Search completed: 43 results in 197.6ms using SearchMethod.VECTOR
+2026-10-06 07:24:16,388 - app.services.search.hybrid - INFO - Search completed: 50 results in 28.7ms using SearchMethod.KEYWORD
+2026-10-06 07:24:16,917 - app.services.search.hybrid - INFO - Search completed: 45 results in 139.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:16,976 - app.services.search.hybrid - INFO - Search completed: 44 results in 58.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:17,054 - app.services.search.hybrid - INFO - Search completed: 50 results in 77.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:17,548 - app.services.search.hybrid - INFO - Search completed: 48 results in 148.8ms using SearchMethod.HYBRID
+2026-10-06 07:24:17,604 - app.services.search.hybrid - INFO - Search completed: 42 results in 55.3ms using SearchMethod.VECTOR
+2026-10-06 07:24:17,713 - app.services.search.hybrid - INFO - Search completed: 50 results in 107.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:18,282 - app.services.search.hybrid - INFO - Search completed: 50 results in 214.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:18,448 - app.services.search.hybrid - INFO - Search completed: 44 results in 165.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:18,495 - app.services.search.hybrid - INFO - Search completed: 50 results in 47.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:19,603 - app.services.search.hybrid - INFO - Search completed: 50 results in 746.3ms using SearchMethod.HYBRID
+2026-10-06 07:24:19,768 - app.services.search.hybrid - INFO - Search completed: 47 results in 164.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:19,878 - app.services.search.hybrid - INFO - Search completed: 50 results in 109.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:20,883 - app.services.search.hybrid - INFO - Search completed: 50 results in 629.1ms using SearchMethod.HYBRID
+2026-10-06 07:24:21,034 - app.services.search.hybrid - INFO - Search completed: 42 results in 150.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:21,058 - app.services.search.hybrid - INFO - Search completed: 50 results in 23.3ms using SearchMethod.KEYWORD
+2026-10-06 07:24:21,733 - app.services.search.hybrid - INFO - Search completed: 50 results in 299.1ms using SearchMethod.HYBRID
+2026-10-06 07:24:21,804 - app.services.search.hybrid - INFO - Search completed: 50 results in 71.0ms using SearchMethod.VECTOR
+2026-10-06 07:24:21,969 - app.services.search.hybrid - INFO - Search completed: 50 results in 165.0ms using SearchMethod.KEYWORD
+2026-10-06 07:24:22,435 - app.services.search.hybrid - INFO - Search completed: 50 results in 136.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:22,471 - app.services.search.hybrid - INFO - Search completed: 49 results in 35.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:22,521 - app.services.search.hybrid - INFO - Search completed: 50 results in 49.2ms using SearchMethod.KEYWORD
+2026-10-06 07:24:23,055 - app.services.search.hybrid - INFO - Search completed: 50 results in 185.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:23,096 - app.services.search.hybrid - INFO - Search completed: 42 results in 41.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:23,128 - app.services.search.hybrid - INFO - Search completed: 50 results in 31.4ms using SearchMethod.KEYWORD
+2026-10-06 07:24:23,674 - app.services.search.hybrid - INFO - Search completed: 50 results in 176.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:23,709 - app.services.search.hybrid - INFO - Search completed: 46 results in 35.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:23,728 - app.services.search.hybrid - INFO - Search completed: 50 results in 18.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:24,064 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'girls dress'
+2026-10-06 07:24:24,233 - app.services.search.hybrid - INFO - Search completed: 50 results in 167.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:24,321 - app.services.search.hybrid - INFO - Search completed: 44 results in 88.3ms using SearchMethod.VECTOR
+2026-10-06 07:24:24,345 - app.services.search.hybrid - INFO - Search completed: 50 results in 22.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:24,916 - app.services.search.hybrid - INFO - Search completed: 50 results in 235.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:24,992 - app.services.search.hybrid - INFO - Search completed: 40 results in 76.3ms using SearchMethod.VECTOR
+2026-10-06 07:24:25,038 - app.services.search.hybrid - INFO - Search completed: 50 results in 45.7ms using SearchMethod.KEYWORD
+2026-10-06 07:24:25,559 - app.services.search.hybrid - INFO - Search completed: 50 results in 150.5ms using SearchMethod.HYBRID
+2026-10-06 07:24:25,613 - app.services.search.hybrid - INFO - Search completed: 45 results in 53.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:25,725 - app.services.search.hybrid - INFO - Search completed: 50 results in 111.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:26,684 - app.services.search.hybrid - INFO - Search completed: 50 results in 590.7ms using SearchMethod.HYBRID
+2026-10-06 07:24:26,776 - app.services.search.hybrid - INFO - Search completed: 45 results in 92.0ms using SearchMethod.VECTOR
+2026-10-06 07:24:26,862 - app.services.search.hybrid - INFO - Search completed: 50 results in 85.9ms using SearchMethod.KEYWORD
+2026-10-06 07:24:27,303 - app.services.search.hybrid - INFO - Search completed: 50 results in 101.3ms using SearchMethod.HYBRID
+2026-10-06 07:24:27,340 - app.services.search.hybrid - INFO - Search completed: 41 results in 36.5ms using SearchMethod.VECTOR
+2026-10-06 07:24:27,357 - app.services.search.hybrid - INFO - Search completed: 50 results in 16.6ms using SearchMethod.KEYWORD
+2026-10-06 07:24:27,685 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'girls accessories'
+2026-10-06 07:24:27,785 - app.services.search.hybrid - INFO - Search completed: 50 results in 100.0ms using SearchMethod.HYBRID
+2026-10-06 07:24:27,823 - app.services.search.hybrid - INFO - Search completed: 42 results in 36.8ms using SearchMethod.VECTOR
+2026-10-06 07:24:27,974 - app.services.search.hybrid - INFO - Search completed: 50 results in 151.2ms using SearchMethod.KEYWORD
+2026-10-06 07:24:28,448 - app.services.search.hybrid - INFO - Search completed: 50 results in 147.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:28,549 - app.services.search.hybrid - INFO - Search completed: 40 results in 100.5ms using SearchMethod.VECTOR
+2026-10-06 07:24:28,606 - app.services.search.hybrid - INFO - Search completed: 50 results in 56.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:29,070 - app.services.search.hybrid - INFO - Search completed: 50 results in 108.5ms using SearchMethod.HYBRID
+2026-10-06 07:24:29,104 - app.services.search.hybrid - INFO - Search completed: 50 results in 33.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:29,145 - app.services.search.hybrid - INFO - Search completed: 50 results in 41.6ms using SearchMethod.KEYWORD
+2026-10-06 07:24:29,624 - app.services.search.hybrid - INFO - Search completed: 50 results in 161.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:29,663 - app.services.search.hybrid - INFO - Search completed: 42 results in 37.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:29,673 - app.services.search.hybrid - INFO - Search completed: 50 results in 10.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:30,146 - app.services.search.hybrid - INFO - Search completed: 50 results in 159.7ms using SearchMethod.HYBRID
+2026-10-06 07:24:30,184 - app.services.search.hybrid - INFO - Search completed: 43 results in 37.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:30,274 - app.services.search.hybrid - INFO - Search completed: 50 results in 90.3ms using SearchMethod.KEYWORD
+2026-10-06 07:24:30,791 - app.services.search.hybrid - INFO - Search completed: 50 results in 197.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:30,826 - app.services.search.hybrid - INFO - Search completed: 40 results in 34.8ms using SearchMethod.VECTOR
+2026-10-06 07:24:30,909 - app.services.search.hybrid - INFO - Search completed: 50 results in 82.9ms using SearchMethod.KEYWORD
+2026-10-06 07:24:31,306 - app.services.search.hybrid - INFO - Search completed: 40 results in 60.5ms using SearchMethod.HYBRID
+2026-10-06 07:24:31,337 - app.services.search.hybrid - INFO - Search completed: 40 results in 31.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:31,357 - app.services.search.hybrid - INFO - Search completed: 50 results in 19.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:31,817 - app.services.search.hybrid - INFO - Search completed: 50 results in 132.1ms using SearchMethod.HYBRID
+2026-10-06 07:24:31,850 - app.services.search.hybrid - INFO - Search completed: 42 results in 32.1ms using SearchMethod.VECTOR
+2026-10-06 07:24:31,854 - app.services.search.hybrid - INFO - Search completed: 11 results in 4.2ms using SearchMethod.KEYWORD
+2026-10-06 07:24:32,260 - app.services.search.hybrid - INFO - Search completed: 42 results in 79.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:32,292 - app.services.search.hybrid - INFO - Search completed: 42 results in 31.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:32,308 - app.services.search.hybrid - INFO - Search completed: 50 results in 15.9ms using SearchMethod.KEYWORD
+2026-10-06 07:24:32,760 - app.services.search.hybrid - INFO - Search completed: 43 results in 106.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:32,793 - app.services.search.hybrid - INFO - Search completed: 43 results in 32.2ms using SearchMethod.VECTOR
+2026-10-06 07:24:33,172 - app.services.search.hybrid - INFO - Search completed: 50 results in 379.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:33,680 - app.services.search.hybrid - INFO - Search completed: 50 results in 145.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:33,713 - app.services.search.hybrid - INFO - Search completed: 43 results in 32.9ms using SearchMethod.VECTOR
+2026-10-06 07:24:33,774 - app.services.search.hybrid - INFO - Search completed: 50 results in 60.0ms using SearchMethod.KEYWORD
+2026-10-06 07:24:34,385 - app.services.search.hybrid - INFO - Search completed: 50 results in 125.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:34,428 - app.services.search.hybrid - INFO - Search completed: 50 results in 43.3ms using SearchMethod.VECTOR
+2026-10-06 07:24:34,449 - app.services.search.hybrid - INFO - Search completed: 50 results in 20.1ms using SearchMethod.KEYWORD
+2026-10-06 07:24:34,979 - app.services.search.hybrid - INFO - Search completed: 41 results in 127.3ms using SearchMethod.HYBRID
+2026-10-06 07:24:35,012 - app.services.search.hybrid - INFO - Search completed: 41 results in 32.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:35,062 - app.services.search.hybrid - INFO - Search completed: 50 results in 50.4ms using SearchMethod.KEYWORD
+2026-10-06 07:24:35,431 - app.providers.ollama_llm - INFO - Dropping ungrounded gender='Women' for query 'महिलाओं के लिए गहने'
+2026-10-06 07:24:35,519 - app.services.search.hybrid - INFO - Search completed: 48 results in 87.8ms using SearchMethod.HYBRID
+2026-10-06 07:24:35,552 - app.services.search.hybrid - INFO - Search completed: 48 results in 32.0ms using SearchMethod.VECTOR
+2026-10-06 07:24:35,638 - app.services.search.hybrid - INFO - Search completed: 50 results in 85.8ms using SearchMethod.KEYWORD
+2026-10-06 07:24:36,145 - app.services.search.hybrid - INFO - Search completed: 44 results in 101.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:36,181 - app.services.search.hybrid - INFO - Search completed: 44 results in 35.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:36,277 - app.services.search.hybrid - INFO - Search completed: 50 results in 96.5ms using SearchMethod.KEYWORD
+2026-10-06 07:24:36,678 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Lavender' for query 'लाल साड़ी'
+2026-10-06 07:24:36,834 - app.services.search.hybrid - INFO - Search completed: 50 results in 156.0ms using SearchMethod.HYBRID
+2026-10-06 07:24:36,869 - app.services.search.hybrid - INFO - Search completed: 48 results in 34.4ms using SearchMethod.VECTOR
+2026-10-06 07:24:36,874 - app.services.search.hybrid - INFO - Search completed: 9 results in 4.4ms using SearchMethod.KEYWORD
+2026-10-06 07:24:37,419 - app.services.search.hybrid - INFO - Search completed: 50 results in 98.6ms using SearchMethod.HYBRID
+2026-10-06 07:24:37,452 - app.services.search.hybrid - INFO - Search completed: 40 results in 32.8ms using SearchMethod.VECTOR
+2026-10-06 07:24:37,474 - app.services.search.hybrid - INFO - Search completed: 50 results in 21.3ms using SearchMethod.KEYWORD
+2026-10-06 07:24:37,921 - app.providers.ollama_llm - INFO - Dropping ungrounded color='Skin' for query 'सफेद जूते'
+2026-10-06 07:24:38,046 - app.services.search.hybrid - INFO - Search completed: 42 results in 124.2ms using SearchMethod.HYBRID
+2026-10-06 07:24:38,080 - app.services.search.hybrid - INFO - Search completed: 42 results in 34.6ms using SearchMethod.VECTOR
+2026-10-06 07:24:38,103 - app.services.search.hybrid - INFO - Search completed: 50 results in 22.0ms using SearchMethod.KEYWORD
+2026-10-06 07:24:42,677 - app.services.search.hybrid - INFO - Search completed: 48 results in 4228.4ms using SearchMethod.HYBRID
+2026-10-06 07:24:42,774 - app.services.search.hybrid - INFO - Search completed: 40 results in 95.9ms using SearchMethod.VECTOR
+2026-10-06 07:24:42,778 - app.services.search.hybrid - INFO - Search completed: 8 results in 3.9ms using SearchMethod.KEYWORD
+2026-10-06 07:24:43,690 - app.services.search.hybrid - INFO - Search completed: 50 results in 273.1ms using SearchMethod.HYBRID
+2026-10-06 07:24:43,726 - app.services.search.hybrid - INFO - Search completed: 47 results in 35.7ms using SearchMethod.VECTOR
+2026-10-06 07:24:43,817 - app.services.search.hybrid - INFO - Search completed: 50 results in 91.1ms using SearchMethod.KEYWORD
+
+Queries scored: 80 (excluded: 0)
+Query understanding enabled: True
+
+Method    NDCG@10     Precision@10    MRR       MRR@10    Recall@10   Recall@20   Recall@50   
+hybrid    0.748       0.662           0.891     0.891     0.331       0.559       0.709       
+vector    0.923       0.841           0.925     0.925     0.421       0.713       0.719       
+keyword   0.283       0.164           0.347     0.341     0.082       0.133       0.224       
+
+Query understanding: 80 calls, 80 real, 0 fell back to the original query
+
+2026-10-06 07:24:43,827 - __main__ - INFO - Reports written to evals/reports/llm_compare_qwen2_5_1_5b.json and evals/reports/llm_compare_qwen2_5_1_5b.md

@@ -5,7 +5,7 @@ directly - it only ever calls understand_query() below.
 """
 import logging
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from app.providers.llm_base import (
     LLMProvider,
@@ -34,6 +34,8 @@ class QueryUnderstandingResult:
     error: Optional[str] = None
     # Safe to show users, unlike `error`: FALLBACK_UNSUPPORTED_QUERY or FALLBACK_LLM_UNAVAILABLE.
     fallback_reason: Optional[str] = None
+    # cleaned_query is an English translation of a non-English query
+    translated: bool = False
 
 
 FALLBACK_UNSUPPORTED_QUERY = "unsupported_query"
@@ -124,7 +126,24 @@ def understand_query(
         cleaned_query=result.cleaned_query or query,
         filters=validate_filters(result.filters, valid_filters),  # LLM-inferred only
         used_llm=True,
+        translated=result.translated and bool(result.cleaned_query),
     )
+
+
+def search_texts(query: str, understanding: Optional[QueryUnderstandingResult]) -> Tuple[str, str]:
+    """(vector search text, keyword search text) for a query.
+
+    A non-English query the LLM translated is searched in English on both
+    paths: the catalogue is English, and the multilingual embedding model alone
+    matches some languages by spelling rather than meaning ("chaqueta" ->
+    "Red Chief" shoes). English queries are searched with the user's own words:
+    measured LLM rewrites of English queries dropped useful words
+    ("durable sandals for everyday wear" -> "durable sandals") and lowered
+    quality, so for them the LLM only contributes filters.
+    """
+    if understanding is not None and understanding.used_llm and understanding.translated:
+        return understanding.cleaned_query, understanding.cleaned_query
+    return query, query
 
 
 def _fallback(query: str, error: str, reason: str) -> QueryUnderstandingResult:
