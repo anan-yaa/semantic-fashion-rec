@@ -1,0 +1,103 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch cancels the older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend (lint + tests)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: fashion_rec
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d fashion_rec"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # The tests create and use a separate fashion_rec_test database (see tests/conftest.py).
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/fashion_rec
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Lint (ruff)
+        run: |
+          pip install ruff==0.16.10
+          ruff check .
+
+      - name: Install dependencies (CPU-only torch)
+        run: pip install --extra-index-url https://download.pytorch.org/whl/cpu -r requirements.txt
+
+      - name: Run tests
+        run: python -m pytest -q 2>&1 | tee pytest.log
+
+      # The Postgres tests skip silently when the database is unreachable, which would look like a pass.
+      - name: Fail if any test was skipped
+        run: |
+          tail -n 1 pytest.log
+          if tail -n 1 pytest.log | grep -q "skipped"; then
+            echo "::error::Some tests were skipped (is the Postgres service up?)"
+            exit 1
+          fi
+
+  frontend:
+    name: Frontend (lint, types, tests, build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+      - run: npx vitest run
+      - run: npm run build
+
+  docker:
+    name: Docker (compose config + image builds)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env from the example
+        run: cp .env.example .env
+
+      - name: Validate the compose file
+        run: docker compose config --quiet
+
+      - name: Build the backend and frontend images
+        run: docker compose build

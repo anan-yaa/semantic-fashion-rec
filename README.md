@@ -1,5 +1,7 @@
 # Semantic Fashion Recommendation System
 
+[![CI](https://github.com/anan-yaa/semantic-fashion-rec/actions/workflows/ci.yml/badge.svg)](https://github.com/anan-yaa/semantic-fashion-rec/actions/workflows/ci.yml)
+
 A search microservice for a 44,072-product fashion catalogue that understands human-like, multilingual queries such as *"I need an outfit to go to the beach this summer"* or *"महिलाओं के लिए गहने"* (jewellery for women), not just keywords like "t-shirt".
 
 It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL + pgvector), **keyword search** (PostgreSQL full-text search) and **LLM query understanding** (Gemma 3 1B, running locally through Ollama), behind a FastAPI backend with a Next.js frontend.
