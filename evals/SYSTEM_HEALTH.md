@@ -42,7 +42,7 @@ Gemma costs about twice the LLM time per search and roughly halves throughput, i
 ## Test conditions
 
 - **Hardware:** NVIDIA GeForce GTX 1650, 4096 MiB; WSL2 with 3.7 GB RAM; 8 CPU cores.
-- **Backend:** one uvicorn process; Gemma 3 1B via Ollama, confirmed at 100% GPU (`ollama ps`); multilingual-e5-base on the GPU; 44,072 products in PostgreSQL 15 + pgvector.
+- **Backend:** one uvicorn process; Gemma 3 1B via Ollama, confirmed at 100% GPU (`ollama ps`); multilingual-e5-base on the GPU; 44,072 products in PostgreSQL 15.19 + pgvector 0.8.6 (the local development database these measurements ran against; Docker Compose and CI use PostgreSQL 16).
 - **Settings:** rate limiting off (otherwise most requests get 429); LLM result cache **off** except in the run marked "cache on"; LLM timeout 8 s, circuit breaker 3 failures / 30 s.
 - **Load:** the 80 eval queries in a fixed random order; 20 unmeasured warm-up requests; 200 measured requests per concurrency level, 2 repeats (outfit: 40 requests, 2 repeats). Ollama was already loaded.
 - **Checked on every run:** the share of searches that actually used the LLM and the fallback count are recorded in each report (`llm_used_rate`, `llm_fallbacks`), so a silent fallback can't pass as a healthy run.

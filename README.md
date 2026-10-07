@@ -18,6 +18,7 @@ It combines **semantic vector search** (multilingual-e5 embeddings in PostgreSQL
 |---|---|
 | Problem and approach | [Problem and approach](#problem-and-approach) |
 | Architecture diagram | [Architecture](#architecture), [How a search works](#how-a-search-works) |
+| Screenshots of the running app | [Screenshots](#screenshots) |
 | Design decisions | [Key design decisions](#key-design-decisions) |
 | Additional exploration | [Additional exploration](#additional-exploration), [`evals/EXPLORATION.md`](evals/EXPLORATION.md) |
 | Evals and system health | [Evaluation](#evaluation), [`evals/SYSTEM_HEALTH.md`](evals/SYSTEM_HEALTH.md) |
@@ -100,6 +101,34 @@ Filters chosen by the user always override the LLM's and apply to both searches.
 
 
 </details>
+
+## Screenshots
+
+Captured from the running app (frontend on `localhost:3000`, backend with Gemma 3 1B through Ollama).
+
+**1. English query typed into the search bar.** The query "black jacket for men" returns 100 results with hybrid search. Below the search bar, the "Understood as" line shows the filters the LLM extracted from the query (Gender: Men, Color: Black). The example queries under the bar can be clicked, and the Gender, Category, Color and Season dropdowns and the sort order are above the results. This was the first search after a start, so it includes the warm-up time (5.4 s).
+
+![English query typed into the search bar](docs/Output_1.png)
+
+**2. English query typed into the search bar: the results.** The same search, scrolled down. Each card shows the product type, the category, the product name and its gender, colour and season. Every card has a "Good match?" thumbs up and thumbs down for feedback.
+
+![Search results with feedback buttons](docs/Output_2.png)
+
+**3. Hindi query supported (multilingual feature).** The Hindi query "महिलाओं के लिए गहने" (jewellery for women) returns 40 results in 882 ms. The line "Searched in English as: women's jewelry" shows that Gemma translated the query before searching, and the LLM also set the filter Gender: Women. The results are women's necklaces.
+
+![Hindi query supported - multilingual feature](docs/Output_3.png)
+
+**4. Spanish query and feedback feature.** The Spanish query "vestido rojo para mujer" is translated to "red dress for woman", with the filters Gender: Women and Color: Red inferred, and returns 100 red women's dresses in 590 ms. The first two cards have been given a thumbs up, and the card confirms with "Thanks!". These votes are saved to the database and appear on the Feedback page.
+
+![Spanish query and feedback feature](docs/Output_4.png)
+
+**5. Outfit builder feature.** The query "winter outfit" builds an outfit for Women (the gender is chosen automatically when none is selected) with the inferred filter Season: Winter. The outfit is split into slots, Top, Bottom, then footwear and accessories further down. Each slot shows several options, and the first is marked "Our pick".
+
+![Outfit builder feature](docs/Output_5.png)
+
+**6. Feedback page.** A summary of the votes: 6 votes, 100% good matches, 3 queries rated and 1 person. "Queries with the most bad results" is empty because no result has been marked as a bad match yet. "Recent feedback" lists each vote with the product, the query it was given for and its position in the results.
+
+![Feedback page](docs/Output_6.png)
 
 ## Key design decisions
 
